@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
-# Jagrik Development Server
+# Jagrik development server
 
 echo -e "\n \t ============================ |- Welcome to Jagrik Development Server -| ========================== \n"
-echo -e "\t Kindly choose the package manager below to start installing the app locally(type the option number)..."
+echo -e "\t Kindly choose the package manager below to start the application locally(type the option number)..."
 echo "  1) npm"
 echo "  2) yarn"
 
@@ -30,18 +29,6 @@ else
     packageManager="yarn"
 
 fi
-
-    # Installing pm2 globally
-    if [ "$packageManager" == "npm" ]
-
-    then    
-        sudo $packageManager -g install pm2
-
-    else
-        sudo $packageManager global add pm2
-
-    fi
-
     # Assign Current workdir
     mainDir=$PWD
     
@@ -54,27 +41,23 @@ fi
     # Loop through all the directories and install the packages 
     for i in "${serviceArray[@]}"
     do
+        # Slice the name of service from the entire directory name
+        service="$(cut -d'/' -f1 <<<"$i")"
 
         # Go to service directory
         cd $i
 
-        service="$(cut -d'/' -f1 <<<"$i")"
-
         # Echo the Status
-        echo -e "\n \t Installing $service ..."
-
-        # Create Uploads Folder
-        mkdir uploads
+        echo -e "\n \t Starting $service ..."
 
         # Start the process and push it to background
-        $packageManager install &
+        pm2 start "$packageManager run dev" --name "$service"
 
         # Wait for process to get completed
         wait
 
         # Echo the status
-        echo -e "\n \t $service has installed successfully!"  
+        echo -e "\n \t $service has been started successfully!"  
 
-        # Go back to main working directory(i.e. - services/)
         cd -
     done
