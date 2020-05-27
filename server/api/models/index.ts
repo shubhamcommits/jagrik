@@ -1,5 +1,5 @@
-import { Auth } from './auth.model';
-import { User } from './user.model';
+import { Auth } from './auth.model'
+import { User } from './user.model'
 
 /*  =====================
  *  -- EXPORTS MODELS --
@@ -12,4 +12,4 @@ export {
 
     // User Model
     User as User,
-};
+}
