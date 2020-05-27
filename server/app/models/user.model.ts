@@ -34,23 +34,11 @@ const UserSchema = new Schema({
         type: String,
         default: 'default_user.png'
     },
-    search_history: {
-        type: Array,
-        default: []
-    },
-    workspace_name: {
-        type: String,
-        required: true
-    },
-    _workspace: {
-        type: Schema.Types.ObjectId,
-        ref: 'Workspace'
-    },
     role: {
         type: String,
         required: true,
-        default: 'member',
-        enum: ['owner', 'member', 'admin']
+        default: 'student',
+        enum: ['super-admin', 'facilitator', 'student']
     },
     phone_number: {
         type: String,
@@ -60,50 +48,18 @@ const UserSchema = new Schema({
         type: String,
         default: null
     },
-    current_position: {
-        type: String,
-        default: null
-    },
     bio: {
         type: String,
         default: null
-    },
-    company_name: {
-        type: String,
-        default: null
-    },
-    company_join_date: {
-        type: Date,
-        default: moment().format()
     },
     created_date: {
         type: Date,
         default: moment().format()
     },
-    skills: [{
-        type: String,
-        default: null
-    }],
     files: [{
         type: String,
         default: null
-    }],
-    _groups: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Group'
-    }],
-    _private_group: {
-        type: Schema.Types.ObjectId,
-        ref: 'Group'
-    },
-    integrations: {
-        gdrive: {
-            token: {
-                type: String,
-                default: null
-            }
-        }
-    }
+    }]
 });
 
 const User = mongoose.model('User', UserSchema);
