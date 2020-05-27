@@ -7,3 +7,6 @@ yarn.lock
 
 # Uploads Local Folder
 uploads
+
+# Ignore .DS_Store
+.DS_Store
