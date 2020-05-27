@@ -1,7 +1,7 @@
-import moment from 'moment';
-import mongoose from 'mongoose';
+import moment from 'moment'
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const UserSchema = new Schema({
     active: {
@@ -60,8 +60,8 @@ const UserSchema = new Schema({
         type: String,
         default: null
     }]
-});
+})
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema)
 
-export { User };
+export { User }

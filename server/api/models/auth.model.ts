@@ -1,7 +1,7 @@
-import moment from 'moment';
-import mongoose from 'mongoose';
+import moment from 'moment'
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const AuthSchema = new Schema({
     token: {
@@ -28,8 +28,8 @@ const AuthSchema = new Schema({
         type: Date,
         default: moment().format()
     }
-});
+})
 
-const Auth = mongoose.model('Auth', AuthSchema);
+const Auth = mongoose.model('Auth', AuthSchema)
 
 export { Auth }
