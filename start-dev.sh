@@ -31,9 +31,6 @@ else
 fi
     # Assign Current workdir
     mainDir=$PWD
-    
-    # Go to services directory
-    cd services
 
     # Define the service Directory array
     serviceArray=( 'server' )
