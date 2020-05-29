@@ -1,13 +1,12 @@
-import http from 'http';
-import { app } from './api/app';
-import cluster from 'cluster';
+import http from "http";
+import { app } from "./api/app";
+import cluster from "cluster";
 
 if (cluster.isMaster) {
-
   // Fetch Number of Workers
-  const numWorkers = require('os').cpus().length;
+  const numWorkers = require("os").cpus().length;
 
-  console.log('Master cluster setting up ' + numWorkers + ' workers...');
+  console.log("Master cluster setting up " + numWorkers + " workers...");
 
   // Fork the process and make clusters
   for (let i = 0; i < numWorkers; i++) {
@@ -15,23 +14,29 @@ if (cluster.isMaster) {
   }
 
   // Cluster Method for Online
-  cluster.on('online', function (worker) {
-    console.log('Worker ' + worker.process.pid + ' is online');
+  cluster.on("online", function (worker) {
+    console.log("Worker " + worker.process.pid + " is online");
   });
 
   // Cluster Method for Exit
-  cluster.on('exit', function (worker, code, signal) {
-    console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
-    console.log('Starting a new worker');
+  cluster.on("exit", function (worker, code, signal) {
+    console.log(
+      "Worker " +
+        worker.process.pid +
+        " died with code: " +
+        code +
+        ", and signal: " +
+        signal
+    );
+    console.log("Starting a new worker");
     cluster.fork();
   });
 } else {
-
   // Define Application port
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3001;
 
   // Defining the Host Name
-  const host: any = process.env.HOST || '0.0.0.0';
+  const host: any = process.env.HOST || "0.0.0.0";
 
   // Environment State Variable
   const env = process.env.NODE_ENV;
