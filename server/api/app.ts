@@ -4,6 +4,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import compression from 'compression'
 import { developmentConfig, productionConfig } from '../configs'
+import { authsRoutes } from './routes'
 
 // Defining new Express application
 const app = express()
@@ -62,6 +63,9 @@ app.get("*.css", encodeResToGzip('text/css'))
 app.all('/', (req: Request, res: Response, next: NextFunction) => {
     res.sendFile(path.join(__dirname, './views/index.html'))
 })
+
+// Auth Routes
+app.use('/api/auths', authsRoutes);
 
 // Invalid routes handling middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
