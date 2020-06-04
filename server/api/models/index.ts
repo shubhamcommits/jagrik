@@ -1,15 +1,16 @@
-import { Auth } from './auth.model'
-import { User } from './user.model'
+import { Auth } from "./auth.model";
+import { User } from "./user.model";
+import { Class } from "./class.model";
 
 /*  =====================
  *  -- EXPORTS MODELS --
  *  =====================
  * */
 export {
-
-    // Auth Model
-    Auth as Auth,
-
-    // User Model
-    User as User,
-}
+  // Auth Model
+  Auth,
+  // User Model
+  User,
+  // Class Model
+  Class,
+};

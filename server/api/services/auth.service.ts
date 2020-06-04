@@ -55,6 +55,7 @@ export class AuthService {
       role,
     };
 
+    console.log("newUser: ", newUser);
     //check if user already exists
     try {
       // inserting the user obj into the User db and creating a log of it through the Auth model
@@ -89,6 +90,7 @@ export class AuthService {
           return token;
         })
         .catch((err) => {
+          console.log("err: ", err);
           throw new Error(err);
         });
     } catch (error) {
