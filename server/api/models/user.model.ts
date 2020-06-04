@@ -1,6 +1,6 @@
 import moment from "moment";
 import mongoose from "mongoose";
-var bcrypt = require("bcrypt");
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -63,10 +63,6 @@ const UserSchema = new Schema({
     },
   ],
 });
-
-UserSchema.methods.verifyPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-};
 
 const User = mongoose.model("User", UserSchema);
 

@@ -49,7 +49,7 @@ fi
     cd services
 
     # Define the service Directory array
-    serviceArray=( 'server' )
+    serviceArray=( 'server' 'client')
 
     # Loop through all the directories and install the packages 
     for i in "${serviceArray[@]}"

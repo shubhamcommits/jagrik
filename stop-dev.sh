@@ -8,3 +8,8 @@ echo "Stoping all the node services..."
 pm2 stop server
 
 pm2 delete server
+
+# Stops and kills the client
+pm2 stop client
+
+pm2 delete client

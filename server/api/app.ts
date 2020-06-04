@@ -1,15 +1,13 @@
-import express, { Request, Response, NextFunction, raw } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import cors from "cors";
 import morgan from "morgan";
 import compression from "compression";
 import { developmentConfig, productionConfig } from "../configs";
-const { check } = require("express-validator");
-const passport = require("passport");
+import { authsRoutes } from "./routes";
 
 // Defining new Express application
 const app = express();
-const api = require("./services");
 
 // Load configuration based on the environment states
 if (process.env.NODE_ENV !== "production") {
@@ -63,30 +61,13 @@ const encodeResToGzip = (contentType: any) => {
 app.get("*.js", encodeResToGzip("text/javascript"));
 app.get("*.css", encodeResToGzip("text/css"));
 
-// Route API Calls to seperate router
-let authService = new api.AuthService();
-console.log("authService: ", authService.signIn());
-
-app.use("/signIn", authService.signIn);
-app.post(
-  "/signUp",
-  [
-    //username must be an email
-    check("email").isEmail(),
-    // password must be at least 5 chars long
-    check("password").isLength({ min: 5 }),
-    // // first name
-    check("first_name").isAlpha().trim().escape(),
-    // //last name
-    check("last_name").isAlpha().trim().escape(),
-  ],
-  authService.signUp
-);
-
 // Routes which should handle request
 app.all("/", (req: Request, res: Response, next: NextFunction) => {
   res.sendFile(path.join(__dirname, "./views/index.html"));
 });
+
+// Auth Routes
+app.use("/api/auths", authsRoutes);
 
 // Invalid routes handling middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
