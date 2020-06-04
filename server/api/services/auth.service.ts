@@ -32,7 +32,7 @@ export class AuthService {
           return error;
         });
     } catch (error) {
-      return error;
+      throw new Error(error);
     }
   }
 
@@ -94,7 +94,7 @@ export class AuthService {
           throw new Error(err);
         });
     } catch (error) {
-      return error;
+      throw new Error(error);
     }
   }
 
@@ -119,7 +119,7 @@ export class AuthService {
           throw new Error(error);
         });
     } catch (error) {
-      return error;
+      throw new Error(error);
     }
   }
 }
