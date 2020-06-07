@@ -1,7 +1,7 @@
-import moment from "moment";
-import mongoose from "mongoose";
+import moment from 'moment'
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const UserSchema = new Schema({
   active: {
@@ -32,13 +32,13 @@ const UserSchema = new Schema({
   },
   profile_pic: {
     type: String,
-    default: "default_user.png",
+    default: 'default_user.png',
   },
   role: {
     type: String,
     required: true,
-    default: "student",
-    enum: ["super-admin", "facilitator", "student"],
+    default: 'student',
+    enum: ['super-admin', 'facilitator', 'student'],
   },
   phone_number: {
     type: String,
@@ -65,12 +65,12 @@ const UserSchema = new Schema({
   classes: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Class",
+      ref: 'Class',
       default: null,
     },
   ],
-});
+})
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema)
 
-export { User };
+export { User }

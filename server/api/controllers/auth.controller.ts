@@ -1,50 +1,63 @@
-import { Request, Response, NextFunction } from "express";
-import { AuthService } from "../services";
+import { Request, Response, NextFunction } from 'express'
+import { AuthService } from '../services'
 
 // Create Authentication Service instance
-const authService = new AuthService();
+const authService = new AuthService()
 
 export class AuthController {
+
+  /**
+   * This function is responsible for signing in the user
+   * @param { body: { user } } req 
+   * @param res 
+   * @param next 
+   */
   async signIn(req: Request, res: Response, next: NextFunction) {
     try {
+
       // Fetch the data variables from the request
-      let {
-        body: { user },
-      } = req;
+      let { body: { user } } = req
+
       // Call the signIn function from the service
       user = await authService
         .signIn(user.email, user.password, user.device_id)
 
-        // Process with the status 200 response
-        .then((token) => {
+        // Proceed with the status 200 response
+        .then((response) => {
           return res.status(200).json({
-            message: "User has been signed in successfully!",
-            token: token,
-          });
+            message: 'User has been signed in successfully!',
+            user: response.user,
+            token: response.token,
+          })
         })
 
         // Catch the errors from the service function
         .catch((err) => {
           return res.status(400).json({
             message:
-              "Bad Request, kindly trace the error stack for more details!",
-            error: new Error(err),
-          });
-        });
+              'Bad Request, kindly trace the error stack for more details!',
+            error: new Error(err || 'Bad Request, kindly trace the error stack for more details!'),
+          })
+        })
     } catch (err) {
       return res.status(500).json({
-        message: "Internal Server Error!",
-        error: new Error(err),
-      });
+        message: 'Internal Server Error!',
+        error: new Error(err || 'Internal Server Error!'),
+      })
     }
   }
 
+  /**
+   * This function is responsible for signing up the user
+   * @param { body: { user } } req 
+   * @param res 
+   * @param next 
+   */
   async signUp(req: Request, res: Response, next: NextFunction) {
     try {
+
       // Fetch the data variables from the request
-      let {
-        body: { user },
-      } = req;
+      let { body: { user } } = req
 
       // Call the signUp function from the service
       user = await authService
@@ -57,37 +70,46 @@ export class AuthController {
           user.device_id
         )
 
-        // Process with the status 200 response
+        // Proceed with the status 200 response
         .then((token) => {
           return res.status(200).json({
-            message: "User has been signed up successfully!",
+            message: 'User has been signed up successfully!',
             token: token,
-          });
+          })
         })
 
         // Catch the errors from the service function
         .catch((err) => {
           return res.status(400).json({
             message:
-              "Bad Request, kindly trace the error stack for more details!",
-            error: new Error(err),
-          });
-        });
+              'Bad Request, kindly trace the error stack for more details!',
+            error: new Error(err || 'Bad Request, kindly trace the error stack for more details!'),
+          })
+        })
+
     } catch (err) {
       return res.status(500).json({
-        message: "Internal Server Error!",
-        error: new Error(err),
-      });
+        message: 'Internal Server Error!',
+        error: new Error(err || 'Internal Server Error!'),
+      })
     }
   }
 
+  /**
+   * This function is responsible for signing out the currently loggedIn user
+   * @param { body:{ userId } } req 
+   * @param res 
+   * @param next 
+   */
   async signOut(req: Request, res: Response, next: NextFunction) {
     try {
-      // Fetch the userId from the server's cache
-      //   let userId = req["userId"];
 
-      //temporarily assume it's in the request
-      let userId = req.body.userId;
+      // Fetch the userId from the server's cache
+      //   let userId = req['userId']
+
+      // temporarily assume it's in the request
+      let userId = req.body.userId
+
       // Call the sign out service function
       let user = await authService
         .signOut(userId)
@@ -95,23 +117,24 @@ export class AuthController {
         // Process with the status 200 response
         .then(() => {
           return res.status(200).json({
-            message: "User has been signed out successfully!",
-          });
+            message: 'User has been signed out successfully!',
+          })
         })
 
         // Catch the errors from the service function
         .catch((err) => {
           return res.status(400).json({
             message:
-              "Bad Request, kindly trace the error stack for more details!",
-            error: new Error(err),
-          });
-        });
+              'Bad Request, kindly trace the error stack for more details!',
+            error: new Error(err || 'Bad Request, kindly trace the error stack for more details!'),
+          })
+        })
+
     } catch (err) {
       return res.status(500).json({
-        message: "Internal Server Error!",
-        error: new Error(err),
-      });
+        message: 'Internal Server Error!',
+        error: new Error(err || 'Internal Server Error!'),
+      })
     }
   }
 }

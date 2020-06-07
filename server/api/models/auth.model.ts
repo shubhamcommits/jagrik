@@ -9,8 +9,8 @@ const AuthSchema = new Schema({
         default: null
     },
     device_id: {
-        type: String,
-        default: null
+        type: Schema.Types.Mixed,
+        default: {}
     },
     _user: {
         type: Schema.Types.ObjectId,

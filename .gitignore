@@ -3,7 +3,12 @@ node_modules
 
 # Lock Files
 package-lock.json
+server/package-lock.json
+client/package-lock.json
+
 yarn.lock
+server/yarn.lock
+client/yarn.lock
 
 # Uploads Local Folder
 uploads

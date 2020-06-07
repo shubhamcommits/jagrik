@@ -25,4 +25,4 @@ RUN mv ./node_modules/ /usr/ && rm -rf *.ts && mv /usr/node_modules ./
 EXPOSE 3000
 
 # Start the Server
-CMD ["yarn", "run", "prod"]
+CMD ['yarn', 'run', 'prod']
