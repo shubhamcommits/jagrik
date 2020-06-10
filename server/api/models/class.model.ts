@@ -1,18 +1,17 @@
-import moment from 'moment'
-import mongoose from 'mongoose'
+import moment from "moment";
+import mongoose from "mongoose";
 
-const { Schema } = mongoose
+const { Schema } = mongoose;
 
 const ClassSchema = new Schema({
   class_creator: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   members: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
       default: null,
     },
   ],
@@ -20,8 +19,14 @@ const ClassSchema = new Schema({
     type: Date,
     default: moment().format(),
   },
-})
+  invited_members: [
+    {
+      type: String,
+      default: null,
+    },
+  ],
+});
 
-const Class = mongoose.model('Class', ClassSchema)
+const Class = mongoose.model("Class", ClassSchema);
 
-export { Class }
+export { Class };
