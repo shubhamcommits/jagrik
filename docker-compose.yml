@@ -2,6 +2,17 @@ version: "3.3"
 
 services:
 
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    restart: always
+    volumes:
+      - data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - jagrik
+
   server:
     container_name: jagrik-server
     image: jagrik:server
@@ -11,10 +22,40 @@ services:
       context: ./server
     volumes:
       - /usr/app/node_modules
+    ports:
+      - 3000:3000
     depends_on:
       - mongodb
     links:
       - mongodb
+
+  client:
+    container_name: client
+    image: client
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /usr/app/node_modules
+    depends_on:
+      - server
+    networks:
+      - jagrik
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - server
+      - client
+    networks:
+      - jagrik
 
 volumes:
   data:
@@ -23,3 +64,7 @@ volumes:
       type: none
       device: ${PWD}/data/db
       o: bind
+
+networks:
+  jagrik: 
+    driver: bridge
