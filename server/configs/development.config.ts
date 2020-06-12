@@ -5,23 +5,23 @@ import path from 'path';
  */
 function devConfigInit() {
   // Node Environment
-  process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+  process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
   // Application Port
-  process.env.PORT = process.env.PORT || '3000';
+  process.env.PORT = process.env.PORT || '3000'
 
   // Application Host
-  process.env.HOST = process.env.HOST || '0.0.0.0';
+  process.env.HOST = process.env.HOST || '0.0.0.0'
 
   // Jwt Key
-  process.env.JWT_KEY = process.env.JWT_KEY || 'default_value';
+  process.env.JWT_KEY = process.env.JWT_KEY || 'default_value'
 
   // Database Url String
-  process.env.dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/jagrik';
+  process.env.dbURL = process.env.dbURL || `mongodb+srv://jagrik:Jagrik%4001@jagrik-6jrkd.mongodb.net/jagrik?retryWrites=true&w=majority`
 
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER =
-    process.env.FILE_UPLOAD_FOLDER || path.join(__dirname, '../uploads/');
+    process.env.FILE_UPLOAD_FOLDER || path.join(__dirname, '../uploads/')
 }
 
 export { devConfigInit as developmentConfig };
