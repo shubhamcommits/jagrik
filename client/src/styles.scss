@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+
+// Align Icons CSS
+.material-icons {
+    vertical-align: middle !important;
+}
+.material-icons-outlined {
+    vertical-align: middle !important;
+}

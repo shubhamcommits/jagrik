@@ -8,7 +8,7 @@ const AuthSchema = new Schema({
         type: String,
         default: null
     },
-    device_id: {
+    device: {
         type: Schema.Types.Mixed,
         default: {}
     },

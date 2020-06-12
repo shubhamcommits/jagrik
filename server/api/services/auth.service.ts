@@ -8,9 +8,9 @@ export class AuthService {
    * This function defines the business logic behind signing in a user
    * @param email 
    * @param password 
-   * @param device_id - optional
+   * @param device - optional
    */
-  async signIn(email: string, password: string, device_id?: any) {
+  async signIn(email: string, password: string, device?: any) {
     try {
 
       return await User.findOneAndUpdate(
@@ -33,7 +33,7 @@ export class AuthService {
               { _user: user._id },
               {
                 last_login: moment().format(),
-                device_id: device_id || {},
+                device: device || {},
                 is_logged_in: true,
                 token: token,
               }
@@ -61,7 +61,7 @@ export class AuthService {
    * @param email 
    * @param password 
    * @param role 
-   * @param device_id - optional
+   * @param device - optional
    */
   async signUp(
     first_name: string,
@@ -69,7 +69,7 @@ export class AuthService {
     email: string,
     password: string,
     role: string,
-    device_id?: any
+    device?: any
   ) {
 
     // create a user obj to put in the User db
@@ -107,7 +107,7 @@ export class AuthService {
           // New Authentication logs object
           let newAuthUser = {
             token: token,
-            device_id: device_id || {},
+            device: device || {},
             _user: user,
           }
 
@@ -115,7 +115,7 @@ export class AuthService {
           await Auth.create(newAuthUser)
 
           // Return the token
-          return token
+          return { user, token }
         })
 
         // return token to user

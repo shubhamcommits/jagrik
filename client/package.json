@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prod":"ng build --prod",
+    "prod": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,10 @@
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
+    "crypto-js": "^4.0.0",
+    "ngx-ui-loader": "^9.1.1",
     "rxjs": "~6.5.4",
+    "sweetalert2": "^9.14.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -44,5 +47,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "browser": {
+    "crypto": false
   }
 }
