@@ -9,13 +9,13 @@ const routes = express.Router()
 
 /**
  * POST - Signs In the user and generate a new token
- * @var { body: { user: { email, password, device_id } } }
+ * @var { body: { user: { email, password, device } } }
  */
 routes.post('/sign-in', auth.signIn)
 
 /**
  * POST - Signs Up the user and creates a new account
- * @var { body: { user: { first_name, last_name, email, password, role, device_id }
+ * @var { body: { user: { first_name, last_name, email, password, role, device }
  */
 routes.post('/sign-up', auth.signUp)
 

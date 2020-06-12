@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 
-$prim: #007bff;
+$prim: #CE4166;
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     font-family: 'Source Sans Pro', sans-serif;
@@ -30,17 +30,9 @@ $prim: #007bff;
 	color: white;
 	font-weight: 300;
 
-    background: rgb(2,0,36);
-    background: linear-gradient(185deg, rgba(2,0,36,1) 0%, rgba(0,123,255,1) 0%, rgba(0,212,255,1) 90%);
+	background: rgb(2,0,36);
+	background: linear-gradient(133deg, rgba(2,0,36,1) 0%, rgba(190,77,114,0.9948354341736695) 0%, rgba(206,65,102,1) 0%);
     text-shadow: 2px 2px 4px #000000;
-	
-	&.form-success{
-		.container{
-			h1{
-				transform: translateY(85px);
-			}
-		}
-	}
 }
 
 *{
@@ -60,8 +52,6 @@ $prim: #007bff;
 	
 	h1{
 		font-size: 40px;
-		transition-duration: 1s;
-		transition-timing-function: ease-in-put;
 		font-weight: 200;
 	}
 }
@@ -75,10 +65,10 @@ $prim: #007bff;
     }
 }
 
-div.form{
+.form{
 	padding: 20px 0;
 	position: relative;
-	z-index: 2;
+	// z-index: 2;
 	
 	input{
 		display: block;

@@ -1,0 +1,103 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700);
+
+// Colors
+
+$bg: #fff;
+$pink: #EE3769;
+$blue: #03A9F4;
+$dblue: #0288D1;
+$grey: #c9c9c9;
+$dgrey: #bbb;
+
+// Navigation Bar
+nav{
+    background-color: white; 
+    color: black;
+}
+
+// Span for Material icons
+span{
+    font-size: 30px;
+}
+
+.button {
+    background-color: #CE4166; /* Pink Color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    letter-spacing: 2px;
+  }
+
+  .button:focus{
+    outline: none;
+  }
+
+  .button-nav {
+    background-color: white; 
+    color: black; 
+  }
+
+  .button-nav:hover {
+    background-color: #CE4166;
+    color: white;
+  }
+
+  li{
+      display: flex;
+      justify-content: space-between;
+  }
+
+.btn{
+    background-color: #CE4166;
+    font-family: "Roboto Condensed";
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    padding: 0.2em 3em;
+    border-radius: 5px;
+    border: 0;
+    border-bottom: 5px solid #7a5c02;
+    float: right;
+    margin-top: 10px;
+    -webkit-user-select: none;
+      
+  &:hover{
+    cursor: pointer;
+  }
+
+  
+  &:focus{
+    outline: none;
+  }
+
+  
+  &:active{
+    transform: translate(0, 5px);
+    border-bottom: 1px solid #7a5c02;
+  }
+
+
+    &::after{
+        content: '';
+        display: block;
+        height: 4px;
+    }
+ 
+}
+
+.btn:focus{
+    outline: none;
+}
+
+a{
+    cursor: pointer;
+}
