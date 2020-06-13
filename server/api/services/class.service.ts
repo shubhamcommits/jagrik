@@ -84,7 +84,7 @@ export class ClassService {
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
         .then((jagrik_class) => {
-          if (!jagrik_class["invited_members"].includes(user._id)) {
+          if (!jagrik_class["invited_members"].includes(user.email)) {
             throw new Error("Email not registered with this class");
           }
           return jagrik_class;
