@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { AuthService } from '../services'
+import * as details from 'client-device-ip-details'
 
 // Create Authentication Service instance
 const authService = new AuthService()
@@ -18,9 +19,12 @@ export class AuthController {
       // Fetch the data variables from the request
       let { body: { user } } = req
 
+      // Adding user device details
+      user.device = details.getDetails(req)
+
       // Call the signIn function from the service
       user = await authService
-        .signIn(user.email, user.password, user.device_id)
+        .signIn(user.email, user.password, user.device)
 
         // Proceed with the status 200 response
         .then((response) => {
@@ -59,6 +63,9 @@ export class AuthController {
       // Fetch the data variables from the request
       let { body: { user } } = req
 
+      // Adding user device details
+      user.device = details.getDetails(req)
+
       // Call the signUp function from the service
       user = await authService
         .signUp(
@@ -67,14 +74,15 @@ export class AuthController {
           user.email,
           user.password,
           user.role,
-          user.device_id
+          user.device
         )
 
         // Proceed with the status 200 response
-        .then((token) => {
+        .then((response) => {
           return res.status(200).json({
             message: 'User has been signed up successfully!',
-            token: token,
+            token: response.token,
+            user: response.user
           })
         })
 

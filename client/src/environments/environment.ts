@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+
+  // Storage Key
+  storageKey: 'Shubham/Jagrik/20',
+
+  // Base Url
+  baseUrl: 'http://localhost:3000',
+
+  // Base API Url
+  baseApiUrl:'http://localhost:3000/api',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

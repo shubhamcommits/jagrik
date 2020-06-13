@@ -11,11 +11,11 @@
         <div class="container">
             <h1>Welcome to Jagrik</h1>
 
-            <div class="form">
-                <input type="email" placeholder="Your Email">
-                <input type="password" placeholder="Your Password">
-                <button type="submit">Login to Dashboard</button>
-            </div>
+            <form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+                <input type="email" required placeholder="Your Email" formControlName="email">
+                <input type="password" required placeholder="Your Password" formControlName="password">
+                <button [disabled]="!loginForm.valid" type="submit">Login to Dashboard</button>
+            </form>
         </div>
 
 </div>
