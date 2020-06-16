@@ -40,36 +40,40 @@ export class ClassService {
   async inviteToClass(token: any, studentEmails: [String], classId: String) {
     try {
       // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
       // check if the user has the correct permissions to create a class
-
-      // add emails to invited member list for class
-      await Class.findByIdAndUpdate(
-        { _id: classId },
-        { $push: { invited_members: studentEmails } }
-      );
-      //create class join URL
-      let JOIN_URL =
-        process.env.URL + "/api/classes/join-class?classId=" + classId;
-      // draft an email to the students
-      const msg = {
-        to: studentEmails,
-        from: process.env.SENDGRID_EMAIL || "krrishdholakia@gmail.com",
-        subject: "Join your Jagrik Class!",
-        text:
-          "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +
-          JOIN_URL,
-        html: `<div style='display: flex; flex-direction: column; width: 100%;  justify-content: center;align-items: center;'><h1>Welcome to your Jagrik Class!</h1><p>You've been invited to join a Jagrik class. Click on the link below and get started!</p> <a href=${JOIN_URL} style='text-decoration: none;color: white;background: black;padding: 1%;border-radius: 5px;'>JOIN CLASS</a></div>`,
-      };
-      sgMail
-        .sendMultiple(msg)
-        .then(() => {
-          return "Emails sent successfully!";
-        })
-        .catch((error: any) => {
-          console.log("error: ", error);
-          throw new Error(error);
-        });
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        // add emails to invited member list for class
+        await Class.findByIdAndUpdate(
+          { _id: classId },
+          { $push: { invited_members: studentEmails } }
+        );
+        //create class join URL
+        let JOIN_URL =
+          process.env.URL + "/api/classes/join-class?classId=" + classId;
+        // draft an email to the students
+        const msg = {
+          to: studentEmails,
+          from: process.env.SENDGRID_EMAIL || "krrishdholakia@gmail.com",
+          subject: "Join your Jagrik Class!",
+          text:
+            "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +
+            JOIN_URL,
+          html: `<div style='display: flex; flex-direction: column; width: 100%;  justify-content: center;align-items: center;'><h1>Welcome to your Jagrik Class!</h1><p>You've been invited to join a Jagrik class. Click on the link below and get started!</p> <a href=${JOIN_URL} style='text-decoration: none;color: white;background: black;padding: 1%;border-radius: 5px;'>JOIN CLASS</a></div>`,
+        };
+        sgMail
+          .sendMultiple(msg)
+          .then(() => {
+            return "Emails sent successfully!";
+          })
+          .catch((error: any) => {
+            console.log("error: ", error);
+            throw new Error(error);
+          });
+      } else {
+        throw new Error("401 - Access denied");
+      }
     } catch (err) {
       console.log("err: ", err);
       throw new Error("400 - Bad Request");
@@ -84,7 +88,7 @@ export class ClassService {
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
         .then((jagrik_class) => {
-          if (!jagrik_class["invited_members"].includes(user._id)) {
+          if (!jagrik_class["invited_members"].includes(user.email)) {
             throw new Error("Email not registered with this class");
           }
           return jagrik_class;
