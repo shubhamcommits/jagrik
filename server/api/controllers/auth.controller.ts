@@ -63,6 +63,8 @@ export class AuthController {
       // Fetch the data variables from the request
       let { body: { user } } = req
 
+      console.log(user)
+
       // Adding user device details
       user.device = details.getDetails(req)
 

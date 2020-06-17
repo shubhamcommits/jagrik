@@ -53,9 +53,11 @@ export class ClassService {
           { _id: classId },
           { $push: { invited_members: studentEmails } }
         );
+
+        console.log(studentEmails[0])
         //create class join URL
         let JOIN_URL =
-          process.env.URL + "/api/classes/join-class?classId=" + classId;
+          process.env.URL + "/#/authentication/sign-up?classId=" + classId + "&email=" + studentEmails[0] + "&role=student"
         // draft an email to the students
         const msg = {
           to: studentEmails,
@@ -101,7 +103,8 @@ export class ClassService {
           // join a class -> save the user id as the member
           Class.findByIdAndUpdate(
             { _id: classId },
-            { $push: { members: user._id } }
+            { $push: { members: user._id } },
+            { new: true }
           );
           return;
         })

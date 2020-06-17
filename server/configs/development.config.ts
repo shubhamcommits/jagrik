@@ -17,7 +17,7 @@ function devConfigInit() {
   process.env.JWT_KEY = process.env.JWT_KEY || 'default_value'
 
   // URL
-  process.env.URL = process.env.URL || `http://localhost:${process.env.PORT}`
+  process.env.URL = process.env.URL || `http://localhost:4200`
 
   // Database Url String
   process.env.dbURL = process.env.dbURL || `mongodb://127.0.0.1:27017/jagrik`

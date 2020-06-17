@@ -32,4 +32,15 @@ export class ClassService {
       classId: classId
     }).toPromise()
   }
+
+  /**
+   * Service function to call the http request to joing a student to a class
+   * @param email
+   * @param classId
+   */
+  joinToClass(classId: any){
+    return this.httpClient.post(environment.baseApiUrl + '/classes/join-class', {
+      classId: classId
+    }).toPromise()
+  }
 }
