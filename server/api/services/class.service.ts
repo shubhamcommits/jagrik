@@ -10,7 +10,7 @@ export class ClassService {
    * This function defines the business logic behind the creation of a class
    * @param token
    */
-  async createClass(token: any) {
+  async createClass(token: any, name: string) {
     try {
       // verify token and decode user data
       let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -18,7 +18,11 @@ export class ClassService {
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
         // create a class -> save the user id as the class_creator
-        let jagrik_class = await Class.create({ class_creator: user._id });
+        let jagrik_class = await Class.create({
+          class_creator: user._id,
+          name: name,
+          members: [user.email]
+        });
 
         // save class id in user profile
         let user_profile = await User.findByIdAndUpdate(

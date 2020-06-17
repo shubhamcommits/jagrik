@@ -16,10 +16,11 @@ export class ClassController {
       // Fetch the headers from the request
       let {
         headers: { authorization },
+        body: { class:  { name } }
       } = req;
 
       // Call the create class service function
-      await classService.createClass(authorization).then((response) => {
+      await classService.createClass(authorization, name).then((response) => {
         return res.status(200).json({
           message: "User has successfully created a class!",
           class: response.class,
@@ -40,7 +41,6 @@ export class ClassController {
         headers: { authorization },
         body: { studentEmails, classId },
       } = req;
-
       //call invite to class service function
       await classService
         .inviteToClass(authorization, studentEmails, classId)

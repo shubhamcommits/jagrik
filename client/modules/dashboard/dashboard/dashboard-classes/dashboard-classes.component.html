@@ -1,0 +1,9 @@
+<app-create-class style="margin-top: 100px;" (class)="getClass($event)"></app-create-class>
+
+<div class="class-row">
+
+    <ng-container *ngFor="let class of classes; let index = index">
+        <app-class-view [routerLink]="['/dashboard', 'classes', class]" [class]="'Class_' + (index+1)"></app-class-view>
+    </ng-container>
+    
+</div>

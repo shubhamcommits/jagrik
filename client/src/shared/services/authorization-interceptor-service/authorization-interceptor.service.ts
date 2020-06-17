@@ -1,7 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { StorageService } from '../storage-service/storage.service';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,29 @@ export class AuthorizationInterceptorService implements HttpInterceptor {
    * This function handles and intercepts the incoming request to check if that has a valid @name AuthorizationHeader or not
    * Fetches the token stored on @localhost named as @name authToken
    */
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const storageService = this.injector.get(StorageService);
-    if(storageService.existData('authToken')){
-      const tokenizedRequest = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${storageService.getLocalData('authToken')['token']}`
-        }
-      });
-      return next.handle(tokenizedRequest);
+
+    if (storageService.existData('authToken')) {
+      let token = storageService.getLocalData('authToken')
+      if (token) {
+        request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) })
+      }
     }
-    return next.handle(request.clone());
+
+    if (!request.headers.has('Content-Type')) {
+      request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+    }
+
+    request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          console.log('event--->>>', event);
+        }
+        return event;
+      }));
   }
-  
+
 }

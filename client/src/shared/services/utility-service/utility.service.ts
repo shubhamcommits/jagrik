@@ -80,12 +80,16 @@ export class UtilityService {
     this.ngxUiLoaderService.stopAll();
   }
 
-  public swalToast() {
+  public getSwalModal(swalOptions: any){
+    return Swal.fire(swalOptions);
+  }
+
+  public swalToast(timeout?: number) {
     return Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 1500,
+      timer: timeout || 1500,
       timerProgressBar: true,
       onOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -94,8 +98,8 @@ export class UtilityService {
     })
   }
 
-  public fireToast(type: SweetAlertIcon, title: string){
-    return this.swalToast().fire({
+  public fireToast(type: SweetAlertIcon, title: string, timeout?: number){
+    return this.swalToast(timeout).fire({
       icon: type,
       title: title
     })

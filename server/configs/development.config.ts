@@ -16,8 +16,11 @@ function devConfigInit() {
   // Jwt Key
   process.env.JWT_KEY = process.env.JWT_KEY || 'default_value'
 
+  // URL
+  process.env.URL = process.env.URL || `http://localhost:${process.env.PORT}`
+
   // Database Url String
-  process.env.dbURL = process.env.dbURL || `mongodb+srv://jagrik:Jagrik%4001@jagrik-6jrkd.mongodb.net/jagrik?retryWrites=true&w=majority`
+  process.env.dbURL = process.env.dbURL || `mongodb://127.0.0.1:27017/jagrik`
 
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER =

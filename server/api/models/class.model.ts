@@ -9,6 +9,11 @@ const ClassSchema = new Schema({
     ref: "User",
     required: true,
   },
+  name: {
+    type: Schema.Types.String,
+    required: true,
+    default: 'default_class'
+  },
   members: [
     {
       type: String,
