@@ -1,7 +1,7 @@
-import moment from 'moment'
-import mongoose from 'mongoose'
+import moment from "moment";
+import mongoose from "mongoose";
 
-const { Schema } = mongoose
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   active: {
@@ -32,13 +32,13 @@ const UserSchema = new Schema({
   },
   profile_pic: {
     type: String,
-    default: 'default_user.png',
+    default: "default_user.png",
   },
   role: {
     type: String,
     required: true,
-    default: 'student',
-    enum: ['super-admin', 'facilitator', 'student'],
+    default: "student",
+    enum: ["super-admin", "facilitator", "student"],
   },
   phone_number: {
     type: String,
@@ -49,6 +49,52 @@ const UserSchema = new Schema({
     default: null,
   },
   bio: {
+    type: String,
+    default: null,
+  },
+  gender: {
+    type: String,
+    default: null,
+  },
+  date_of_birth: {
+    type: Date,
+    default: null,
+  },
+  emergency_contact_name: {
+    type: String,
+    default: null,
+  },
+  emergency_contact_number: {
+    type: Number,
+    default: null,
+  },
+  block: {
+    type: String,
+    default: null,
+  },
+  district: {
+    type: String,
+    default: null,
+  },
+  state: {
+    type: String,
+    default: null,
+  },
+  social_media_username: {
+    type: String,
+    default: null,
+  },
+  in_school: {
+    type: Boolean,
+    default: true,
+  },
+  caste_category: {
+    type: String,
+    required: true,
+    default: "general",
+    enum: ["scheduled-caste", "scheduled-tribe", "obc", "general"],
+  },
+  religion: {
     type: String,
     default: null,
   },
@@ -65,12 +111,12 @@ const UserSchema = new Schema({
   classes: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Class',
+      ref: "Class",
       default: null,
     },
   ],
-})
+});
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model("User", UserSchema);
 
-export { User }
+export { User };
