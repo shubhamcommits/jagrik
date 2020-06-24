@@ -13,11 +13,15 @@ export class DashboardClassesComponent implements OnInit {
   // Array list of classes
   classes: any = []
 
+  userData: any
+
   ngOnInit(): void {
     const storageService = this.injector.get(StorageService);
     if(storageService.existData('userData')){
+      this.userData = storageService.getLocalData('userData')
       this.classes = storageService.getLocalData('userData').classes
     }
+    console.log(this.userData)
   }
 
   getClass(class_name: string){
