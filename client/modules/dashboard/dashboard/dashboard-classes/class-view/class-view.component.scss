@@ -1,0 +1,25 @@
+@import 'modules/dashboard/dashboard/dashboard-header/dashboard-header.component.scss';
+
+.card:hover {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+  .card {
+    background: $base;
+    border-radius: 2px;
+    display: inline-block;
+    height: 300px;
+    margin: 1rem;
+    position: relative;
+    width: 300px;
+    color: #ffffff;
+  }
+
+h1 {
+    margin-top: 40%;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    align-items: center;
+    text-align: center;
+}

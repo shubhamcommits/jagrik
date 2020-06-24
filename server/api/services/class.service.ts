@@ -2,7 +2,7 @@ import { User, Class } from "../models";
 import jwt from "jsonwebtoken";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(
-  "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"
+  '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'
 );
 
 export class ClassService {
@@ -21,13 +21,13 @@ export class ClassService {
         let jagrik_class = await Class.create({
           class_creator: user._id,
           name: name,
-          members: [user.email]
+          members: [user._id]
         });
 
         // save class id in user profile
         let user_profile = await User.findByIdAndUpdate(
           { _id: user._id },
-          { $push: { classes: jagrik_class._id } },
+          { $addToSet: { classes: jagrik_class._id } },
           { new: true }
         );
 
@@ -51,22 +51,40 @@ export class ClassService {
         // add emails to invited member list for class
         await Class.findByIdAndUpdate(
           { _id: classId },
-          { $push: { invited_members: studentEmails } }
-        );
+          { $addToSet: { invited_members: studentEmails } }
+        )
 
-        console.log(studentEmails[0])
         //create class join URL
         let JOIN_URL =
           process.env.URL + "/#/authentication/sign-up?classId=" + classId + "&email=" + studentEmails[0] + "&role=student"
         // draft an email to the students
         const msg = {
           to: studentEmails,
-          from: process.env.SENDGRID_EMAIL || "krrishdholakia@gmail.com",
+          from: process.env.SENDGRID_EMAIL || "advityasood@gmail.com",
           subject: "Join your Jagrik Class!",
           text:
             "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +
             JOIN_URL,
-          html: `<div style='display: flex; flex-direction: column; width: 100%;  justify-content: center;align-items: center;'><h1>Welcome to your Jagrik Class!</h1><p>You've been invited to join a Jagrik class. Click on the link below and get started!</p> <a href=${JOIN_URL} style='text-decoration: none;color: white;background: black;padding: 1%;border-radius: 5px;'>JOIN CLASS</a></div>`,
+          html: `<div>
+          <h2>Welcome to your Jagrik Class!</h2>
+          <p>You've been invited to join a Jagrik class. Click on the link below and get started!</p> 
+          <a href=${JOIN_URL} 
+          style='
+          background-color: #CE4166; /* Pink Color */
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 25px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          -webkit-transition-duration: 0.4s; /* Safari */
+          transition-duration: 0.4s;
+          cursor: pointer;
+          letter-spacing: 2px;'>JOIN CLASS</a>
+          </div>`,
         };
         sgMail
           .sendMultiple(msg)
@@ -97,24 +115,28 @@ export class ClassService {
           if (!jagrik_class["invited_members"].includes(user.email)) {
             throw new Error("Email not registered with this class");
           }
-          return jagrik_class;
-        })
-        .then(() => {
-          // join a class -> save the user id as the member
-          Class.findByIdAndUpdate(
-            { _id: classId },
-            { $push: { members: user._id } },
-            { new: true }
-          );
           return;
         })
-        .then(() => {
-          // save class id in user profile
-          User.findByIdAndUpdate(
-            { _id: user._id },
-            { $push: { classes: classId } },
+        .then( async () => {
+          // join a class -> save the user id as the member
+          let classUpdate = await Class.findByIdAndUpdate(
+            { _id: classId },
+            { $addToSet: { members: user._id },
+              $pull: { invited_members: user.email } 
+            },
             { new: true }
-          );
+          )
+
+          return;
+        })
+        .then(async () => {
+          // save class id in user profile
+          let userUpdate = await User.findByIdAndUpdate(
+            { _id: user._id },
+            { $addToSet: { classes: classId } },
+            { new: true }
+          )
+
           return;
         });
 
@@ -131,7 +153,8 @@ export class ClassService {
   async getClassDetails(classId: String) {
     try {
       // Fetch the class by id
-      let jagrik_class = await Class.findById({ _id: classId });
+      let jagrik_class = await Class.findById({ _id: classId })
+      .populate('members', 'first_name last_name role email')
 
       // Return class
       return jagrik_class;

@@ -5,7 +5,7 @@
             <button class="button button-nav font-weight-bold" [routerLink]="['/dashboard', 'inbox']">Inbox</button>
         </li>
         <li class="nav-item">
-            <button class="button button-nav font-weight-bold" [routerLink]="['/dashboard', 'classes']">Classes</button>
+            <button class="button button-nav font-weight-bold" [routerLink]="['/dashboard', 'classes', 'list']">Classes</button>
         </li>
     </ul>
 
@@ -30,7 +30,7 @@
 
         </li>
         <li class="nav-item">
-            <button class="button button-nav">
+            <button class="button button-nav" (click)="navigateToUserProfile()">
                 <span class="material-icons">
                     account_circle
                 </span></button>

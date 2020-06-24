@@ -22,6 +22,18 @@ export class ClassService {
   }
 
   /**
+   * Service function to call the http request to fetch class details
+   * @param classId 
+   */
+  getClassDetails(classId: any){
+    return this.httpClient.get(environment.baseApiUrl + '/classes/', {
+      params: {
+        classId: classId
+      }
+    }).toPromise()
+  }
+
+  /**
    * Service function to call the http request to invite a student to a class
    * @param email
    * @param classId

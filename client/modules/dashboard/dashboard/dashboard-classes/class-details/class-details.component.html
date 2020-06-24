@@ -1,13 +1,13 @@
 <ul class="nav justify-content-center">
     <li class="nav-item">
-        <button class="button button-nav font-weight-bold">Agenda</button>
+        <button [routerLink]="['/dashboard', 'classes', 'agenda']"  [queryParams]="{ classId: classId }" class="button button-nav font-weight-bold">Agenda</button>
     </li>
     <li class="nav-item">
-        <button class="button button-nav font-weight-bold">Members</button>
+        <button [routerLink]="['/dashboard', 'classes', 'members']"  [queryParams]="{ classId: classId }" class="button button-nav font-weight-bold">Members</button>
     </li>
     <li class="nav-item">
-        <button class="button button-nav font-weight-bold" (click)="showInviteStudents = !showInviteStudents">Invite Students</button>
+        <button class="button button-nav font-weight-bold" [routerLink]="['/dashboard', 'classes', 'invite']"  [queryParams]="{ classId: classId }">Invite Users</button>
     </li>
   </ul>
 
-  <app-invite-students *ngIf="showInviteStudents == true"></app-invite-students>
+  <router-outlet></router-outlet>

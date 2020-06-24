@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
       email: new FormControl(this.email || null, [Validators.email, Validators.required, Validators.nullValidator]),
       password: new FormControl(null, [Validators.required, Validators.nullValidator]),
       confirm_password: new FormControl(null, [Validators.required, Validators.nullValidator]),
-      role: new FormControl(this.role || 'facilitator')
+      role: new FormControl(this.role || 'facilitator', [Validators.required, Validators.nullValidator]),
     })
   }
 
@@ -64,21 +64,22 @@ export class SignupComponent implements OnInit {
       authService.signUp(this.signupForm.value)
         .then((res) => {
 
-          if (this.classId) {
-
-            res['user'].classes = [this.classId]
-            
-            classService.joinToClass(this.classId)
-              .then((res) => console.log(res))
-          }
-
-
-
           // Store the user data locally
           storageService.setLocalData('userData', JSON.stringify(res['user']))
 
           // Store the token locally
           storageService.setLocalData('authToken', JSON.stringify(res['token']))
+
+          if (this.classId) {
+
+            res['user'].classes = [this.classId]
+
+            // Store the user data locally
+            storageService.setLocalData('userData', JSON.stringify(res['user']))
+
+            classService.joinToClass(this.classId)
+              .then((res) => console.log(res))
+          }
 
           // Navigate the User to main dashboard
           this._Router.navigate(['/dashboard', 'inbox'])
@@ -87,7 +88,7 @@ export class SignupComponent implements OnInit {
           resolve(res)
 
           // Fire sucess toast
-          utilityService.fireToast('success', `Welcome back to Jagrik - ${res['user']['first_name']}`)
+          utilityService.fireToast('success', `Welcome to Jagrik - ${res['user']['first_name']}`)
         })
         .catch(() => {
 

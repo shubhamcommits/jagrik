@@ -14,10 +14,11 @@
         <form [formGroup]="signupForm" class="form" (ngSubmit)="onSubmit()">
             <input type="text" required placeholder="Your First Name" formControlName="first_name">
             <input type="text" required placeholder="Your Last Name" formControlName="last_name">
-            <input type="email" required placeholder="Your Email" formControlName="email">
+            <input type="email" required [readOnly]="this.role === 'student'" placeholder="Your Email" formControlName="email">
             <input type="password" required placeholder="Set your Password" formControlName="password">
             <input type="password" required placeholder="Confirm Password" formControlName="confirm_password">
-            <button [disabled]="!signupForm.valid" type="submit">Join your Team</button>
+            <button *ngIf="this.classId" [disabled]="!signupForm.valid" type="submit">Join your Team</button>
+            <button *ngIf="!this.classId" [disabled]="!signupForm.valid" type="submit">Join and create class</button>
         </form>
     </div>
 

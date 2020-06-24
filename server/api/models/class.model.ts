@@ -16,7 +16,8 @@ const ClassSchema = new Schema({
   },
   members: [
     {
-      type: String,
+      type: Schema.Types.Mixed,
+      ref: "User",
       default: null,
     },
   ],

@@ -19,7 +19,7 @@ export class InviteStudentsComponent implements OnInit {
   // Invite Students form variable
   inviteStudentsForm: FormGroup
 
-  classId = this._ActivatedRoute.snapshot.paramMap.get('id')
+  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId')
 
   ngOnInit(): void {
 

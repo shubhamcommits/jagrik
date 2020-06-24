@@ -1,0 +1,38 @@
+<div class="container" style="margin-top: 5%;">
+    <h2>Your class members</h2>
+
+    <section *ngIf="this.class">
+        <div class="inline-elements" *ngFor="let member of this.class.members">
+
+            <span class="material-icons user">
+                account_circle
+            </span>
+            <div class="user-name"> {{ member?.first_name }} {{ member?.last_name }}</div>
+
+            <div class="user-email">{{ member?.email }}</div>
+            <div class="user-role">{{ member?.role }}</div>
+            <div class="user-options">
+                <div class="dropdown">
+                    <span *ngIf="member?._id != this.class.class_creator" class="material-icons" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        more_horiz
+                    </span>
+                    <span *ngIf="member?._id == this.class.class_creator" type="button" class="material-icons"
+                    (click)="isClassCreator()">
+                        more_horiz
+                    </span>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+                        <a *ngIf="member.role == 'student'" class="dropdown-item">Change to Facilitator</a>
+                        <a *ngIf="member.role == 'facilitator'" class="dropdown-item">Change to Student</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Disable User</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Remove User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>

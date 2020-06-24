@@ -79,9 +79,11 @@ export class AuthService {
       email: email,
       password: password,
       active: true,
-      full_name: first_name + '' + last_name,
+      full_name: (first_name + '' + last_name).toLowerCase(),
       role: role,
     }
+
+    console.log(newUser)
 
     // check if user already exists
     try {
@@ -92,7 +94,7 @@ export class AuthService {
           if (user) {
             throw new Error('Email already in use')
           }
-          return
+          return null;
         })
         .then(() => {
           return User.create(newUser)

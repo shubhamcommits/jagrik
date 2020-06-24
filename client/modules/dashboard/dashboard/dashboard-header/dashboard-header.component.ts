@@ -19,6 +19,22 @@ export class DashboardHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navigateToUserProfile() {
+
+    // Storage Service instance
+    let storageService = this._Injector.get(StorageService)
+
+    // Fetch the user Id
+    let userId = storageService.getLocalData('userData')._id
+
+    // Navigate to router
+    this._Router.navigate(['/dashboard', 'user'], {
+      queryParams: {
+        userId: userId
+      }
+    })
+  }
+
   signOut() {
 
     return new Promise((resolve) => {

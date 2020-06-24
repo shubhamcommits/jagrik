@@ -1,0 +1,77 @@
+@import 'modules/dashboard/dashboard/dashboard-header/dashboard-header.component.scss';
+
+.material-icons.user{
+    font-size: 50px;
+    color: $base;
+}
+
+.material-icons{
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.inline-elements{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+
+  
+  .user-name {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-email {
+    color: #ffffff;
+    // background: #fd7714;
+    background: $base;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .user-role {
+    color: #ffffff;
+    // background: #0bc6a0;
+    background: $base;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .user-options {
+    color: #ffffff;
+    // background: #4a90e2;
+    background: $base;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+  }
