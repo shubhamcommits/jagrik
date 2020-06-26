@@ -66,18 +66,12 @@ export class AuthController {
       // Adding user device details
       user.device = details.getDetails(req)
 
-      console.log(user)
+      // Adding full_name
+      user.full_name = (user.first_name + '' + user.last_name).toLowerCase()
 
       // Call the signUp function from the service
       user = await authService
-        .signUp(
-          user.first_name,
-          user.last_name,
-          user.email,
-          user.password,
-          user.role,
-          user.device
-        )
+        .signUp(user)
 
         // Proceed with the status 200 response
         .then((response) => {

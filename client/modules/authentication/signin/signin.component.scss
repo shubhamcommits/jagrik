@@ -1,68 +1,25 @@
+
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 
 $prim: #CE4166;
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     font-family: 'Source Sans Pro', sans-serif;
-        color:    white;
     font-weight: 300;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     font-family: 'Source Sans Pro', sans-serif;
-     color:    white;
      opacity:  1;
     font-weight: 300;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
     font-family: 'Source Sans Pro', sans-serif;
-     color:    white;
      opacity:  1;
     font-weight: 300;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     font-family: 'Source Sans Pro', sans-serif;
-     color:    white;
     font-weight: 300;
-}
-
-.body-container{
-    font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-	font-weight: 300;
-
-	background: rgb(2,0,36);
-	background: linear-gradient(133deg, rgba(2,0,36,1) 0%, rgba(190,77,114,0.9948354341736695) 0%, rgba(206,65,102,1) 0%);
-    text-shadow: 2px 2px 4px #000000;
-}
-
-*{
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	
-	font-weight: 300;
-}
-
-.container{
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 80px 0;
-	height: 100vh;
-	text-align: center;
-	
-	h1{
-		font-size: 40px;
-		font-weight: 200;
-	}
-}
-
-.back{
-    margin-left: 2rem;
-    margin-top: 1rem;
-
-    i{
-        cursor: pointer;
-    }
 }
 
 .form{
@@ -81,7 +38,7 @@ $prim: #CE4166;
         opacity: 0.9;
         background: transparent;
 
-		width: 250px;
+		width: 350px;
 		
 		border-radius: 3px;
 		padding: 10px 15px;
@@ -90,22 +47,16 @@ $prim: #CE4166;
 		text-align: center;
 		font-size: 18px;
 		
-		color: white;
+		color: $prim;
 		
 		font-weight: 300;
 		
 		&:hover{
             // background-color:white;
-            color: white;
+            color: $prim;
             opacity: 0.8;
 		}
-		
-		&:focus{
-			background-color: white;
-			width: 300px;
-            color: $prim;
-            font-weight: bold;
-        }
+	
 	}
 	
 	button{
@@ -116,16 +67,11 @@ $prim: #CE4166;
 		border: 0;
 		padding: 10px 15px;
 		color: $prim;
-		border-radius: 3px;
+		border-radius: 7px;
 		width: 250px;
 		cursor: pointer;
         font-size: 18px;
         font-weight: bold;
         margin: 0 auto 10px auto;
-
-		&:hover{
-            background-color: rgb(245, 247, 249);
-            opacity: 0.9;
-		}
 	}
 }

@@ -12,13 +12,48 @@
         <h1>Welcome to Jagrik</h1>
 
         <form [formGroup]="signupForm" class="form" (ngSubmit)="onSubmit()">
+
             <input type="text" required placeholder="Your First Name" formControlName="first_name">
             <input type="text" required placeholder="Your Last Name" formControlName="last_name">
-            <input type="email" required [readOnly]="this.role === 'student'" placeholder="Your Email" formControlName="email">
+            <input type="email" required [readOnly]="this.classId" placeholder="Your Email" formControlName="email">
+
+            <input type="tel" required placeholder="Your Mobile Number" formControlName="mobile_number">
+            <input type="date" required placeholder="Your Date of Birth" formControlName="date_of_birth">
+            <input type="text" required placeholder="Your emergency contact person name" formControlName="emergency_contact_name">
+            <input type="text" required placeholder="Your emergency contact person mobile" formControlName="emergency_contact_number">
+            <input type="text" required placeholder="Your Block" formControlName="block">
+            <input type="text" required placeholder="Your District" formControlName="district">
+            <input type="text" required placeholder="Your State" formControlName="state">
+            <input type="text" required placeholder="Your Facebook/Instagram username" formControlName="social_media_username">
+            <input type="text" required placeholder="Your Religion" formControlName="religion">
+
+            <div class="dropdown">
+                <button class="button-dropdown"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'Are you in School? - ' + ((this.in_school === true)? 'Yes' : 'No') }}
+                </button>
+                <div class="dropdown-menu">
+                    <button (click)="this.in_school = true"  type="button" class="dropdown-item button-dropdown">Yes</button>
+                    <button (click)="this.in_school = false"   type="button" class="dropdown-item button-dropdown">No</button>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="button-dropdown text-capitalize"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'Select your caste category - ' + this.caste_category }}
+                </button>
+                <div class="dropdown-menu">
+                    <button (click)="this.caste_category = 'general'"  type="button" class="dropdown-item button-dropdown">General</button>
+                    <button (click)="this.caste_category = 'obc'" type="button" class="dropdown-item button-dropdown">OBC</button>
+                    <button (click)="this.caste_category = 'schedule-caste'" type="button" class="dropdown-item button-dropdown">Schedule Caste</button>
+                    <button (click)="this.caste_category = 'schedule-tribe'" type="button" class="dropdown-item button-dropdown">Schedule Tribe</button>
+                </div>
+            </div>
+
             <input type="password" required placeholder="Set your Password" formControlName="password">
             <input type="password" required placeholder="Confirm Password" formControlName="confirm_password">
-            <button *ngIf="this.classId" [disabled]="!signupForm.valid" type="submit">Join your Team</button>
-            <button *ngIf="!this.classId" [disabled]="!signupForm.valid" type="submit">Join and create class</button>
+
+            <button class="button" *ngIf="this.role" [disabled]="!signupForm.valid" type="submit">Join as a Student</button>
+            <button class="button" *ngIf="!this.role" [disabled]="!signupForm.valid" type="submit">Join as a Facilitator</button>
         </form>
     </div>
 

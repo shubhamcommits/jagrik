@@ -28,6 +28,10 @@ export class SignupComponent implements OnInit {
   email = this._ActivatedRoute.snapshot.queryParamMap.get('email');
   classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
 
+  caste_category = 'general';
+
+  in_school = true;
+
   ngOnInit(): void {
 
     // Initialise the formgroup
@@ -38,6 +42,17 @@ export class SignupComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.nullValidator]),
       confirm_password: new FormControl(null, [Validators.required, Validators.nullValidator]),
       role: new FormControl(this.role || 'facilitator', [Validators.required, Validators.nullValidator]),
+      mobile_number: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      date_of_birth: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      emergency_contact_name: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      emergency_contact_number: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      block: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      district: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      state: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      religion: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      social_media_username: new FormControl(null, [Validators.required, Validators.nullValidator]),
+      in_school: new FormControl(this.in_school, [Validators.required, Validators.nullValidator]),
+      caste_category: new FormControl(this.caste_category, [Validators.required, Validators.nullValidator]),
     })
   }
 

@@ -1,4 +1,9 @@
-@import 'modules/authentication/signin/signin.component.scss';
+$prim: #CE4166;
+
+section{
+  height: 100vh;
+  overflow-x: hidden;
+}
 
 #hero {
     width: 100%;
@@ -14,23 +19,16 @@
     top: 0%;
     width: 40%;
     height: 100%;
-    background-color: #a22661;
+    background-color: $prim;
 }
 .offset-lg-2 {
     margin-left: 16.666666%;
   }
-
-  .btn--error {
-    /* overrides for Error State */
-  }
   
-  .btn--in-progress {
-    /* overrides for In Progress State */
-  }
-  
-  .sign-inbc{
-    color: #a22761;
+  .forgot-password{
+    color: $prim;
     margin-top: 5px;
+    cursor: pointer;
 }
   .no-touchevents .btn.btn--main-cta:hover {
     -webkit-transform: scale(1.03);
@@ -79,7 +77,7 @@
     width: 250px;
     height: 40px;
     border-radius: 7px;
-    background-color: #a22761;
+    background-color: $prim;
     font-size: 0;
     color: white;
     font-weight: 700;
@@ -94,7 +92,7 @@
     height: 40px;
     display: block;
     border-radius: 7px;
-    background-color: #a22761;
+    background-color: $prim;
     font-size: 0;
     color: white;
     font-weight: 700;
@@ -107,7 +105,7 @@
     height: 40px;
     display: block;
     border-radius: 7px;
-    background-color: #a22761;
+    background-color: $prim;
     font-size: 0;
     color: white;
     font-weight: 700;
@@ -120,7 +118,7 @@
     height: 40px;
     display: block;
     border-radius: 7px;
-    background-color: #a22761;
+    background-color: $prim;
     font-size: 0;
     color: white;
     font-weight: 700;
@@ -162,7 +160,7 @@
     text-align: center;
     font-weight: 700;
     cursor: pointer;
-    color: #a22761;
+    color: $prim;
     -webkit-transition: 300ms ease;
     transition: 300ms ease;
     width: calc(100% / 3 - 4px);
@@ -179,7 +177,7 @@
   [id="sign-in"]:checked ~ [for="sign-in"]:after,
   [id="sign-up"]:checked ~ [for="sign-up"]:after,
   [id="reset"]:checked ~ [for="reset"]:after {
-    border-bottom-color: #a22761;
+    border-bottom-color: $prim;
   }
 
   .flex-wrap {

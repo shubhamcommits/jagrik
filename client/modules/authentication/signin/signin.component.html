@@ -1,21 +1,6 @@
-<div class="body-container">
-
-    <div class="row">
-        <div class="back" (click) = "backClicked()">
-            <i class="material-icons">
-                    arrow_back_ios
-            </i>
-        </div>
-    </div>
-    
-        <div class="container">
-            <h1>Welcome to Jagrik</h1>
-
-            <form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
-                <input type="email" required placeholder="Your Email" formControlName="email">
-                <input type="password" required placeholder="Your Password" formControlName="password">
-                <button [disabled]="!loginForm.valid" type="submit">Login to Dashboard</button>
-            </form>
-        </div>
-
-</div>
+<form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+    <input type="email" required placeholder="Your Email" formControlName="email">
+    <input type="password" required placeholder="Your Password" formControlName="password">
+    <button style="background-color: #CE4166; color: white;" [disabled]="!loginForm.valid" type="submit">Login to
+        Dashboard</button>
+</form>
