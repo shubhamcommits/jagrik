@@ -12,8 +12,32 @@
         <h1>Welcome to Jagrik</h1>
 
         <form [formGroup]="signupForm" class="form" (ngSubmit)="onSubmit()">
-            <input type="text" required placeholder="Your First Name" formControlName="first_name">
-            <input type="text" required placeholder="Your Last Name" formControlName="last_name">
+            <input type="text" required placeholder="Your Full Name" formControlName="full_name">
+            <p>
+              <b>Gender: &nbsp; &nbsp;</b>
+              <input type="radio" required value="male" name="gender"> Male
+              <input type="radio" required value="female" name="gender"> Female
+            </p>
+            <input type="tel" required placeholder="Mobile" formControlName="mobile_number">
+            <input type="date" required placeholder="Date of Birth" formControlName="dob">
+            <input type="text" required placeholder="Emergency Contact(Name and Contact)" formControlName="emergency_contact">
+            <input type="text" required placeholder="Block" formControlName="block">
+            <input type="text" required placeholder="District" formControlName="district">
+            <input type="text" required placeholder="Facebook/Instagram name" formControlName="fb_insta">
+            <input type="text" required placeholder="State" formControlName="state">
+            <p>
+              <b>Are you in School: &nbsp;&nbsp;</b>
+              <input type="radio" required value="Yes" name="school"> Yes
+              <input type="radio" required value="No" name="school"> No
+            </p>
+            <p>
+              <b>Caste Category: &nbsp;&nbsp;</b>
+              <input type="radio" required value="Scheduled Caste" name="caste"> Scheduled Caste
+              <input type="radio" required value="Scheduled Tribe" name="caste"> Scheduled Tribe
+              <input type="radio" required value="OBC" name="caste"> OBC
+              <input type="radio" required value="General" name="caste"> General
+            </p>
+            <input type="text" required placeholder="Religion" formControlName="Religion">
             <input type="email" required [readOnly]="this.role === 'student'" placeholder="Your Email" formControlName="email">
             <input type="password" required placeholder="Set your Password" formControlName="password">
             <input type="password" required placeholder="Confirm Password" formControlName="confirm_password">

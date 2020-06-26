@@ -27,7 +27,7 @@ $prim: #CE4166;
 
 .body-container{
     font-family: 'Source Sans Pro', sans-serif;
-	color: white;
+    color: white;
 	font-weight: 300;
 
 	background: rgb(2,0,36);
@@ -39,7 +39,7 @@ $prim: #CE4166;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	
+
 	font-weight: 300;
 }
 
@@ -49,7 +49,7 @@ $prim: #CE4166;
 	padding: 80px 0;
 	height: 100vh;
 	text-align: center;
-	
+
 	h1{
 		font-size: 40px;
 		font-weight: 200;
@@ -69,8 +69,8 @@ $prim: #CE4166;
 	padding: 20px 0;
 	position: relative;
 	// z-index: 2;
-	
-	input{
+
+	input:not([type='radio']){
 		display: block;
 		appearance: none;
 		outline: 0;
@@ -82,24 +82,24 @@ $prim: #CE4166;
         background: transparent;
 
 		width: 250px;
-		
+
 		border-radius: 3px;
 		padding: 10px 15px;
 		margin: 0 auto 10px auto;
 		display: block;
 		text-align: center;
 		font-size: 18px;
-		
+
 		color: white;
-		
+
 		font-weight: 300;
-		
+
 		&:hover{
             // background-color:white;
             color: white;
             opacity: 0.8;
 		}
-		
+
 		&:focus{
 			background-color: white;
 			width: 300px;
@@ -107,7 +107,7 @@ $prim: #CE4166;
             font-weight: bold;
         }
 	}
-	
+
 	button{
         display: block;
 		appearance: none;
