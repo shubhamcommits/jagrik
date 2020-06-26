@@ -17,17 +17,20 @@
             <input type="text" required placeholder="Your Last Name" formControlName="last_name">
             <input type="email" required [readOnly]="this.classId" placeholder="Your Email" formControlName="email">
 
-            <input type="tel" required placeholder="Your Mobile Number" formControlName="mobile_number">
-            <input type="date" required placeholder="Your Date of Birth" formControlName="date_of_birth">
-            <input type="text" required placeholder="Your emergency contact person name" formControlName="emergency_contact_name">
-            <input type="text" required placeholder="Your emergency contact person mobile" formControlName="emergency_contact_number">
-            <input type="text" required placeholder="Your Block" formControlName="block">
-            <input type="text" required placeholder="Your District" formControlName="district">
-            <input type="text" required placeholder="Your State" formControlName="state">
-            <input type="text" required placeholder="Your Facebook/Instagram username" formControlName="social_media_username">
-            <input type="text" required placeholder="Your Religion" formControlName="religion">
+            <div *ngIf="this.role == 'student'"> 
+                <input type="tel" required placeholder="Your Mobile Number" formControlName="mobile_number">
+                <input type="date" required placeholder="Your Date of Birth" formControlName="date_of_birth">
+                <input type="text" required placeholder="Your emergency contact person name" formControlName="emergency_contact_name">
+                <input type="text" required placeholder="Your emergency contact person mobile" formControlName="emergency_contact_number">
+                <input type="text" required placeholder="Your Block" formControlName="block">
+                <input type="text" required placeholder="Your District" formControlName="district">
+                <input type="text" required placeholder="Your State" formControlName="state">
+                <input type="text" required placeholder="Your Facebook/Instagram username" formControlName="social_media_username">
+                <input type="text" required placeholder="Your Religion" formControlName="religion">
+            </div>
 
-            <div class="dropdown">
+
+            <div *ngIf="this.role == 'student'" class="dropdown">
                 <button class="button-dropdown"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ 'Are you in School? - ' + ((this.in_school === true)? 'Yes' : 'No') }}
                 </button>
@@ -37,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="dropdown">
+            <div *ngIf="this.role == 'student'" class="dropdown">
                 <button class="button-dropdown text-capitalize"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ 'Select your caste category - ' + this.caste_category }}
                 </button>
