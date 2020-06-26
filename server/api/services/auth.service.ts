@@ -63,25 +63,10 @@ export class AuthService {
    * @param role 
    * @param device - optional
    */
-  async signUp(
-    first_name: string,
-    last_name: string,
-    email: string,
-    password: string,
-    role: string,
-    device?: any
-  ) {
+  async signUp(user: any) {
 
     // create a user obj to put in the User db
-    const newUser = {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      password: password,
-      active: true,
-      full_name: (first_name + '' + last_name).toLowerCase(),
-      role: role,
-    }
+    const newUser = user;
 
     console.log(newUser)
 
@@ -89,7 +74,7 @@ export class AuthService {
     try {
 
       // inserting the user obj into the User db and creating a log of it through the Auth model
-      return await User.findOne({ email: email })
+      return await User.findOne({ email: newUser.email })
         .then((user) => {
           if (user) {
             throw new Error('Email already in use')
@@ -109,7 +94,7 @@ export class AuthService {
           // New Authentication logs object
           let newAuthUser = {
             token: token,
-            device: device || {},
+            device: newUser.device || {},
             _user: user,
           }
 
