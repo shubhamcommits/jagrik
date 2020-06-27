@@ -71,7 +71,8 @@ export class AuthController {
 
       // Call the signUp function from the service
       user = await authService
-        .signUp(user)
+            .signUp(user.first_name,user.last_name,user.email,user.password,user.role,user.device)
+
 
         // Proceed with the status 200 response
         .then((response) => {
