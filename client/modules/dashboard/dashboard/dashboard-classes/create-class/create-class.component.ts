@@ -21,7 +21,7 @@ export class CreateClassComponent implements OnInit {
   }
 
   /**
-   * This function opens the Swal modal to create normal, agora and smart groups
+   * This function opens the Swal modal
    * @param title 
    * @param imageUrl 
    */
@@ -44,7 +44,7 @@ export class CreateClassComponent implements OnInit {
   }
 
   /**
-   * This function creates the new normal group
+   * This function creates the new normal class
    */
   async openCreateClassModal() {
     const { value: value } = await this.openModal('Create Class');

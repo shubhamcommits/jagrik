@@ -113,7 +113,7 @@ export class AuthService {
     try {
 
       // inserting the user obj into the User db and creating a log of it through the Auth model
-      return await User.findOne({ email: email })
+      return await User.findOne({ email: newUser.email })
         .then((user) => {
           if (user) {
             throw new Error('Email already in use')
@@ -133,7 +133,7 @@ export class AuthService {
           // New Authentication logs object
           let newAuthUser = {
             token: token,
-            device: device || {},
+            device: newUser.device || {},
             _user: user,
           }
 
