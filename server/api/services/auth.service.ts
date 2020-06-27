@@ -1,6 +1,8 @@
 import { Auth, User } from '../models'
 import moment from 'moment'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+
 
 export class AuthService {
 
@@ -12,17 +14,29 @@ export class AuthService {
    */
   async signIn(email: string, password: string, device?: any) {
     try {
-
-      return await User.findOneAndUpdate(
-        { email, password },
-        { active: true })
+      let fetchUser;
+      return await User.findOne({email:email})
 
         // if user exists, update Auth db, return renewed JWT
         .then(async (user) => {
-
           // user exists
           if (user) {
+            fetchUser=user;
+            let authFailed = false;
+            // Check password
+             await bcrypt.compare(password,fetchUser.password)
+            .then(async (result) => {
+              console.log(result);
+              if(!result){
+                authFailed = true;
+              }else{
+                User.findByIdAndUpdate({ _id: fetchUser._id }, { active: true })
+              }
+            })
 
+            if(authFailed){
+              return;
+            }
             // update JWT expiration
             const token = jwt.sign(user.toJSON(), process.env.JWT_KEY, {
               expiresIn: "1d",
@@ -71,19 +85,29 @@ export class AuthService {
     role: string,
     device?: any
   ) {
-
-    // create a user obj to put in the User db
-    const newUser = {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      password: password,
-      active: true,
-      full_name: (first_name + '' + last_name).toLowerCase(),
-      role: role,
+    
+    let newUser;
+    // bcrypt the password
+    try{
+      await bcrypt.hash(password,10)
+      .then(async (hash) =>{
+      // create a user obj to put in the User db
+        newUser = {
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: hash,
+          active: true,
+          full_name: (first_name + '' + last_name).toLowerCase(),
+          role: role,
+        }
+        console.log("The Data is:",newUser);
+      });
+    }catch(error) {
+      throw new Error(error)
     }
 
-    console.log(newUser)
+    console.log(newUser);
 
     // check if user already exists
     try {

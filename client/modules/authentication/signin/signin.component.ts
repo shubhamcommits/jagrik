@@ -67,7 +67,6 @@ export class SigninComponent implements OnInit {
           utilityService.fireToast('success', `Welcome back - ${res['user']['first_name']}`)
         })
         .catch(() => {
-
           // Fire error toast
           utilityService.fireToast('error', `Your email or password seems to be wrong!`)
         })
