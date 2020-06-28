@@ -16,8 +16,12 @@ export class ClassController {
       // Fetch the headers from the request
       let {
         headers: { authorization },
-        body: { class:  { name } }
+        body: {
+          class: { name },
+        },
       } = req;
+
+      console.log("authorization: ", authorization);
 
       // Call the create class service function
       await classService.createClass(authorization, name).then((response) => {
@@ -27,6 +31,7 @@ export class ClassController {
         });
       });
     } catch (err) {
+      console.log("err: ", err);
       return res.status(500).json({
         message: "Internal Server Error!",
         error: new Error(err || " Internal Server Error"),

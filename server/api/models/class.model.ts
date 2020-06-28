@@ -1,5 +1,6 @@
 import moment from "moment";
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 const { Schema } = mongoose;
 
@@ -12,7 +13,7 @@ const ClassSchema = new Schema({
   name: {
     type: Schema.Types.String,
     required: true,
-    default: 'default_class'
+    default: "default_class",
   },
   members: [
     {
@@ -29,6 +30,12 @@ const ClassSchema = new Schema({
     {
       type: String,
       default: null,
+    },
+  ],
+  class_code: [
+    {
+      type: String,
+      default: () => nanoid(6),
     },
   ],
 });

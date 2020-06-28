@@ -1,8 +1,10 @@
 import { User, Class } from "../models";
 import jwt from "jsonwebtoken";
+import { nanoid } from "nanoid";
+
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(
-  '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'
+  "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"
 );
 
 export class ClassService {
@@ -13,15 +15,20 @@ export class ClassService {
   async createClass(token: any, name: string) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user: any = jwt.verify(token.split(".")[1], process.env.JWT_KEY);
 
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
         // create a class -> save the user id as the class_creator
+
+        //generate a class code
+        let class_code = await this.generateClassCode();
+
         let jagrik_class = await Class.create({
           class_creator: user._id,
           name: name,
-          members: [user._id]
+          members: [user._id],
+          class_code,
         });
 
         // save class id in user profile
@@ -41,6 +48,26 @@ export class ClassService {
     }
   }
 
+  //generate a unique class code
+  async generateClassCode() {
+    //generate a 6 character class code
+    let class_code = nanoid(6);
+
+    //check if it's unique
+    let class_code_unique = await Class.findOne({ class_code }).then(
+      (class_code) => {
+        return class_code ? false : true;
+      }
+    );
+    //if not unique, recursively keep generating codes until one of them is unique
+    if (!class_code_unique) {
+      return this.generateClassCode();
+    }
+
+    //return the unique class code
+    return class_code;
+  }
+
   async inviteToClass(token: any, studentEmails: [String], classId: String) {
     try {
       // verify token and decode user data
@@ -52,11 +79,16 @@ export class ClassService {
         await Class.findByIdAndUpdate(
           { _id: classId },
           { $addToSet: { invited_members: studentEmails } }
-        )
+        );
 
         //create class join URL
         let JOIN_URL =
-          process.env.URL + "/#/authentication/sign-up?classId=" + classId + "&email=" + studentEmails[0] + "&role=student"
+          process.env.URL +
+          "/#/authentication/sign-up?classId=" +
+          classId +
+          "&email=" +
+          studentEmails[0] +
+          "&role=student";
         // draft an email to the students
         const msg = {
           to: studentEmails,
@@ -117,15 +149,16 @@ export class ClassService {
           }
           return;
         })
-        .then( async () => {
+        .then(async () => {
           // join a class -> save the user id as the member
           let classUpdate = await Class.findByIdAndUpdate(
             { _id: classId },
-            { $addToSet: { members: user._id },
-              $pull: { invited_members: user.email } 
+            {
+              $addToSet: { members: user._id },
+              $pull: { invited_members: user.email },
             },
             { new: true }
-          )
+          );
 
           return;
         })
@@ -135,7 +168,7 @@ export class ClassService {
             { _id: user._id },
             { $addToSet: { classes: classId } },
             { new: true }
-          )
+          );
 
           return;
         });
@@ -153,8 +186,10 @@ export class ClassService {
   async getClassDetails(classId: String) {
     try {
       // Fetch the class by id
-      let jagrik_class = await Class.findById({ _id: classId })
-      .populate('members', 'first_name last_name role email')
+      let jagrik_class = await Class.findById({ _id: classId }).populate(
+        "members",
+        "first_name last_name role email"
+      );
 
       // Return class
       return jagrik_class;
