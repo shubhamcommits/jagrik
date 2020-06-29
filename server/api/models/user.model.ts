@@ -32,6 +32,7 @@ const UserSchema = new Schema({
   },
   profile_pic: {
     type: String,
+    data: Buffer,
     default: "default_user.png",
   },
   role: {
