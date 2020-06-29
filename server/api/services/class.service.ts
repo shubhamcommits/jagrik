@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
 const sgMail = require("@sendgrid/mail");
+
+// Set the Key from the environment
 sgMail.setApiKey(
   "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"
 );
@@ -15,7 +17,7 @@ export class ClassService {
   async createClass(token: any, name: string) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(".")[1], process.env.JWT_KEY);
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
@@ -92,7 +94,7 @@ export class ClassService {
         // draft an email to the students
         const msg = {
           to: studentEmails,
-          from: process.env.SENDGRID_EMAIL || "advityasood@gmail.com",
+          from: "advityasood@gmail.com",
           subject: "Join your Jagrik Class!",
           text:
             "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +
@@ -136,7 +138,26 @@ export class ClassService {
     }
   }
 
-  async joinClass(classId: String, token: any) {
+  /**
+   * This function is responsible for fetching the classId by class code
+   * @param class_code 
+   */
+  async findClassIdByCode(class_code: String){
+    try {
+      // Fetch the class by id
+      let jagrik_class = await Class.findOne({ class_code: class_code })
+      .select('_id')
+
+      // Return class
+      return jagrik_class._id;
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async joinClass(classId: String, token: any, isClassCodeInvite?: boolean) {
     try {
       // verify token and decode user data
       let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -144,7 +165,9 @@ export class ClassService {
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
         .then((jagrik_class) => {
-          if (!jagrik_class["invited_members"].includes(user.email)) {
+          
+          // Disabling this as we have to allow the users to join the class via a code as well(which is public)
+          if (!jagrik_class["invited_members"].includes(user.email) && !isClassCodeInvite) {
             throw new Error("Email not registered with this class");
           }
           return;

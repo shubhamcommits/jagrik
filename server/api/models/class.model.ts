@@ -32,12 +32,10 @@ const ClassSchema = new Schema({
       default: null,
     },
   ],
-  class_code: [
-    {
+  class_code: {
       type: String,
       default: () => nanoid(6),
     },
-  ],
 });
 
 const Class = mongoose.model("Class", ClassSchema);

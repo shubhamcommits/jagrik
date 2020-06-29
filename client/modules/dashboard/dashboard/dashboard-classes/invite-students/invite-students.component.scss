@@ -1,1 +1,17 @@
 @import 'modules/dashboard/dashboard/dashboard-header/dashboard-header.component.scss';
+
+span{
+    color: #FCB040;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-family: "Roboto Condensed";
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 20px;
+    background: #FCB040;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+  }

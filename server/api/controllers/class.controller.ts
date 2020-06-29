@@ -67,13 +67,25 @@ export class ClassController {
       // fetch authorization and class to be joined
       let {
         headers: { authorization },
-        body: { classId },
+        body: { classId, class_code },
       } = req;
 
+      // Class code invite
+      let isClassCodeInvite = false
+
+      // If we find that classId is not present then it must be a class code invite to join
+      if(!classId || classId == undefined){
+        classId = await classService.findClassIdByCode(class_code);
+
+        // Update the value
+        isClassCodeInvite = true
+      }
+
       //call join class service function
-      await classService.joinClass(classId, authorization).then(() => {
+      await classService.joinClass(classId, authorization, isClassCodeInvite).then(() => {
         return res.status(200).json({
           message: "User has successfully joined class!",
+          class: classId
         });
       });
     } catch (err) {

@@ -19,6 +19,9 @@ function devConfigInit() {
   // URL
   process.env.URL = process.env.URL || `http://localhost:4200`
 
+  // Sendgrid Key
+  process.env.SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || "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"
+
   // Database Url String
   process.env.dbURL = process.env.dbURL || `mongodb://127.0.0.1:27017/jagrik`
 

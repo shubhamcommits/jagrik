@@ -1,8 +1,13 @@
 <div class="container" style="margin-top: 5%;">
+
     <h2>Invite Users to Join</h2>
 
     <form class="form" [formGroup]="inviteStudentsForm" class="form" (ngSubmit)="onSubmit()">
-        <input class="form-control" type="text" required placeholder="Please provide the email..." formControlName="email">
+        <input class="form-control" type="text" required placeholder="Please provide the email..."
+            formControlName="email">
         <button class="button mt-3" [disabled]="!inviteStudentsForm.valid" type="submit">Send Email</button>
     </form>
+
+    <h2 style="margin-top: 5%;" *ngIf="class">Invite via sharing class code - <span
+            (click)="clickToCopy()">{{ class?.class_code }}</span></h2>
 </div>

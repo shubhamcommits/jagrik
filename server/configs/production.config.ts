@@ -26,10 +26,9 @@ function prodConfigInit() {
   // URL of the server
   process.env.URL = process.env.URL || 'http://localhost:3000/';
 
-  //SendGrid API Key
-  process.env.SENDGRID_API_KEY =
-    process.env.SENDGRID_API_KEY ||
-    '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';
+  // Sendgrid Key
+  process.env.SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || "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"
+
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER =
     process.env.FILE_UPLOAD_FOLDER || path.join(__dirname, '../uploads/');
