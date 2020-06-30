@@ -17,19 +17,32 @@ import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda
 import { UserComponent } from './dashboard/user/user.component';
 import { JoinClassComponent } from './dashboard/dashboard-classes/join-class/join-class.component';
 
+// Material Import
+import { MaterialModule } from '../../src/shared/module/material/material.module';
+
+
+
 
 @NgModule({
   declarations: [
-    DashboardComponent, 
-    DashboardHeaderComponent, 
-    DashboardInboxComponent, 
-    DashboardClassesComponent, 
-    CreateClassComponent, 
-    ClassViewComponent, ClassDetailsComponent, InviteStudentsComponent, ClassMembersComponent, ClassAgendaComponent, UserComponent, JoinClassComponent],
+    DashboardComponent,
+    DashboardHeaderComponent,
+    DashboardInboxComponent,
+    DashboardClassesComponent,
+    CreateClassComponent,
+    ClassViewComponent,
+    ClassDetailsComponent,
+    InviteStudentsComponent,
+    ClassMembersComponent,
+    ClassAgendaComponent,
+    UserComponent,
+    JoinClassComponent,
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MaterialModule
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
