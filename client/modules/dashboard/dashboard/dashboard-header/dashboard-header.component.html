@@ -40,63 +40,54 @@
         </li>
     </ul>
 </nav> -->
-<mat-toolbar color="primary" class="example-toolbar">
-  <button mat-icon-button (click)="isExpanded = !isExpanded">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <h1 class="example-app-name">Nested Menus</h1>
-</mat-toolbar>
+
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
     <mat-nav-list>
-      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-        <span class="full-width" *ngIf="isExpanded || isShowing">Parent Menu</span>
-        <mat-icon mat-list-icon>home</mat-icon>
-        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more
-        </mat-icon>
-      </mat-list-item>
-      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <a mat-list-item href="...">Submenu Item 1</a>
-        <a mat-list-item href="...">Submenu Item 2</a>
-        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
-          <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">
-            expand_more</mat-icon>
+          <mat-list-item class="parent" style="margin-bottom: 50px;">
+            <img *ngIf="isExpanded || isShowing" src="assets/logo.jpeg" style="max-width: 150px;">
+          </mat-list-item>
+        <mat-list-item class="parent"  [routerLink]="['/dashboard', 'inbox']">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+          <mat-icon mat-list-icon>dashboard</mat-icon>
         </mat-list-item>
-        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-          <mat-list-item>SubSubmenu Item 1</mat-list-item>
-          <mat-list-item>SubSubmenu Item 2</mat-list-item>
-        </div>
-      </div>
+        <mat-list-item class="parent" [routerLink]="['/dashboard', 'classes', 'list']">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Classes</span>
+          <mat-icon mat-list-icon>group_work</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="parent">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Teams</span>
+          <mat-icon mat-list-icon>group_work</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="parent">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Help</span>
+          <mat-icon mat-list-icon>help</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="parent" (click)="signOut()" style="position: absolute;bottom: 10px;">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
+          <mat-icon mat-list-icon>settings_power</mat-icon>
+        </mat-list-item>
     </mat-nav-list>
     <mat-nav-list>
     </mat-nav-list>
   </mat-sidenav>
 
   <div class="example-sidenav-content">
+    <mat-toolbar  class="example-toolbar">
+      <button mat-icon-button (click)="isExpanded = !isExpanded">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="jk-spacer"></span>
+      <button mat-button >Profile</button>
+      <button mat-button [matMenuTriggerFor]="notify"><mat-icon>notifications</mat-icon></button>
+      <mat-menu #notify="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+    </mat-toolbar>
     <router-outlet></router-outlet>
   </div>
-
 </mat-sidenav-container>
-<!-- <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-  <div class="container" style="margin-top: 5%">
-    <router-outlet></router-outlet>
-  </div>
-
-</mat-drawer-container> -->
 
 

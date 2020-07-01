@@ -4,11 +4,11 @@
 
 <app-join-class *ngIf="this.classes.length < 1 " (class)="getClass($event)"></app-join-class>
 
-<div class="class-row">
+<mat-grid-list cols="4" rowHeight="100px">
 
     <ng-container *ngFor="let class of classes; let index = index">
         <app-class-view [routerLink]="['/dashboard', 'classes', 'agenda']" [queryParams]="{ classId: class }"
             [class]="'Default Class'"></app-class-view>
     </ng-container>
 
-</div>
+</mat-grid-list>

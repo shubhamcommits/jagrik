@@ -47,3 +47,28 @@ $yellow: #fca311;
 .submenu.expanded {
   transform: scaleY(1);
 }
+.mat-toolbar{
+    top: 0;
+    position: absolute;
+    background: white;
+    border-bottom: 1px solid;
+    color: black;
+}
+.mat-drawer.mat-drawer-side{
+  background: rgb(243, 179, 79);
+}
+.jk-spacer {
+  flex: 1 1 auto;
+}
+.mat-drawer-container{
+  background-color: white;
+  color: black;
+}
+.full-width{
+  padding-right: 40px;
+}
+.mat-list-base .mat-list-item.mat-list-item-with-avatar,
+.mat-list-base .mat-list-option.mat-list-item-with-avatar{
+  height: 45px;
+}
+
