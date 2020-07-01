@@ -32,6 +32,7 @@ const UserSchema = new Schema({
   },
   profile_pic: {
     type: String,
+    data: Buffer,
     default: "default_user.png",
   },
   role: {
@@ -112,6 +113,13 @@ const UserSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Class",
+      default: null,
+    },
+  ],
+  teams: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Team",
       default: null,
     },
   ],

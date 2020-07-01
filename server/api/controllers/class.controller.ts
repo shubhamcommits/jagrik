@@ -16,8 +16,12 @@ export class ClassController {
       // Fetch the headers from the request
       let {
         headers: { authorization },
-        body: { class:  { name } }
+        body: {
+          class: { name },
+        },
       } = req;
+
+      console.log("authorization: ", authorization);
 
       // Call the create class service function
       await classService.createClass(authorization, name).then((response) => {
@@ -27,6 +31,7 @@ export class ClassController {
         });
       });
     } catch (err) {
+      console.log("err: ", err);
       return res.status(500).json({
         message: "Internal Server Error!",
         error: new Error(err || " Internal Server Error"),
@@ -62,13 +67,25 @@ export class ClassController {
       // fetch authorization and class to be joined
       let {
         headers: { authorization },
-        body: { classId },
+        body: { classId, class_code },
       } = req;
 
+      // Class code invite
+      let isClassCodeInvite = false
+
+      // If we find that classId is not present then it must be a class code invite to join
+      if(!classId || classId == undefined){
+        classId = await classService.findClassIdByCode(class_code);
+
+        // Update the value
+        isClassCodeInvite = true
+      }
+
       //call join class service function
-      await classService.joinClass(classId, authorization).then(() => {
+      await classService.joinClass(classId, authorization, isClassCodeInvite).then(() => {
         return res.status(200).json({
           message: "User has successfully joined class!",
+          class: classId
         });
       });
     } catch (err) {
@@ -167,4 +184,75 @@ export class ClassController {
       });
     }
   }
+
+  async createTeam(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      let classId = req.body.classId;
+      let user_team_detail = req.body.user_team_detail;
+
+      // Call the service function to get all the classes
+      await classService.createTeam(authorization,classId, user_team_detail).then(() => {
+        return res.status(200).json({
+          message: "Teams have been created successfully!"
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async getTeams(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let classId = req.body.classId;
+
+      // Call the service function to get all the classes
+      await classService.getTeams(authorization, classId).then((teams) => {
+        return res.status(200).json({
+          message: "Teams have been fetched successfully!",
+          teams: teams
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async getTeamMembers(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let teamId = req.body.teamId;
+  
+      // Call the service function to get all the classes
+      await classService.getTeamMembers(authorization, teamId).then(() => {
+        return res.status(200).json({
+          message: "Teams have been fetched successfully!"
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
 }

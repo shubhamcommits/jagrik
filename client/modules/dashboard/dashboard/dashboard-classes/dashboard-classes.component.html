@@ -1,9 +1,14 @@
-<app-create-class *ngIf="userData && userData.role != 'student' && this.classes.length < 1 " style="margin-top: 100px;" (class)="getClass($event)"></app-create-class>
+<app-create-class *ngIf="userData && userData.role != 'student' && this.classes.length < 1 " style="margin-top: 100px;"
+    (class)="getClass($event)">
+</app-create-class>
+
+<app-join-class *ngIf="this.classes.length < 1 " (class)="getClass($event)"></app-join-class>
 
 <div class="class-row">
 
     <ng-container *ngFor="let class of classes; let index = index">
-        <app-class-view [routerLink]="['/dashboard', 'classes', 'agenda']" [queryParams]="{ classId: class }" [class]="'Default Class'"></app-class-view>
+        <app-class-view [routerLink]="['/dashboard', 'classes', 'agenda']" [queryParams]="{ classId: class }"
+            [class]="'Default Class'"></app-class-view>
     </ng-container>
-    
+
 </div>

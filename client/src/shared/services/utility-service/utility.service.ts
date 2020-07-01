@@ -87,7 +87,7 @@ export class UtilityService {
   public swalToast(timeout?: number) {
     return Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'bottom-right',
       showConfirmButton: false,
       timer: timeout || 1500,
       timerProgressBar: true,

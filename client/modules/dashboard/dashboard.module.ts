@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ClassMembersComponent } from './dashboard/dashboard-classes/class-members/class-members.component';
 import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda/class-agenda.component';
 import { UserComponent } from './dashboard/user/user.component';
+import { JoinClassComponent } from './dashboard/dashboard-classes/join-class/join-class.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { UserComponent } from './dashboard/user/user.component';
     DashboardInboxComponent, 
     DashboardClassesComponent, 
     CreateClassComponent, 
-    ClassViewComponent, ClassDetailsComponent, InviteStudentsComponent, ClassMembersComponent, ClassAgendaComponent, UserComponent],
+    ClassViewComponent, ClassDetailsComponent, InviteStudentsComponent, ClassMembersComponent, ClassAgendaComponent, UserComponent, JoinClassComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

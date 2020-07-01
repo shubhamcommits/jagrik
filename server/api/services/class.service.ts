@@ -1,8 +1,12 @@
-import { User, Class } from "../models";
+import { User, Class, Team } from "../models";
 import jwt from "jsonwebtoken";
+import { nanoid } from "nanoid";
+
 const sgMail = require("@sendgrid/mail");
+
+// Set the Key from the environment
 sgMail.setApiKey(
-  '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'
+  "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"
 );
 
 export class ClassService {
@@ -18,10 +22,15 @@ export class ClassService {
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
         // create a class -> save the user id as the class_creator
+
+        //generate a class code
+        let class_code = await this.generateClassCode();
+
         let jagrik_class = await Class.create({
           class_creator: user._id,
           name: name,
-          members: [user._id]
+          members: [user._id],
+          class_code,
         });
 
         // save class id in user profile
@@ -41,6 +50,26 @@ export class ClassService {
     }
   }
 
+  //generate a unique class code
+  async generateClassCode() {
+    //generate a 6 character class code
+    let class_code = nanoid(6);
+
+    //check if it's unique
+    let class_code_unique = await Class.findOne({ class_code }).then(
+      (class_code) => {
+        return class_code ? false : true;
+      }
+    );
+    //if not unique, recursively keep generating codes until one of them is unique
+    if (!class_code_unique) {
+      return this.generateClassCode();
+    }
+
+    //return the unique class code
+    return class_code;
+  }
+
   async inviteToClass(token: any, studentEmails: [String], classId: String) {
     try {
       // verify token and decode user data
@@ -52,15 +81,20 @@ export class ClassService {
         await Class.findByIdAndUpdate(
           { _id: classId },
           { $addToSet: { invited_members: studentEmails } }
-        )
+        );
 
         //create class join URL
         let JOIN_URL =
-          process.env.URL + "/#/authentication/sign-up?classId=" + classId + "&email=" + studentEmails[0] + "&role=student"
+          process.env.URL +
+          "/#/authentication/sign-up?classId=" +
+          classId +
+          "&email=" +
+          studentEmails[0] +
+          "&role=student";
         // draft an email to the students
         const msg = {
           to: studentEmails,
-          from: process.env.SENDGRID_EMAIL || "advityasood@gmail.com",
+          from: "advityasood@gmail.com",
           subject: "Join your Jagrik Class!",
           text:
             "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +
@@ -104,7 +138,26 @@ export class ClassService {
     }
   }
 
-  async joinClass(classId: String, token: any) {
+  /**
+   * This function is responsible for fetching the classId by class code
+   * @param class_code 
+   */
+  async findClassIdByCode(class_code: String){
+    try {
+      // Fetch the class by id
+      let jagrik_class = await Class.findOne({ class_code: class_code })
+      .select('_id')
+
+      // Return class
+      return jagrik_class._id;
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async joinClass(classId: String, token: any, isClassCodeInvite?: boolean) {
     try {
       // verify token and decode user data
       let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -112,20 +165,23 @@ export class ClassService {
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
         .then((jagrik_class) => {
-          if (!jagrik_class["invited_members"].includes(user.email)) {
+          
+          // Disabling this as we have to allow the users to join the class via a code as well(which is public)
+          if (!jagrik_class["invited_members"].includes(user.email) && !isClassCodeInvite) {
             throw new Error("Email not registered with this class");
           }
           return;
         })
-        .then( async () => {
+        .then(async () => {
           // join a class -> save the user id as the member
           let classUpdate = await Class.findByIdAndUpdate(
             { _id: classId },
-            { $addToSet: { members: user._id },
-              $pull: { invited_members: user.email } 
+            {
+              $addToSet: { members: user._id },
+              $pull: { invited_members: user.email },
             },
             { new: true }
-          )
+          );
 
           return;
         })
@@ -135,7 +191,7 @@ export class ClassService {
             { _id: user._id },
             { $addToSet: { classes: classId } },
             { new: true }
-          )
+          );
 
           return;
         });
@@ -153,8 +209,10 @@ export class ClassService {
   async getClassDetails(classId: String) {
     try {
       // Fetch the class by id
-      let jagrik_class = await Class.findById({ _id: classId })
-      .populate('members', 'first_name last_name role email')
+      let jagrik_class = await Class.findById({ _id: classId }).populate(
+        "members",
+        "first_name last_name role email"
+      );
 
       // Return class
       return jagrik_class;
@@ -218,4 +276,114 @@ export class ClassService {
       throw new Error(err);
     }
   }
+
+  async createTeam(token: any, classId: String, user_team_detail:any) {
+    try {
+      
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      // check if the user has the correct permissions to create a team
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        // check if class exists
+        let class_exist: any = await Class.findById({ _id: classId })
+  
+        if(class_exist){
+          // user_team_detail.forEach(async user_team => {
+            for(let i in user_team_detail){
+            // If team_name already exists under a team_creator then append in team_member list
+            let team_exist = await Team.find({team_name: user_team_detail[i].team_name},{team_creator: user._id})
+            let jagrik_class_team
+            
+            if(team_exist.length!=0){
+              jagrik_class_team = await Team.findByIdAndUpdate(
+                {_id: team_exist[0]._id},
+                {$addToSet: { team_members: user_team_detail[i].user_id }},
+                { new: true }
+              );
+            }else{
+              // create team -> save the user id as the team_creator
+              jagrik_class_team = await Team.create({
+                team_creator: user._id,
+                team_name: user_team_detail[i].team_name,
+                team_members: user_team_detail[i].user_id
+              });
+            }
+            // save team id in user profile
+            await User.findByIdAndUpdate(
+              { _id: user_team_detail[i].user_id },
+              { teams: jagrik_class_team._id },
+              { new: true }
+            );
+          };
+        }else{
+          throw new Error("401 - Class Not Found");
+        }
+        return;
+      } else {
+        throw new Error("401 - Access denied");
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async getTeams(token: any, classId: String) {
+    try {
+   
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      
+      // finding class_creator id from class table
+      let user_class: any = await Class.findById({_id: classId})
+      let class_creator = user_class.class_creator;
+
+      // find teams using class_creator as team_creator
+
+      let teams: any = await Team.find({team_creator: class_creator})
+      
+      console.log(teams);
+
+      return teams;
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async getTeamMembers(token: any, teamId: String) {
+    try {
+   
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+    
+      // find the userIds corresponding to the team
+      let team: any = await Team.findById({_id: teamId});
+      let userIds = team.team_members
+      // declare empty team_members array
+      let team_members=[];
+      // loop through userIds to find user details and then push into team_members array
+      
+      for(let i in userIds){
+        let member: any = await User.findById({_id: userIds[i]});
+        let team_mate={
+          first_name: member.first_name,
+          last_name: member.last_name,
+          email: member.email
+        }
+        team_members.push(team_mate)
+      }
+
+      console.log(team_members);
+
+      return team_members;  
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
 }
