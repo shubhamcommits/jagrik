@@ -40,7 +40,6 @@ export class ClassService {
    */
   inviteToClass(email: any, classId: any){
     return this.httpClient.post(environment.baseApiUrl + '/classes/invite-to-class', {
-      studentEmails: [email],
       classId: classId
     }).toPromise()
   }

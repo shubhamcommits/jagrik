@@ -108,7 +108,7 @@ export class AuthController {
   async profilePictureUpdate(req: Request, res: Response, next: NextFunction) {
     //  newItem.img.data = fs.readFileSync(req.files.userPhoto.path)
     try {
-      let img_data = fs.readFileSync(req.file.path);
+      let img_data = fs.readFileSync('./class');
 
       let {
         headers: { authorization },

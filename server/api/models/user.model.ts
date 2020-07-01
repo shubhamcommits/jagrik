@@ -116,6 +116,13 @@ const UserSchema = new Schema({
       default: null,
     },
   ],
+  teams: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Team",
+      default: null,
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);

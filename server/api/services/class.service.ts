@@ -1,4 +1,4 @@
-import { User, Class } from "../models";
+import { User, Class, Team } from "../models";
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
@@ -276,4 +276,114 @@ export class ClassService {
       throw new Error(err);
     }
   }
+
+  async createTeam(token: any, classId: String, user_team_detail:any) {
+    try {
+      
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      // check if the user has the correct permissions to create a team
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        // check if class exists
+        let class_exist: any = await Class.findById({ _id: classId })
+  
+        if(class_exist){
+          // user_team_detail.forEach(async user_team => {
+            for(let i in user_team_detail){
+            // If team_name already exists under a team_creator then append in team_member list
+            let team_exist = await Team.find({team_name: user_team_detail[i].team_name},{team_creator: user._id})
+            let jagrik_class_team
+            
+            if(team_exist.length!=0){
+              jagrik_class_team = await Team.findByIdAndUpdate(
+                {_id: team_exist[0]._id},
+                {$addToSet: { team_members: user_team_detail[i].user_id }},
+                { new: true }
+              );
+            }else{
+              // create team -> save the user id as the team_creator
+              jagrik_class_team = await Team.create({
+                team_creator: user._id,
+                team_name: user_team_detail[i].team_name,
+                team_members: user_team_detail[i].user_id
+              });
+            }
+            // save team id in user profile
+            await User.findByIdAndUpdate(
+              { _id: user_team_detail[i].user_id },
+              { teams: jagrik_class_team._id },
+              { new: true }
+            );
+          };
+        }else{
+          throw new Error("401 - Class Not Found");
+        }
+        return;
+      } else {
+        throw new Error("401 - Access denied");
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async getTeams(token: any, classId: String) {
+    try {
+   
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      
+      // finding class_creator id from class table
+      let user_class: any = await Class.findById({_id: classId})
+      let class_creator = user_class.class_creator;
+
+      // find teams using class_creator as team_creator
+
+      let teams: any = await Team.find({team_creator: class_creator})
+      
+      console.log(teams);
+
+      return teams;
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async getTeamMembers(token: any, teamId: String) {
+    try {
+   
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+    
+      // find the userIds corresponding to the team
+      let team: any = await Team.findById({_id: teamId});
+      let userIds = team.team_members
+      // declare empty team_members array
+      let team_members=[];
+      // loop through userIds to find user details and then push into team_members array
+      
+      for(let i in userIds){
+        let member: any = await User.findById({_id: userIds[i]});
+        let team_mate={
+          first_name: member.first_name,
+          last_name: member.last_name,
+          email: member.email
+        }
+        team_members.push(team_mate)
+      }
+
+      console.log(team_members);
+
+      return team_members;  
+
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
 }
