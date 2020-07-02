@@ -1,17 +1,17 @@
-<div class="card card-box" *ngIf="class">
-
-   <h1>  {{ class }} </h1>
-</div>
-<!-- <mat-grid-tile>
-  <mat-card *ngIf="class" class="jk-card">
-    <mat-card-header>
-      <div mat-card-avatar class="jk-header-image"></div>
-      <mat-card-title>class</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        lore
-      </p>
-    </mat-card-content>
-  </mat-card>
-</mat-grid-tile> -->
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let clas of class; let index = index" [routerLink]="['/dashboard', 'classes', 'agenda']"
+    [queryParams]="{ classId: clas }">
+    <mat-card class="jk-card">
+      <mat-card-header>
+        <mat-card-title>Class</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quae ex molestias cum ducimus, aut
+          quidem molestiae voluptatibus eos perferendis obcaecati! Aperiam, deserunt facere. Corrupti
+          voluptatem perferendis impedit perspiciatis iure!
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

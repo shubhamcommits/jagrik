@@ -3,7 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  styles: [`
+    :host {
+       width:100%
+    }
+    `]
 })
 export class DashboardComponent implements OnInit {
 
