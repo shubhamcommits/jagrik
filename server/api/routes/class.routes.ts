@@ -42,6 +42,7 @@ routes.post("/invite-to-class", classController.inviteToClass);
  * @var { headers: { authorization }, body: {classId} }
  */
 routes.post("/join-class", classController.joinClass);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================
