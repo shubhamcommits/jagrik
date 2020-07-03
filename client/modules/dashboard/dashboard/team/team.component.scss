@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+}
+
+section {
+  display: table;
+}
+
+.jk-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  width: 120px;
+}
+
+.jk-button-row {
+  display: table-cell;
+}
+
+.jk-button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+.jk-flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+}
+
+.jk-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

@@ -184,4 +184,75 @@ export class ClassController {
       });
     }
   }
+
+  async createTeam(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      let classId = req.body.classId;
+      let userId = req.body.userId;
+
+      // Call the service function to get all the classes
+      await classService.createTeam(authorization,classId, userId).then(() => {
+        return res.status(200).json({
+          message: "Teams have been created successfully!"
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async getTeams(req: Request, res: Response, next: NextFunction) {
+  
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let classId = String(req.body.classId);
+
+      // Call the service function to get all the classes
+      await classService.getTeams(authorization, classId).then((teams) => {
+        return res.status(200).json({
+          message: "Teams have been fetched successfully!",
+          teams: teams
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async getTeamMembers(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let teamId = req.body.teamId;
+  
+      // Call the service function to get all the classes
+      await classService.getTeamMembers(authorization, teamId).then(() => {
+        return res.status(200).json({
+          message: "Teams have been fetched successfully!"
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
 }

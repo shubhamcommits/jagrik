@@ -4,7 +4,14 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 @Component({
   selector: 'app-dashboard-classes',
   templateUrl: './dashboard-classes.component.html',
-  styleUrls: ['./dashboard-classes.component.scss']
+  styleUrls: ['./dashboard-classes.component.scss'],
+  styles: [`
+    :host {
+        display: inline-block;
+        width:100%;
+        height:100%;
+    }
+    `]
 })
 export class DashboardClassesComponent implements OnInit {
 

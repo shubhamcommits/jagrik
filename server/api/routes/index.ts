@@ -1,5 +1,6 @@
 import { authRoutes } from './auth.routes';
 import { classRoutes } from './class.routes';
+import { userRoutes } from './user.routes';
 
 /*  =====================
  *  -- EXPORTS ROUTES --
@@ -11,6 +12,9 @@ export {
   authRoutes as authsRoutes,
   
   // CLASS
-  classRoutes as classRoutes
+  classRoutes as classRoutes,
+
+  // USER
+  userRoutes as userRoutes
 
 }

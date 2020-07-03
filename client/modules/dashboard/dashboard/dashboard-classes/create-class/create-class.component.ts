@@ -13,7 +13,7 @@ export class CreateClassComponent implements OnInit {
     public utilityService: UtilityService,
     private classService: ClassService
   ) { }
-
+  //  role = this._ActivatedRoute.snapshot.queryParamMap.get('role');
   // Class event emitter
   @Output('class') class_name = new EventEmitter()
 
@@ -29,7 +29,7 @@ export class CreateClassComponent implements OnInit {
     return this.utilityService.getSwalModal({
       title: title,
       input: 'text',
-      inputPlaceholder: 'Try to add a short name',
+      inputPlaceholder: 'Give your class a name',
       inputAttributes: {
         maxlength: 20,
         autocapitalize: 'off',

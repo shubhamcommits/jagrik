@@ -1,37 +1,34 @@
 <div class="container" style="margin-top: 5%;">
-    <h2>Your class members</h2>
-
-    <section *ngIf="this.class">
-        <div class="inline-elements" *ngFor="let member of this.class.members">
-
-            <span class="material-icons user">
-                account_circle
-            </span>
-            <div class="user-name"> {{ member?.first_name }} {{ member?.last_name }}</div>
-
-            <div class="user-email">{{ member?.email }}</div>
-            <div class="user-role">{{ member?.role }}</div>
-            <div class="user-options">
-                <div class="dropdown">
-                    <span *ngIf="member?._id != this.class.class_creator" class="material-icons" type="button"
-                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        more_horiz
-                    </span>
-                    <span *ngIf="member?._id == this.class.class_creator" type="button" class="material-icons"
-                    (click)="isClassCreator()">
-                        more_horiz
-                    </span>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
-                        <a *ngIf="member.role == 'student'" class="dropdown-item">Change to Facilitator</a>
-                        <a *ngIf="member.role == 'facilitator'" class="dropdown-item">Change to Student</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Disable User</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Remove User</a>
-                    </div>
-                </div>
-            </div>
+    <div class="row justify-content-center justify-content-between" style="text-align: center; background-color: #cd4266;padding: 10px;">
+        <p style="color: white;"><b>Class Members</b></p>
+        <div [routerLink]="['/dashboard', 'classes', 'invite']" [queryParams]="{ classId: classId }"
+            [class]="'Default Class'"><button class="" style="border-radius: 50%; background-color: var(--warning); border: 0px;}">+</button></div>
         </div>
+    <section *ngIf="this.class">
+
+        <mat-table [dataSource]="this.class.members" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element?.first_name }}{{ element?.last_name }} </mat-cell>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="Email">
+              <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.email}} </mat-cell>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Role">
+              <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.role}} </mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
     </section>
 
 

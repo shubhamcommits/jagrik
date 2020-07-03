@@ -166,27 +166,4 @@ export class AuthService {
       throw new Error(error);
     }
   }
-
-  async profilePictureUpdate(img_data: Buffer, token: any) {
-    try {
-      console.log("token: ", token);
-      //verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
-      //find user in db
-      await User.findByIdAndUpdate(
-        { _id: user._id },
-        //save image to user obj in db
-        { profile_pic: img_data },
-        { new: true }
-      ).catch((err) => {
-        throw new Error(err);
-      });
-
-      return "Profile Updated!";
-    } catch (err) {
-      //catch unexpected errors
-      throw new Error(err);
-    }
-  }
 }
