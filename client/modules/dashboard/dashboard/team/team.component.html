@@ -2,9 +2,10 @@
   <div class="col-md-5">
       <section>
         <div class="jk-button-row">
-          <button mat-raised-button color="primary">Assign Team</button>
-          <button mat-raised-button color="primary">Assign Team</button>
-          <button mat-raised-button color="primary">Assign Team</button>
+
+          <button *ngFor="let item of newUser" mat-raised-button color="primary"
+            (click)="assignTeam(item._id)">{{item.name}}</button>
+
         </div>
       </section>
   </div>

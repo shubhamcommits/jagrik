@@ -10,7 +10,7 @@
 </div> -->
 
 
-<div *ngIf="this.role != 'student'" class="join-class" data-notify="container" (click)="openCreateClassModal()">
+<div class="join-class" data-notify="container">
     <i class="material-icons" data-notify="icon" style="background-color: white; color: black; margin-right: 10px; border-radius: 50%;">add</i>
     <span data-notify="message"><b>Join New Class</b></span><br><br>
     <form class="form" [formGroup]="joinClassForm" class="form" (ngSubmit)="onSubmit()">

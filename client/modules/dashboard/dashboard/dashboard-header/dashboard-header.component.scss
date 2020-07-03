@@ -15,7 +15,7 @@ $yellow: #fca311;
 .example-sidenav-content {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   // position: fixed;
   width: -moz-available;
   z-index: 1004;
