@@ -209,13 +209,13 @@ export class ClassController {
   }
 
   async getTeams(req: Request, res: Response, next: NextFunction) {
-
+  
     try {
       // Fetch the authorization header from the request
 
       let authorization = req.headers.authorization;
       // let authorization="abcd"
-      let classId = req.body.classId;
+      let classId = String(req.body.classId);
 
       // Call the service function to get all the classes
       await classService.getTeams(authorization, classId).then((teams) => {
