@@ -28,5 +28,35 @@ export default [
         "theme": "fundamental duties",
         "dice_number": "6",
         "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "1",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "2",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "3",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "4",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "5",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+    },
+    {
+        "theme": "fundamental duties",
+        "dice_number": "6",
+        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
     }
 ]

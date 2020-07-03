@@ -125,7 +125,7 @@ const UserSchema = new Schema({
       type: Schema.Types.Number,
       default: 1,
       required: true,
-      enum: [1, 2, 3, 4, 5]
+      enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     },
     status: {
       type: Schema.Types.String,

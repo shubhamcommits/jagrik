@@ -374,7 +374,7 @@ export default [
     },
     {
         "title": "Silver-Self-2",
-        "description": "Identify your perception/stand on a recent topic concerning adolescents like early child marriage. Talk to 10 different people of varied identity groups (caste/gender/social and \u001enancial status) and note the change to your views based on these discussions. Write a blog or article or talk to 10 people about the process.",
+        "description": "Identify your perception/stand on a recent topic concerning adolescents like early child marriage. Talk to 10 different people of varied identity groups (caste/gender/social and financial status) and note the change to your views based on these discussions. Write a blog or article or talk to 10 people about the process.",
         "type": "silver",
         "card": "fundamental duties 5",
         "points": "6"
@@ -388,7 +388,7 @@ export default [
     },
     {
         "title": "Bronze-Self-2",
-        "description": "Learn at least two dohas/shabads/folk songs that talk about humanism or scienti\u001ec temper. Paraphrase the message in simple language and share with your Jagrik peers.",
+        "description": "Learn at least two dohas/shabads/folk songs that talk about humanism or scientific temper. Paraphrase the message in simple language and share with your Jagrik peers.",
         "type": "bronze",
         "card": "fundamental duties 5",
         "points": "2"
@@ -416,14 +416,14 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Study the reasons for students’ academic performance and present a classi\u001ecation (excellent, good and average) along with recommendations how to improve academic performance such that the list of excellent students goes up by 10 percent. Present it to the school authorities.",
+        "description": "Study the reasons for students’ academic performance and present a classification (excellent, good and average) along with recommendations how to improve academic performance such that the list of excellent students goes up by 10 percent. Present it to the school authorities.",
         "type": "silver",
         "card": "fundamental duties 6",
         "points": "6"
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Collect 10 stories of people from your area who have reached excellence in their chosen \u001eelds (meet a few of them/family/friends if possible) and present their stories in form of charts and share their stories with your class/community group.",
+        "description": "Collect 10 stories of people from your area who have reached excellence in their chosen fields (meet a few of them/family/friends if possible) and present their stories in form of charts and share their stories with your class/community group.",
         "type": "bronze",
         "card": "fundamental duties 6",
         "points": "2"
@@ -444,7 +444,7 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Review a Gold or Silver task from the past week and do it again without the mistakes you committed the \u001erst time.",
+        "description": "Review a Gold or Silver task from the past week and do it again without the mistakes you committed the first time.",
         "type": "silver",
         "card": "fundamental duties 6",
         "points": "6"

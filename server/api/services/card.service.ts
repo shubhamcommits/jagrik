@@ -1,4 +1,4 @@
-import { Card } from '../models/card.model'
+import { Card } from '../models'
 import { Readable } from 'stream'
 
 export class CardService {
