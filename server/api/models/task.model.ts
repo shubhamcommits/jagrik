@@ -9,7 +9,7 @@ const TaskSchema = new Schema({
         type: Schema.Types.String,
         required: true
     },
-    content: {
+    description: {
         type: Schema.Types.String,
         required: true
     },

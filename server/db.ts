@@ -1,9 +1,12 @@
 import mongoose from 'mongoose'
-import { cards } from './api/utils/data'
-import { CardService } from './api/services/card.service'
+import { cards, tasks } from './api/utils/data'
+import { CardService, TaskService } from './api/services'
 
 // Cards Service
 const cardService = new CardService()
+
+// Tasks Service
+const taskService = new TaskService()
 
 // Get Mongoose to use global promise library to avoid error messages
 mongoose.Promise = global.Promise
@@ -50,6 +53,19 @@ mongoose.connection.on('connected', () => {
       console.log(`   Cards Initialised Successfully!`)
     } else {
       console.log(`   Skipping cards initialisation, already exists.`)
+    }
+
+    // Find the index from the list of collections
+    let taskIndex = collectionNames.findIndex((collection) => collection.name === 'tasks')
+    if (taskIndex === -1) {
+
+      // Call service to initialise the cards
+      // await taskService.initTasks(tasks)
+
+      // Console the Sucess initialisation
+      console.log(`   Tasks Initialised Successfully!`)
+    } else {
+      console.log(`   Skipping tasks initialisation, already exists.`)
     }
 
   })
