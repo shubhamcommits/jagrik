@@ -4,8 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
-import { authsRoutes } from './routes';
-import { classRoutes } from './routes';
+import { authsRoutes, classRoutes, userRoutes } from './routes';
 
 // Defining new Express application
 const app = express();
@@ -72,6 +71,9 @@ app.use('/api/auths', authsRoutes);
 
 // Class Routes
 app.use('/api/classes', classRoutes);
+
+// User Routes
+app.use('/api/users', userRoutes);
 
 // Invalid routes handling middleware
 app.use((req: Request, res: Response, next: NextFunction) => {

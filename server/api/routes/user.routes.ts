@@ -31,6 +31,12 @@ routes.put('/', userController.editProfile)
  */
 routes.post( '/profile-picture', upload.single('profile_picture'), userController.profilePictureUpdate)
 
+/**
+ * POST - Assigns a random task to the user
+ * @var { headers: { authorization }, body: { card_theme } }
+ */
+routes.post('/assign-task', userController.assignRandomTask)
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

@@ -30,33 +30,38 @@ export default [
         "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "1",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Right to Equality"
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "2",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Right to Freedom"
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "3",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Right Against Exploitation"
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "4",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Right to Freedom of Religion"
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "5",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Cultural and Educational Rights"
     },
     {
-        "theme": "fundamental duties",
+        "theme": "fundamental rights",
         "dice_number": "6",
-        "description": "To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+        "description": "Right to Constitutional Remedies"
+    },
+    {
+        "theme": "child rights",
+        "dice_number": "1",
+        "description": "NA"
     }
 ]
