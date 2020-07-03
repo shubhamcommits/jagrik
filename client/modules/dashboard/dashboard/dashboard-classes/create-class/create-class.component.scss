@@ -18,3 +18,16 @@
   .button:focus{
     outline: none;
   }
+
+
+
+  .create-class{
+    background-color: #CE4166;
+    max-width: 240px;
+    color: white;
+    border-radius: 3%;
+    min-height: 100px;
+    padding: 20px;
+    cursor: pointer;
+    margin: 5px;
+  }

@@ -13,7 +13,7 @@ export class CreateClassComponent implements OnInit {
     public utilityService: UtilityService,
     private classService: ClassService
   ) { }
-
+  //  role = this._ActivatedRoute.snapshot.queryParamMap.get('role');
   // Class event emitter
   @Output('class') class_name = new EventEmitter()
 
