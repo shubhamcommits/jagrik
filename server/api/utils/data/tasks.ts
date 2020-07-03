@@ -17,7 +17,7 @@ export default [
     },
     {
         "title": "Gold-Com-2",
-        "description": "Along with a few friends, stitch a cloth Indian \u001fag to the right speci\u001ecations and have it placed at a central place in your village/community/school/residential area. Hand it over to the central authority of your community like the panchayat, Bal Panchayat, RWA or principal and ensure it is used during all signi\u001ecant events for the next three months.",
+        "description": "Along with a few friends, stitch a cloth Indian ag to the right specifications and have it placed at a central place in your village/community/school/residential area. Hand it over to the central authority of your community like the panchayat, Bal Panchayat, RWA or principal and ensure it is used during all significant events for the next three months.",
         "type": "gold",
         "card": "fundamental duties 1",
         "points": "10"
@@ -73,7 +73,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Conduct a health awareness drive for a few hours each day a\u001ber school in two neighbourhoods with a large number of people from communities other than your own. Share information and build awareness with at least 25 people on basic mental and physical health, hygiene, safe and clean drinking water issues, etc. (area speci\u001ec issues can be taken up).",
+        "description": "Conduct a health awareness drive for a few hours each day aer school in two neighbourhoods with a large number of people from communities other than your own. Share information and build awareness with at least 25 people on basic mental and physical health, hygiene, safe and clean drinking water issues, etc. (area specific issues can be taken up).",
         "type": "gold",
         "card": "fundamental duties 2",
         "points": "10"
@@ -157,7 +157,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Adopt two culturally signi\u001ecant local sites/heritage monuments for a week a\u001ber discussions with local panchayat/ASI with the help of your mentor/facilitator. Carry out measures to revive & maintain the sites with the help of your friends, class or jagrik group. Share your experiences through a video, blog, article or talk about it with 20 people.",
+        "description": "Adopt two culturally significant local sites/heritage monuments for a week aer discussions with local panchayat/ASI with the help of your mentor/facilitator. Carry out measures to revive & maintain the sites with the help of your friends, class or jagrik group. Share your experiences through a video, blog, article or talk about it with 20 people.",
         "type": "gold",
         "card": "fundamental duties 3",
         "points": "10"
@@ -178,7 +178,7 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Organize a potluck lunch in your class. Ask everyone (including teachers) to attend in their traditional attire and bring a meal or typical dish from each person’s culture. Have a discussion a\u001berwards to cull out learnings about each other’s culture",
+        "description": "Organize a potluck lunch in your class. Ask everyone (including teachers) to attend in their traditional attire and bring a meal or typical dish from each person’s culture. Have a discussion afterwards to cull out learnings about each other’s culture",
         "type": "silver",
         "card": "fundamental duties 3",
         "points": "6"
@@ -199,7 +199,7 @@ export default [
     },
     {
         "title": "Gold-Self-1",
-        "description": "Conduct a survey in your school/community to identify how many children have faced identity-based bullying. Present the \u001endings through a nukkad natak/play",
+        "description": "Conduct a survey in your school/community on the redressal mechanisms available to adolescent girls when faced with harassment. Present your findings along with ideas for appropriate redressal mechanisms and share in your school and wit your District/Block/Village Child Protection Officer.",
         "type": "gold",
         "card": "fundamental duties 3",
         "points": "10"
@@ -213,7 +213,7 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Find out about one ritual from your community that promote humanism, such as donations in cash and kind, feeding the poor, looking a\u001ber animals, asking for forgiveness etc. and perform one of those rituals.",
+        "description": "Find out about one ritual from your community that promote humanism, such as donations in cash and kind, feeding the poor, looking after animals, asking for forgiveness etc. and perform one of those rituals.",
         "type": "silver",
         "card": "fundamental duties 3",
         "points": "6"
@@ -248,14 +248,14 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Find out about local and seasonal vegetables that are high in nutritional value and plant and maintain at least 3 in your school/home/community garden. Share the bene\u001ets of local vegetable production with regards to health, environment and sustainability with your class and Jagrik friends.",
+        "description": "Find out about local and seasonal vegetables that are high in nutritional value and plant and maintain at least 3 in your school/home/community garden. Share the benefits of local vegetable production with regards to health, environment and sustainability with your class and Jagrik friends.",
         "type": "silver",
         "card": "fundamental duties 4",
         "points": "6"
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Find out about two traditional practices from your or any other community that seek to protect the environment, like the Vishnois. \u001dey may or may not be on the verge of getting lost in today’s times. Convince 3 people in the community to adopt these practices on a regular basis.",
+        "description": "Find out about two traditional practices from your or any other community that seek to protect the environment, like the Vishnois. They may or may not be on the verge of getting lost in today’s times. Convince 3 people in the community to adopt these practices on a regular basis.",
         "type": "bronze",
         "card": "fundamental duties 4",
         "points": "2"
@@ -276,7 +276,7 @@ export default [
     },
     {
         "title": "Gold-Self-2",
-        "description": "Form a group of 5 students and plant 5 plants each at your homes neighborhood and look a\u001ber them for a month and share the progress through pre and post photographs.",
+        "description": "Form a group of 5 students and plant 5 plants each at your homes neighborhood and look after them for a month and share the progress through pre and post photographs.",
         "type": "gold",
         "card": "fundamental duties 4",
         "points": "10"
@@ -290,7 +290,7 @@ export default [
     },
     {
         "title": "Silver-Self-2",
-        "description": "Go on a waste collection walk twice a week with two others in a natural habitat, where you pick garbage and \u001ell at least one big sack each. Create awareness in your class on the levels of cleanliness in your community and the connection between hygiene and health.",
+        "description": "Go on a waste collection walk twice a week with two others in a natural habitat, where you pick garbage and ll at least one big sack each. Create awareness in your class on the levels of cleanliness in your community and the connection between hygiene and health.",
         "type": "silver",
         "card": "fundamental duties 4",
         "points": "6"
@@ -332,28 +332,28 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Find out which government schemes are applicable and are being implemented in your school or neighbourhood and which ones are not through a research study with authorities and students. Share the \u001endings with the appropriate authorities.",
+        "description": "Find out which government schemes are applicable and are being implemented in your school or neighbourhood and which ones are not through a research study with authorities and students. Share the findings with the appropriate authorities.",
         "type": "silver",
         "card": "fundamental duties 5",
         "points": "6"
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Pick a mutually interesting issue from current affairs that speci\u001ecally concern child rights and create a charter of questions in your class (at least 20 distinct queries) and with help from your teacher, arrange for a scientist/expert to come and answer these for class.",
+        "description": "Pick a mutually interesting issue from current affairs that specifically concern child rights and create a charter of questions in your class (at least 20 distinct queries) and with help from your teacher, arrange for a scientist/expert to come and answer these for class.",
         "type": "bronze",
         "card": "fundamental duties 5",
         "points": "2"
     },
     {
         "title": "Bronze-Com-2",
-        "description": "Identify a female role model from three different religions/ communities/ tribes and analyse the common qualities that enabled them to break the stereotype of women from speci\u001ec class/caste/religion. Share your insights with your Jagrik peers through a presentation.",
+        "description": "Identify a female role model from three different religions/ communities/ tribes and analyse the common qualities that enabled them to break the stereotype of women from specific class/caste/religion. Share your insights with your Jagrik peers through a presentation.",
         "type": "bronze",
         "card": "fundamental duties 5",
         "points": "2"
     },
     {
         "title": "Gold-Self-1",
-        "description": "Identify some natural remedies practiced at your home for common ailments and visit your adolescent friendly health clinic or meet a doctor to \u001end out the scienti\u001ec basis for these remedies.",
+        "description": "Identify some natural remedies practiced at your home for common ailments and visit your adolescent friendly health clinic or meet a doctor to find out the scientific basis for these remedies.",
         "type": "gold",
         "card": "fundamental duties 5",
         "points": "10"
@@ -374,7 +374,7 @@ export default [
     },
     {
         "title": "Silver-Self-2",
-        "description": "Identify your perception/stand on a recent topic concerning adolescents like early child marriage. Talk to 10 different people of varied identity groups (caste/gender/social and \u001enancial status) and note the change to your views based on these discussions. Write a blog or article or talk to 10 people about the process.",
+        "description": "Identify your perception/stand on a recent topic concerning adolescents like early child marriage. Talk to 10 different people of varied identity groups (caste/gender/social and financial status) and note the change to your views based on these discussions. Write a blog or article or talk to 10 people about the process.",
         "type": "silver",
         "card": "fundamental duties 5",
         "points": "6"
@@ -388,7 +388,7 @@ export default [
     },
     {
         "title": "Bronze-Self-2",
-        "description": "Learn at least two dohas/shabads/folk songs that talk about humanism or scienti\u001ec temper. Paraphrase the message in simple language and share with your Jagrik peers.",
+        "description": "Learn at least two dohas/shabads/folk songs that talk about humanism or scientific temper. Paraphrase the message in simple language and share with your Jagrik peers.",
         "type": "bronze",
         "card": "fundamental duties 5",
         "points": "2"
@@ -416,14 +416,14 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Study the reasons for students’ academic performance and present a classi\u001ecation (excellent, good and average) along with recommendations how to improve academic performance such that the list of excellent students goes up by 10 percent. Present it to the school authorities.",
+        "description": "Study the reasons for students’ academic performance and present a classification (excellent, good and average) along with recommendations how to improve academic performance such that the list of excellent students goes up by 10 percent. Present it to the school authorities.",
         "type": "silver",
         "card": "fundamental duties 6",
         "points": "6"
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Collect 10 stories of people from your area who have reached excellence in their chosen \u001eelds (meet a few of them/family/friends if possible) and present their stories in form of charts and share their stories with your class/community group.",
+        "description": "Collect 10 stories of people from your area who have reached excellence in their chosen fields (meet a few of them/family/friends if possible) and present their stories in form of charts and share their stories with your class/community group.",
         "type": "bronze",
         "card": "fundamental duties 6",
         "points": "2"
@@ -437,14 +437,14 @@ export default [
     },
     {
         "title": "Gold-Self-1",
-        "description": "Write a letter to the PM/CM giving your views on how the “chalta hai” attitude in the country needs to change. In the letter, cite examples (e.g. of how health services, school services work) of issues/areas where you feel this attitude is followed. Ensure the letter has no language errors or spelling mistakes and the content should be of high quality as veri\u001eed by three people.",
+        "description": "Write a letter to the PM/CM giving your views on how the “chalta hai” attitude in the country needs to change. In the letter, cite examples (e.g. of how health services, school services work) of issues/areas where you feel this attitude is followed. Ensure the letter has no language errors or spelling mistakes and the content should be of high quality as verified by three people.",
         "type": "gold",
         "card": "fundamental duties 6",
         "points": "10"
     },
     {
         "title": "Silver-Self-1",
-        "description": "Review a Gold or Silver task from the past week and do it again without the mistakes you committed the \u001erst time.",
+        "description": "Review a Gold or Silver task from the past week and do it again without the mistakes you committed the first time.",
         "type": "silver",
         "card": "fundamental duties 6",
         "points": "6"
@@ -458,14 +458,14 @@ export default [
     },
     {
         "title": "Bronze-Self-1",
-        "description": "Identify 5 areas (subjects, behaviour, skills) that you think you could improve and design a strategy on aiming towards excellence in each area. \u001dese points should not be vague and be actionable. Begin working in each area in that week.",
+        "description": "Identify 5 areas (subjects, behaviour, skills) that you think you could improve and design a strategy on aiming towards excellence in each area. These points should not be vague and be actionable. Begin working in each area in that week.",
         "type": "bronze",
         "card": "fundamental duties 6",
         "points": "2"
     },
     {
         "title": "Bronze-Self-2",
-        "description": "Implement one new hygiene practice for a week, (for example, brushing your teeth every night before bed, washing your hands with soap before meals or rinsing your mouth a\u001ber a meal.)",
+        "description": "Implement one new hygiene practice for a week, (for example, brushing your teeth every night before bed, washing your hands with soap before meals or rinsing your mouth after a meal.)",
         "type": "bronze",
         "card": "fundamental duties 6",
         "points": "2"
@@ -654,7 +654,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Speak to 3 children who are working full time in your vicinity. Find out the\nchallenges they face in their growth and development as compared to you and how\nit affects their dreams and their opportunities. Present your \u001endings and\nrecommendations to support their development with your District/Block/Village\nChild Protection O\u001acer and State Commission for Protection of Child Rights or to\nthe ward councillor/Panchayat Samiti.",
+        "description": "Speak to 3 children who are working full time in your vicinity. Find out the challenges they face in their growth and development as compared to you and how it affects their dreams and their opportunities. Present your findings and recommendations to support their development with your District/Block/Village Child Protection Officer and State Commission for Protection of Child Rights or to the ward councillor/Panchayat Samiti.",
         "type": "gold",
         "card": "fundamental rights 3",
         "points": "5"
@@ -710,7 +710,7 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Re\u001fect on three cases each in the past year where you have been an\nexploiter/discriminator and three where you were exploited/discriminated\nagainst. Apologize to those whom you may have hurt and ask for forgiveness\nfrom the perpetrator who has hurt you.",
+        "description": "React on three cases each in the past year where you have been an exploiter/discriminator and three where you were exploited/discriminated against. Apologize to those whom you may have hurt and ask for forgiveness from the perpetrator who has hurt you.",
         "type": "silver",
         "card": "fundamental rights 3",
         "points": "3"
@@ -738,7 +738,7 @@ export default [
     },
     {
         "title": "Silver-Com-1",
-        "description": "Organize a friendly sports match (cricket/football/kho-kho) in your school/community or a nukkad natak/street play or a cycle rally with diverse participation from all major religions. Have a discussion on the experience of uniting across religious identities a\u001berwards (with your mentor’s help).",
+        "description": "Organize a friendly sports match (cricket/football/kho-kho) in your school/community or a nukkad natak/street play or a cycle rally with diverse participation from all major religions. Have a discussion on the experience of uniting across religious identities afterwards (with your mentor’s help).",
         "type": "silver",
         "card": "fundamental rights 4",
         "points": "3"
@@ -801,14 +801,14 @@ export default [
     },
     {
         "title": "Silver-Com-1",
-        "description": "Identify 1 disadvantaged child in need of remedial classes and with the help of local education o\u001acer/ relevant stakeholder arrange for free tuition for a year for the child.",
+        "description": "Identify 1 disadvantaged child in need of remedial classes and with the help of local education officer/ relevant stakeholder arrange for free tuition for a year for the child.",
         "type": "silver",
         "card": "fundamental rights 5",
         "points": "3"
     },
     {
         "title": "Silver-Com-2",
-        "description": "From the RTE Act and discussions with your mentor \u001end out provisions that are not being applied in your school and send an application with your observations to the relevant person in the State/District Education Board",
+        "description": "From the RTE Act and discussions with your mentor find out provisions that are not being applied in your school and send an application with your observations to the relevant person in the State/District Education Board",
         "type": "silver",
         "card": "fundamental rights 5",
         "points": "3"
@@ -829,7 +829,7 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Make your family tree of 3 generations with name, gender, level of education achieved and age at which they got married. Analyse if, over the generations there has been a shi\u001b in levels of education and age of marriage for girls and boys. Share with your extended family in the form of a chart.",
+        "description": "Make your family tree of 3 generations with name, gender, level of education achieved and age at which they got married. Analyse if, over the generations there has been a shift in levels of education and age of marriage for girls and boys. Share with your extended family in the form of a chart.",
         "type": "silver",
         "card": "fundamental rights 5",
         "points": "3"
@@ -843,7 +843,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Conduct a survey of at least 15 households and develop a list of common grievances that adolescents from these households in have in accessing their rights, and talk to the appropriate duty bearer or panchayat or District/Block/Village child protection o\u001acer on what remedies they can access to address their grievances",
+        "description": "Conduct a survey of at least 15 households and develop a list of common grievances that adolescents from these households in have in accessing their rights, and talk to the appropriate duty bearer or panchayat or District/Block/Village child protection officer on what remedies they can access to address their grievances",
         "type": "gold",
         "card": "fundamental rights 6",
         "points": "5"
@@ -864,7 +864,7 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Study ways on how to make your local grievance cell/police station/RWA operate more effectively and caringly especially towards adolescent related issues and present your recommendations to your Ward Councillor or Panchayat or District/Block/Village Child Protection O\u001acer/RWA executive team.",
+        "description": "Study ways on how to make your local grievance cell/police station/RWA operate more effectively and caringly especially towards adolescent related issues and present your recommendations to your Ward Councillor or Panchayat or District/Block/Village Child Protection Officer/RWA executive team.",
         "type": "silver",
         "card": "fundamental rights 6",
         "points": "3"
@@ -878,7 +878,7 @@ export default [
     },
     {
         "title": "Bronze-Com-2",
-        "description": "Analyse and identify the steps and processes of how one goes about \u001eling a police case and the process it follows in the courts. Share your \u001endings, especially about how the executive and the judiciary interact, with the Jagrik cohort.",
+        "description": "Analyse and identify the steps and processes of how one goes about filing a police case and the process it follows in the courts. Share your findings, especially about how the executive and the judiciary interact, with the Jagrik cohort.",
         "type": "bronze",
         "card": "fundamental rights 6",
         "points": "1"
@@ -892,14 +892,14 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Identify 5 violations of fundamental rights in your’s or your peers’ lives. Meet a lawyer/constitutional expert or read the constitution to seek information on constitutional remedies available. Share your \u001endings with Jagriks.",
+        "description": "Identify 5 violations of fundamental rights in your’s or your peers’ lives. Meet a lawyer/constitutional expert or read the constitution to seek information on constitutional remedies available. Share your findings with Jagriks.",
         "type": "silver",
         "card": "fundamental rights 6",
         "points": "3"
     },
     {
         "title": "Bronze-Self-1",
-        "description": "Dr. B.R. Ambedkar called this right the “heart and soul” of our Constitution. Do you agree, why or why not? Write a re\u001fective piece and share with fellow Jagriks.",
+        "description": "Dr. B.R. Ambedkar called this right the “heart and soul” of our Constitution. Do you agree, why or why not? Write a reflective piece and share with fellow Jagriks.",
         "type": "bronze",
         "card": "fundamental rights 6",
         "points": "1"
@@ -913,14 +913,14 @@ export default [
     },
     {
         "title": "Gold-Com-2",
-        "description": "Conduct a survey on how many girls have access to sanitary napkins in your class. Basis your \u001endings, develop a budget for a half yearly supply of sanitary napkins for your school. Present this budget to your principal/School Management Committee, and inspire them to provide the same.",
+        "description": "Conduct a survey on how many girls have access to sanitary napkins in your class. Basis your findings, develop a budget for a half yearly supply of sanitary napkins for your school. Present this budget to your principal/School Management Committee, and inspire them to provide the same.",
         "type": "gold",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Gold-Com-3",
-        "description": "Spend a day with an anganwadi worker and \u001end out what kind of health and hygiene information she gives out to households. With her help design and facilitate an engaging session with at least 20 children from your primary school on health and hygiene.",
+        "description": "Spend a day with an anganwadi worker and find out what kind of health and hygiene information she gives out to households. With her help design and facilitate an engaging session with at least 20 children from your primary school on health and hygiene.",
         "type": "gold",
         "card": "child rights wild card NA",
         "points": ""
@@ -934,35 +934,35 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "Organize a group of peer educators in your community and \u001end ways to create awareness on one health issue for a week. Assess the impact of this campaign at the end of your Jagrik journey.",
+        "description": "Organize a group of peer educators in your community and find ways to create awareness on one health issue for a week. Assess the impact of this campaign at the end of your Jagrik journey.",
         "type": "silver",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Silver-Com-3",
-        "description": "Interview the child line coordinator to assess the kinds of queries being received and how they are being addressed. Present the \u001endings to your District/Block/Village Child Protection O\u001acer",
+        "description": "Interview the child line coordinator to assess the kinds of queries being received and how they are being addressed. Present the findings to your District/Block/Village Child Protection Officer",
         "type": "silver",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Create posters on 1098, the childline number. Explain its purpose and bene\u001ets. Put one up in your school, one in your community and one outside a religious place",
+        "description": "Create posters on 1098, the childline number. Explain its purpose and benefits. Put one up in your school, one in your community and one outside a religious place",
         "type": "bronze",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Bronze-Com-2",
-        "description": "With the help of your mentor, analyze data on child tra\u001acking in your state from the NCRB website. Write a blog/article on the same.",
+        "description": "With the help of your mentor, analyze data on child trafficking in your state from the NCRB website. Write a blog/article on the same.",
         "type": "bronze",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Bronze-Com-3",
-        "description": "Read news articles to \u001end a story where a child’s rights are being ignored, violated or denied. Use the Convention on the Rights of the Child to identify the rights violations in the story. Dra\u001b a letter to the editor, or to a relevant organization/person associated with the story.",
+        "description": "Read news articles to find a story where a child’s rights are being ignored, violated or denied. Use the Convention on the Rights of the Child to identify the rights violations in the story. Draft a letter to the editor, or to a relevant organization/person associated with the story.",
         "type": "bronze",
         "card": "child rights wild card NA",
         "points": ""
@@ -983,21 +983,21 @@ export default [
     },
     {
         "title": "Silver-Self-1",
-        "description": "Write a \u001ectional story about a child rights superhero. What would they look like, what would their superpowers be and what would their message be? What would their \u001eght be like and who would they vanquish? Share this story with your Jagrik friends.",
+        "description": "Write a fictional story about a child rights superhero. What would they look like, what would their superpowers be and what would their message be? What would their fight be like and who would they vanquish? Share this story with your Jagrik friends.",
         "type": "silver",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Silver-Self-2",
-        "description": "Create thank you messages or send thank you notes or emails to 10 people who protect you from harm. \u001dese people could be your family, your friends, your family doctor, local police offcers and firefighters, your Member of Parliament, sta\u001c at your local hospital, among many others.",
+        "description": "Create thank you messages or send thank you notes or emails to 10 people who protect you from harm. These people could be your family, your friends, your family doctor, local police offcers and firefighters, your Member of Parliament, staff at your local hospital, among many others.",
         "type": "silver",
         "card": "child rights wild card NA",
         "points": ""
     },
     {
         "title": "Bronze-Self-1",
-        "description": "Write a re\u001fective piece on your dreams and aspirations and how they may change if you were to get married before completing school.",
+        "description": "Write a reflective piece on your dreams and aspirations and how they may change if you were to get married before completing school.",
         "type": "bronze",
         "card": "child rights wild card NA",
         "points": ""
