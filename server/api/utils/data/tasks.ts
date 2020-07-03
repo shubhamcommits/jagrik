@@ -908,105 +908,105 @@ export default [
         "title": "Gold-Com-1",
         "description": "Identify three minor children who are working somewhere and being denied their Right to Education. With your Jagrik mentor’s help, talk to their employers and inspire them to let the adolescents access this right.",
         "type": "gold",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "20"
     },
     {
         "title": "Gold-Com-2",
         "description": "Conduct a survey on how many girls have access to sanitary napkins in your class. Basis your findings, develop a budget for a half yearly supply of sanitary napkins for your school. Present this budget to your principal/School Management Committee, and inspire them to provide the same.",
         "type": "gold",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "20"
     },
     {
         "title": "Gold-Com-3",
         "description": "Spend a day with an anganwadi worker and find out what kind of health and hygiene information she gives out to households. With her help design and facilitate an engaging session with at least 20 children from your primary school on health and hygiene.",
         "type": "gold",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "20"
     },
     {
         "title": "Silver-Com-1",
         "description": "Along with 5 other friends, convince your school authorities to give you space to start a vegetable garden. Speak to your local health worker to help and identify the most nutritious crops to plant and maintain them for 1 month.",
         "type": "silver",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "12"
     },
     {
         "title": "Silver-Com-2",
         "description": "Organize a group of peer educators in your community and find ways to create awareness on one health issue for a week. Assess the impact of this campaign at the end of your Jagrik journey.",
         "type": "silver",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "12"
     },
     {
         "title": "Silver-Com-3",
         "description": "Interview the child line coordinator to assess the kinds of queries being received and how they are being addressed. Present the findings to your District/Block/Village Child Protection Officer",
         "type": "silver",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "12"
     },
     {
         "title": "Bronze-Com-1",
         "description": "Create posters on 1098, the childline number. Explain its purpose and benefits. Put one up in your school, one in your community and one outside a religious place",
         "type": "bronze",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "4"
     },
     {
         "title": "Bronze-Com-2",
         "description": "With the help of your mentor, analyze data on child trafficking in your state from the NCRB website. Write a blog/article on the same.",
         "type": "bronze",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "4"
     },
     {
         "title": "Bronze-Com-3",
         "description": "Read news articles to find a story where a child’s rights are being ignored, violated or denied. Use the Convention on the Rights of the Child to identify the rights violations in the story. Draft a letter to the editor, or to a relevant organization/person associated with the story.",
         "type": "bronze",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "4"
     },
     {
         "title": "Gold-Self-1",
         "description": "Identify three rights that are important to you that you may sometimes not get access to. Upholding of which fundamental duties by those around you will help you to access these rights. Write an inspirational piece on how your fellow citizens can help protect these rights for you",
         "type": "gold",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "20"
     },
     {
         "title": "Gold-Self-2",
         "description": "Do an audit of three households that have sons and daughters, including your own. Categorise their nutrition intake in one week – how many times a week do they have milk, eggs, vegetables, fruits, protein etc. Compare to see if both girls and boys get equal nutrition. Visit 5 households in your community to share the importance of adequate nutrient/food intake for both boys and girls.",
         "type": "gold",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "20"
     },
     {
         "title": "Silver-Self-1",
         "description": "Write a fictional story about a child rights superhero. What would they look like, what would their superpowers be and what would their message be? What would their fight be like and who would they vanquish? Share this story with your Jagrik friends.",
         "type": "silver",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "12"
     },
     {
         "title": "Silver-Self-2",
         "description": "Create thank you messages or send thank you notes or emails to 10 people who protect you from harm. These people could be your family, your friends, your family doctor, local police offcers and firefighters, your Member of Parliament, staff at your local hospital, among many others.",
         "type": "silver",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "12"
     },
     {
         "title": "Bronze-Self-1",
         "description": "Write a reflective piece on your dreams and aspirations and how they may change if you were to get married before completing school.",
         "type": "bronze",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "4"
     },
     {
         "title": "Bronze-Self-2",
         "description": "Research on 5 facts about health, nutrition and hygiene that you were unaware of and want to adopt in your life, and create postcards that can be used to build awareness on these practices among other adolescents.",
         "type": "bronze",
-        "card": "child rights wild card NA",
-        "points": ""
+        "card": "child rights 1",
+        "points": "4"
     }
 ]

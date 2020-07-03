@@ -60,7 +60,7 @@ mongoose.connection.on('connected', () => {
     if (taskIndex === -1) {
 
       // Call service to initialise the cards
-      // await taskService.initTasks(tasks)
+      await taskService.initTasks(tasks)
 
       // Console the Sucess initialisation
       console.log(`   Tasks Initialised Successfully!`)
