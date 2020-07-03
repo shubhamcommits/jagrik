@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassService } from '../../shared/services/class.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { ClassDetailsComponent } from '../class-details/class-details.component';
 
@@ -14,7 +14,8 @@ export class InviteStudentsComponent implements OnInit {
 
   constructor(
     private _Injector: Injector,
-    private _ActivatedRoute: ActivatedRoute
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router
   ) { }
 
   // Invite Students form variable
@@ -23,7 +24,7 @@ export class InviteStudentsComponent implements OnInit {
   classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId')
 
   // Class Details Object
-  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute)
+  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute, this._Router)
 
   // Class Object
   class: any

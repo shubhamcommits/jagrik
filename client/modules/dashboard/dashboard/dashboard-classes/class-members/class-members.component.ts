@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { ClassDetailsComponent } from '../class-details/class-details.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 
 @Component({
@@ -12,11 +12,12 @@ export class ClassMembersComponent implements OnInit {
 
   constructor(
     private _Injector: Injector,
-    private _ActivatedRoute: ActivatedRoute
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router
   ) { }
 
   // Class Details Object
-  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute)
+  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute, this._Router)
 
   // Class Object
   class: any

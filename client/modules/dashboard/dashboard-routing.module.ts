@@ -9,7 +9,7 @@ import { InviteStudentsComponent } from './dashboard/dashboard-classes/invite-st
 import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda/class-agenda.component';
 import { ClassMembersComponent } from './dashboard/dashboard-classes/class-members/class-members.component';
 import { UserComponent } from './dashboard/user/user.component';
-
+import { TeamComponent } from './dashboard/team/team.component';
 
 const routes: Routes = [
   {
@@ -29,6 +29,7 @@ const routes: Routes = [
 
             ]
           },
+          { path: 'team', component: TeamComponent },
           { path: 'user', component: UserComponent },
         ]
       }

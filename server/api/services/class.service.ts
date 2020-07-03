@@ -383,17 +383,14 @@ export class ClassService {
       // verify token and decode user data
       let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
       
+      // let class_members: any = await User.find(classes: )
+
       // finding class_creator id from class table
-      let user_class: any = await Class.findById({_id: classId})
-      let class_creator = user_class.class_creator;
-
-      // find teams using class_creator as team_creator
-
-      let teams: any = await Team.find({team_creator: class_creator})
-      
-      console.log(teams);
-
-      return teams;
+     let user_class: any = await Class.findById({_id: classId}).populate(
+       "members",
+       "first_name last_name teams"
+     )
+     return user_class;
 
     } catch (err) {
       // Catch unexpected errors

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AuthService } from "../services";
 import * as details from "client-device-ip-details";
 import fs = require("fs");
+import { MulterRequest } from 'multer';
 // Create Authentication Service instance
 const authService = new AuthService();
 
@@ -106,8 +107,9 @@ export class AuthController {
     }
   }
 
-  async profilePictureUpdate(req: Request, res: Response, next: NextFunction) {
+  async profilePictureUpdate(req: MulterRequest, res: Response, next: NextFunction) {
     //  newItem.img.data = fs.readFileSync(req.files.userPhoto.path)
+    
     try {
       let img_data = fs.readFileSync('./class');
 
