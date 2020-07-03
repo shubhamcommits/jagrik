@@ -192,10 +192,10 @@ export class ClassController {
 
       let authorization = req.headers.authorization;
       let classId = req.body.classId;
-      let user_team_detail = req.body.user_team_detail;
+      let userId = req.body.userId;
 
       // Call the service function to get all the classes
-      await classService.createTeam(authorization,classId, user_team_detail).then(() => {
+      await classService.createTeam(authorization,classId, userId).then(() => {
         return res.status(200).json({
           message: "Teams have been created successfully!"
         });
