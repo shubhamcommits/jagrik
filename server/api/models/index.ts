@@ -1,6 +1,7 @@
 import { Auth } from './auth.model'
 import { User } from './user.model'
 import { Class } from './class.model'
+import { Team } from './team.model'
 
 /*  =====================
  *  -- EXPORTS MODELS --
@@ -15,6 +16,8 @@ export {
   User,
 
   // Class Model
-  Class
+  Class,
+
+  Team,
 
 }
