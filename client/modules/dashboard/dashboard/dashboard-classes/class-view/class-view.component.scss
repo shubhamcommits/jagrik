@@ -1,4 +1,6 @@
-.jk-card {
-  margin-left: 26px;
-  display: block;
+.mat-grid-tile{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
 }

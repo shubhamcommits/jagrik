@@ -29,9 +29,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
     :host {
       display:inline-block;
        width:100%;
-       padding-left:25px;
+       /* padding-left:25px;
        padding-right:25px;
-       margin-bottom:30px;
+       margin-bottom:30px; */
+
     }
     `]
 })

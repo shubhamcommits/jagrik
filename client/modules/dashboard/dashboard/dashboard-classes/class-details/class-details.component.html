@@ -1,13 +1,12 @@
-<ul class="nav justify-content-center">
-    <li class="nav-item">
-        <button [routerLink]="['/dashboard', 'classes', 'agenda']"  [queryParams]="{ classId: classId }" class="button button-nav font-weight-bold">Agenda</button>
-    </li>
-    <li class="nav-item">
-        <button [routerLink]="['/dashboard', 'classes', 'members']"  [queryParams]="{ classId: classId }" class="button button-nav font-weight-bold">Members</button>
-    </li>
-    <li class="nav-item">
-        <button class="button button-nav font-weight-bold" [routerLink]="['/dashboard', 'classes', 'invite']"  [queryParams]="{ classId: classId }">Invite Users</button>
-    </li>
-  </ul>
-
-  <router-outlet></router-outlet>
+<section>
+  <div class="example-button-row">
+    <button mat-raised-button color="{{checkColor('Agenda')}}"
+      [routerLink]="['/dashboard', 'classes', 'agenda']"
+      [queryParams]="{ classId: classId }">Agenda</button>
+    <button mat-raised-button color="{{checkColor('Members')}}" [routerLink]="['/dashboard', 'classes', 'members']"
+      [queryParams]="{ classId: classId }">Members</button>
+    <button mat-raised-button :color="{{checkColor('Invite')}}" [routerLink]="['/dashboard', 'classes', 'invite']"
+      [queryParams]="{ classId: classId }">Invite Users</button>
+  </div>
+</section>
+<router-outlet></router-outlet>
