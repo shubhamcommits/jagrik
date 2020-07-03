@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamService } from '../shared/services/team.service';
+import { UtilityService } from 'src/shared/services/utility-service/utility.service';
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
 
 export interface PeriodicElement {
   name: string;
@@ -29,10 +32,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
     :host {
       display:inline-block;
        width:100%;
-       /* padding-left:25px;
-       padding-right:25px;
-       margin-bottom:30px; */
-
     }
     `]
 })
@@ -40,10 +39,22 @@ export class TeamComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'className', 'team'];
   dataSource = ELEMENT_DATA;
+  userRole = ''
 
-  constructor() { }
+  constructor(private teamService: TeamService, private utilityService: UtilityService, private storageService: StorageService) { }
 
   ngOnInit(): void {
+    this.userRole = this.storageService.getLocalData('userData').role
+    this.getTeams()
+  }
+
+  assignTeam() {
+
+  }
+
+  getTeams() {
+
+    this.teamService.getTeams(this.storageService.getLocalData('userData').classes[0])
   }
 
 }
