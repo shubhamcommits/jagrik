@@ -116,7 +116,7 @@ const UserSchema = new Schema({
       default: null,
     },
   ],
-  task: {
+  tasks: [{
     _task: {
       type: Schema.Types.ObjectId,
       ref: 'Task',
@@ -138,7 +138,7 @@ const UserSchema = new Schema({
       default: moment().format(),
       required: true
     },
-  }
+  }]
 });
 
 const User = mongoose.model("User", UserSchema);
