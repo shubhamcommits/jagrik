@@ -1,4 +1,4 @@
-import { User, Card, Task } from "../models";
+import { User, Card, Task, Team } from "../models";
 import jwt from "jsonwebtoken";
 
 export class UserService {
@@ -54,6 +54,40 @@ export class UserService {
             });
 
             return "Profile Updated!";
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+    }
+
+    async taskSupportingDocUpload(img_data: Buffer, token: any, taskId: String, experience_description: String, teamId: String) {
+        try {
+            console.log("token: ", token);
+            //verify token and decode user data
+            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+            let taskSelected: any = await Task.find({_id: taskId});
+
+            let taskCategory = taskSelected.category
+
+            if(taskCategory=='Individual'){
+                //find user in db
+                await User.updateOne(
+                    { _id: user._id, "task._task": taskId },
+                    { $set: { "task.$.supporting_doc" : img_data, "task.$.experience_description" : experience_description, "task.$.status" : 'completed' } },
+                ).catch((err) => {
+                    throw new Error(err);
+                });
+                // https://docs.mongodb.com/manual/reference/operator/update/positional/
+            }else{
+                await Team.updateOne(
+                    { _id: teamId, "task._task": taskId },
+                    { $set: { "task.$.supporting_doc" : img_data, "task.$.experience_description" : experience_description, "task.$.submitted_by" : user.first_name, "task.$.status" : 'completed' } },
+                ).catch((err) => {
+                    throw new Error(err);
+                });
+            }
+            return "Doc Uploaded!";
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);

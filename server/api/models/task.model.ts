@@ -29,6 +29,9 @@ const TaskSchema = new Schema({
     _card: {
         type: Schema.Types.ObjectId,
         ref: 'Card',
+    },
+    category: {
+        type:String,
     }
 })
 

@@ -151,4 +151,46 @@ export class UserController {
         }
     }
 
+    async taskSupportingDocUpload(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            // Image Data from the request
+            let img_data = fs.readFileSync(req['file'].path)
+
+            // Fetch Authorization header
+            let authorization = req.headers.authorization;
+            let taskId = req.body.taskId;
+            let experience_description = req.body.experience_description
+            let teamId = req.body.teamId
+
+            // Call the profilePictureUpdate function from the service
+            await userService
+                .taskSupportingDocUpload(img_data, authorization, taskId, experience_description, teamId)
+
+                // Proceed with the status 200 response
+                .then((response) => {
+                    return res.status(200).json({
+                        message: "User has successfully uploaded supporting document for the task!",
+                    })
+                })
+
+                // Catch the errors from the service function
+                .catch((err) => {
+                    return res.status(400).json({
+                        message:
+                            "Bad Request, kindly trace the error stack for more details!",
+                        error: new Error(
+                            err ||
+                            "Bad Request, kindly trace the error stack for more details!"
+                        ),
+                    })
+                })
+        } catch (err) {
+            return res.status(500).json({
+                message: "Internal Server Error!",
+                error: new Error(err || "Internal Server Error!"),
+            })
+        }
+    }
+
 }

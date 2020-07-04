@@ -145,6 +145,13 @@ const UserSchema = new Schema({
       default: moment().format(),
       required: true
     },
+    supporting_doc: {
+      type: String,
+      data: Buffer,
+    },
+    experience_description: {
+      type: String,
+    },
   }]
 });
 

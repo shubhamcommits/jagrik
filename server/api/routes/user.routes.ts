@@ -37,6 +37,8 @@ routes.post( '/profile-picture', upload.single('profile_picture'), userControlle
  */
 routes.post('/assign-task', userController.assignRandomTask)
 
+routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload)
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================
