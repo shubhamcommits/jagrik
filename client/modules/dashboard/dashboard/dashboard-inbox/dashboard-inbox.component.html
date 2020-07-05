@@ -1,1 +1,16 @@
-<app-assign-random-task></app-assign-random-task>
+<h1 class="d-flex justify-content-center">Welcome to Jagrik!</h1>
+<span class="d-flex justify-content-center">aims to create a lived experience for participants</span>
+
+<app-no-team *ngIf="userData && userData.role === 'student' && userData.teams.length == 0"></app-no-team>
+
+<app-facilitator-view *ngIf="userData && userData.role === 'facilitator'"></app-facilitator-view>
+
+<app-assign-random-task
+    *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
+    (card)="getCard($event)">
+</app-assign-random-task>
+
+<app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
+    [cardId]="this.card._id">
+</app-tasks-list>
+

@@ -18,6 +18,12 @@ const userController = new UserController()
 const routes = express.Router()
 
 /**
+ * GET - Get's current user's profile
+ * @var { headers: { authorization } }
+ */
+routes.get('/', userController.get)
+
+/**
  * PUT - Edits the current user's profile
  * @var { headers: { authorization }, body: { user } }
  */

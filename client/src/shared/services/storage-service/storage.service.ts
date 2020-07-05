@@ -46,21 +46,21 @@ export class StorageService {
   setLocalData(key: any, data: string) {
     data = this.encryptData(key, data);
 
-    return localStorage.setItem(key, JSON.stringify(data));
+    return sessionStorage.setItem(key, JSON.stringify(data));
   }
 
   /**
    * This function removes the localstorage data which is associated with the key and exists in the encrypted form
    */
   removeLocalData(key: any) {
-    return localStorage.removeItem(key);
+    return sessionStorage.removeItem(key);
   }
 
   /**
    * This function fetches the localstorage data which is associated with the key and exists in the encrypted form
    */
   getLocalData(key: any) {
-    return this.decryptData(key, JSON.parse(localStorage.getItem(key)));
+    return this.decryptData(key, JSON.parse(sessionStorage.getItem(key)));
   }
 
   /**
@@ -68,7 +68,7 @@ export class StorageService {
    * @param key 
    */
   existData(key: any){
-    return localStorage.getItem(key);
+    return sessionStorage.getItem(key);
   }
 
   /**

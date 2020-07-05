@@ -62,6 +62,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { AssignRandomTaskComponent } from './dashboard/dashboard-inbox/assign-random-task/assign-random-task.component';
+import { TasksListComponent } from './dashboard/dashboard-inbox/tasks-list/tasks-list.component';
+import { NoTeamComponent } from './dashboard/dashboard-inbox/no-team/no-team.component';
+import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitator-view/facilitator-view.component';
 
 
 @NgModule({
@@ -79,7 +82,10 @@ import { AssignRandomTaskComponent } from './dashboard/dashboard-inbox/assign-ra
     UserComponent,
     JoinClassComponent,
     TeamComponent,
-    AssignRandomTaskComponent
+    AssignRandomTaskComponent,
+    TasksListComponent,
+    NoTeamComponent,
+    FacilitatorViewComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { authRoutes } from './auth.routes';
 import { classRoutes } from './class.routes';
 import { userRoutes } from './user.routes';
+import { taskRoutes } from './task.routes';
 import { teamRoutes } from './team.routes';
 
 /*  =====================
@@ -14,6 +15,9 @@ export {
   
   // CLASS
   classRoutes as classRoutes,
+
+  // TASK
+  taskRoutes as taskRoutes,
 
   // TEAM
   teamRoutes as teamRoutes,

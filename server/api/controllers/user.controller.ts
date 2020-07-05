@@ -8,6 +8,51 @@ const userService = new UserService()
 export class UserController {
 
     /**
+     * This function is responsible for fetching the user data
+     * @param req 
+     * @param res 
+     * @param next 
+     */
+    async get(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            // Fetch the headers and user data from the request
+            let {
+                headers: { authorization }
+            } = req
+
+
+            // Call the get user service function
+            await userService.get(authorization)
+
+                // Proceed with the status 200 response
+                .then((response) => {
+                    return res.status(200).json({
+                        message: "User profile has been fetched!",
+                        user: response.user,
+                    })
+                })
+
+                // Catch the errors from the service function
+                .catch((err) => {
+                    return res.status(400).json({
+                        message:
+                            "Bad Request, kindly trace the error stack for more details!",
+                        error: new Error(
+                            err ||
+                            "Bad Request, kindly trace the error stack for more details!"
+                        ),
+                    })
+                })
+        } catch (err) {
+            return res.status(500).json({
+                message: "Internal Server Error!",
+                error: new Error(err || "Internal Server Error!"),
+            })
+        }
+    }
+
+    /**
      * This function is responsible for changing the user profile data
      * @param req 
      * @param res 

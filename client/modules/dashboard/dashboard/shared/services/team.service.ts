@@ -32,4 +32,25 @@ export class TeamService {
     }
     ).toPromise()
   }
+
+  /**
+   * This function is responsible for assigning a card to the user
+   * @param theme 
+   * @param week 
+   */
+  assignCard(theme: String, week: Number, teamId: String) {
+    return this.httpClient.post(environment.baseApiUrl + '/teams/assign-card', {
+      card_theme: theme,
+      week: week,
+      teamId: teamId
+    }).toPromise()
+  }
+
+  fetchTasks(cardId){
+    return this.httpClient.get(environment.baseApiUrl + '/tasks', {
+      params: {
+        cardId: cardId
+      }
+    }).toPromise()
+  }
 }

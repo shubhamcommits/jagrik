@@ -20,4 +20,11 @@ export class UserService {
       week: week
     }).toPromise()
   }
+
+  /**
+   * This function is responsible for fetching the current user's details
+   */
+  get(){
+    return this.httpClient.get(environment.baseApiUrl + '/users').toPromise()
+  }
 }

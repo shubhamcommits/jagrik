@@ -3,6 +3,20 @@ import jwt from "jsonwebtoken";
 
 export class UserService {
 
+
+    async get(token: any){
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+        user = await User.findOne(({
+            _id: user._id
+        }))
+
+        return {
+            user: user
+        }
+
+    }
+
     /**
      * This function is responsible for editing a user's profile
      * @param token 

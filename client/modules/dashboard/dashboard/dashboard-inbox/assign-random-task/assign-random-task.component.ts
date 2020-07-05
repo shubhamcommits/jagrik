@@ -1,6 +1,8 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, Output, EventEmitter } from '@angular/core';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { UserService } from '../../shared/services/user.service';
+import { TeamService } from '../../shared/services/team.service';
+import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 
 @Component({
   selector: 'app-assign-random-task',
@@ -22,6 +24,9 @@ export class AssignRandomTaskComponent implements OnInit {
   // Week Variable
   week = 1
 
+  // Card Output Event Emitter
+  @Output('card') card = new EventEmitter()
+
   ngOnInit(): void {
   }
 
@@ -29,11 +34,19 @@ export class AssignRandomTaskComponent implements OnInit {
     return new Promise((resolve) => {
 
       // User Service Instance
-      let userService = this.injector.get(UserService)
+      let teamService = this.injector.get(TeamService)
 
-      userService.assignCard(this.theme, this.week)
+      let utilityService = this.injector.get(UtilityService)
+
+      teamService.assignCard(this.theme, this.week, this.getUserData().teams[0])
         .then((res) => {
-          this.setUserData(res['user'])
+          console.log(res)
+          this.card.emit(res['card'])
+          this.showChooseTheme = !this.showChooseTheme
+
+          // Fire sucess toast
+          utilityService.fireToast('success', `Great - you've assigned a new card to yourself - your feed will update very soon!`)
+          
           resolve()
         })
         .catch(() => resolve())

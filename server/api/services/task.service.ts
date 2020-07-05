@@ -1,5 +1,6 @@
 import { Card, Task } from '../models'
 import { Readable } from 'stream'
+import { cards } from '../utils/data'
 
 export class TaskService {
 
@@ -36,6 +37,29 @@ export class TaskService {
             // Resolve promise with success
             resolve('Tasks created!')
         })
+    }
+
+    /**
+     * This function fetches all the tasks related to a particular cardId
+     * @param cardId 
+     */
+    async getTasks(cardId: any){
+        try{
+
+            let card = await Card.findById(cardId)
+
+            let tasks = await Task.find({
+                _card: cardId
+            })
+
+            return {
+                card: card,
+                tasks: tasks
+            }
+            
+        } catch(err){
+            throw new Error(err)
+        }
     }
 
 }
