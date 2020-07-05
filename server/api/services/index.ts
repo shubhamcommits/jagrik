@@ -3,6 +3,7 @@ import { CardService } from './card.service'
 import { ClassService } from './class.service'
 import { TaskService } from './task.service'
 import { UserService } from './user.service'
+import { TeamService } from './team.service'
 
 
 
@@ -23,6 +24,9 @@ export {
 
   // Task Service
   TaskService as TaskService,
+
+  // Team Service
+  TeamService as TeamService,
 
   // User Service
   UserService as UserService

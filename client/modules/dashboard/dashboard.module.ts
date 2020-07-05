@@ -61,6 +61,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { AssignRandomTaskComponent } from './dashboard/dashboard-inbox/assign-random-task/assign-random-task.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { MatTreeModule } from '@angular/material/tree';
     ClassAgendaComponent,
     UserComponent,
     JoinClassComponent,
-    TeamComponent
+    TeamComponent,
+    AssignRandomTaskComponent
   ],
   imports: [
     CommonModule,

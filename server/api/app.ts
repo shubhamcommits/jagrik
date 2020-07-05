@@ -4,7 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
-import { authsRoutes, classRoutes, userRoutes } from './routes';
+import { authsRoutes, classRoutes, teamRoutes, userRoutes } from './routes';
 
 // Defining new Express application
 const app = express();
@@ -71,6 +71,9 @@ app.use('/api/auths', authsRoutes);
 
 // Class Routes
 app.use('/api/classes', classRoutes);
+
+// Team Routes
+app.use('/api/teams', teamRoutes)
 
 // User Routes
 app.use('/api/users', userRoutes);

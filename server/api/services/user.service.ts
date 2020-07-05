@@ -66,23 +66,23 @@ export class UserService {
             //verify token and decode user data
             let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
-            let taskSelected: any = await Task.find({_id: taskId});
+            let taskSelected: any = await Task.find({ _id: taskId });
 
             let taskCategory = taskSelected.category
 
-            if(taskCategory=='Individual'){
+            if (taskCategory == 'Individual') {
                 //find user in db
                 await User.updateOne(
                     { _id: user._id, "task._task": taskId },
-                    { $set: { "task.$.supporting_doc" : img_data, "task.$.experience_description" : experience_description, "task.$.status" : 'completed' } },
+                    { $set: { "task.$.supporting_doc": img_data, "task.$.experience_description": experience_description, "task.$.status": 'completed' } },
                 ).catch((err) => {
                     throw new Error(err);
                 });
                 // https://docs.mongodb.com/manual/reference/operator/update/positional/
-            }else{
+            } else {
                 await Team.updateOne(
                     { _id: teamId, "task._task": taskId },
-                    { $set: { "task.$.supporting_doc" : img_data, "task.$.experience_description" : experience_description, "task.$.submitted_by" : user.first_name, "task.$.status" : 'completed' } },
+                    { $set: { "task.$.supporting_doc": img_data, "task.$.experience_description": experience_description, "task.$.submitted_by": user.first_name, "task.$.status": 'completed' } },
                 ).catch((err) => {
                     throw new Error(err);
                 });
@@ -94,51 +94,64 @@ export class UserService {
         }
     }
 
+    async getUserTeam(token: any) {
+
+        // Write here
+
+    }
+
     /**
      * This function is responsible for assigning a random task
      * @param card_theme 
+     * @param week
      * @param token 
      */
-    async assignRandomSelfTask(card_theme: any, token: any) {
+    async assignRandomSelfCard(card_theme: any, week: any, token: any) {
         try {
 
             // Find the list of cards
             let cards = await Card.find({
                 theme: card_theme
-            }).select('_id')
+            })
 
             // Map the list of card Ids
-            cards = cards.map((card) => {
+            let cardIds = cards.map((card) => {
                 return card._id
             })
 
-            // Find list of cards
-            let tasks = await Task.find({
-                _card: { $in: cards }
-            })
+            // Random card Index
+            let randomCardIndex = Math.floor((Math.random() * cardIds.length))
 
-            // Random task Index
-            let randomTaskIndex = Math.floor((Math.random() * tasks.length))
-
-            // Random task
+            // Random card
             let task = {
-                _task: tasks[randomTaskIndex]._id
+                _card: cardIds[randomCardIndex],
+                week: week
             }
 
             // verify token and decode user data
             let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY)
 
-            // Find user in db and update the data
-            user = await User.findByIdAndUpdate(
-                { _id: user._id },
-                { $push: { tasks: task } },
-                { new: true }
-            )
+            let taskExistForWeek = await User.findOne({
+                _id: user._id,
+                'tasks': { $elemMatch: { week: week } }
+            })
 
-            // Return with user and the task
-            return {
-                task: task,
-                user: user
+            // Find user in db and update the data
+            if (!taskExistForWeek) {
+                user = await User.findByIdAndUpdate(
+                    { _id: user._id },
+                    { $push: { tasks: task } },
+                    { new: true }
+                )
+                // Return with user and the task
+                return {
+                    card: cards[randomCardIndex],
+                    user: user
+                }
+            } else {
+
+                // Catch unexpected errors
+                throw new Error('Card has already been assigned to the user!')
             }
 
 

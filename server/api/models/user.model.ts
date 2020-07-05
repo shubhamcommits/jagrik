@@ -123,37 +123,41 @@ const UserSchema = new Schema({
       default: null,
     },
   ],
-  task: [{
-    _task: {
-      type: Schema.Types.ObjectId,
-      ref: 'Task',
-    },
-    week: {
-      type: Schema.Types.Number,
-      default: 1,
-      required: true,
-      enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    },
-    status: {
-      type: Schema.Types.String,
-      default: 'to do',
-      enum: ['to do', 'in progress', 'waiting for score', 'completed'],
-      required: true
-    },
-    due_date: {
-      type: Schema.Types.Date,
-      default: moment().format(),
-      required: true
-    },
-    supporting_doc: {
-      type: String,
-      data: Buffer,
-    },
-    experience_description: {
-      type: String,
-    },
-  }]
-});
+  tasks: [
+    new Schema({
+      _task: {
+        type: Schema.Types.ObjectId,
+        ref: 'Task',
+      },
+      _card: {
+        type: Schema.Types.ObjectId,
+        ref: 'Card',
+      },
+      week: {
+        type: Number,
+        required: true
+      },
+      status: {
+        type: Schema.Types.String,
+        default: 'to do',
+        enum: ['to do', 'in progress', 'waiting for score', 'completed'],
+        required: true
+      },
+      due_date: {
+        type: Schema.Types.Date,
+        default: moment().format(),
+        required: true
+      },
+      supporting_doc: {
+        type: String,
+        data: Buffer,
+      },
+      experience_description: {
+        type: String,
+      },
+    })
+  ]
+})
 
 const User = mongoose.model("User", UserSchema);
 
