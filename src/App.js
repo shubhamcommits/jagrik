@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Video from "./Video";
 import "@opentok/client";
+import { SAMPLE_SERVER_BASE_URL } from "./config";
 
 class App extends Component {
   constructor(props) {
@@ -11,18 +12,21 @@ class App extends Component {
       SESSION_KEY: null,
       TOKEN: null,
     };
-
+    this.getCredential = this.getCredential.bind(this);
   }
 
   getCredential(){
-    fetch("http://localhost:3000" + "/session")
+    
+    fetch(SAMPLE_SERVER_BASE_URL + "/session")
     .then((data) => data.json())
-    .then(data=>
+    .then(data=>{
       this.setState({
         API_KEY: data.API_KEY,
         SESSION_KEY: data.SESSION_KEY,
         TOKEN: data.TOKEN,
       })
+      console.log(data)
+    },
       )
     .catch((err) => {
       console.error("Failed to get session credentials", err);
@@ -37,7 +41,6 @@ class App extends Component {
   render() {
     
     let ans=null;
-    
     if(this.state.API_KEY && this.state.SESSION_KEY && this.state.TOKEN){
       let credentials={
         API_KEY: this.state.API_KEY,

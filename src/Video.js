@@ -67,7 +67,7 @@ class Video extends Component {
   onSubscribeError = error => {
     this.setState({ error });
   };
-
+SAMPLE_SERVER_BASE_URL
   toggleVideo = () => {
     this.setState(state => ({
       publishVideo: !state.publishVideo,
