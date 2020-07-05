@@ -124,7 +124,7 @@ export class UserController {
                 .then((response) => {
                     return res.status(200).json({
                         message: "User\'s team has been fetched successfully!",
-                        team: response.team
+                        // team: response.team
                     })
                 })
 
