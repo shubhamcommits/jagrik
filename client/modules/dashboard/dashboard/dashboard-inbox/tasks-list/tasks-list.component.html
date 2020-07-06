@@ -72,10 +72,31 @@
                 <td>{{ task?.points }}</td>
                 <td class="text-capitalize">{{ task?.type }}</td>
                 <td class="text-capitalize">
-                    <button class="btn btn-sm btn-success text-capitalize" *ngIf="task.status == 'to do'"></button>
-                    <button class="btn btn-sm btn-warning text-capitalize"
-                        *ngIf="task.status != 'to do' && task.status != 'done'"></button>
-                        <button class="btn btn-sm btn-primary text-capitalize" *ngIf="task.status == 'done'"></button>
+                    <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
+                        matTooltip="Select this as your primary team task for this week"
+                        [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == false"
+                        (click)="this.unassignOtherCommunityTask(); task.assigned = true"></button>
+
+                        <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+                        matTooltip="Submit for proof upload as your team task!"
+                        (click)="openDialog(task)"
+                        [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == true">
+                    </button>
+
+                    <!-- <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
+                        matTooltip="Info about the action" [matTooltipPosition]="position.value"
+                     *ngIf="task.status != 'to do' && task.status != 'done'"></button> -->
+
+                    <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+                        matTooltip="Submit for proof upload as your self task!"
+                        (click)="openDialog(task)"
+                        [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == true">
+                    </button>
+                    <button class="btn btn-sm btn-primary text-capitalize" #tooltip="matTooltip"
+                        matTooltip="Select this as your primary self task for this week"
+                        [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == false"
+                        (click)="this.unassignOtherSelfTask(); task.assigned = true">
+                    </button>
                 </td>
             </tr>
         </tbody>

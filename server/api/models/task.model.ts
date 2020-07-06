@@ -31,7 +31,9 @@ const TaskSchema = new Schema({
         ref: 'Card',
     },
     category: {
-        type:String,
+        type: Schema.Types.String,
+        enum: ['community', 'self'],
+        required: true
     }
 })
 

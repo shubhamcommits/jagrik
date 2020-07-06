@@ -4,12 +4,12 @@ import jwt from "jsonwebtoken";
 export class UserService {
 
 
-    async get(token: any){
+    async get(token: any) {
         let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
         user = await User.findOne(({
             _id: user._id
-        }))
+        })).populate('teams')
 
         return {
             user: user
@@ -87,16 +87,16 @@ export class UserService {
             if (taskCategory == 'Individual') {
                 //find user in db
                 await User.updateOne(
-                    { _id: user._id, "task._task": taskId },
-                    { $set: { "task.$.supporting_doc": img_data, "task.$.experience_description": experience_description, "task.$.status": 'completed' } },
+                    { _id: user._id, "tasks._task": taskId },
+                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.status": 'completed' } },
                 ).catch((err) => {
                     throw new Error(err);
                 });
                 // https://docs.mongodb.com/manual/reference/operator/update/positional/
             } else {
                 await Team.updateOne(
-                    { _id: teamId, "task._task": taskId },
-                    { $set: { "task.$.supporting_doc": img_data, "task.$.experience_description": experience_description, "task.$.submitted_by": user.first_name, "task.$.status": 'completed' } },
+                    { _id: teamId, "tasks._task": taskId },
+                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.submitted_by": user.first_name, "tasks.$.status": 'completed' } },
                 ).catch((err) => {
                     throw new Error(err);
                 });

@@ -17,6 +17,7 @@ import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda
 import { UserComponent } from './dashboard/user/user.component';
 import { JoinClassComponent } from './dashboard/dashboard-classes/join-class/join-class.component';
 import { TeamComponent } from './dashboard/team/team.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // Material Import
 import { A11yModule } from '@angular/cdk/a11y';
@@ -65,6 +66,7 @@ import { AssignRandomTaskComponent } from './dashboard/dashboard-inbox/assign-ra
 import { TasksListComponent } from './dashboard/dashboard-inbox/tasks-list/tasks-list.component';
 import { NoTeamComponent } from './dashboard/dashboard-inbox/no-team/no-team.component';
 import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitator-view/facilitator-view.component';
+import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
 
 
 @NgModule({
@@ -85,7 +87,8 @@ import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitato
     AssignRandomTaskComponent,
     TasksListComponent,
     NoTeamComponent,
-    FacilitatorViewComponent
+    FacilitatorViewComponent,
+    TaskViewComponent
   ],
   imports: [
     CommonModule,
@@ -134,6 +137,7 @@ import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitato
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    MaterialFileInputModule
   ],
 })
 export class DashboardModule {}

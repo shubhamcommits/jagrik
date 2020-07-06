@@ -21,6 +21,9 @@ export class TaskService {
                 // Split the term into 3 different objects
                 task._card = task.card.split(" ")
 
+                // Set the category of tasks
+                task.category = (task.title.split("-")[1] == 'Com') ? 'community': 'self'
+
                 // Find the card on the basis of the theme and dice_number
                 let card: any = await Card.findOne({
                     theme: task._card[0] + " " + task._card[1],

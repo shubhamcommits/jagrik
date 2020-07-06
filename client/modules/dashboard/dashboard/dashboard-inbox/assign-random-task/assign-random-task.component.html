@@ -5,7 +5,9 @@
 <h2 class="d-flex justify-content-center mb-4 mt-4" *ngIf="showChooseTheme">Choose a theme for your card</h2>
 
 <div class="choose-theme">
-    <button *ngIf="!showChooseTheme" class="btn btn-primary btn-lg" (click)="showChooseTheme = true">Assign Card</button>
+    <button *ngIf="!showChooseTheme && showAssignCard" class="btn btn-primary btn-lg" (click)="showChooseTheme = true">Assign Card</button>
+
+    <p *ngIf="!showAssignCard">You've assigned a new card to your team - your feed will update very soon!</p>
 
     <button *ngIf="showChooseTheme" class="btn btn-primary btn-md" (click)="this.theme = 'fundamental rights'" (click)="this.assignCard()">Fundamental Rights</button>
     <button *ngIf="showChooseTheme" class="btn btn-primary btn-md" (click)="this.theme = 'fundamental duties'" (click)="this.assignCard()">Fundamental Duties</button>
