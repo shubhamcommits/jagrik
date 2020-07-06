@@ -1,0 +1,23 @@
+{
+  "name": "basic_vidchat_backend",
+  "version": "1.0.0",
+  "description": "simple backend server for vidchat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhamcommits/jagrik.git"
+  },
+  "author": "krrish dholakia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubhamcommits/jagrik/issues"
+  },
+  "homepage": "https://github.com/shubhamcommits/jagrik#readme",
+  "engines": {
+    "node": "12.10.0"
+  }
+}
