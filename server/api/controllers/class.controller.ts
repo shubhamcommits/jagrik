@@ -71,23 +71,25 @@ export class ClassController {
       } = req;
 
       // Class code invite
-      let isClassCodeInvite = false
+      let isClassCodeInvite = false;
 
       // If we find that classId is not present then it must be a class code invite to join
-      if(!classId || classId == undefined){
+      if (!classId || classId == undefined) {
         classId = await classService.findClassIdByCode(class_code);
 
         // Update the value
-        isClassCodeInvite = true
+        isClassCodeInvite = true;
       }
 
       //call join class service function
-      await classService.joinClass(classId, authorization, isClassCodeInvite).then(() => {
-        return res.status(200).json({
-          message: "User has successfully joined class!",
-          class: classId
+      await classService
+        .joinClass(classId, authorization, isClassCodeInvite)
+        .then(() => {
+          return res.status(200).json({
+            message: "User has successfully joined class!",
+            class: classId,
+          });
         });
-      });
     } catch (err) {
       return res.status(500).json({
         message: "Internal Server Error!",
@@ -186,7 +188,6 @@ export class ClassController {
   }
 
   async createTeam(req: Request, res: Response, next: NextFunction) {
-
     try {
       // Fetch the authorization header from the request
 
@@ -195,9 +196,9 @@ export class ClassController {
       let userId = req.body.userId;
 
       // Call the service function to get all the classes
-      await classService.createTeam(authorization,classId, userId).then(() => {
+      await classService.createTeam(authorization, classId, userId).then(() => {
         return res.status(200).json({
-          message: "Teams have been created successfully!"
+          message: "Teams have been created successfully!",
         });
       });
     } catch (err) {
@@ -209,7 +210,6 @@ export class ClassController {
   }
 
   async getTeams(req: Request, res: Response, next: NextFunction) {
-  
     try {
       // Fetch the authorization header from the request
 
@@ -221,7 +221,7 @@ export class ClassController {
       await classService.getTeams(authorization, classId).then((teams) => {
         return res.status(200).json({
           message: "Teams have been fetched successfully!",
-          teams: teams
+          teams: teams,
         });
       });
     } catch (err) {
@@ -233,18 +233,17 @@ export class ClassController {
   }
 
   async getTeamMembers(req: Request, res: Response, next: NextFunction) {
-
     try {
       // Fetch the authorization header from the request
 
       let authorization = req.headers.authorization;
       // let authorization="abcd"
       let teamId = req.body.teamId;
-  
+
       // Call the service function to get all the classes
       await classService.getTeamMembers(authorization, teamId).then(() => {
         return res.status(200).json({
-          message: "Teams have been fetched successfully!"
+          message: "Teams have been fetched successfully!",
         });
       });
     } catch (err) {
@@ -255,4 +254,43 @@ export class ClassController {
     }
   }
 
+  async createSession(req: Request, res: Response, next: NextFunction) {
+    try {
+      //get token, classId
+      let { headers: authorization, body: classId } = req;
+
+      //create the session and return sessionId and token
+      await classService
+        .createSession(authorization, classId)
+        .then((sessionDetails) => {
+          return res.status(200).json({
+            sessionDetails,
+          });
+        });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async joinSession(req: Request, res: Response, next: NextFunction) {
+    try {
+      let { headers: authorization, body: classId } = req;
+
+      await classService
+        .joinSession(authorization, classId)
+        .then((sessionDetails) => {
+          return res.status(200).json({
+            sessionDetails,
+          });
+        });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
 }
