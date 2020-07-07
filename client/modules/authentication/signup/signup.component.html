@@ -1,4 +1,4 @@
-<div class="body-container">
+<!-- <div class="body-container">
 
     <div class="row">
         <div class="back" (click)="backClicked()">
@@ -17,7 +17,7 @@
             <input type="text" required placeholder="Your Last Name" formControlName="last_name">
             <input type="email" required [readOnly]="this.classId" placeholder="Your Email" formControlName="email">
 
-            <div *ngIf="this.role == 'student'"> 
+            <div *ngIf="this.role == 'student'">
                 <input type="tel" required placeholder="Your Mobile Number" formControlName="mobile_number">
                 <input type="date" required placeholder="Your Date of Birth" formControlName="date_of_birth">
                 <input type="text" required placeholder="Your emergency contact person name" formControlName="emergency_contact_name">
@@ -60,4 +60,172 @@
         </form>
     </div>
 
+</div> -->
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body py-md-4">
+          <h2 class="card-title text-center">Register</h2>
+          <form [formGroup]="signupForm" class="form">
+            <div *ngIf="first_step">
+            <div class="form-group">
+              <input type="text" class="form-control" id="first_name" required placeholder="Your First Name"
+                formControlName="first_name">
+                 <div *ngIf="f.first_name.status === 'INVALID' && (f.first_name.dirty || f.first_name.touched)"
+                   class="invalid-feedback">
+                   <div *ngIf="f.first_name.errors.required">This field is required.</div>
+                 </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="last_name" required placeholder="Your Last Name"
+                formControlName="last_name">
+                  <div *ngIf="f.last_name.status === 'INVALID' && (f.last_name.dirty || f.last_name.touched)"
+                    class="invalid-feedback">
+                    <div *ngIf="f.last_name.errors.required">This field is required.</div>
+                  </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="email" required [readOnly]="this.classId"
+                placeholder="Your Email" formControlName="email">
+                 <div *ngIf="f.email.status === 'INVALID' && (f.email.dirty || f.email.touched)"
+                   class="invalid-feedback">
+                   <div *ngIf="f.email.errors.required">This field is required.</div>
+                   <div *ngIf="f.email.errors.email">Please use valid email address.</div>
+                 </div>
+            </div>
+             <div class="form-group" *ngIf="this.role == 'student'">
+               <input type="number" class="form-control" required placeholder="Your Mobile Number"
+                 formControlName="mobile_number" [pattern]="'^((\\+91-?)|0)?[0-9]{10}$'">
+                  <div
+                    *ngIf="f.mobile_number.status === 'INVALID' && (f.mobile_number.dirty || f.mobile_number.touched)"
+                    class="invalid-feedback">
+                    <div *ngIf="f.mobile_number.errors.required">This field is required.</div>
+                    <div *ngIf="f.mobile_number.errors.pattern">Mobile no should be integer and length will be 10 digit</div>
+                  </div>
+             </div>
+            <div class="form-group">
+              <input type="password" class="form-control" required placeholder="Set your Password"
+                formControlName="password">
+                 <div *ngIf="f.password.status === 'INVALID' && (f.password.dirty || f.password.touched)"
+                   class="invalid-feedback">
+                   <div *ngIf="f.password.errors.required">This field is required.</div>
+                 </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" required placeholder="Confirm Password"
+                formControlName="confirm_password">
+                  <div
+                    *ngIf="f.confirm_password.status === 'INVALID' && (f.confirm_password.dirty ||
+                    f.confirm_password.touched)"
+                    class="invalid-feedback">
+                    <div *ngIf="f.confirm_password.errors.required">This field is required.</div>
+                     <div *ngIf="f.confirm_password.errors.mustMatch">Confirm password will be same as password.</div>
+                  </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-between">
+              <button *ngIf="this.role == 'student'" class="btn btn-primary" (click)="setNextStep()">Next
+                Step</button>
+                 <button *ngIf="this.role !== 'student'" class="btn btn-primary" (click)="onSubmit()">Signup</button>
+            </div>
+            </div>
+             <div *ngIf="next_step && this.role == 'student'">
+               <div class="form-group">
+                 <input type="date" class="form-control" required placeholder="Your Date of Birth"
+                   formControlName="date_of_birth">
+                 <div *ngIf="f.date_of_birth.status == 'INVALID' && (f.date_of_birth.dirty || f.date_of_birth.touched)"
+                   class="invalid-feedback">
+                   <div *ngIf="f.date_of_birth.errors.required">This field is required.</div>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" required placeholder="Your emergency contact person name"
+                   formControlName="emergency_contact_name">
+                 <div *ngIf="f.emergency_contact_name.errors" class="invalid-feedback">
+                   <div *ngIf="f.emergency_contact_name.errors.required">This field is required.</div>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <input class="form-control" type="tel" required placeholder="Your emergency contact person mobile"
+                   formControlName="emergency_contact_number">
+                 <div
+                   *ngIf="f.emergency_contact_number.invalid && (f.emergency_contact_number.dirty ||
+                   f.emergency_contact_number.touched)"
+                   class="invalid-feedback">
+
+                   <div *ngIf="f.emergency_contact_number.errors.required">This field is required.</div>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" required placeholder="Your Block" formControlName="block">
+                  <div *ngIf="f.block.invalid && (f.block.dirty ||
+                   f.block.touched)" class="invalid-feedback">
+
+                    <div *ngIf="f.block.errors.required">This field is required.</div>
+                  </div>
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" required placeholder="Your District"
+                   formControlName="district">
+                    <div *ngIf="f.district.invalid && (f.district.dirty ||
+                   f.district.touched)" class="invalid-feedback">
+
+                      <div *ngIf="f.district.errors.required">This field is required.</div>
+                    </div>
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" required placeholder="Your Facebook/Instagram username"
+                   formControlName="social_media_username">
+                   <div *ngIf="f.social_media_username.invalid && (f.social_media_username.dirty ||
+                   f.social_media_username.touched)" class="invalid-feedback">
+
+                     <div *ngIf="f.social_media_username.errors.required">This field is required.</div>
+                   </div>
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" required placeholder="Your Religion"
+                   formControlName="religion">
+                 <div *ngIf="f.religion.invalid && (f.religion.dirty ||
+                   f.religion.touched)" class="invalid-feedback">
+
+                   <div *ngIf="f.religion.errors.required">This field is required.</div>
+                 </div>
+               </div>
+               <div class="form-group">
+                <select class="form-control" formControlName="in_school" required>
+                  <option disabled selected>Are you in school ?</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                 <div *ngIf="f.in_school.invalid && (f.in_school.dirty ||
+                   f.in_school.touched)" class="invalid-feedback">
+
+                   <div *ngIf="f.in_school.errors.required">This field is required.</div>
+                 </div>
+               </div>
+                <div class="form-group">
+                  <select class="form-control" formControlName="caste_category" required>
+                    <option disabled selected>Select your caste category</option>
+                    <option value="general">General</option>
+                    <option value="obc">OBC</option>
+                    <option value="schedule-caste">SC</option>
+                    <option value="schedule-tribe">ST</option>
+                  </select>
+                  <div *ngIf="f.caste_category.invalid && (f.caste_category.dirty ||
+                   f.caste_category.touched)" class="invalid-feedback">
+
+                    <div *ngIf="f.caste_category.errors.required">This field is required.</div>
+                  </div>
+                </div>
+               <div class="d-flex flex-row align-items-center justify-content-between">
+                 <button class="btn btn-primary">Prev Step</button>
+                  <button class="btn btn-primary" (click)="onSubmit()">Signup</button>
+               </div>
+             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
