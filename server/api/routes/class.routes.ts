@@ -49,6 +49,18 @@ routes.post("/get-teams", classController.getTeams);
 
 routes.get("/get-team-members", classController.getTeamMembers);
 
+/**
+ * POST - create a sessionId and save it in the class db
+ * @var {headers: {authorization}, body: {classId}}
+ */
+routes.post("/create-session", classController.createSession);
+
+/**
+ * POST - allow a student to join the sessionId in the class db
+ * @var {headers: {authorization}, body: {classId}}
+ */
+routes.post("/join-session", classController.joinSession);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

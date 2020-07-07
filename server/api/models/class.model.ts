@@ -36,6 +36,10 @@ const ClassSchema = new Schema({
     type: String,
     default: () => nanoid(6),
   },
+  session_id: {
+    type: String,
+    default: null,
+  },
 });
 
 const Class = mongoose.model("Class", ClassSchema);
