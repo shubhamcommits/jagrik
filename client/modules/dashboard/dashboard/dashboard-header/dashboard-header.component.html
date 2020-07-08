@@ -9,6 +9,10 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
           <mat-icon mat-list-icon>dashboard</mat-icon>
         </mat-list-item>
+        <mat-list-item class="parent"  [routerLink]="['/dashboard', 'tasks']">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Tasks Board</span>
+          <mat-icon mat-list-icon>work_outline</mat-icon>
+        </mat-list-item>
         <mat-list-item class="parent" [routerLink]="['/dashboard', 'classes', 'list']">
           <span class="full-width" *ngIf="isExpanded || isShowing">Classes</span>
           <mat-icon mat-list-icon>content_paste</mat-icon>
@@ -36,7 +40,7 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span class="jk-spacer"></span>
-      <button mat-button >Profile</button>
+      <button mat-button routerLink="/dashboard/user">Profile</button>
       <button mat-button [matMenuTriggerFor]="notify"><mat-icon>notifications</mat-icon></button>
       <mat-menu #notify="matMenu">
         <button mat-menu-item>Item 1</button>

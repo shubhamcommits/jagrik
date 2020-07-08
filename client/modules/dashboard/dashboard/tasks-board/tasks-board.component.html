@@ -1,0 +1,8 @@
+<app-assign-random-task
+    *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
+    (card)="getCard($event)">
+</app-assign-random-task>
+
+<app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
+    [cardId]="this.card._id">
+</app-tasks-list>
