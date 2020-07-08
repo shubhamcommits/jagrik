@@ -1,6 +1,51 @@
 body{
-  background-color: #fca311;
+  // background-image: linear-gradient(45deg, #fca312, #fc9712);
+  background-color: white;
 }
 .invalid-feedback{
   display: block;
+}
+.logo-home{
+  margin-top: -110px;
+  padding-left: 30px;
+}
+
+.signup-box{
+  border-radius:5%;
+  box-shadow: 4px 4px rgb(184, 172, 172);
+  margin-top: 70px;
+  z-index: 100;
+}
+
+#hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 140px 0 100px 0;
+  margin-bottom: -75px;
+}
+
+#hero:before{
+  content: '';
+    position: absolute;
+    right: -100%;
+    top: 20%;
+    width: 250%;
+    height: 200%;
+    z-index: 1;
+    background-color: #fcb040;
+    transform: skewY(135deg);
+}
+
+.sp{
+  min-height: 12px;
+  max-height: 12px;
+  margin: 2px;
+  min-width: 12px;
+  max-width: 12px;
+  border: 1px solid grey;
+}
+.sp::before{
+  min-width: 12px;
+  max-width: 12px;
 }

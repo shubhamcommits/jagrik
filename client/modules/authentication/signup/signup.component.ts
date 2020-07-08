@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
     })
 
     if(this.role == 'student'){
-      this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator, Validators.pattern("[0-9]{0-10}")]))
+      this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator]))
       if (this.next_step){
       this.signupForm.addControl('date_of_birth', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('emergency_contact_name', new FormControl(null, [Validators.required, Validators.nullValidator]))
