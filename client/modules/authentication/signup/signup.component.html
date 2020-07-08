@@ -223,7 +223,7 @@
                </div>
                 <div class="form-group">
                   <select class="form-control" formControlName="caste_category" required>
-                    <option disabled selected>Select your caste category</option>
+                    <option value="" disabled selected>Select your caste category</option>
                     <option value="general">General</option>
                     <option value="obc">OBC</option>
                     <option value="schedule-caste">SC</option>
@@ -237,7 +237,7 @@
                   
                 </div>
                <div class="d-flex flex-row align-items-center justify-content-between">
-                 <button class="btn btn-primary">Prev Step</button>
+                 <button class="btn btn-primary" (click)="prevStep()">Prev Step</button>
                   <button class="btn btn-primary" (click)="onSubmit()">Signup</button>
                </div>
              </div>
