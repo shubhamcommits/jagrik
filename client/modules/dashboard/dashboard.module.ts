@@ -67,6 +67,7 @@ import { TasksListComponent } from './dashboard/dashboard-inbox/tasks-list/tasks
 import { NoTeamComponent } from './dashboard/dashboard-inbox/no-team/no-team.component';
 import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitator-view/facilitator-view.component';
 import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
+import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-v
     TasksListComponent,
     NoTeamComponent,
     FacilitatorViewComponent,
-    TaskViewComponent
+    TaskViewComponent,
+    TasksBoardComponent
   ],
   imports: [
     CommonModule,
