@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
     })
 
     if(this.role == 'student'){
-      this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator, Validators.pattern("[0-9]{0-10}")]))
+      this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator, Validators.pattern("^[0-9]{10}$")]))
       if (this.next_step){
       this.signupForm.addControl('date_of_birth', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('emergency_contact_name', new FormControl(null, [Validators.required, Validators.nullValidator]))
@@ -72,8 +72,8 @@ export class SignupComponent implements OnInit {
       this.signupForm.addControl('state', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('religion', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('social_media_username', new FormControl(null, [Validators.required, Validators.nullValidator]))
-      this.signupForm.addControl('in_school', new FormControl(this.in_school, [Validators.required, Validators.nullValidator]))
-        this.signupForm.addControl('caste_category', new FormControl(this.caste_category, [Validators.required, Validators.nullValidator]))
+      this.signupForm.addControl('in_school', new FormControl('', [Validators.required, Validators.nullValidator]))
+      this.signupForm.addControl('caste_category', new FormControl('', [Validators.required, Validators.nullValidator]))
       }
     }
   }
@@ -137,6 +137,15 @@ export class SignupComponent implements OnInit {
             utilityService.fireToast('error', `Some unexpected error occured, please try again!`)
           })
       })
+    } else {
+      this.validateAllFormFields(this.signupForm);
+    }
+  }
+
+  prevStep() {
+    if (this.signupForm.valid) {
+      this.first_step = true;
+      this.next_step = false;
     } else {
       this.validateAllFormFields(this.signupForm);
     }
