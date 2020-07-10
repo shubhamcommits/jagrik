@@ -255,4 +255,28 @@ export class ClassController {
     }
   }
 
+  async getCompletedTeamTasks(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let classId = req.body.classId;
+  
+      // Call the service function to get all the classes
+      await classService.getCompletedTeamTasks(authorization, classId).then((classTasks) => {
+        return res.status(200).json({
+          message: "Team Tasks have been fetched successfully!",
+          tasks: classTasks
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
 }

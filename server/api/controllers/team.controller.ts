@@ -54,5 +54,29 @@ export class TeamController {
         }
     }
 
+    async submitTaskPoints(req: Request, res: Response, next: NextFunction) {
+
+        try {
+          // Fetch the authorization header from the request
+    
+          let authorization = req.headers.authorization;
+          // let authorization="abcd"
+          let teamId = req.body.teamId;
+          
+          let teamPoints = req.body.teamPoints;
+      
+          // Call the service function to get all the classes
+          await teamService.submitTaskPoints(authorization, teamId, teamPoints).then(() => {
+            return res.status(200).json({
+              message: "Points successfully allocated to the team !",
+            });
+          });
+        } catch (err) {
+          return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || " Internal Server Error"),
+          });
+        }
+      }
 
 }

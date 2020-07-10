@@ -20,6 +20,10 @@ const TeamSchema = new Schema({
       default: null,
     },
   ],
+  points: {
+    type: String,
+    default: '0'
+  },
   created_date: {
     type: Date,
     default: moment().format(),
