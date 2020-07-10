@@ -431,4 +431,102 @@ export class ClassService {
     }
   }
 
+  async getCompletedTeamTasks(token: any, classId: String) {
+    try {
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        let class_exist: any = await Class.findById({ _id: classId })
+      
+        if(class_exist){
+          let result = [];
+          let get_all_teams_of_class: any = await Team.find({team_creator: user._id})
+          // Traverse over 'get_all_teams_of_class' using loop
+          for(let i in get_all_teams_of_class){
+            
+            let teamTasks = get_all_teams_of_class[i].tasks;
+            
+            let is_any_team_task_complete=false;
+            let completedTeamTask=null;
+
+            for(let j in teamTasks){
+              // Check the status of team tasks(if status is completed then proceed further)
+              if(teamTasks[j].status=='completed'){
+                is_any_team_task_complete=true;
+                completedTeamTask = teamTasks[j];
+                break;
+              }
+            }
+            if(is_any_team_task_complete==false){
+              // return, The overall team status is Incomplete
+              result.push({
+                team_id: get_all_teams_of_class[i]._id,
+                team_name: get_all_teams_of_class[i].team_name,
+                team_status: 'Incomplete'
+              })
+              continue;
+            }
+            
+            // Find out all the team members in a particular team and loop over each team member
+            let teamMembers = get_all_teams_of_class[i].team_members;
+            let indTask=[];
+
+            for(let k in teamMembers){
+              let self: any = await User.find({_id: teamMembers[k]});
+              let selfTasks = self.tasks
+
+              let is_any_self_task_complete=false;
+              // Check status of each team member task(if status completed then return the team, team members, task status, task completion proofs)  
+              for(let n in selfTasks){
+                if(selfTasks[n].status=='completed'){
+                  is_any_self_task_complete=true;
+                  indTask.push({
+                    user_id: self._id,
+                    user_name: self.full_name,
+                    user_email: self.email,
+                    user_profile: self.profile_pic,
+                    user_taskId: selfTasks[n]._task,
+                    user_task_doc: selfTasks[n].supporting_doc,
+                    user_task_exp: selfTasks[n].experience_description
+                  });
+                  break;
+                }
+              }
+              if(is_any_self_task_complete==false){
+                // return, The overall team status is Incomplete
+                result.push({
+                  team_id: get_all_teams_of_class[i]._id,
+                  team_name: get_all_teams_of_class[i].team_name,
+                  team_status: 'Incomplete'
+                })
+                break;              }
+            }
+            if(indTask.length == teamMembers.length){
+              result.push({
+                team_id: get_all_teams_of_class[i]._id,
+                team_name: get_all_teams_of_class[i].team_name,
+                team_status: 'Completed',
+                team_self_tasks: indTask,
+                team_taskId: completedTeamTask._task,
+                team_task_doc: completedTeamTask.supporting_doc,
+                team_task_exp: completedTeamTask.experience_description
+              });
+            }
+            // no else part since it will be handled by the upper if statement (is_any_self_task_complete==false)
+          }
+          return result;
+        }else{
+          // Class does not exist
+          throw new Error("401 - Access denied");  
+        }
+      }else{
+        // Unauthorized user to view status of all the teams 
+        throw new Error("401 - Access denied");
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
 }
