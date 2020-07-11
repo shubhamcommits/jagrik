@@ -55,17 +55,17 @@
 <!-- Task List -->
 
 <div class="row">
-<div class="col-6" style="border: 1px solid #cd4266;">
-<div class="row justify-content-center" style="text-align: center; background-color: #cd4266;">
+<div class="col-6" style="display: block; justify-content: center;">
+<div class="justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
   <p style="color: white;"><b>Community Tasks</b></p></div>
 
   <!-- TABS COM -->
-<mat-tab-group style="width: 100%; display: flex; align-items: center;">
+<mat-tab-group style="width: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: center;" >
   <mat-tab label='GOLD' >
   <ng-container *ngFor="let task of this.data.tasks" >
     <div *ngIf="task.category == 'community' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px;margin: 8px;">
       <div class="row">
-        <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+        <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
       </div><br>
       <div class="row">
         <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
@@ -79,7 +79,7 @@
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'community' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px;margin: 8px;">
         <div class="row">
-          <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
@@ -94,7 +94,7 @@
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'community' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
         <div class="row">
-          <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
@@ -110,8 +110,8 @@
 
 
  <!-- SELF TASKS -->
-<div class="col-6" style="border: 1px solid #cd4266;">
-  <div class="row justify-content-center" style="text-align: center; background-color: #cd4266;">
+<div class="col-6">
+  <div class="justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
     <p style="color: white;"><b>Self Tasks</b></p></div>
 
     <!-- TABS SELF -->
@@ -120,7 +120,7 @@
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'self' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px; margin: 8px;">
         <div class="row">
-          <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
@@ -134,7 +134,7 @@
       <ng-container *ngFor="let task of this.data.tasks" >
         <div *ngIf="task.category == 'self' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px; margin: 8px;">
           <div class="row">
-            <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+            <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
           </div><br>
           <div class="row">
             <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
@@ -150,7 +150,7 @@
       <ng-container *ngFor="let task of this.data.tasks" >
         <div *ngIf="task.category == 'self' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
           <div class="row">
-            <div class="col-12 text-capitalize" >{{ task?.description }}</div>
+            <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
           </div><br>
           <div class="row">
             <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
