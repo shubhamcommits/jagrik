@@ -52,115 +52,107 @@
 </mat-grid-list>
 
 
+<!-- Task List -->
 
-<!-- <div class="row justify-content-center"
-  style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
-  <p style="color: white;"><b>Community Tasks</b></p>
-</div><br> -->
-<div class="table-responsive">
-  <table class="table table-hover" *ngIf="data">
-    <caption>Community Tasks</caption>
+<div class="row">
+<div class="col-6" style="border: 1px solid #cd4266;">
+<div class="row justify-content-center" style="text-align: center; background-color: #cd4266;">
+  <p style="color: white;"><b>Community Tasks</b></p></div>
+<mat-tab-group style="width: 100%; display: flex; align-items: center;">
+  <mat-tab label='GOLD' style="background-color: goldenrod;">
+  <ng-container *ngFor="let task of this.data.tasks" >
+    <ng-container *ngIf="task.category == 'community' && task?.type== 'gold'">
+    <div class="row">
+    <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+    <div class="col-6 text-capitalize">{{ task?.description }}</div>
+    <div class="col-1 text-capitalize">{{ task?.points }}</div>
+    <div class="col-1 text-capitalize">{{ task?.type }}</div>
+    </div>
+    <br>
+    </ng-container>
+  </ng-container>
+  </mat-tab>
 
-    <thead>
-      <tr>
-        <!-- <th scope="col">#</th> -->
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Points</th>
-        <th scope="col">Category</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of this.data.tasks; let index = index">
-        <!-- <th  *ngIf="task.category == 'community'" scope="row">{{ index + 1 }}</th> -->
-        <td *ngIf="task.category == 'community'">{{ task?.title }}</td>
-        <td *ngIf="task.category == 'community'">{{ task?.description }}</td>
-        <td *ngIf="task.category == 'community'">{{ task?.points }}</td>
-        <!-- <td *ngIf="task.category == 'self'">No Points for Self Task</td> -->
-        <td *ngIf="task.category == 'community'" class="text-capitalize">{{ task?.type }}</td>
-        <td *ngIf="task.category == 'community'" class="text-capitalize">
-          <button class="btn btn-sm btn-danger text-capitalize" #tooltip="matTooltip"
-            matTooltip="Select this as your primary team task for this week" [matTooltipPosition]="position.value"
-            *ngIf="task.category == 'community' && task.assigned == false"
-            (click)="this.unassignOtherCommunityTask(); task.assigned = true"></button>
+  <mat-tab label='SILVER' style="background-color: silver;">
+    <ng-container *ngFor="let task of this.data.tasks" >
+      <ng-container *ngIf="task.category == 'community' && task?.type== 'silver'">
+      <div class="row">
+      <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+      <div class="col-6 text-capitalize">{{ task?.description }}</div>
+      <div class="col-1 text-capitalize">{{ task?.points }}</div>
+      <div class="col-1 text-capitalize">{{ task?.type }}</div>
+      </div>
+      <br>
+      </ng-container>
+    </ng-container>
 
-          <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
-            matTooltip="Submit for proof upload as your team task!" (click)="openDialog(task)"
-            [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == true">
-          </button>
+  </mat-tab>
 
-          <!-- <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Info about the action" [matTooltipPosition]="position.value"
-                            *ngIf="task.status != 'to do' && task.status != 'done'"></button> -->
 
-          <!-- <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Submit for proof upload as your self task!"
-                                (click)="openDialog(task)"
-                                [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == true">
-                            </button> -->
-          <!-- <button class="btn btn-sm btn-primary text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Select this as your primary self task for this week"
-                                [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == false"
-                                (click)="this.unassignOtherSelfTask(); task.assigned = true">
-                            </button> -->
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <mat-tab label='BRONZE' style="background-color: bronze !important;">
+    <ng-container *ngFor="let task of this.data.tasks" >
+      <ng-container *ngIf="task.category == 'community' && task?.type== 'bronze'">
+      <div class="row">
+      <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+      <div class="col-6 text-capitalize">{{ task?.description }}</div>
+      <div class="col-1 text-capitalize">{{ task?.points }}</div>
+      <div class="col-1 text-capitalize">{{ task?.type }}</div>
+      </div>
+      <br>
+      </ng-container>
+    </ng-container>
+  </mat-tab>
+
+</mat-tab-group>
+
 </div>
 
-
-<!-- <div class="row justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px;">
-  <p style="color: white;"><b>Self Tasks</b></p>
-</div> -->
-<div class="table-responsive">
-  <table class="table table-hover" *ngIf="data">
-    <caption>Self Tasks</caption>
-    <thead>
-      <tr>
-        <!-- <th scope="col">#</th> -->
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Category</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of this.data.tasks; let i = index">
-        <!-- <th  *ngIf="task.category == 'self'" scope="row">{{ i + 1 }}</th> -->
-        <td *ngIf="task.category == 'self'">{{ task?.title }}</td>
-        <td *ngIf="task.category == 'self'">{{ task?.description }}</td>
-        <!-- <td *ngIf="task.category == 'self'">{{ task?.points }}</td> -->
-        <!-- <td *ngIf="task.category == 'self'">No Points for Self Task</td> -->
-        <td *ngIf="task.category == 'self'" class="text-capitalize">{{ task?.type }}</td>
-        <td *ngIf="task.category == 'self'" class="text-capitalize">
-          <!-- <button class="btn btn-sm btn-danger text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Select this as your primary team task for this week"
-                                [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == false"
-                                (click)="this.unassignOtherCommunityTask(); task.assigned = true"></button> -->
-
-          <!-- <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Submit for proof upload as your team task!"
-                                (click)="openDialog(task)"
-                                [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == true">
-                            </button> -->
-
-          <!-- <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
-                                matTooltip="Info about the action" [matTooltipPosition]="position.value"
-                            *ngIf="task.status != 'to do' && task.status != 'done'"></button> -->
-
-          <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
-            matTooltip="Submit for proof upload as your self task!" (click)="openDialog(task)"
-            [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == true">
-          </button>
-          <button class="btn btn-sm btn-primary text-capitalize" #tooltip="matTooltip"
-            matTooltip="Select this as your primary self task for this week" [matTooltipPosition]="position.value"
-            *ngIf="task.category == 'self' && task.assigned == false"
-            (click)="this.unassignOtherSelfTask(); task.assigned = true">
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="col-6" style="border: 1px solid #cd4266;">
+  <div class="row justify-content-center" style="text-align: center; background-color: #cd4266;">
+    <p style="color: white;"><b>Self Tasks</b></p></div>
+  <mat-tab-group style="width: 100%; display: flex; align-items: center;" >
+    <mat-tab label='GOLD' style="background-color: goldenrod;" class="custom-tab-gold">
+    <ng-container *ngFor="let task of this.data.tasks" >
+      <ng-container *ngIf="task.category == 'self' && task?.type== 'gold'">
+      <div class="row">
+      <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+      <div class="col-6 text-capitalize">{{ task?.description }}</div>
+      <div class="col-1 text-capitalize">{{ task?.type }}</div>
+      </div>
+      <br>
+      </ng-container>
+    </ng-container>
+    </mat-tab>
+  
+    <mat-tab label='SILVER' style="background-color: silver;">
+      <ng-container *ngFor="let task of this.data.tasks" >
+        <ng-container *ngIf="task.category == 'self' && task?.type== 'silver'">
+        <div class="row">
+        <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+        <div class="col-6 text-capitalize">{{ task?.description }}</div>
+        <div class="col-1 text-capitalize">{{ task?.type }}</div>
+        
+        </div>
+        <br>
+        </ng-container>
+      </ng-container>
+  
+    </mat-tab>
+  
+  
+    <mat-tab label='BRONZE' style="background-color: bronze !important;">
+      <ng-container *ngFor="let task of this.data.tasks" >
+        <ng-container *ngIf="task.category == 'self' && task?.type== 'bronze'">
+        <div class="row">
+        <div class="col-2 text-capitalize" >{{ task?.title }}</div>
+        <div class="col-6 text-capitalize">{{ task?.description }}</div>
+        <div class="col-1 text-capitalize">{{ task?.type }}</div>
+        </div>
+        <br>
+        </ng-container>
+      </ng-container>
+    </mat-tab>
+  
+  </mat-tab-group>
+  
+  </div>

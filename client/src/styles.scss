@@ -23,3 +23,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   top: 90px;
   position: absolute;
 }
+/* label style */
+.mat-tab-label{
+    background: #cd4266;
+    opacity: 1 !important;
+    color:white;
+    border-radius: 50%;
+    margin: 5px;
+  }
+.mat-tab-header{
+  border: 0px solid !important;
+  margin-bottom: 20px;
+}
+  /* focus style */
+  .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus{
+    background: #fcb040;
+    opacity: 1 !important;
+    border: 0px solid;
+  }
+  /* ink bar style */
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: transparent;
+    height: 10px;
+  }
+
+// .mat-tab-group.mat-primary .mat-ink-bar,.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+//     background-color: #2C702A;
+// }
+
+
+.mat-tab-label.mat-tab-label-active {
+    background-color: #fcb040;
+    opacity: 1 !important;
+    color: black;
+}
