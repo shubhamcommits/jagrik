@@ -59,9 +59,8 @@ export class SignupComponent implements OnInit {
       validator: MustMatch('password', 'confirm_password')
     })
 
-    if(this.role == 'student'){
+    if (this.role == 'student') {
       this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator]))
-      if (this.next_step){
       this.signupForm.addControl('date_of_birth', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('emergency_contact_name', new FormControl(null, [Validators.required, Validators.nullValidator]))
 
@@ -74,7 +73,6 @@ export class SignupComponent implements OnInit {
       this.signupForm.addControl('social_media_username', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('in_school', new FormControl('', [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('caste_category', new FormControl('', [Validators.required, Validators.nullValidator]))
-      }
     }
   }
 
@@ -85,6 +83,11 @@ export class SignupComponent implements OnInit {
   get f() { return this.signupForm.controls; }
 
   onSubmit() {
+
+
+    console.log('====================================');
+    console.log(this.f);
+    console.log('====================================');
 
     if (this.signupForm.valid) {
       return new Promise((resolve) => {
@@ -143,12 +146,8 @@ export class SignupComponent implements OnInit {
   }
 
   prevStep() {
-    if (this.signupForm.valid) {
-      this.first_step = true;
-      this.next_step = false;
-    } else {
-      this.validateAllFormFields(this.signupForm);
-    }
+     this.first_step = true;
+     this.next_step = false;
   }
 
   setNextStep() {
@@ -162,6 +161,10 @@ export class SignupComponent implements OnInit {
       this.next_step = true
     } else {
       this.validateAllFormFields(this.signupForm);
+      if (this.f.first_name.status !== 'INVALID' && this.f.last_name.status !== 'INVALID' && this.f.email.status !== 'INVALID' && this.f.confirm_password.status !== 'INVALID' && this.f.password.status !== 'INVALID' && this.f.role.status !== 'INVALID') {
+        this.first_step = false;
+        this.next_step = true;
+      }
     }
   }
 
