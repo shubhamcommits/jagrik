@@ -89,6 +89,9 @@ export class AuthController {
 
         // Catch the errors from the service function
         .catch((err) => {
+          console.log('====================================');
+          console.log(err);
+          console.log('====================================');
           return res.status(400).json({
             message:
               "Bad Request, kindly trace the error stack for more details!",
