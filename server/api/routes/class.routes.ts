@@ -49,6 +49,8 @@ routes.post("/get-teams", classController.getTeams);
 
 routes.get("/get-team-members", classController.getTeamMembers);
 
+routes.get("/get-completed-team-tasks", classController.getCompletedTeamTasks);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

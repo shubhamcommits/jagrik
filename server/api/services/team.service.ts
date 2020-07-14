@@ -1,5 +1,6 @@
 import { User, Card, Team } from "../models";
 import { Readable } from 'stream'
+import jwt from "jsonwebtoken";
 
 export class TeamService {
 
@@ -78,4 +79,30 @@ export class TeamService {
         }
 
     }
+
+    async submitTaskPoints(token: any, teamId: string, teamPoints: String) {
+        try {
+          // verify token and decode user data
+          let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+         
+          // check if the user has the correct permissions to create a class
+          if (user.role === "facilitator" || user.role === "super-admin") {
+            let team: any = Team.find({_id: teamId},{team_creator: user._id});
+            if(team){
+                await Team.findByIdAndUpdate(
+                    {_id: team._id},
+                    {points: teamPoints}
+                );
+                return;
+            }else{
+                throw new Error("401 - Access denied");
+            }
+          } else {
+            throw new Error("401 - Access denied");
+          }
+        } catch (err) {
+          // Catch unexpected errors
+          throw new Error(err);
+        }
+      }
 }
