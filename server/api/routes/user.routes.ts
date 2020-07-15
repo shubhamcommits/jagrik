@@ -41,11 +41,11 @@ routes.post( '/profile-picture', upload.single('profile_picture'), userControlle
  * POST - Assigns a random task to the user
  * @var { headers: { authorization }, body: { card_theme } }
  */
-routes.post('/assign-card', userController.assignRandomCard)
+routes.post('/assign-card', userController.assignRandomCard);
 
-routes.get('/team', userController.getTeam)
+routes.get('/team', userController.getTeam);
 
-routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload)
+routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload);
 
 /*  ===================
  *  -- EXPORT ROUTES --
