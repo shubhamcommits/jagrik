@@ -8,6 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -20,10 +23,10 @@ export class UserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService
   ) {}
-
+  selectedFile: ImageSnippet;
   profileForm: FormGroup;
   userData: any = [];
-
+  UserDataPicture: any = '';
   newPost = '';
 
   ngOnInit(): void {
@@ -45,14 +48,22 @@ export class UserComponent implements OnInit {
       ]),
     });
 
+    this.profileForm.addControl(
+      'mobile_number',
+      new FormControl(this.userData.mobile_number, [
+        Validators.required,
+        Validators.nullValidator,
+        Validators.pattern('^[0-9]{10}$'),
+      ])
+    );
+
+    this.profileForm.addControl('bio', new FormControl(this.userData.bio));
+    this.profileForm.addControl(
+      'hobbies',
+      new FormControl(this.userData.hobbies)
+    );
+
     if (this.userData.role == 'student') {
-      this.profileForm.addControl(
-        'mobile_number',
-        new FormControl(this.userData.mobile_number, [
-          Validators.required,
-          Validators.nullValidator,
-        ])
-      );
       this.profileForm.addControl(
         'date_of_birth',
         new FormControl(this.convertISOToDate(), [
@@ -65,6 +76,7 @@ export class UserComponent implements OnInit {
         new FormControl(this.userData.emergency_contact_name, [
           Validators.required,
           Validators.nullValidator,
+          Validators.pattern('^[0-9]{10}$'),
         ])
       );
 
@@ -136,15 +148,13 @@ export class UserComponent implements OnInit {
     this.validateAllFormFields(this.profileForm);
     if (this.profileForm.valid) {
       return new Promise((resolve) => {
-
         // Call the service function
         this.userService
-          .uodateProfile(this.profileForm.value)
+          .updateProfile(this.profileForm.value)
           .then((res) => {
-
             resolve(res);
 
-            this.getProfile()
+            this.getProfile();
 
             // Fire sucess toast
             this.utilityService.fireToast(
@@ -203,6 +213,53 @@ export class UserComponent implements OnInit {
         this.validateAllFormFields(control); //{6}
       }
     });
+  }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      return new Promise((resolve) => {
+        // Call the service function
+        this.userService
+          .uploadImage(file)
+          .then((res) => {
+            // Fire sucess toast
+            this.getProfile();
+            this.utilityService.fireToast(
+              'success',
+              `Profile Picture Updated successfully`
+            );
+          })
+          .catch(() => {
+            // Fire error toast
+            this.utilityService.fireToast(
+              'error',
+              `Some unexpected error occured, please try again!`
+            );
+          });
+      });
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+  getProfilePicture(image) {
+    var type = 'image/jpeg';
+
+    var file = new Blob([image], {
+      type: type,
+    });
+    var reader = new FileReader();
+    var self = this;
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+      var base64data = reader.result;
+      self.UserDataPicture = base64data;
+    };
   }
 
   convertISOToDate() {

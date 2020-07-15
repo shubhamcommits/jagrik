@@ -248,39 +248,47 @@
 
 
         <!-- <form>  -->
-        <form [formGroup]="profileForm" class="form">
+        <form [formGroup]="profileForm" class="form" enctype="multipart/form-data" method="post">
         <div class="row">
-          <div class="col-4">
+          <div class="col-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="First Name" required formControlName="first_name">
+              <input matInput placeholder="First Name"  formControlName="first_name">
             </mat-form-field>
           </div>
-          <div class="col-4">
+          <div class="col-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Last Name" required formControlName="last_name">
-            </mat-form-field>
-          </div>
-          <div class="col-4">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Email address" required type="email" formControlName="email">
+              <input matInput placeholder="Last Name"  formControlName="last_name">
             </mat-form-field>
           </div>
         </div>
+         <div class="row">
+           <div class="col-6">
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="Email address" type="email" formControlName="email">
+             </mat-form-field>
+           </div>
+           <div class="col-6">
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="Your Mobile No" type="tel" formControlName="mobile_number">
+             </mat-form-field>
+           </div>
+         </div>
+         <div *ngIf="userData.role == 'student'">
         <div class="row">
           <div class="col-4">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Your Date of Birth" required formControlName="date_of_birth" type="date">
+              <input matInput placeholder="Your Date of Birth"  formControlName="date_of_birth" type="date">
             </mat-form-field>
           </div>
           <div class="col-4">
             <mat-form-field class="example-full-width">
-              <input matInput required placeholder="Your emergency contact person name"
+              <input matInput  placeholder="Your emergency contact person name"
                 formControlName="emergency_contact_name">
             </mat-form-field>
           </div>
           <div class="col-4">
             <mat-form-field class="example-full-width">
-              <input matInput required placeholder="Your emergency contact person mobile"
+              <input matInput  placeholder="Your emergency contact person mobile"
                 formControlName="emergency_contact_number">
             </mat-form-field>
           </div>
@@ -288,37 +296,86 @@
         <div class="row">
          <div class="col-4">
            <mat-form-field class="example-full-width">
-             <input matInput required placeholder="Your Block" formControlName="block">
+             <input matInput  placeholder="Your Block" formControlName="block">
            </mat-form-field>
          </div>
          <div class="col-4">
            <mat-form-field class="example-full-width">
-             <input matInput required placeholder="Your District" formControlName="district">
+             <input matInput  placeholder="Your District" formControlName="district">
            </mat-form-field>
          </div>
          <div class="col-4">
            <mat-form-field class="example-full-width">
-             <input matInput required placeholder="Your State" formControlName="state">
+             <input matInput  placeholder="Your State" formControlName="state">
            </mat-form-field>
          </div>
 
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="example-full-width">
+              <input matInput  placeholder="Your Facebook/Instagram username" formControlName="social_media_username">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="example-full-width">
+              <input matInput  placeholder="Your Religion" formControlName="religion">
+            </mat-form-field>
+          </div>
         </div>
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width">
-              <input matInput required placeholder="Your Facebook/Instagram username"
-                formControlName="social_media_username">
+              <mat-label>Are you in school ?</mat-label>
+              <select matNativeControl formControlName="in_school" >
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field class="example-full-width">
-              <input matInput required placeholder="Your Religion" formControlName="religion">
+              <mat-label>Select your caste category</mat-label>
+              <select matNativeControl formControlName="caste_category" >
+                <option value="general">General</option>
+                <option value="obc">OBC</option>
+                <option value="schedule-caste">SC</option>
+                <option value="schedule-tribe">ST</option>
+              </select>
             </mat-form-field>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="example-full-width">
+              <input matInput  placeholder="Hobbies/Interests" formControlName="hobbies">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="example-full-width">
+              <textarea rows="6" formControlName="bio" matInput
+                placeholder="About yourself"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+
+
+               <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
+                 (change)="processFile(imageInput)">
+               <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload Your
+                 Image</label>
+
           </div>
         </div>
 
 
-        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="updateProfile()">Update
+        <button  type="submit" class="btn btn-danger pull-right" style="margin-top: 20px;" (click)="updateProfile()">Update
           Profile</button>
         <div class="clearfix"></div>
         </form>
@@ -331,7 +388,9 @@
   <div class="col-4">
     <div class="card card-profile">
       <div class="card-avatar">
-        <img class="img" src="assets/profile.png" style="width: 100%; height: 100%;" />
+        <img class="img"
+          src="{{userData.profile_pic !== '' ? getProfilePicture(userData.profile_pic) : 'assets/profile.png'}}"
+          style="width: 100%; height: 100%;" />
       </div>
       <div class="" style="padding-bottom: 20px;">
         <h6 class="" style="padding-top: 10px;">{{userData.social_media_username}}</h6>

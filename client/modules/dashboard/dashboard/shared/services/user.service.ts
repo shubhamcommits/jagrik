@@ -26,9 +26,24 @@ export class UserService {
    * This function is responsible for update user profile
    * @param user
    */
-  uodateProfile(userData: any) {
+  updateProfile(userData: any) {
     return this.httpClient
-      .put(environment.baseApiUrl + '/users', { user : userData})
+      .put(environment.baseApiUrl + '/users', { user: userData })
+      .toPromise();
+  }
+
+  /**
+   * This function is responsible for upload user profile picture
+   * @param user
+   */
+  uploadImage(image: File) {
+    let formData: FormData = new FormData();
+    formData.append('profile_picture', image);
+    return this.httpClient
+      .post(
+        environment.baseApiUrl + '/users/profile-picture',
+        formData
+      )
       .toPromise();
   }
 

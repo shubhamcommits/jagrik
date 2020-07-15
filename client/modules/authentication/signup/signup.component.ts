@@ -60,11 +60,24 @@ export class SignupComponent implements OnInit {
     })
 
     if (this.role == 'student') {
-      this.signupForm.addControl('mobile_number', new FormControl(null, [Validators.required, Validators.nullValidator]))
+      this.signupForm.addControl(
+        'mobile_number',
+        new FormControl(null, [
+          Validators.required,
+          Validators.nullValidator,
+          Validators.pattern('^[0-9]{10}$'),
+        ])
+      );
       this.signupForm.addControl('date_of_birth', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('emergency_contact_name', new FormControl(null, [Validators.required, Validators.nullValidator]))
 
-      this.signupForm.addControl('emergency_contact_number', new FormControl(null, [Validators.required, Validators.nullValidator]))
+      this.signupForm.addControl(
+        'emergency_contact_number',
+        new FormControl(null, [
+          Validators.required,
+          Validators.nullValidator,Validators.pattern('^[0-9]{10}$'),
+        ])
+      );
 
       this.signupForm.addControl('block', new FormControl(null, [Validators.required, Validators.nullValidator]))
       this.signupForm.addControl('district', new FormControl(null, [Validators.required, Validators.nullValidator]))
@@ -152,9 +165,6 @@ export class SignupComponent implements OnInit {
 
   setNextStep() {
 
-    console.log('====================================');
-    console.log(this.f);
-    console.log('====================================');
 
     if (this.signupForm.valid) {
       this.first_step = false;
