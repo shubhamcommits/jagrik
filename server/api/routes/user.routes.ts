@@ -45,7 +45,11 @@ routes.post('/assign-card', userController.assignRandomCard)
 
 routes.get('/team', userController.getTeam)
 
-routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload)
+routes.post(
+  '/task-doc-upload',
+  upload.single('supporting_doc'),
+  userController.taskSupportingDocUpload
+);
 
 /*  ===================
  *  -- EXPORT ROUTES --
