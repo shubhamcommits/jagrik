@@ -13,18 +13,18 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card [style.background]="'rgb(243, 179, 79)'">
+    <mat-card [style.border]="'solid 1px #cc4266'">
       <mat-card-header>
-        <mat-card-title>Team Status</mat-card-title>
+        <mat-card-title>Task Status</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p class="text-capitalize"><b>Tasks Status: </b>Dummy Data</p>
-        <p class="text-capitalize"><b>Team Comments: </b>Dummy Data</p>
-        <p class="text-capitalize"><b>ETA: </b>Dummy Data</p>
+        <p class="text-capitalize"><b>Team Task Status: </b>Complete/Incomplete</p>
+        <p class="text-capitalize"><b>Team Member 1 Status: </b>Complete/Incomplete</p>
+        <p class="text-capitalize"><b>Team Member 2 Status:</b>Complete/Incomplete</p>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-  <mat-grid-tile>
+  <!-- <mat-grid-tile>
     <mat-card [style.background]="'rgb(243, 179, 79)'">
       <mat-card-header>
         <mat-card-title>Leaderboard</mat-card-title>
@@ -48,7 +48,7 @@
         </p>
       </mat-card-content>
     </mat-card>
-  </mat-grid-tile>
+  </mat-grid-tile> -->
 </mat-grid-list>
 
 
@@ -97,7 +97,7 @@
   </mat-tab>
 
 
-  <mat-tab label='BRONZE'>
+  <mat-tab label='BRONZE' >
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'community' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
         <div class="row">

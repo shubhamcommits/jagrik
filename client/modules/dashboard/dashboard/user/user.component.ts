@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
+
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -72,8 +73,8 @@ export class UserComponent implements OnInit {
         ])
       );
       this.profileForm.addControl(
-        'emergency_contact_name',
-        new FormControl(this.userData.emergency_contact_name, [
+        'emergency_contact_number',
+        new FormControl(this.userData.emergency_contact_number, [
           Validators.required,
           Validators.nullValidator,
           Validators.pattern('^[0-9]{10}$'),
@@ -81,8 +82,8 @@ export class UserComponent implements OnInit {
       );
 
       this.profileForm.addControl(
-        'emergency_contact_number',
-        new FormControl(this.userData.emergency_contact_number, [
+        'emergency_contact_name',
+        new FormControl(this.userData.emergency_contact_name, [
           Validators.required,
           Validators.nullValidator,
         ])
