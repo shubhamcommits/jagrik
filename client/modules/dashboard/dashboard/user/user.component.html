@@ -387,7 +387,7 @@
     <div class="card card-profile">
       <div class="card-avatar">
         <img class="img"
-          src="{{userData.profile_pic !== '' ? getProfilePicture(userData.profile_pic) : 'assets/profile.png'}}"
+          src="{{UserDataPicture}}"
           style="width: 100%; height: 100%;" />
       </div>
       <div class="" style="padding-bottom: 20px;">
@@ -400,7 +400,7 @@
             <div class="col-6">
             <p> {{userData.mobile_number}}</p>
             </div>
-          </div>  
+          </div>
         <p style="color: #999;">{{ userData.bio}}</p>
         <!-- <button mat-raised-button class="btn-danger">Follow</button> -->
       </div>

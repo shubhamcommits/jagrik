@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.storageService.getLocalData('userData');
+     this.getProfilePicture(this.userData.profile_pic);
 
     this.profileForm = this.formBuilder.group({
       first_name: new FormControl(this.userData.first_name, [
@@ -189,6 +190,7 @@ export class UserComponent implements OnInit {
           );
 
           this.userData = this.storageService.getLocalData('userData');
+          this.getProfilePicture(this.userData.profile_pic);
           resolve(res);
         })
         .catch(() => {
@@ -249,18 +251,11 @@ export class UserComponent implements OnInit {
   }
 
   getProfilePicture(image) {
-    var type = 'image/jpeg';
 
-    var file = new Blob([image], {
-      type: type,
-    });
-    var reader = new FileReader();
-    var self = this;
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-      var base64data = reader.result;
-      self.UserDataPicture = base64data;
-    };
+
+    this.UserDataPicture = 'data:image/png;base64,' + image;
+
+
   }
 
   convertISOToDate() {
