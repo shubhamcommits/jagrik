@@ -51,7 +51,7 @@ export class UserService {
         }
     }
 
-    async profilePictureUpdate(img_data: Buffer, token: any) {
+    async profilePictureUpdate(img_data: String, token: any) {
         try {
             console.log("token: ", token);
             //verify token and decode user data

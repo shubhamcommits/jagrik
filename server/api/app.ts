@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cors from 'cors';
 import morgan from 'morgan';
+import bodyParser from 'body-parser';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
 import { authsRoutes, classRoutes, taskRoutes, teamRoutes, userRoutes } from './routes';
@@ -21,7 +22,19 @@ if (process.env.NODE_ENV !== 'production') {
 require('../db');
 
 // Adding The 'body-parser' middleware only handles JSON and urlencoded data
-app.use(express.json());
+// app.use(express.json());
+app.use(
+  bodyParser.json({
+    limit: '20mb',
+  })
+);
+// for parsing application/x-www-form-urlencoded
+app.use(
+  bodyParser.urlencoded({
+    limit: '20mb',
+    extended: true,
+  })
+);
 
 // cors middleware for orign and Headers
 app.use(cors());

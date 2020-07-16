@@ -61,7 +61,10 @@
 
   <!-- TABS COM -->
 <mat-tab-group style="width: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: center;" >
-  <mat-tab label='GOLD' >
+  <mat-tab  class="gold task-level">
+   <ng-template mat-tab-label>
+                <span [ngClass]="'gold task-level'"></span>
+   </ng-template>
   <ng-container *ngFor="let task of this.data.tasks" >
     <div *ngIf="task.category == 'community' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px;margin: 8px;">
       <div class="row">
@@ -78,7 +81,10 @@
   </ng-container>
   </mat-tab>
 
-  <mat-tab label='SILVER'>
+  <mat-tab  class="task-level">
+    <ng-template mat-tab-label>
+      <span [ngClass]="'silver task-level'"></span>
+    </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'community' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px;margin: 8px;">
         <div class="row">
@@ -97,7 +103,10 @@
   </mat-tab>
 
 
-  <mat-tab label='BRONZE' >
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span [ngClass]="'bronze task-level'"></span>
+    </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'community' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
         <div class="row">
@@ -127,7 +136,10 @@
 
     <!-- TABS SELF -->
  <mat-tab-group style="width: 100%; display: flex; align-items: center;" >
-  <mat-tab label='GOLD'>
+  <mat-tab  >
+    <ng-template mat-tab-label>
+      <span [ngClass]="'gold task-level'"></span>
+    </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
       <div *ngIf="task.category == 'self' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px; margin: 8px;">
         <div class="row">
@@ -145,7 +157,10 @@
     </ng-container>
   </mat-tab>
 
-    <mat-tab label='SILVER'>
+    <mat-tab >
+      <ng-template mat-tab-label>
+        <span [ngClass]="'silver task-level'"></span>
+      </ng-template>
       <ng-container *ngFor="let task of this.data.tasks" >
         <div *ngIf="task.category == 'self' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px; margin: 8px;">
           <div class="row">
@@ -165,7 +180,10 @@
     </mat-tab>
 
 
-    <mat-tab label='BRONZE'>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span [ngClass]="'bronze task-level'"></span>
+      </ng-template>
       <ng-container *ngFor="let task of this.data.tasks" >
         <div *ngIf="task.category == 'self' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
           <div class="row">
