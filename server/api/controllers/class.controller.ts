@@ -279,4 +279,138 @@ export class ClassController {
     }
   }
 
+  async getTeamMemberStatus(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let teamId = req.body.teamId;
+  
+      // Call the service function to get all the classes
+      await classService.getTeamMemberStatus(authorization, teamId).then((status) => {
+        return res.status(200).json({
+          message: "Team Tasks have been fetched successfully!",
+          teamStatus: status
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
+  async getClassesWithoutFacilitator(req: Request, res: Response, next: NextFunction) {
+    try {
+
+        // Fetch Authorization header
+        let authorization = req.headers.authorization;
+        let userId = req.body.userId;
+
+        // fetch classes with no facilitator 
+        await classService.getClassesWithoutFacilitator(authorization,userId)
+
+            // Proceed with the status 200 response
+            .then((response) => {
+                return res.status(200).json({
+                    message: "Classes with no facilitator fetched successfully!",
+                    classes: response.fetchClassesWithoutFacilitator
+                })
+            })
+
+            // Catch the errors from the service function
+            .catch((err) => {
+                return res.status(400).json({
+                    message:
+                        "Bad Request, kindly trace the error stack for more details!",
+                    error: new Error(
+                        err ||
+                        "Bad Request, kindly trace the error stack for more details!"
+                    ),
+                })
+            })
+    } catch (err) {
+        return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || "Internal Server Error!"),
+        })
+    }
+  }
+
+  async joinClassWithoutFacilitator(req: Request, res: Response, next: NextFunction) {
+    try {
+
+        // Fetch Authorization header
+        let authorization = req.headers.authorization;
+        let userId = req.body.userId;
+        let classId = req.body.classId;
+
+        // fetch classes with no facilitator 
+        await classService.joinClassWithoutFacilitator(authorization,userId,classId)
+
+            // Proceed with the status 200 response
+            .then((response) => {
+                return res.status(200).json({
+                    message: "Successfully joined a class with no facilitator.",
+                })
+            })
+
+            // Catch the errors from the service function
+            .catch((err) => {
+                return res.status(400).json({
+                    message:
+                        "Bad Request, kindly trace the error stack for more details!",
+                    error: new Error(
+                        err ||
+                        "Bad Request, kindly trace the error stack for more details!"
+                    ),
+                })
+            })
+    } catch (err) {
+        return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || "Internal Server Error!"),
+        })
+    }
+  }
+
+  async studentCreateClass(req: Request, res: Response, next: NextFunction) {
+    try {
+
+        // Fetch Authorization header
+        let authorization = req.headers.authorization;
+        let className = req.body.className;
+
+        // fetch classes with no facilitator 
+        await classService.studentCreateClass(authorization,className)
+
+            // Proceed with the status 200 response
+            .then((response) => {
+                return res.status(200).json({
+                    message: "Successfully joined a class with no facilitator.",
+                })
+            })
+
+            // Catch the errors from the service function
+            .catch((err) => {
+                return res.status(400).json({
+                    message:
+                        "Bad Request, kindly trace the error stack for more details!",
+                    error: new Error(
+                        err ||
+                        "Bad Request, kindly trace the error stack for more details!"
+                    ),
+                })
+            })
+    } catch (err) {
+        return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || "Internal Server Error!"),
+        })
+    }
+  }
+
 }
