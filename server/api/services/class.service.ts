@@ -628,25 +628,25 @@ export class ClassService {
         //verify token and decode user data
         let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
-        let team: any = await Team.find({_id:teamId});
-        let team_tasks = team.tasks
+        let team: any = await Team.find({ _id: teamId });
+        let team_tasks = team[0].tasks;
+     
+        var teamTaskCompleted = 'Incomplete';
 
-        let teamTaskCompleted = null;
-
-        if(team_tasks.length!=0){
-          for(let j in team_tasks){
-            if(team_tasks[j].status=='completed'){
-              teamTaskCompleted = team_tasks[j];
-              break;
-            }
+        if (team_tasks && team_tasks.length > 0) {
+          for (let j in team_tasks) {
+              teamTaskCompleted = team_tasks[j].status;
           }
         }
         
-        let team_members = team.team_members
-        let teamMemberTaskStatus=[];
+      let team_members = team[0].team_members;
+      let teamMemberTaskStatus = [];
 
-        for(let k in team_members){
-          let self: any = await User.find({_id: team_members[k]});
+
+      for (let k in team_members) {
+          
+          var self: any = await User.find({ _id: team_members[k] });
+          self = self[0]
           let selfTasks = self.tasks
           let is_any_self_task_complete = false;
           
@@ -658,10 +658,10 @@ export class ClassService {
           }
           teamMemberTaskStatus.push({
             user_id: self._id,
-            user_name: self.full_name,
+            user_name: self.first_name + ' ' + self.last_name,
             user_email: self.email,
             user_profile: self.profile_pic,
-            user_individual_task_status: is_any_self_task_complete
+            user_individual_task_status: is_any_self_task_complete,
           });
         }
         return {teamTask: teamTaskCompleted, teamMembers: teamMemberTaskStatus}
