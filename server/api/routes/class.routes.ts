@@ -57,6 +57,10 @@ routes.post('/join-class-without-facilitator', classController.joinClassWithoutF
 
 routes.post('/student-create-class', classController.studentCreateClass);
 
+routes.get("/get-team-member-task-status", classController.getTeamMemberStatus);
+
+
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

@@ -279,6 +279,30 @@ export class ClassController {
     }
   }
 
+  async getTeamMemberStatus(req: Request, res: Response, next: NextFunction) {
+
+    try {
+      // Fetch the authorization header from the request
+
+      let authorization = req.headers.authorization;
+      // let authorization="abcd"
+      let teamId = req.body.teamId;
+  
+      // Call the service function to get all the classes
+      await classService.getTeamMemberStatus(authorization, teamId).then((status) => {
+        return res.status(200).json({
+          message: "Team Tasks have been fetched successfully!",
+          teamStatus: status
+        });
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error!",
+        error: new Error(err || " Internal Server Error"),
+      });
+    }
+  }
+
   async getClassesWithoutFacilitator(req: Request, res: Response, next: NextFunction) {
     try {
 
