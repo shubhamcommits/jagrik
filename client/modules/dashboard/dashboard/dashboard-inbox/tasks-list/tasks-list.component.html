@@ -18,9 +18,10 @@
         <mat-card-title>Task Status</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p class="text-capitalize"><b>Team Task Status: </b>Complete/Incomplete</p>
-        <p class="text-capitalize"><b>Team Member 1 Status: </b>Complete/Incomplete</p>
-        <p class="text-capitalize"><b>Team Member 2 Status:</b>Complete/Incomplete</p>
+        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask}}</p>
+        <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
+          </b>{{item.user_individual_task_status == false ? 'To Do' : 'Completed'}}</p>
+
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
@@ -72,10 +73,9 @@
       </div><br>
       <div class="row">
         <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-        <div class="col-6 text-capitalize">
-          <input #imageInput id="input-file-id" type="file" hidden accept="image/*" (change)="processFile(imageInput,'')">
-          <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-        </div>
+         <div *ngIf="taskStatus?.teamTask  !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+             style="color: #cd4266;"
+             (click)="openDialog(task)">UPLOAD</button></div>
       </div>
     </div>
   </ng-container>
@@ -92,11 +92,9 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-          <div class="col-6 text-capitalize">
-            <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
-              (change)="processFile(imageInput,'')">
-            <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-          </div>
+           <div *ngIf="taskStatus?.teamTask  !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+               style="color: #cd4266;"
+               (click)="openDialog(task)">UPLOAD</button></div>
         </div>
       </div>
     </ng-container>
@@ -114,11 +112,9 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-          <div class="col-6 text-capitalize">
-            <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
-              (change)="processFile(imageInput,'')">
-            <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-          </div>
+           <div *ngIf="taskStatus?.teamTask !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+               style="color: #cd4266;"
+               (click)="openDialog(task)">UPLOAD</button></div>
         </div>
       </div>
     </ng-container>
@@ -147,11 +143,8 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
-          <div class="col-6 text-capitalize">
-            <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
-              (change)="processFile(imageInput,'')">
-            <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-          </div>
+         <div class="col-6 text-capitalize"><button mat-raised-button style="color: #cd4266;"
+             (click)="openDialog(task)">UPLOAD</button></div>
         </div>
       </div>
     </ng-container>
@@ -168,11 +161,8 @@
           </div><br>
           <div class="row">
             <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
-            <div class="col-6 text-capitalize">
-              <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
-                (change)="processFile(imageInput,'')">
-              <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-            </div>
+             <div class="col-6 text-capitalize"><button mat-raised-button style="color: #cd4266;"
+                 (click)="openDialog(task)">UPLOAD</button></div>
           </div>
         </div>
       </ng-container>
@@ -191,11 +181,8 @@
           </div><br>
           <div class="row">
             <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
-            <div class="col-6 text-capitalize">
-              <input #imageInput id="input-file-id" type="file" hidden accept="image/*"
-                (change)="processFile(imageInput,'')">
-              <label for="input-file-id" class="btn btn-primary md-button md-raised md-primary">Upload</label>
-            </div>
+            <div class="col-6 text-capitalize"><button mat-raised-button style="color: #cd4266;"
+                (click)="openDialog(task)">UPLOAD</button></div>
           </div>
         </div>
       </ng-container>
