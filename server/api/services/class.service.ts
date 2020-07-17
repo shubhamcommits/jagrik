@@ -623,4 +623,53 @@ export class ClassService {
     }
   }
 
+  async getTeamMemberStatus(token: any, teamId: String) {
+    try {
+        //verify token and decode user data
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+        let team: any = await Team.find({_id:teamId});
+        let team_tasks = team.tasks
+
+        let teamTaskCompleted = null;
+
+        if(team_tasks.length!=0){
+          for(let j in team_tasks){
+            if(team_tasks[j].status=='completed'){
+              teamTaskCompleted = team_tasks[j];
+              break;
+            }
+          }
+        }
+        
+        let team_members = team.team_members
+        let teamMemberTaskStatus=[];
+
+        for(let k in team_members){
+          let self: any = await User.find({_id: team_members[k]});
+          let selfTasks = self.tasks
+          let is_any_self_task_complete = false;
+          
+          for(let n in selfTasks){
+            if(selfTasks[n].status=='completed'){
+              is_any_self_task_complete = true;
+              break;
+            }
+          }
+          teamMemberTaskStatus.push({
+            user_id: self._id,
+            user_name: self.full_name,
+            user_email: self.email,
+            user_profile: self.profile_pic,
+            user_individual_task_status: is_any_self_task_complete
+          });
+        }
+        return {teamTask: teamTaskCompleted, teamMembers: teamMemberTaskStatus}
+
+    } catch (err) {
+        //catch unexpected errors
+        throw new Error(err);
+    }
+  }
+
 }
