@@ -50,6 +50,45 @@ export class ClassService {
     }
   }
 
+  // student created class
+  async studentCreateClass(token: any, className: string) {
+    try {
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      // check if user is student
+      if (user.role != "facilitator" || user.role != "super-admin") {
+        // create a class -> save the user id as the class_creator_student and change class_creator_is_student to true
+
+        //generate a class code
+        let class_code = await this.generateClassCode();
+
+        let jagrik_class = await Class.create({
+          class_creator: null,
+          name: className,
+          class_creator_is_student: true,
+          class_creator_student: user._id,
+          members: [user._id],
+          class_code,
+        });
+
+        // save class id in user profile
+        let user_profile = await User.findByIdAndUpdate(
+          { _id: user._id },
+          { $addToSet: { classes: jagrik_class._id } },
+          { new: true }
+        );
+
+        return { class: jagrik_class };
+      } else {
+        throw new Error("401 - Access denied");
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
   //generate a unique class code
   async generateClassCode() {
     //generate a 6 character class code
@@ -526,6 +565,110 @@ export class ClassService {
     } catch (err) {
       // Catch unexpected errors
       throw new Error(err);
+    }
+  }
+
+  async getClassesWithoutFacilitator(token: any, userId: String) {
+    try {
+        //verify token and decode user data
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        
+        if(user.role === "facilitator" || user.role === "super-admin"){
+            // check if user is associated with any class
+            let checkAssociationInClass: any = await Class.find({class_creator: user._id});
+            
+            if(checkAssociationInClass!=null){
+                let fetchClassesWithoutFacilitator: any = await Class.find({class_creator: null},{class_creator_is_student: true});
+                return fetchClassesWithoutFacilitator;
+            }else{
+                let fetchClassesWithoutFacilitator = 'All Classes have a facilitator assigned !';
+                return fetchClassesWithoutFacilitator;
+            }
+        }else{
+            throw new Error("401 - Access denied");  
+        }
+
+    } catch (err) {
+        //catch unexpected errors
+        throw new Error(err);
+    }
+  }
+
+  async joinClassWithoutFacilitator(token: any, userId: String, classId: String) {
+    try {
+        //verify token and decode user data
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        
+        if(user.role === "facilitator" || user.role === "super-admin"){
+            // check if the class with classId has no facilitator
+            let checkAvailability: any = await Class.findById({_id: classId});
+            if(checkAvailability.class_creator==null && checkAvailability.class_creator_is_student==true){
+              await Class.findByIdAndUpdate(
+                {_id: classId},
+                {class_creator: user._id},
+                { new: true }
+              ).catch((err) => {
+                throw new Error(err);
+              });
+            }else{
+              throw new Error("401 - Access denied");
+            }
+        }else{
+            throw new Error("401 - Access denied");  
+        }
+
+    } catch (err) {
+        //catch unexpected errors
+        throw new Error(err);
+    }
+  }
+
+  async getTeamMemberStatus(token: any, teamId: String) {
+    try {
+        //verify token and decode user data
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+        let team: any = await Team.find({_id:teamId});
+        let team_tasks = team.tasks
+
+        let teamTaskCompleted = null;
+
+        if(team_tasks.length!=0){
+          for(let j in team_tasks){
+            if(team_tasks[j].status=='completed'){
+              teamTaskCompleted = team_tasks[j];
+              break;
+            }
+          }
+        }
+        
+        let team_members = team.team_members
+        let teamMemberTaskStatus=[];
+
+        for(let k in team_members){
+          let self: any = await User.find({_id: team_members[k]});
+          let selfTasks = self.tasks
+          let is_any_self_task_complete = false;
+          
+          for(let n in selfTasks){
+            if(selfTasks[n].status=='completed'){
+              is_any_self_task_complete = true;
+              break;
+            }
+          }
+          teamMemberTaskStatus.push({
+            user_id: self._id,
+            user_name: self.full_name,
+            user_email: self.email,
+            user_profile: self.profile_pic,
+            user_individual_task_status: is_any_self_task_complete
+          });
+        }
+        return {teamTask: teamTaskCompleted, teamMembers: teamMemberTaskStatus}
+
+    } catch (err) {
+        //catch unexpected errors
+        throw new Error(err);
     }
   }
 

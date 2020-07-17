@@ -8,7 +8,16 @@ const ClassSchema = new Schema({
   class_creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    default: null,
+  },
+  class_creator_is_student:{
+    type: Boolean,
+    default: false,
+  },
+  class_creator_student:{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: null,
   },
   name: {
     type: Schema.Types.String,

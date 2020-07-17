@@ -1,4 +1,4 @@
-import { User, Card, Task, Team } from "../models";
+import { User, Card, Task, Team, Class } from "../models";
 import jwt from "jsonwebtoken";
 
 export class UserService {
@@ -176,5 +176,4 @@ export class UserService {
         }
 
     }
-
 }
