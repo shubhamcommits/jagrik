@@ -1,5 +1,6 @@
 import { Component, OnInit, Injector, Input, Inject } from '@angular/core';
 import { TeamService } from '../../shared/services/team.service';
+import { ClassService } from '../../shared/services/class.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { FormControl } from '@angular/forms';
@@ -16,7 +17,11 @@ export class TasksListComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
 
-  constructor(private injector: Injector, public dialog: MatDialog) {}
+  constructor(
+    private injector: Injector,
+    public dialog: MatDialog,
+    private classService: ClassService
+  ) {}
 
   data: any = {
     tasks: [],
@@ -24,6 +29,8 @@ export class TasksListComponent implements OnInit {
   };
 
   userData: any;
+  taskStatus: any;
+  individualTaskStatus: any;
 
   @Input('cardId') cardId: any;
 
@@ -37,6 +44,7 @@ export class TasksListComponent implements OnInit {
     ) {
       console.log('check');
     }
+    this.getTeamTaskStatus();
   }
 
   openDialog(task: any) {
@@ -97,6 +105,34 @@ export class TasksListComponent implements OnInit {
     return storageService.getLocalData('userData');
   }
 
+  getTeamTaskStatus() {
+    let utilityService = this.injector.get(UtilityService);
+
+    return new Promise((resolve) => {
+      // Call the service function
+      this.classService
+        .getTeamTaskStatus(this.userData.teams[0]._id)
+        .then((res) => {
+          // Fire sucess toast
+          this.taskStatus = res['teamStatus'];
+          if (this.taskStatus.teamMembers.length > 0) {
+            this.taskStatus.teamMembers.forEach((element) => {
+              if (element.user_email == this.userData.email) {
+                this.individualTaskStatus = element.user_individual_task_status;
+              }
+            });
+          }
+        })
+        .catch(() => {
+          // Fire error toast
+          utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
+    });
+  }
+
   getTaskList(cardId: any) {
     return new Promise((resolve) => {
       const teamService = this.injector.get(TeamService);
@@ -130,34 +166,5 @@ export class TasksListComponent implements OnInit {
           resolve({});
         });
     });
-  }
-
-  processFile(imageInput: any,taskId: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    let utilityService = this.injector.get(UtilityService);
-
-    reader.addEventListener('load', (event: any) => {
-
-      return new Promise((resolve) => {
-        // Call the service function
-        const teamService = this.injector.get(TeamService);
-        teamService
-          .uploadTaskDocument(file, taskId, '')
-          .then((res) => {
-            // Fire sucess toast
-
-          })
-          .catch(() => {
-            // Fire error toast
-          utilityService.fireToast(
-              'error',
-              `Some unexpected error occured, please try again!`
-            );
-          });
-      });
-    });
-
-    reader.readAsDataURL(file);
   }
 }
