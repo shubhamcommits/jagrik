@@ -280,13 +280,12 @@ export class ClassController {
   }
 
   async getTeamMemberStatus(req: Request, res: Response, next: NextFunction) {
-
     try {
       // Fetch the authorization header from the request
 
       let authorization = req.headers.authorization;
       // let authorization="abcd"
-      let teamId = req.body.teamId;
+      let teamId:any = req.query.teamId;
   
       // Call the service function to get all the classes
       await classService.getTeamMemberStatus(authorization, teamId).then((status) => {
@@ -296,6 +295,9 @@ export class ClassController {
         });
       });
     } catch (err) {
+      console.log('====================================');
+      console.log(err);
+      console.log('====================================');
       return res.status(500).json({
         message: "Internal Server Error!",
         error: new Error(err || " Internal Server Error"),

@@ -76,13 +76,13 @@ export class UserService {
 
     async taskSupportingDocUpload(img_data: Buffer, token: any, taskId: String, experience_description: String, teamId: String) {
         try {
-            console.log("token: ", token);
+            
             //verify token and decode user data
             let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
             let taskSelected: any = await Task.find({ _id: taskId });
 
-            let taskCategory = taskSelected.category
+            let taskCategory = taskSelected[0].category
 
             if (taskCategory == 'Individual') {
                 //find user in db
