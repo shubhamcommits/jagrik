@@ -79,4 +79,18 @@ export class ClassService {
       })
       .toPromise();
   }
+
+  /**
+   * This function is responsible for get completed taskf team
+   * @param classIId
+   */
+  getCompletedTaskTeam(classId: any) {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/classes//get-completed-team-tasks', {
+        params: {
+          classId: classId,
+        },
+      })
+      .toPromise();
+  }
 }

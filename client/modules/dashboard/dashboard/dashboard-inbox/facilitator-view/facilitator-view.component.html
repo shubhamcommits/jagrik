@@ -1,4 +1,38 @@
-<h3 class="d-flex justify-content-center">Since you monitor everything.</h3>
-<img class="d-flex justify-content-center" src="assets/undraw_financial_data.svg">
-<span class="d-flex justify-content-center">Please create the teams if not done and wait for the students to submit the
+<h3  class="d-flex justify-content-center">Since you monitor everything.</h3>
+<img *ngIf="!is_completedTask" class="d-flex justify-content-center" src="assets/undraw_financial_data.svg">
+<span *ngIf="!is_completedTask" class="d-flex justify-content-center">Please create the teams if not done and wait for
+  the students to submit the
     tasks for you to evaluate!</span>
+
+<div *ngIf="is_completedTask" class="row" >
+  <div class="col-md-12">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="team_id">
+        <th mat-header-cell *matHeaderCellDef> Team Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.team_id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="team_name">
+        <th mat-header-cell *matHeaderCellDef> Team Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.team_name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="team_status">
+        <th mat-header-cell *matHeaderCellDef> Team Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.team_status}} </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

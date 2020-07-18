@@ -6,3 +6,8 @@
 <app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
     [cardId]="this.card._id">
 </app-tasks-list>
+
+<app-facilitator-view class="container" *ngIf="userData && userData.role !== 'student'">
+</app-facilitator-view>
+
+
