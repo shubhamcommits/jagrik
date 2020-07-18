@@ -262,7 +262,7 @@ export class ClassController {
 
       let authorization = req.headers.authorization;
       // let authorization="abcd"
-      let classId = req.body.classId;
+      let classId:any = req.query.classId;
   
       // Call the service function to get all the classes
       await classService.getCompletedTeamTasks(authorization, classId).then((classTasks) => {
