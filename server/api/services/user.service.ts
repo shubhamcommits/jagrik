@@ -76,27 +76,46 @@ export class UserService {
 
     async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String) {
         try {
-            
+            console.log("Reached Service");
             //verify token and decode user data
+
             let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
-            let taskSelected: any = await Task.find({ _id: taskId });
-
-            let taskCategory = taskSelected[0].category
-
-            if (taskCategory == 'Individual') {
+    
+            let taskSelected: any = await Task.findOne({ _id: taskId });            
+            
+            let taskCategory = taskSelected.category;
+            let updated_tasks=[];
+            if (taskCategory == 'self') {
                 //find user in db
+
+                for(let i in user.tasks){
+                    if(user.tasks[i]._id == taskId){
+                        user.tasks[i].supporting_doc = img_data;
+                        user.tasks[i].status = 'complete'
+                    }
+                    updated_tasks.push(user.tasks[i]);  
+                }
                 await User.updateOne(
-                    { _id: user._id, "tasks._task": taskId },
-                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.status": 'completed' } },
+                    { _id: user._id },
+                    { tasks: updated_tasks },
                 ).catch((err) => {
                     throw new Error(err);
                 });
                 // https://docs.mongodb.com/manual/reference/operator/update/positional/
             } else {
+                let team:any = await Team.findById({_id: teamId});
+
+                for(let i in team.tasks){
+                    if(team.tasks[i]._id == taskId){
+                        team.tasks[i].supporting_doc = img_data;
+                        team.tasks[i].status = 'complete'
+                    }
+                    updated_tasks.push(team.tasks[i]);  
+                }
+
                 await Team.updateOne(
-                    { _id: teamId, "tasks._task": taskId },
-                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.submitted_by": user.first_name, "tasks.$.status": 'completed' } },
+                    { _id: teamId},
+                    { tasks: updated_tasks},
                 ).catch((err) => {
                     throw new Error(err);
                 });

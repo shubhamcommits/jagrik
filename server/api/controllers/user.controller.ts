@@ -252,7 +252,9 @@ export class UserController {
             // Image Data from the request
             let img_data:any = fs.readFileSync(req['file'].path)
 
-           let img:String = new Buffer(img_data, 'binary').toString('base64');
+           let img:String = Buffer.from(img_data, 'binary').toString('base64');
+
+           console.log("Reached Controller");
 
             // Fetch Authorization header
             let authorization = req.headers.authorization;
