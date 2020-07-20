@@ -20,7 +20,7 @@
       <mat-card-content>
         <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask}}</p>
         <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
-          </b>{{item.user_individual_task_status == false ? 'To Do' : 'Completed'}}</p>
+          </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
 
       </mat-card-content>
     </mat-card>
@@ -73,7 +73,7 @@
       </div><br>
       <div class="row">
         <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-         <div *ngIf="taskStatus?.teamTask  !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+         <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
              style="color: #cd4266;"
              (click)="openDialog(task)">UPLOAD</button></div>
       </div>
@@ -92,7 +92,7 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-           <div *ngIf="taskStatus?.teamTask  !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+           <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
                style="color: #cd4266;"
                (click)="openDialog(task)">UPLOAD</button></div>
         </div>
@@ -112,7 +112,7 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-           <div *ngIf="taskStatus?.teamTask !== 'completed'" class="col-6 text-capitalize"><button mat-raised-button
+           <div *ngIf="taskStatus?.teamTask !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
                style="color: #cd4266;"
                (click)="openDialog(task)">UPLOAD</button></div>
         </div>

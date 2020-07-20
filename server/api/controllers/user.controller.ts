@@ -254,8 +254,6 @@ export class UserController {
 
            let img:String = Buffer.from(img_data, 'binary').toString('base64');
 
-           console.log("Reached Controller");
-
             // Fetch Authorization header
             let authorization = req.headers.authorization;
             let taskId = req.body.taskId;
