@@ -250,7 +250,9 @@ export class UserController {
         try {
 
             // Image Data from the request
-            let img_data = fs.readFileSync(req['file'].path)
+            let img_data:any = fs.readFileSync(req['file'].path)
+
+           let img:String = new Buffer(img_data, 'binary').toString('base64');
 
             // Fetch Authorization header
             let authorization = req.headers.authorization;
@@ -260,7 +262,7 @@ export class UserController {
 
             // Call the profilePictureUpdate function from the service
             await userService
-                .taskSupportingDocUpload(img_data, authorization, taskId, experience_description, teamId)
+                .taskSupportingDocUpload(img, authorization, taskId, experience_description, teamId)
 
                 // Proceed with the status 200 response
                 .then((response) => {

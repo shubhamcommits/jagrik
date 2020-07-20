@@ -74,7 +74,7 @@ export class UserService {
         }
     }
 
-    async taskSupportingDocUpload(img_data: Buffer, token: any, taskId: String, experience_description: String, teamId: String) {
+    async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String) {
         try {
             
             //verify token and decode user data
