@@ -39,6 +39,7 @@ import { AuthorizationInterceptorService } from 'src/shared/services/authorizati
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptorService, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

@@ -72,7 +72,7 @@ export class TeamComponent implements OnInit {
               className: data['name'],
               team: element['teams']['0'],
             })
-          } else {
+          } else if (element['role'] == 'student') {
             this.newUser.push({
               name: `${element['first_name']} ${element['last_name']}`,
               _id: element['_id'],
