@@ -48,11 +48,19 @@ export class TasksListComponent implements OnInit {
   }
 
   openDialog(task: any) {
-    this.dialog.open(TaskViewComponent, {
+    let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
         task,
       },
+
     });
+    dialogRef.componentInstance.getResonseData.subscribe(($e) => {
+      this.getUploadResponse($e)
+    });
+  }
+
+  getUploadResponse(value) {
+    this.getTeamTaskStatus()
   }
 
   selectSelfTask(taskId: any) {

@@ -68,6 +68,7 @@ import { NoTeamComponent } from './dashboard/dashboard-inbox/no-team/no-team.com
 import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitator-view/facilitator-view.component';
 import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
+import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.compone
     NoTeamComponent,
     FacilitatorViewComponent,
     TaskViewComponent,
-    TasksBoardComponent
+    TasksBoardComponent,
+    TaskDetailModalComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Injector } from '@angular/core';
+import { Component, Inject, OnInit, Injector, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
@@ -16,7 +16,9 @@ export class TaskViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     private injector: Injector,
     private storageService: StorageService
-  ) {}
+  ) { }
+
+  @Output() public getResonseData = new EventEmitter<string>();
 
   inputForm: FormGroup;
   userData: any = [];
@@ -52,6 +54,7 @@ export class TaskViewComponent implements OnInit {
            'success',
            `Document uploaded successfully !`
          );
+          this.getResonseData.emit('success');
         })
         .catch(() => {
           // Fire error toast
@@ -59,6 +62,7 @@ export class TaskViewComponent implements OnInit {
             'error',
             `Some unexpected error occured, please try again!`
           );
+          this.getResonseData.emit('error');
         });
     });
   }

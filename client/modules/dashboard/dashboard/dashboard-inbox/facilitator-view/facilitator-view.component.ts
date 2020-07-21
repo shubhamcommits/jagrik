@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClassService } from '../../shared/services/class.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
-
-export interface TeamElement {
-  team_id: string;
-  team_name: String;
-  team_status: String;
-}
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TaskDetailModalComponent } from './task-detail-modal/task-detail-modal.component';
 @Component({
   selector: 'app-facilitator-view',
   templateUrl: './facilitator-view.component.html',
@@ -25,17 +21,28 @@ export class FacilitatorViewComponent implements OnInit {
   constructor(
     private classService: ClassService,
     private storageService: StorageService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    public dialog: MatDialog
   ) {}
 
   is_completedTask = false;
-  displayedColumns: string[] = ['team_id', 'team_name', 'team_status'];
-  dataSource: TeamElement[] = [];
+  dataSource: any = [];
 
   ngOnInit(): void {
     this.getCompletedTeam(
       this.storageService.getLocalData('userData').classes[0]
     );
+  }
+
+  openDialog(team: any) {
+    let dialogRef = this.dialog.open(TaskDetailModalComponent, {
+      data: {
+        team,
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      maxWidth: '60vw'
+    });
   }
 
   getCompletedTeam(classId) {
@@ -46,19 +53,8 @@ export class FacilitatorViewComponent implements OnInit {
         .then((res) => {
           var data: any = res;
           data.tasks.forEach(element => {
-            if (element['team_status'] === 'completed'){
-            this.dataSource.push({
-              team_id:
-                element['team_id'],
-              team_name:
-                element[
-                  'team_name'
-                ],
-              team_status:
-                element[
-                  'team_status'
-                ],
-            });
+            if (element['team_status'] === 'complete'){
+              this.dataSource.push(element);
           }
           });
 
