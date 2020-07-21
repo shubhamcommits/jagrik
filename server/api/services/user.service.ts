@@ -88,12 +88,18 @@ export class UserService {
             
             if (taskCategory == 'self') {
                 //find user in db
+                console.log("self",user.tasks);
+
                 for(let i in user.tasks){
                     
+                    console.log(user.tasks[i]._card);
+                    console.log(taskSelected._card);
+
                     if(JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         user.tasks[i]._task = taskId;
                         user.tasks[i].supporting_doc = img_data;
                         user.tasks[i].status = 'complete';
+                        console.log("Matched");
                     }
                     updated_tasks.push(user.tasks[i]);  
                 }

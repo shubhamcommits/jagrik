@@ -651,7 +651,7 @@ export class ClassService {
           let is_any_self_task_complete = false;
           
           for(let n in selfTasks){
-            if(selfTasks[n].status=='completed'){
+            if(selfTasks[n].status=='complete'){
               is_any_self_task_complete = true;
               break;
             }
@@ -664,6 +664,7 @@ export class ClassService {
             user_individual_task_status: is_any_self_task_complete,
           });
         }
+        console.log(teamMemberTaskStatus);
         return {teamTask: teamTaskCompleted, teamMembers: teamMemberTaskStatus}
 
     } catch (err) {
