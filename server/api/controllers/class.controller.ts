@@ -259,11 +259,10 @@ export class ClassController {
 
     try {
       // Fetch the authorization header from the request
-
       let authorization = req.headers.authorization;
       // let authorization="abcd"
       let classId:any = req.query.classId;
-  
+      
       // Call the service function to get all the classes
       await classService.getCompletedTeamTasks(authorization, classId).then((classTasks) => {
         return res.status(200).json({
@@ -295,9 +294,6 @@ export class ClassController {
         });
       });
     } catch (err) {
-      console.log('====================================');
-      console.log(err);
-      console.log('====================================');
       return res.status(500).json({
         message: "Internal Server Error!",
         error: new Error(err || " Internal Server Error"),
