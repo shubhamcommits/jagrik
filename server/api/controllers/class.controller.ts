@@ -259,11 +259,10 @@ export class ClassController {
 
     try {
       // Fetch the authorization header from the request
-
       let authorization = req.headers.authorization;
       // let authorization="abcd"
-      let classId:any = req.query.classId;
-  
+      let classId:any = req.body.classId;
+      
       // Call the service function to get all the classes
       await classService.getCompletedTeamTasks(authorization, classId).then((classTasks) => {
         return res.status(200).json({
