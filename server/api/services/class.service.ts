@@ -437,7 +437,35 @@ export class ClassService {
        "members",
        "first_name last_name teams"
      )
-     return user_class;
+
+     let result=[];
+     for(let i in user_class.members){
+    
+       let member:any = await User.findById({_id: user_class.members[i]._id});
+       if(member.role=='facilitator'){
+         continue;
+       }
+
+       if(member.teams.length!=0){
+         let member_team:any = await Team.findById({_id: member.teams[member.teams.length-1]._id})
+         let member_class={
+          first_name: member.first_name,
+          last_name: member.last_name,
+          team_name: member_team.team_name
+        }
+        result.push(member_class);
+       }else{
+        let member_class={
+          first_name: member.first_name,
+          last_name: member.last_name,
+          team_name: 'No Team'
+        }
+        result.push(member_class);
+       }
+
+     }
+
+     return result;
 
     } catch (err) {
       // Catch unexpected errors
@@ -460,9 +488,6 @@ export class ClassService {
       
       for(let i in userIds){
         let member: any = await User.findById({_id: userIds[i]});
-        if(member.role=='facilitator'){
-          continue;
-        }
         let team_mate={
           first_name: member.first_name,
           last_name: member.last_name,
