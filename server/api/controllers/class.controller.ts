@@ -66,18 +66,30 @@ export class ClassController {
 
   async classFileUpload(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log(req["files"]["image"][0]["path"]);
       // Image Data from the request
-      let file_data = fs.readFileSync(req["file"].path);
+      let img_data = fs.readFileSync(req["files"]["image"][0]["path"]);
+      let upload_file_data = fs.readFileSync(
+        req["files"]["upload_file"][0]["path"]
+      );
+      let file_obj = {
+        title: req.body.title,
+        description: req.body.description,
+        img: img_data, // let position 0 in the files array be the image
+        upload_file: upload_file_data, // let position 1 in the files array be the file intended for upload
+      };
+
+      console.log("req.body: ", req.body);
 
       // Fetch Authorization header
       let {
         headers: { authorization },
         body: { classId },
       } = req;
-
+      console.log("classId: ", classId);
       // Call the profilePictureUpdate function from the service
       await classService
-        .classFileUpload(file_data, classId, authorization)
+        .classFileUpload(file_obj, classId, authorization)
 
         // Proceed with the status 200 response
         .then((response) => {
@@ -98,6 +110,7 @@ export class ClassController {
           });
         });
     } catch (err) {
+      console.log("error: ", err);
       return res.status(500).json({
         message: "Internal Server Error!",
         error: new Error(err || "Internal Server Error!"),

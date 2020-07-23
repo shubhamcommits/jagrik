@@ -87,7 +87,16 @@ routes.post("/join-session", classController.joinSession);
  */
 routes.post(
   "/class-file-upload",
-  upload.single("class-file"),
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 1,
+    },
+    {
+      name: "upload_file",
+      maxCount: 1,
+    },
+  ]),
   classController.classFileUpload
 );
 
