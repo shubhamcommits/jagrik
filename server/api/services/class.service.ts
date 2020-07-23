@@ -98,6 +98,32 @@ export class ClassService {
     }
   }
 
+  //file upload function
+  async classFileUpload(file_data: Buffer, classId: String, token: any) {
+    try {
+      //verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      // check if the user has the correct permissions to create a class
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        //find user in db
+        await Class.findByIdAndUpdate(
+          { _id: classId },
+          //save image to user obj in db
+          { $addToSet: { files: file_data } },
+          { new: true }
+        ).catch((err) => {
+          throw new Error(err);
+        });
+
+        return "File Successfully Uploaded!";
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
   //generate a unique class code
   async generateClassCode() {
     //generate a 6 character class code
