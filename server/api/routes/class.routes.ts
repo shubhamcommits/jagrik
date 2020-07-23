@@ -1,6 +1,15 @@
 import express from "express";
 import { ClassController } from "../controllers";
+import multer from "multer";
 
+// Multer Middleware
+const upload = multer({
+  dest: "../../uploads",
+  filename: (req: Request, file: any, cb: any) => {
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `user-${req.headers.authorization}-${Date.now()}.${ext}`);
+  },
+});
 // Auth Controller with all the functions
 const classController = new ClassController();
 
@@ -60,6 +69,16 @@ routes.post("/create-session", classController.createSession);
  * @var {headers: {authorization}, body: {classId}}
  */
 routes.post("/join-session", classController.joinSession);
+
+/**
+ * POST - allow a facilitator / super-admin to upload files for a class
+ * @var {headers: {authorization}, body: {classId}}
+ */
+routes.post(
+  "/class-file-upload",
+  upload.single("class-file"),
+  classController.classFileUpload
+);
 
 /*  ===================
  *  -- EXPORT ROUTES --
