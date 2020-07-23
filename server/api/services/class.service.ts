@@ -460,6 +460,9 @@ export class ClassService {
       
       for(let i in userIds){
         let member: any = await User.findById({_id: userIds[i]});
+        if(member.role=='facilitator'){
+          continue;
+        }
         let team_mate={
           first_name: member.first_name,
           last_name: member.last_name,
@@ -467,8 +470,6 @@ export class ClassService {
         }
         team_members.push(team_mate)
       }
-
-      console.log(team_members);
 
       return team_members;  
 
