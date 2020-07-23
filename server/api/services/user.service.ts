@@ -55,8 +55,8 @@ export class UserService {
         try {
             console.log("token: ", token);
             //verify token and decode user data
-            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
             //find user in db
             await User.findByIdAndUpdate(
                 { _id: user._id },
@@ -78,8 +78,9 @@ export class UserService {
         try {
             //verify token and decode user data
 
-            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-            
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
+
             let taskSelected: any = await Task.findOne({ _id: taskId });            
 
             let taskCategory = taskSelected.category;
