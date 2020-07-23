@@ -83,8 +83,8 @@ export class TeamService {
     async submitTaskPoints(token: any, teamId: string, teamPoints: String) {
         try {
           // verify token and decode user data
-          let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-         
+          let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+          let user:any = await User.findById({_id: userVerify._id});
           // check if the user has the correct permissions to create a class
           if (user.role === "facilitator" || user.role === "super-admin") {
             let team: any = Team.find({_id: teamId},{team_creator: user._id});

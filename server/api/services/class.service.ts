@@ -17,7 +17,9 @@ export class ClassService {
   async createClass(token: any, name: string) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      let user:any = await User.findById({_id: userVerify._id});
 
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
@@ -54,7 +56,9 @@ export class ClassService {
   async studentCreateClass(token: any, className: string) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      let user:any = await User.findById({_id: userVerify._id});
 
       // check if user is student
       if (user.role != "facilitator" || user.role != "super-admin") {
@@ -112,7 +116,9 @@ export class ClassService {
   async inviteToClass(token: any, studentEmails: [String], classId: String) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      let user:any = await User.findById({_id: userVerify._id});
 
       // check if the user has the correct permissions to create a class
       if (user.role === "facilitator" || user.role === "super-admin") {
@@ -199,7 +205,9 @@ export class ClassService {
   async joinClass(classId: String, token: any, isClassCodeInvite?: boolean) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      let user:any = await User.findById({_id: userVerify._id});
 
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
@@ -269,8 +277,8 @@ export class ClassService {
   async deleteClass(token: any, classId: String) {
     try {
       // verify token and decode user data
-      var user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
+      var userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user:any = await User.findById({_id: userVerify._id});
       // check if User has the privileges to delete a class
       if (user.role !== "facilitator" && user.role !== "super-admin") {
         throw new Error("401 - Access Denied");
@@ -320,8 +328,8 @@ export class ClassService {
     try {
       
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user:any = await User.findById({_id: userVerify._id});
       // check if the user has the correct permissions to create a team
       if (user.role === "facilitator" || user.role === "super-admin") {
         // check if class exists
@@ -420,16 +428,46 @@ export class ClassService {
     try {
    
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-      
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user:any = await User.findById({_id: userVerify._id});
       // let class_members: any = await User.find(classes: )
 
       // finding class_creator id from class table
-     let user_class: any = await Class.findById({_id: classId}).populate(
-       "members",
-       "first_name last_name teams"
-     )
-     return user_class;
+      let user_class: any = await Class.findById({_id: classId})
+    //  let user_class: any = await Class.findById({_id: classId}).populate(
+    //    "members",
+    //    "first_name last_name teams"
+    //  )
+    
+     let result=[];
+     for(let i in user_class.members){
+  
+       let member:any = await User.findById({_id: user_class.members[i]});
+       if(member.role=='facilitator'){
+         continue;
+       }
+       
+       if(member.teams.length!=0){
+         let member_team:any = await Team.findById({_id: member.teams[member.teams.length-1]._id})
+         let member_class={
+          user_id: member._id,
+          first_name: member.first_name,
+          last_name: member.last_name,
+          team_name: member_team.team_name
+        }
+        result.push(member_class);
+       }else{
+        let member_class={
+          user_id: member._id,
+          first_name: member.first_name,
+          last_name: member.last_name,
+          team_name: 'No Team'
+        }
+        result.push(member_class);
+       }
+     }
+
+     return result;
 
     } catch (err) {
       // Catch unexpected errors
@@ -441,8 +479,8 @@ export class ClassService {
     try {
    
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-    
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user:any = await User.findById({_id: userVerify._id});
       // find the userIds corresponding to the team
       let team: any = await Team.findById({_id: teamId});
       let userIds = team.team_members
@@ -460,8 +498,6 @@ export class ClassService {
         team_members.push(team_mate)
       }
 
-      console.log(team_members);
-
       return team_members;  
 
     } catch (err) {
@@ -473,7 +509,8 @@ export class ClassService {
   async getCompletedTeamTasks(token: any, classId: String) {
     try {
       // verify token and decode user data
-      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+      let user:any = await User.findById({_id: userVerify._id});
       if (user.role === "facilitator" || user.role === "super-admin") {
         let class_exist: any = await Class.findById({ _id: classId })
       
@@ -591,8 +628,8 @@ export class ClassService {
   async getClassesWithoutFacilitator(token: any, userId: String) {
     try {
         //verify token and decode user data
-        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-        
+        let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        let user:any = await User.findById({_id: userVerify._id});
         if(user.role === "facilitator" || user.role === "super-admin"){
             // check if user is associated with any class
             let checkAssociationInClass: any = await Class.find({class_creator: user._id});
@@ -617,8 +654,8 @@ export class ClassService {
   async joinClassWithoutFacilitator(token: any, userId: String, classId: String) {
     try {
         //verify token and decode user data
-        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-        
+        let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        let user:any = await User.findById({_id: userVerify._id});
         if(user.role === "facilitator" || user.role === "super-admin"){
             // check if the class with classId has no facilitator
             let checkAvailability: any = await Class.findById({_id: classId});
@@ -646,8 +683,8 @@ export class ClassService {
   async getTeamMemberStatus(token: any, teamId: String) {
     try {
         //verify token and decode user data
-        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
+        let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        let user:any = await User.findById({_id: userVerify._id});
         let team: any = await Team.find({ _id: teamId });
         let team_tasks = team[0].tasks;
      
