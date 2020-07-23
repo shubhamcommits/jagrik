@@ -75,8 +75,8 @@ export class ClassController {
       let file_obj = {
         title: req.body.title,
         description: req.body.description,
-        img: img_data, // let position 0 in the files array be the image
-        upload_file: upload_file_data, // let position 1 in the files array be the file intended for upload
+        img: img_data,
+        upload_file: upload_file_data,
       };
 
       console.log("req.body: ", req.body);
