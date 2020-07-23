@@ -11,7 +11,7 @@ var OpenTok = require("opentok"),
 
 // Set the Key from the environment
 sgMail.setApiKey(
-  "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"
+  "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"
 );
 
 export class ClassService {
@@ -99,7 +99,7 @@ export class ClassService {
         // draft an email to the students
         const msg = {
           to: studentEmails,
-          from: "advityasood@gmail.com",
+          from: "vinay.gupta@un.org",
           subject: "Join your Jagrik Class!",
           text:
             "Hi, your Jagrik Class is waiting for you to join them! Click on the link to join! " +

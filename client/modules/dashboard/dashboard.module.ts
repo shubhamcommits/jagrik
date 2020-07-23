@@ -17,6 +17,7 @@ import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda
 import { UserComponent } from './dashboard/user/user.component';
 import { JoinClassComponent } from './dashboard/dashboard-classes/join-class/join-class.component';
 import { TeamComponent } from './dashboard/team/team.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // Material Import
 import { A11yModule } from '@angular/cdk/a11y';
@@ -61,6 +62,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { AssignRandomTaskComponent } from './dashboard/dashboard-inbox/assign-random-task/assign-random-task.component';
+import { TasksListComponent } from './dashboard/dashboard-inbox/tasks-list/tasks-list.component';
+import { NoTeamComponent } from './dashboard/dashboard-inbox/no-team/no-team.component';
+import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitator-view/facilitator-view.component';
+import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
+import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 
 
 @NgModule({
@@ -77,7 +84,13 @@ import { MatTreeModule } from '@angular/material/tree';
     ClassAgendaComponent,
     UserComponent,
     JoinClassComponent,
-    TeamComponent
+    TeamComponent,
+    AssignRandomTaskComponent,
+    TasksListComponent,
+    NoTeamComponent,
+    FacilitatorViewComponent,
+    TaskViewComponent,
+    TasksBoardComponent
   ],
   imports: [
     CommonModule,
@@ -126,6 +139,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    MaterialFileInputModule
   ],
 })
 export class DashboardModule {}

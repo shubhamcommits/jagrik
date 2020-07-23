@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Proof Uploading!</h1>
+<div mat-dialog-content>
+
+    <p><b>Type:</b> {{ data?.task?.title }}</p>
+    <p><b>Description:</b> {{ data?.task?.description }}</p>
+    <p><b>Maximum Points:</b> {{ data?.task?.points }}</p>
+
+</div>
+
+ 
+<mat-form-field [formGroup]="inputForm">
+    <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file"></ngx-mat-file-input>
+    <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" [disabled]="!inputForm.valid" (click)="submitFile()" mat-dialog-close>Submit</button>
+</div>

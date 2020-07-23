@@ -60,8 +60,6 @@ export class AuthService {
     // create a user obj to put in the User db
     const newUser = user;
 
-    console.log(newUser);
-
     // check if user already exists
     try {
       // inserting the user obj into the User db and creating a log of it through the Auth model
@@ -72,12 +70,12 @@ export class AuthService {
           }
           return null;
         })
-        .then(() => {
-          return User.create(newUser);
+        .then(async () => {
+          return await User.create(newUser)
         })
 
         // generate a jwt token & create a log entry of user entry
-        .then(async (user) => {
+        .then(async (user) => {      
           const token = jwt.sign(user.toJSON(), process.env.JWT_KEY, {
             expiresIn: "1d",
           });

@@ -18,6 +18,12 @@ const userController = new UserController()
 const routes = express.Router()
 
 /**
+ * GET - Get's current user's profile
+ * @var { headers: { authorization } }
+ */
+routes.get('/', userController.get)
+
+/**
  * PUT - Edits the current user's profile
  * @var { headers: { authorization }, body: { user } }
  */
@@ -35,7 +41,11 @@ routes.post( '/profile-picture', upload.single('profile_picture'), userControlle
  * POST - Assigns a random task to the user
  * @var { headers: { authorization }, body: { card_theme } }
  */
-routes.post('/assign-task', userController.assignRandomTask)
+routes.post('/assign-card', userController.assignRandomCard)
+
+routes.get('/team', userController.getTeam)
+
+routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload)
 
 /*  ===================
  *  -- EXPORT ROUTES --

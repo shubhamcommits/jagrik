@@ -24,6 +24,43 @@ const TeamSchema = new Schema({
     type: Date,
     default: moment().format(),
   },
+  tasks: [
+    new Schema({
+      _task: {
+        type: Schema.Types.ObjectId,
+        ref: 'Task',
+      },
+      _card: {
+        type: Schema.Types.ObjectId,
+        ref: 'Card',
+      },
+      week: {
+        type: Number,
+        required: true
+      },
+      status: {
+        type: Schema.Types.String,
+        default: 'to do',
+        enum: ['to do', 'in progress', 'waiting for score', 'completed'],
+        required: true
+      },
+      due_date: {
+        type: Schema.Types.Date,
+        default: moment().format(),
+        required: true
+      },
+      supporting_doc: {
+        type: String,
+        data: Buffer,
+      },
+      experience_description: {
+        type: String
+      },
+      submitted_by: {
+        type: String
+      }
+    })
+  ]
 });
 
 const Team = mongoose.model("Team", TeamSchema);

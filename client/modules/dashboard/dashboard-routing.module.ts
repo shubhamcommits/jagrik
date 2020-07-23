@@ -10,6 +10,7 @@ import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda
 import { ClassMembersComponent } from './dashboard/dashboard-classes/class-members/class-members.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { TeamComponent } from './dashboard/team/team.component';
+import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
         path: '', component: DashboardHeaderComponent, children: [
 
           { path: 'inbox', component: DashboardInboxComponent },
+          { path: 'tasks', component: TasksBoardComponent },
           { path: 'classes/list', component: DashboardClassesComponent },
           {
             path: 'classes', component: ClassDetailsComponent, children: [

@@ -1,0 +1,166 @@
+<mat-grid-list cols="4" *ngIf="data && userData">
+  <mat-grid-tile>
+    <mat-card [style.background]="'rgb(243, 179, 79)'">
+      <mat-card-header>
+        <mat-card-title> Card</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
+        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
+        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
+        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card [style.background]="'rgb(243, 179, 79)'">
+      <mat-card-header>
+        <mat-card-title>Team Status</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-capitalize"><b>Tasks Status: </b>Dummy Data</p>
+        <p class="text-capitalize"><b>Team Comments: </b>Dummy Data</p>
+        <p class="text-capitalize"><b>ETA: </b>Dummy Data</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card [style.background]="'rgb(243, 179, 79)'">
+      <mat-card-header>
+        <mat-card-title>Leaderboard</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-capitalize"><b>Team Name: </b>Dummy Data</p>
+        <p class="text-capitalize"><b>Maximum Points: </b>Dummy Data</p>
+        <p class="text-capitalize"><b>Dice Number: </b>Dummy Data</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card [style.background]="'rgb(243, 179, 79)'">
+      <mat-card-header>
+        <mat-card-title>Reviews</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quae ex molestias cum ducimus, aut
+          quidem molestiae voluptatibus eos perferendis obcaecati!
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+<!-- <div class="row justify-content-center"
+  style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
+  <p style="color: white;"><b>Community Tasks</b></p>
+</div><br> -->
+<div class="table-responsive">
+  <table class="table table-hover" *ngIf="data">
+    <caption>Community Tasks</caption>
+
+    <thead>
+      <tr>
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Points</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of this.data.tasks; let index = index">
+        <!-- <th  *ngIf="task.category == 'community'" scope="row">{{ index + 1 }}</th> -->
+        <td *ngIf="task.category == 'community'">{{ task?.title }}</td>
+        <td *ngIf="task.category == 'community'">{{ task?.description }}</td>
+        <td *ngIf="task.category == 'community'">{{ task?.points }}</td>
+        <!-- <td *ngIf="task.category == 'self'">No Points for Self Task</td> -->
+        <td *ngIf="task.category == 'community'" class="text-capitalize">{{ task?.type }}</td>
+        <td *ngIf="task.category == 'community'" class="text-capitalize">
+          <button class="btn btn-sm btn-danger text-capitalize" #tooltip="matTooltip"
+            matTooltip="Select this as your primary team task for this week" [matTooltipPosition]="position.value"
+            *ngIf="task.category == 'community' && task.assigned == false"
+            (click)="this.unassignOtherCommunityTask(); task.assigned = true"></button>
+
+          <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+            matTooltip="Submit for proof upload as your team task!" (click)="openDialog(task)"
+            [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == true">
+          </button>
+
+          <!-- <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Info about the action" [matTooltipPosition]="position.value"
+                            *ngIf="task.status != 'to do' && task.status != 'done'"></button> -->
+
+          <!-- <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Submit for proof upload as your self task!"
+                                (click)="openDialog(task)"
+                                [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == true">
+                            </button> -->
+          <!-- <button class="btn btn-sm btn-primary text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Select this as your primary self task for this week"
+                                [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == false"
+                                (click)="this.unassignOtherSelfTask(); task.assigned = true">
+                            </button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- <div class="row justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px;">
+  <p style="color: white;"><b>Self Tasks</b></p>
+</div> -->
+<div class="table-responsive">
+  <table class="table table-hover" *ngIf="data">
+    <caption>Self Tasks</caption>
+    <thead>
+      <tr>
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of this.data.tasks; let i = index">
+        <!-- <th  *ngIf="task.category == 'self'" scope="row">{{ i + 1 }}</th> -->
+        <td *ngIf="task.category == 'self'">{{ task?.title }}</td>
+        <td *ngIf="task.category == 'self'">{{ task?.description }}</td>
+        <!-- <td *ngIf="task.category == 'self'">{{ task?.points }}</td> -->
+        <!-- <td *ngIf="task.category == 'self'">No Points for Self Task</td> -->
+        <td *ngIf="task.category == 'self'" class="text-capitalize">{{ task?.type }}</td>
+        <td *ngIf="task.category == 'self'" class="text-capitalize">
+          <!-- <button class="btn btn-sm btn-danger text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Select this as your primary team task for this week"
+                                [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == false"
+                                (click)="this.unassignOtherCommunityTask(); task.assigned = true"></button> -->
+
+          <!-- <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Submit for proof upload as your team task!"
+                                (click)="openDialog(task)"
+                                [matTooltipPosition]="position.value" *ngIf="task.category == 'community' && task.assigned == true">
+                            </button> -->
+
+          <!-- <button class="btn btn-sm btn-warning text-capitalize" #tooltip="matTooltip"
+                                matTooltip="Info about the action" [matTooltipPosition]="position.value"
+                            *ngIf="task.status != 'to do' && task.status != 'done'"></button> -->
+
+          <button class="btn btn-sm btn-success text-capitalize" #tooltip="matTooltip"
+            matTooltip="Submit for proof upload as your self task!" (click)="openDialog(task)"
+            [matTooltipPosition]="position.value" *ngIf="task.category == 'self' && task.assigned == true">
+          </button>
+          <button class="btn btn-sm btn-primary text-capitalize" #tooltip="matTooltip"
+            matTooltip="Select this as your primary self task for this week" [matTooltipPosition]="position.value"
+            *ngIf="task.category == 'self' && task.assigned == false"
+            (click)="this.unassignOtherSelfTask(); task.assigned = true">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

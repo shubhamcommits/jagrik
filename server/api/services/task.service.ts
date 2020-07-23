@@ -1,5 +1,6 @@
 import { Card, Task } from '../models'
 import { Readable } from 'stream'
+import { cards } from '../utils/data'
 
 export class TaskService {
 
@@ -20,6 +21,9 @@ export class TaskService {
                 // Split the term into 3 different objects
                 task._card = task.card.split(" ")
 
+                // Set the category of tasks
+                task.category = (task.title.split("-")[1] == 'Com') ? 'community': 'self'
+
                 // Find the card on the basis of the theme and dice_number
                 let card: any = await Card.findOne({
                     theme: task._card[0] + " " + task._card[1],
@@ -36,6 +40,29 @@ export class TaskService {
             // Resolve promise with success
             resolve('Tasks created!')
         })
+    }
+
+    /**
+     * This function fetches all the tasks related to a particular cardId
+     * @param cardId 
+     */
+    async getTasks(cardId: any){
+        try{
+
+            let card = await Card.findById(cardId)
+
+            let tasks = await Task.find({
+                _card: cardId
+            })
+
+            return {
+                card: card,
+                tasks: tasks
+            }
+            
+        } catch(err){
+            throw new Error(err)
+        }
     }
 
 }

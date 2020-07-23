@@ -19,6 +19,7 @@ const options = {
   useFindAndModify: false,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  autoIndex: true
 }
 
 // Connect mongoose to db
