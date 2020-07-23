@@ -433,22 +433,24 @@ export class ClassService {
       // let class_members: any = await User.find(classes: )
 
       // finding class_creator id from class table
-     let user_class: any = await Class.findById({_id: classId}).populate(
-       "members",
-       "first_name last_name teams"
-     )
-
+      let user_class: any = await Class.findById({_id: classId})
+    //  let user_class: any = await Class.findById({_id: classId}).populate(
+    //    "members",
+    //    "first_name last_name teams"
+    //  )
+    
      let result=[];
      for(let i in user_class.members){
-    
-       let member:any = await User.findById({_id: user_class.members[i]._id});
+  
+       let member:any = await User.findById({_id: user_class.members[i]});
        if(member.role=='facilitator'){
          continue;
        }
-
+       
        if(member.teams.length!=0){
          let member_team:any = await Team.findById({_id: member.teams[member.teams.length-1]._id})
          let member_class={
+          user_id: member._id,
           first_name: member.first_name,
           last_name: member.last_name,
           team_name: member_team.team_name
@@ -456,13 +458,13 @@ export class ClassService {
         result.push(member_class);
        }else{
         let member_class={
+          user_id: member._id,
           first_name: member.first_name,
           last_name: member.last_name,
           team_name: 'No Team'
         }
         result.push(member_class);
        }
-
      }
 
      return result;
