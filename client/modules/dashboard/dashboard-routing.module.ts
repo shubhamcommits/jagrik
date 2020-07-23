@@ -11,33 +11,35 @@ import { ClassMembersComponent } from './dashboard/dashboard-classes/class-membe
 import { UserComponent } from './dashboard/user/user.component';
 import { TeamComponent } from './dashboard/team/team.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
-
+import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent, children: [
-
+    path: '',
+    component: DashboardComponent,
+    children: [
       {
-        path: '', component: DashboardHeaderComponent, children: [
-
+        path: '',
+        component: DashboardHeaderComponent,
+        children: [
           { path: 'inbox', component: DashboardInboxComponent },
           { path: 'tasks', component: TasksBoardComponent },
+          { path: 'resource-list', component: ResourcePageComponent },
           { path: 'classes/list', component: DashboardClassesComponent },
           {
-            path: 'classes', component: ClassDetailsComponent, children: [
-
+            path: 'classes',
+            component: ClassDetailsComponent,
+            children: [
               { path: 'agenda', component: ClassAgendaComponent },
               { path: 'members', component: ClassMembersComponent },
               { path: 'invite', component: InviteStudentsComponent },
-
-            ]
+            ],
           },
           { path: 'team', component: TeamComponent },
           { path: 'user', component: UserComponent },
-        ]
-      }
-
-    ]
-  }
+        ],
+      },
+    ],
+  },
 ];
 
 @NgModule({

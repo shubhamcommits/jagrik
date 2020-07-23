@@ -69,7 +69,8 @@ import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitato
 import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
-
+import { AddModalComponent } from './dashboard/resource-page/add-modal/app-add-modal.component';
+import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,9 @@ import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitato
     FacilitatorViewComponent,
     TaskViewComponent,
     TasksBoardComponent,
-    TaskDetailModalComponent
+    TaskDetailModalComponent,
+    ResourcePageComponent,
+    AddModalComponent,
   ],
   imports: [
     CommonModule,
@@ -141,7 +144,7 @@ import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitato
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
   ],
 })
 export class DashboardModule {}

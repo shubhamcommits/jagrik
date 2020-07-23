@@ -13,6 +13,7 @@ import { TaskDetailModalComponent } from './task-detail-modal/task-detail-modal.
       :host {
         display: inline-block;
         width: 100%;
+        text-align: center;
       }
     `,
   ],
