@@ -40,6 +40,12 @@ const ClassSchema = new Schema({
     type: String,
     default: null,
   },
+  files: [
+    {
+      type: String,
+      data: Buffer,
+    },
+  ],
 });
 
 const Class = mongoose.model("Class", ClassSchema);
