@@ -56,7 +56,7 @@ export class ClassService {
   }
 
   //file upload function
-  async classFileUpload(file_data: Buffer, classId: String, token: any) {
+  async classFileUpload(file_obj: any, classId: String, token: any) {
     try {
       //verify token and decode user data
       let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -67,7 +67,16 @@ export class ClassService {
         await Class.findByIdAndUpdate(
           { _id: classId },
           //save image to user obj in db
-          { $addToSet: { files: file_data } },
+          {
+            $addToSet: {
+              files: {
+                _title: file_obj["title"],
+                _description: file_obj["description"],
+                _img: file_obj["img"],
+                _upload_file: file_obj["upload_file"],
+              },
+            },
+          },
           { new: true }
         ).catch((err) => {
           throw new Error(err);
@@ -77,6 +86,7 @@ export class ClassService {
       }
     } catch (err) {
       // Catch unexpected errors
+      console.log("err: ", err);
       throw new Error(err);
     }
   }

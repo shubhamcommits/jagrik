@@ -41,10 +41,22 @@ const ClassSchema = new Schema({
     default: null,
   },
   files: [
-    {
-      type: String,
-      data: Buffer,
-    },
+    new Schema({
+      _title: {
+        type: String,
+      },
+      _description: {
+        type: String,
+      },
+      _img: {
+        type: String,
+        data: Buffer,
+      },
+      _upload_file: {
+        type: String,
+        data: Buffer,
+      },
+    }),
   ],
 });
 
