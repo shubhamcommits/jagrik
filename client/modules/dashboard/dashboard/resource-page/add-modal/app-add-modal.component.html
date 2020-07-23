@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add New Resource</h1>
+<mat-dialog-content class="mat-typography">
+<div class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" value="">
+    </mat-form-field>
+    <mat-form-field [formGroup]="inputForm" class="example-full-width">
+      <ngx-mat-file-input #removableInput1 formControlName="removablefile" placeholder="Attach your supporting file">
+      </ngx-mat-file-input>
+      <button mat-icon-button matSuffix *ngIf="!removableInput1.empty" (click)="removableInput1.clear($event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  <mat-form-field [formGroup]="inputForm" class="example-full-width">
+    <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file">
+    </ngx-mat-file-input>
+    <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Verify</button>
+</mat-dialog-actions>
