@@ -86,11 +86,27 @@ export class ClassService {
    */
   getCompletedTaskTeam(classId: any) {
     return this.httpClient
-      .get(environment.baseApiUrl + '/classes//get-completed-team-tasks', {
+      .get(environment.baseApiUrl + '/classes/get-completed-team-tasks', {
         params: {
           classId: classId,
         },
       })
+      .toPromise();
+  }
+
+  /**
+ * This function is responsible for add new resource
+ * @object data
+ */
+  addNewResource(image: File, upload_file: File, description: any, title: any, classId: any) {
+    let formData: FormData = new FormData();
+    formData.append('upload_file', upload_file);
+    formData.append('image', image);
+    formData.append('description', description);
+    formData.append('title', title);
+    formData.append('classId', classId);
+    return this.httpClient
+      .post(environment.baseApiUrl + '/classes/class-file-upload', formData)
       .toPromise();
   }
 }

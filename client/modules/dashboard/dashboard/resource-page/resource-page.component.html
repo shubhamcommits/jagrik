@@ -8,51 +8,15 @@
        </div>
      </section>
    </div>
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/286x180.png?text=Jagrik" alt="Card image cap">
+  <div class="col-md-3" *ngFor="let item of resourceData">
+    <div class="card" >
+      <img class="card-img-top img-fluid" src="data:image/png;base64,{{item._img}}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <a href="#" class="card-link btn btn-primary btn-sm">View</a>
-          <a href="#" class="card-link btn-sm  btn btn-primary pull-right">Download</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/286x180.png?text=Jagrik" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a href="#" class="card-link btn btn-primary btn-sm">View</a>
-        <a href="#" class="card-link btn-sm  btn btn-primary pull-right">Download</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/286x180.png?text=Jagrik" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a href="#" class="card-link btn btn-primary btn-sm">View</a>
-        <a href="#" class="card-link btn-sm  btn btn-primary pull-right">Download</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://via.placeholder.com/286x180.png?text=Jagrik" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a href="#" class="card-link btn btn-primary btn-sm">View</a>
-        <a href="#" class="card-link btn-sm  btn btn-primary pull-right">Download</a>
+        <h5 class="card-title">{{item._title}}</h5>
+        <p class="card-text">{{item._description}}</p>
+          <a href="data:image/png;base64,{{item._upload_file}}" target="_blank" class="card-link btn btn-primary btn-sm">View</a>
+          <a href="data:image/png;base64,{{item._upload_file}}"
+            class="card-link btn-sm btn btn-primary pull-right" download="{{item._title}}.png" download>Download</a>
       </div>
     </div>
   </div>

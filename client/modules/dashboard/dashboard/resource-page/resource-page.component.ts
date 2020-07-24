@@ -38,6 +38,7 @@ export class ResourcePageComponent implements OnInit {
   dataSource: ResourceElement[] = [];
   userRole = '';
   className = '';
+  resourceData: any = [];
 
   constructor(
     private teamService: TeamService,
@@ -47,18 +48,41 @@ export class ResourcePageComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+
   ngOnInit(): void {
     this.userRole = this.storageService.getLocalData('userData').role;
+    this.getResourceFile()
   }
 
   openDialog(team: any) {
     let dialogRef = this.dialog.open(AddModalComponent, {
-      data: {
-        team,
-      },
       autoFocus: false,
       maxHeight: '90vh',
       maxWidth: '60vw',
+    });
+
+    dialogRef.componentInstance.getResonseData.subscribe(($e) => {
+      dialogRef.close()
+      this.getResourceFile()
+    });
+  }
+
+  getResourceFile() {
+    return new Promise((resolve) => {
+      // Create class service instance
+
+      // Fetch class details
+      this.classService
+        .getClassDetails(this.storageService.getLocalData('userData').classes[0])
+        .then((res) => {
+          this.resourceData = res['class']['files']
+        })
+        .catch(() => {
+          this.utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
     });
   }
 }
