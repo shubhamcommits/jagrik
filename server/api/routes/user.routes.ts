@@ -50,7 +50,6 @@ routes.post(
   upload.single('supporting_doc'),
   userController.taskSupportingDocUpload
 );
-routes.post( '/profile-picture', upload.single('supporting_doc'), userController.taskSupportingDocUpload);
 
 /*  ===================
  *  -- EXPORT ROUTES --
