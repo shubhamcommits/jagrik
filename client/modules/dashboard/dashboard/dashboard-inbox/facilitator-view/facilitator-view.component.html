@@ -1,4 +1,22 @@
-<h3 class="d-flex justify-content-center">Since you monitor everything.</h3>
-<img class="d-flex justify-content-center" src="assets/undraw_financial_data.svg">
-<span class="d-flex justify-content-center">Please create the teams if not done and wait for the students to submit the
+<h3 *ngIf="!is_completedTask" class="d-flex justify-content-center">Since you monitor everything.</h3>
+<img *ngIf="!is_completedTask"  src="assets/undraw_financial_data.svg">
+<span *ngIf="!is_completedTask" class="d-flex justify-content-center">Please create the teams if not done and wait for
+  the students to submit the
     tasks for you to evaluate!</span>
+
+<div *ngIf="is_completedTask" class="row" >
+
+  <div class="col-md-12">
+    <h2 class="justify-content-center text-uppercase">Task Verification</h2>
+    <h3 class="justify-content-center text-uppercase">Verification Request</h3>
+  </div>
+  <div class="col-md-3" *ngFor="let item of dataSource">
+    <div class="card text-left">
+      <div class="card-body">
+        <h4 class="card-title">{{item.team_name}} <span class="pull-right">10 Point</span></h4>
+        <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
+        <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View All</button>
+      </div>
+    </div>
+  </div>
+</div>

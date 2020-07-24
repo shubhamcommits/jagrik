@@ -8,7 +8,16 @@ const ClassSchema = new Schema({
   class_creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    default: null,
+  },
+  class_creator_is_student:{
+    type: Boolean,
+    default: false,
+  },
+  class_creator_student:{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: null,
   },
   name: {
     type: Schema.Types.String,
@@ -36,6 +45,28 @@ const ClassSchema = new Schema({
     type: String,
     default: () => nanoid(6),
   },
+  session_id: {
+    type: String,
+    default: null,
+  },
+  files: [
+    new Schema({
+      _title: {
+        type: String,
+      },
+      _description: {
+        type: String,
+      },
+      _img: {
+        type: String,
+        data: Buffer,
+      },
+      _upload_file: {
+        type: String,
+        data: Buffer,
+      },
+    }),
+  ],
 });
 
 const Class = mongoose.model("Class", ClassSchema);

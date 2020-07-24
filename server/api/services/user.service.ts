@@ -1,4 +1,4 @@
-import { User, Card, Task, Team } from "../models";
+import { User, Card, Task, Team, Class } from "../models";
 import jwt from "jsonwebtoken";
 
 export class UserService {
@@ -51,12 +51,12 @@ export class UserService {
         }
     }
 
-    async profilePictureUpdate(img_data: Buffer, token: any) {
+    async profilePictureUpdate(img_data: String, token: any) {
         try {
             console.log("token: ", token);
             //verify token and decode user data
-            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
-
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
             //find user in db
             await User.findByIdAndUpdate(
                 { _id: user._id },
@@ -74,32 +74,66 @@ export class UserService {
         }
     }
 
-    async taskSupportingDocUpload(img_data: Buffer, token: any, taskId: String, experience_description: String, teamId: String) {
+    async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String) {
         try {
-            console.log("token: ", token);
             //verify token and decode user data
-            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
 
-            let taskSelected: any = await Task.find({ _id: taskId });
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
 
-            let taskCategory = taskSelected.category
+            let taskSelected: any = await Task.findOne({ _id: taskId });            
 
-            if (taskCategory == 'Individual') {
+            let taskCategory = taskSelected.category;
+
+            let updated_tasks=[];
+            
+            if (taskCategory == 'self') {
                 //find user in db
-                await User.updateOne(
-                    { _id: user._id, "tasks._task": taskId },
-                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.status": 'completed' } },
-                ).catch((err) => {
-                    throw new Error(err);
-                });
+                console.log("self",user.tasks);
+
+                for(let i in user.tasks){
+                    
+                    console.log(user.tasks[i]._card);
+                    console.log(taskSelected._card);
+
+                    if(JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
+                        user.tasks[i]._task = taskId;
+                        user.tasks[i].supporting_doc = img_data;
+                        user.tasks[i].status = 'complete';
+                        console.log("Matched");
+                    }
+                    updated_tasks.push(user.tasks[i]);  
+                }
+
+                if(updated_tasks.length!=0){
+                    await User.findByIdAndUpdate(
+                        { _id: user._id },
+                        { tasks: updated_tasks },
+                    ).catch((err) => {
+                        throw new Error(err);
+                    });     
+                }
                 // https://docs.mongodb.com/manual/reference/operator/update/positional/
             } else {
-                await Team.updateOne(
-                    { _id: teamId, "tasks._task": taskId },
-                    { $set: { "tasks.$.supporting_doc": img_data, "tasks.$.experience_description": experience_description, "tasks.$.submitted_by": user.first_name, "tasks.$.status": 'completed' } },
-                ).catch((err) => {
-                    throw new Error(err);
-                });
+                let team:any = await Team.findById({_id: teamId});                
+                
+                for(let i in team.tasks){
+
+                    if(JSON.stringify(team.tasks[i]._card) === JSON.stringify(taskSelected._card)){
+                        team.tasks[i]._task = taskId;
+                        team.tasks[i].supporting_doc = img_data;
+                        team.tasks[i].status = 'complete';
+                    }
+                    updated_tasks.push(team.tasks[i]);  
+                }
+                if(updated_tasks.length!=0){
+                    await Team.findByIdAndUpdate(
+                        { _id: teamId},
+                        { tasks: updated_tasks},
+                    ).catch((err) => {
+                        throw new Error(err);
+                    });
+                }
             }
             return "Doc Uploaded!";
         } catch (err) {
@@ -176,5 +210,4 @@ export class UserService {
         }
 
     }
-
 }

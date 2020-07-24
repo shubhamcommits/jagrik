@@ -7,7 +7,7 @@
 
 </div>
 
- 
+
 <mat-form-field [formGroup]="inputForm">
     <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file"></ngx-mat-file-input>
     <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">

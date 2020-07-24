@@ -33,13 +33,13 @@ const UserSchema = new Schema({
   profile_pic: {
     type: String,
     data: Buffer,
-    default: "default_user.png",
+    default: 'default_user.png',
   },
   role: {
     type: String,
     required: true,
-    default: "student",
-    enum: ["super-admin", "facilitator", "student"],
+    default: 'student',
+    enum: ['super-admin', 'facilitator', 'student'],
   },
   phone_number: {
     type: String,
@@ -50,6 +50,10 @@ const UserSchema = new Schema({
     default: null,
   },
   bio: {
+    type: String,
+    default: null,
+  },
+  hobbies: {
     type: String,
     default: null,
   },
@@ -92,8 +96,8 @@ const UserSchema = new Schema({
   caste_category: {
     type: String,
     required: true,
-    default: "general",
-    enum: ["scheduled-caste", "scheduled-tribe", "obc", "general"],
+    default: 'general',
+    enum: ['scheduled-caste', 'scheduled-tribe', 'obc', 'general'],
   },
   religion: {
     type: String,
@@ -112,14 +116,14 @@ const UserSchema = new Schema({
   classes: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Class",
+      ref: 'Class',
       default: null,
     },
   ],
   teams: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Team",
+      ref: 'Team',
       default: null,
     },
   ],
@@ -135,18 +139,18 @@ const UserSchema = new Schema({
       },
       week: {
         type: Number,
-        required: true
+        required: true,
       },
       status: {
         type: Schema.Types.String,
         default: 'to do',
         enum: ['to do', 'in progress', 'waiting for score', 'completed'],
-        required: true
+        required: true,
       },
       due_date: {
         type: Schema.Types.Date,
         default: moment().format(),
-        required: true
+        required: true,
       },
       supporting_doc: {
         type: String,
@@ -155,9 +159,9 @@ const UserSchema = new Schema({
       experience_description: {
         type: String,
       },
-    })
-  ]
-})
+    }),
+  ],
+});
 
 const User = mongoose.model("User", UserSchema);
 

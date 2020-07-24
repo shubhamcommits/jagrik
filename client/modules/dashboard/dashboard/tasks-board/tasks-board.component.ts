@@ -5,7 +5,15 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 @Component({
   selector: 'app-tasks-board',
   templateUrl: './tasks-board.component.html',
-  styleUrls: ['./tasks-board.component.scss']
+  styleUrls: ['./tasks-board.component.scss'],
+  styles: [
+    `
+      :host {
+        display: inline-block;
+        width: 100%;
+      }
+    `,
+  ],
 })
 export class TasksBoardComponent implements OnInit {
 
@@ -25,7 +33,7 @@ export class TasksBoardComponent implements OnInit {
 
   async ngOnInit() {
     this.userData = await this.getUserData()
-    
+
     if(this.userData.tasks.length > 0)
       this.card._id = this.userData.tasks[this.userData.tasks.length-1]._card
   }
@@ -35,6 +43,7 @@ export class TasksBoardComponent implements OnInit {
     this.card._id = card._id
     this.showAssignTask = false
     console.log(this.card)
+    this.getUserData()
   }
 
   getUserData() {

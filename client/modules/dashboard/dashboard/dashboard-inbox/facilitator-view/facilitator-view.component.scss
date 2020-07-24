@@ -1,1 +1,14 @@
-@import "modules/dashboard/dashboard/dashboard-inbox/no-team/no-team.component.scss"
+// @import "modules/dashboard/dashboard/dashboard-inbox/no-team/no-team.component.scss";
+.row{
+  padding: 0px 15px;
+}
+.pull-right{
+  float: right;
+  font: 400 15px/24px Roboto,
+  "Helvetica Neue",
+  sans-serif;
+  letter-spacing: normal;
+}
+.medium-text{
+  font-size: 13px;
+}

@@ -12,7 +12,7 @@ const taskService = new TaskService()
 mongoose.Promise = global.Promise
 
 // Set up mongoose connection
-var dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/jagrik'
+var dbURL = process.env.dbURL || 'mongodb://localhost:27017/jagrik'
 
 const options = {
   useNewUrlParser: true,
