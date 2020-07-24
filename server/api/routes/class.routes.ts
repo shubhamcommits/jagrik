@@ -7,7 +7,7 @@ const upload = multer({
   dest: "../../uploads",
   filename: (req: Request, file: any, cb: any) => {
     const ext = file.mimetype.split("/")[1];
-    cb(null, `user-${req.headers.authorization}-${Date.now()}.${ext}`);
+    cb(null, `user-${req.headers['authorization']}-${Date.now()}.${ext}`);
   },
 });
 // Auth Controller with all the functions
