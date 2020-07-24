@@ -35,6 +35,7 @@ export class TeamComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'className', 'team'];
   dataSource: TeamElement[] = [];
   newUser: AssignTeamElement[] = [];
+  teamArray: any = [];
   userRole = '';
   className = '';
 
@@ -90,7 +91,26 @@ export class TeamComponent implements OnInit {
                 className: this.className,
                 team: element['team_name'],
               });
+              if (this.teamArray[element['team_name']] !== undefined) {
+                this.teamArray[element['team_name']].push({
+                  name: `${element['first_name']} ${element['last_name']}`,
+                  position: i++,
+                  className: this.className,
+                  team: element['team_name'],
+                })
+              } else {
+                this.teamArray[element['team_name']] = []
+                this.teamArray[element['team_name']].push({
+                  name: `${element['first_name']} ${element['last_name']}`,
+                  position: i++,
+                  className: this.className,
+                  team: element['team_name'],
+                })
+              }
+
             } else {
+
+
               this.newUser.push({
                 name: `${element['first_name']} ${element['last_name']}`,
                 _id: element['user_id'],
@@ -98,6 +118,9 @@ export class TeamComponent implements OnInit {
               });
             }
           });
+          console.log('====================================');
+          console.log(this.teamArray);
+          console.log('====================================');
         }
       })
       .catch(() => {
