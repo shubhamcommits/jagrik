@@ -3,6 +3,11 @@ import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
 const sgMail = require("@sendgrid/mail");
+const VIDEO_API_KEY = process.env.VIDEO_API_KEY || "46824144";
+const VIDEO_API_SECRET =
+  process.env.VIDEO_API_SECRET || "464d6e05c895d1c5d04d08f9c8be19ee32c1d480";
+// var OpenTok = require("opentok"),
+//   opentok = new OpenTok(VIDEO_API_KEY, VIDEO_API_SECRET);
 
 // Set the Key from the environment
 sgMail.setApiKey(
@@ -89,6 +94,42 @@ export class ClassService {
       }
     } catch (err) {
       // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  //file upload function
+  async classFileUpload(file_obj: any, classId: String, token: any) {
+    try {
+      //verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      // check if the user has the correct permissions to create a class
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        //find user in db
+        await Class.findByIdAndUpdate(
+          { _id: classId },
+          //save image to user obj in db
+          {
+            $addToSet: {
+              files: {
+                _title: file_obj["title"],
+                _description: file_obj["description"],
+                _img: file_obj["img"],
+                _upload_file: file_obj["upload_file"],
+              },
+            },
+          },
+          { new: true }
+        ).catch((err) => {
+          throw new Error(err);
+        });
+
+        return "File Successfully Uploaded!";
+      }
+    } catch (err) {
+      // Catch unexpected errors
+      console.log("err: ", err);
       throw new Error(err);
     }
   }
@@ -185,17 +226,17 @@ export class ClassService {
 
   /**
    * This function is responsible for fetching the classId by class code
-   * @param class_code 
+   * @param class_code
    */
-  async findClassIdByCode(class_code: String){
+  async findClassIdByCode(class_code: String) {
     try {
       // Fetch the class by id
-      let jagrik_class = await Class.findOne({ class_code: class_code })
-      .select('_id')
+      let jagrik_class = await Class.findOne({ class_code: class_code }).select(
+        "_id"
+      );
 
       // Return class
       return jagrik_class._id;
-
     } catch (err) {
       // Catch unexpected errors
       throw new Error(err);
@@ -212,9 +253,11 @@ export class ClassService {
       // check if the user has the correct permissions to join a class
       await Class.findById({ _id: classId })
         .then((jagrik_class) => {
-          
           // Disabling this as we have to allow the users to join the class via a code as well(which is public)
-          if (!jagrik_class["invited_members"].includes(user.email) && !isClassCodeInvite) {
+          if (
+            !jagrik_class["invited_members"].includes(user.email) &&
+            !isClassCodeInvite
+          ) {
             throw new Error("Email not registered with this class");
           }
           return;
@@ -324,94 +367,97 @@ export class ClassService {
     }
   }
 
-  async createTeam(token: any, classId: String, userId:String) {
+  async createTeam(token: any, classId: String, userId: String) {
     try {
-      
       // verify token and decode user data
       let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
       let user:any = await User.findById({_id: userVerify._id});
       // check if the user has the correct permissions to create a team
       if (user.role === "facilitator" || user.role === "super-admin") {
         // check if class exists
-        let class_exist: any = await Class.findById({ _id: classId })
-        
-        if(class_exist){
+        let class_exist: any = await Class.findById({ _id: classId });
+
+        if (class_exist) {
           let class_users_length = class_exist.members.length;
-          let get_all_teams: any = await Team.find({team_creator: user._id})
-          console.log("The team count is: ",get_all_teams.length);
-          if(get_all_teams.length==0){
-            let team_name = 'Team1';
+          let get_all_teams: any = await Team.find({ team_creator: user._id });
+          console.log("The team count is: ", get_all_teams.length);
+          if (get_all_teams.length == 0) {
+            let team_name = "Team1";
             let jagrik_class_team = await Team.create({
-                  team_creator: user._id,
-                  team_name: team_name,
-                  team_members: userId
-                });
-                if(jagrik_class_team){
-                  await User.findByIdAndUpdate(
-                      { _id: userId },
-                      { teams: jagrik_class_team._id },
-                      { new: true }
-                    );
-                }else{
-                  throw new Error("401 - Team not created");        
-                }
-          }else{
-            if(2*get_all_teams.length+1==class_users_length){
+              team_creator: user._id,
+              team_name: team_name,
+              team_members: userId,
+            });
+            if (jagrik_class_team) {
+              await User.findByIdAndUpdate(
+                { _id: userId },
+                { teams: jagrik_class_team._id },
+                { new: true }
+              );
+            } else {
+              throw new Error("401 - Team not created");
+            }
+          } else {
+            if (2 * get_all_teams.length + 1 == class_users_length) {
               // add the user in last team created
               console.log(class_users_length);
               let jagrik_class_team = await Team.findByIdAndUpdate(
-                {_id: get_all_teams[get_all_teams.length-1]._id},
-                {$addToSet: { team_members: userId }},
+                { _id: get_all_teams[get_all_teams.length - 1]._id },
+                { $addToSet: { team_members: userId } },
                 { new: true }
-                )
-                if(jagrik_class_team){
+              );
+              if (jagrik_class_team) {
+                await User.findByIdAndUpdate(
+                  { _id: userId },
+                  { teams: jagrik_class_team._id },
+                  { new: true }
+                );
+              } else {
+                throw new Error("401 - Team not created");
+              }
+            } else {
+              console.log(
+                "The member count is: ",
+                get_all_teams[get_all_teams.length - 1].team_members.length
+              );
+              if (
+                get_all_teams[get_all_teams.length - 1].team_members.length != 2
+              ) {
+                let jagrik_class_team = await Team.findByIdAndUpdate(
+                  { _id: get_all_teams[get_all_teams.length - 1]._id },
+                  { $addToSet: { team_members: userId } },
+                  { new: true }
+                );
+                if (jagrik_class_team) {
                   await User.findByIdAndUpdate(
                     { _id: userId },
                     { teams: jagrik_class_team._id },
                     { new: true }
                   );
-                }else{
-                  throw new Error("401 - Team not created");        
+                } else {
+                  throw new Error("401 - Team not created");
                 }
-            }else{
-              console.log("The member count is: ",get_all_teams[get_all_teams.length-1].team_members.length);
-              if(get_all_teams[get_all_teams.length-1].team_members.length!=2){
-              let jagrik_class_team = await Team.findByIdAndUpdate(
-                {_id: get_all_teams[get_all_teams.length-1]._id},
-                {$addToSet: { team_members: userId }},
-                { new: true }
-                )
-                if(jagrik_class_team){
-                  await User.findByIdAndUpdate(
-                    { _id: userId },
-                    { teams: jagrik_class_team._id },
-                    { new: true }
-                  );
-                }else{
-                  throw new Error("401 - Team not created");        
-                }
-              }else{
-                let team_name = 'Team' + get_all_teams.length + 1;
+              } else {
+                let team_name = "Team" + get_all_teams.length + 1;
                 let jagrik_class_team = await Team.create({
                   team_creator: user._id,
                   team_name: team_name,
-                  team_members: userId
+                  team_members: userId,
                 });
-                if(jagrik_class_team){
+                if (jagrik_class_team) {
                   await User.findByIdAndUpdate(
-                      { _id: userId },
-                      { teams: jagrik_class_team._id },
-                      { new: true }
-                    );
-                }else{
-                  throw new Error("401 - Team not created");        
-                } 
+                    { _id: userId },
+                    { teams: jagrik_class_team._id },
+                    { new: true }
+                  );
+                } else {
+                  throw new Error("401 - Team not created");
+                }
               }
             }
             // console.log("The last team is: ",get_all_teams[get_all_teams.length-1].team_members.length);
           }
-          
-        }else{
+        } else {
           throw new Error("401 - Class Not Found");
         }
         return;
@@ -426,7 +472,6 @@ export class ClassService {
 
   async getTeams(token: any, classId: String) {
     try {
-   
       // verify token and decode user data
       let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
       let user:any = await User.findById({_id: userVerify._id});
@@ -477,29 +522,58 @@ export class ClassService {
 
   async getTeamMembers(token: any, teamId: String) {
     try {
-   
       // verify token and decode user data
       let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
       let user:any = await User.findById({_id: userVerify._id});
       // find the userIds corresponding to the team
-      let team: any = await Team.findById({_id: teamId});
-      let userIds = team.team_members
+      let team: any = await Team.findById({ _id: teamId });
+      let userIds = team.team_members;
       // declare empty team_members array
-      let team_members=[];
+      let team_members = [];
       // loop through userIds to find user details and then push into team_members array
-      
-      for(let i in userIds){
-        let member: any = await User.findById({_id: userIds[i]});
-        let team_mate={
+
+      for (let i in userIds) {
+        let member: any = await User.findById({ _id: userIds[i] });
+        let team_mate = {
           first_name: member.first_name,
           last_name: member.last_name,
-          email: member.email
-        }
-        team_members.push(team_mate)
+          email: member.email,
+        };
+        team_members.push(team_mate);
       }
 
-      return team_members;  
+      console.log(team_members);
 
+      return team_members;
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+  async createSession(token: any, classId: String) {
+    try {
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      if (user.role === "facilitator" || user.role === "super-admin") {
+        // opentok.createSession(function (err, session) {
+        //   if (err) return console.log(err);
+        //   token = session.generateToken();
+        //   // save the sessionId
+        //   Class.findByIdAndUpdate(
+        //     { _id: user._id },
+        //     { session_id: session.sessionId },
+        //     { new: true }
+        //   );
+
+        //   return {
+        //     api_key: VIDEO_API_KEY,
+        //     session_id: session.sessionId,
+        //     token,
+        //   };
+        // });
+      }
     } catch (err) {
       // Catch unexpected errors
       throw new Error(err);
@@ -730,4 +804,33 @@ export class ClassService {
     }
   }
 
+  async joinSession(token: any, classId: String) {
+    try {
+      // verify token and decode user data
+      let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+      let sessionId = await Class.findById({ _id: classId }).then(
+        (jagrik_class) => {
+          //if class exists
+          if (jagrik_class) {
+            //if user a member of the class
+            if (jagrik_class["members"].includes(user)) {
+              return jagrik_class["session_id"];
+            } else {
+              throw new Error("user not in class");
+            }
+          } else {
+            throw new Error("user not in class");
+          }
+        }
+      );
+
+      // token = opentok.generateToken(sessionId);
+
+      return { api_key: VIDEO_API_KEY, sessionId, token };
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
 }
