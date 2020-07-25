@@ -498,6 +498,7 @@ export class ClassService {
           user_id: member._id,
           first_name: member.first_name,
           last_name: member.last_name,
+          user_profile_pic: member.profile_pic,
           team_name: member_team.team_name
         }
         result.push(member_class);
@@ -506,6 +507,7 @@ export class ClassService {
           user_id: member._id,
           first_name: member.first_name,
           last_name: member.last_name,
+          user_profile_pic: member.profile_pic,
           team_name: 'No Team'
         }
         result.push(member_class);
@@ -537,12 +539,11 @@ export class ClassService {
         let team_mate = {
           first_name: member.first_name,
           last_name: member.last_name,
+          user_profile_pic: member.profile_pic,
           email: member.email,
         };
         team_members.push(team_mate);
       }
-
-      console.log(team_members);
 
       return team_members;
     } catch (err) {
