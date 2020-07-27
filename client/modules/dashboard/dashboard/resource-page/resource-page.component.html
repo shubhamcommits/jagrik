@@ -1,22 +1,26 @@
 <div class="row" >
-   <div class="col-md-12 text-right" *ngIf="userRole !== 'student'">
+   <div class="col-md-12" *ngIf="userRole !== 'student'">
      <section>
        <div class="jk-button-row pb-4">
-
-         <button mat-raised-button color="primary" (click)="openDialog('new')">Add New Resource</button>
+         <button mat-raised-button color="primary" class="pink-bg" (click)="openDialog('new')">
+           <mat-icon mat-list-icon>add</mat-icon> Add Resource
+         </button>
 
        </div>
      </section>
    </div>
-  <div class="col-md-3" *ngFor="let item of resourceData">
+  <div class="col-md-3 res-page" *ngFor="let item of resourceData">
     <div class="card" >
       <img class="card-img-top img-fluid" src="data:image/png;base64,{{item._img}}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">{{item._title}}</h5>
-        <p class="card-text">{{item._description}}</p>
-          <a href="data:image/png;base64,{{item._upload_file}}" target="_blank" class="card-link btn btn-primary btn-sm">View</a>
-          <a href="data:image/png;base64,{{item._upload_file}}"
-            class="card-link btn-sm btn btn-primary pull-right" download="{{item._title}}.png" download>Download</a>
+        <h4 class="card-title text-capitalize">{{item._title}}<a href="data:image/png;base64,{{item._upload_file}}"
+            mat-icon-button class="pull-right" download="{{item._title}}.png" download>
+            <mat-icon>save_alt</mat-icon>
+          </a></h4>
+        <p class="card-text text-muted">{{item._description}}</p>
+          <a href="data:image/png;base64,{{item._upload_file}}" target="_blank"
+            mat-raised-button color="primary" class="pink-bg">View</a>
+
       </div>
     </div>
   </div>

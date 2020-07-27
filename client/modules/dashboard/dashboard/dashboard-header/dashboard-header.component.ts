@@ -16,9 +16,18 @@ export class DashboardHeaderComponent implements OnInit {
   isExpanded = true;
   showSubmenu: boolean = false;
   isShowing = false;
+  userRole = '';
   showSubSubMenu: boolean = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Storage Service instance
+    let storageService = this._Injector.get(StorageService);
+
+    // Fetch the user role
+    this.userRole = storageService.getLocalData('userData').role;
+    console.log(this.userRole);
+
+  }
 
   navigateToUserProfile() {
     // Storage Service instance

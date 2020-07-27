@@ -29,6 +29,10 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Resources</span>
           <mat-icon mat-list-icon>import_contacts</mat-icon>
         </mat-list-item>
+         <mat-list-item *ngIf="userRole == 'facilitator'" class="parent" [routerLink]="['/dashboard', 'announcement']">
+           <span class="full-width" *ngIf="isExpanded || isShowing">Announcement</span>
+          <mat-icon mat-list-icon>notifications</mat-icon>
+         </mat-list-item>
         <mat-list-item class="parent" (click)="signOut()" style="position: absolute;bottom: 10px;">
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
           <mat-icon mat-list-icon>settings_power</mat-icon>

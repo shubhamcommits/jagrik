@@ -71,7 +71,8 @@ import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.compone
 import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
 import { AddModalComponent } from './dashboard/resource-page/add-modal/app-add-modal.component';
 import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
-
+import { AnnouncementComponent } from '../dashboard/dashboard/announcement/announcement.component';
+import { AddAnnouncementModalComponent } from '../dashboard/dashboard/announcement/add-announcement-modal/add-announcement-modal.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -96,6 +97,8 @@ import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/reso
     TaskDetailModalComponent,
     ResourcePageComponent,
     AddModalComponent,
+    AnnouncementComponent,
+    AddAnnouncementModalComponent
   ],
   imports: [
     CommonModule,

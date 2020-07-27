@@ -10,12 +10,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorizationInterceptorService } from 'src/shared/services/authorization-interceptor-service/authorization-interceptor.service';
-
+import { DateAgoPipe } from '../shared/module/date-ago.pipe';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
