@@ -3,6 +3,7 @@ import { classRoutes } from './class.routes';
 import { userRoutes } from './user.routes';
 import { taskRoutes } from './task.routes';
 import { teamRoutes } from './team.routes';
+import { announcementRoutes } from './announcement.routes';
 
 /*  =====================
  *  -- EXPORTS ROUTES --
@@ -23,6 +24,9 @@ export {
   teamRoutes as teamRoutes,
 
   // USER
-  userRoutes as userRoutes
+  userRoutes as userRoutes,
+
+  // ANNOUNCEMENT
+  announcementRoutes as announcementRoutes
 
 }
