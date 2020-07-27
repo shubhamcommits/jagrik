@@ -34,13 +34,14 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId = req.body.classId;
+          let classId:any = req.query.classId;
 
           //call getAnnouncements to announcement service function
           await announcementService.getAnnouncements(authorization, classId)
             .then((response) => {
               return res.status(200).json({
                 message: "Announcement fetched successfully",
+                announcements: response,
               });
             });
         } catch (err) {
