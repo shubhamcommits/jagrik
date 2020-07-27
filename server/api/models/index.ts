@@ -4,6 +4,7 @@ import { Class } from './class.model'
 import { Team } from './team.model'
 import { Task } from './task.model'
 import { User } from './user.model'
+import {Announcement} from './announcement.model'
 
 /*  =====================
  *  -- EXPORTS MODELS --
@@ -20,11 +21,16 @@ export {
   // Class Model
   Class,
 
+  // Team Model
   Team,
+
   // Task Model
   Task,
 
   // User Model
-  User
+  User,
+
+  // Announcement Model
+  Announcement
 
 }

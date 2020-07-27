@@ -4,7 +4,7 @@ import { ClassService } from './class.service'
 import { TaskService } from './task.service'
 import { UserService } from './user.service'
 import { TeamService } from './team.service'
-
+import { AnnouncementService } from './announcement.service'
 
 
 /*  =======================
@@ -29,6 +29,9 @@ export {
   TeamService as TeamService,
 
   // User Service
-  UserService as UserService
+  UserService as UserService,
+
+  // Announcement Service
+  AnnouncementService as AnnouncementService
 
 }
