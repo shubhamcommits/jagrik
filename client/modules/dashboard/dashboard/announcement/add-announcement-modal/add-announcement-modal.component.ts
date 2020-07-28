@@ -24,11 +24,11 @@ export class AddAnnouncementModalComponent implements OnInit {
   ngOnInit(): void {
     this.userData = this.storageService.getLocalData('userData');
     this.inputForm = this.formBuilder.group({
-      title: new FormControl(null, [
+      title: new FormControl(this.data.type == 'edit' ? this.data.detail.title : '', [
         Validators.required,
         Validators.nullValidator,
       ]),
-      description: new FormControl(null, [
+      description: new FormControl(this.data.type == 'edit' ? this.data.detail.description : '', [
         Validators.required,
         Validators.nullValidator,
       ])
@@ -49,7 +49,37 @@ export class AddAnnouncementModalComponent implements OnInit {
             // Fire sucess toast
             this.utilityService.fireToast(
               'success',
-              `Profile updated successfully`
+              `Announcement Added successfully`
+            );
+            this.getResonseData.emit('success');
+          })
+          .catch(() => {
+            // Fire error toast
+            this.utilityService.fireToast(
+              'error',
+              `Some unexpected error occured, please try again!`
+            );
+            this.getResonseData.emit('error');
+          });
+      });
+    }
+  }
+
+  updateAnnouncement() {
+    this.validateAllFormFields(this.inputForm)
+    if (this.inputForm.valid) {
+
+      return new Promise((resolve) => {
+        // Call the service function
+        this.announcementService
+          .updateAnnouncement(this.inputForm.value['description'], this.inputForm.value['title'], this.data.detail.announcement_class, this.data.detail._id)
+          .then((res) => {
+            resolve(res);
+
+            // Fire sucess toast
+            this.utilityService.fireToast(
+              'success',
+              `Announcement updated successfully`
             );
             this.getResonseData.emit('success');
           })

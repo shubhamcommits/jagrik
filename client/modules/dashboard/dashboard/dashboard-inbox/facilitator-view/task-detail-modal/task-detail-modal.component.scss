@@ -15,11 +15,13 @@
 }
 .img-square-wrapper{
   padding: 10px;
-  max-width: 40%;
+  max-width: 35%;
+  min-width: 35%;
   max-height: 178px;
+  text-align: center;
 }
-.img-square-wrapper img{
-  height: 100%;
+.img-square-wrapper img {
+  height: auto;
 }
 .task-level {
   display: inline-block;

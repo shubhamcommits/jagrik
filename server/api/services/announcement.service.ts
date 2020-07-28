@@ -62,11 +62,11 @@ export class AnnouncementService {
            
             if(user.role === "facilitator" || user.role === "super-admin"){
                 // check if user is associated with the classId
-                let class_announcement_edit = await Announcement.update(
-                    {_id: announcementId},
-                    {title: title},
-                    {description: description}
-                    );
+                let class_announcement_edit = await Announcement.findByIdAndUpdate(
+                    { _id: announcementId },
+                    { $set: {title: title, description: description} },
+                    { new: true }
+                )
                 return;
             }else{
                 throw new Error("401 - Access denied");  

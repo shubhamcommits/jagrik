@@ -2,27 +2,34 @@
   <div class="col-md-12" *ngIf="userRole !== 'student'">
     <section>
       <div class="jk-button-row pb-4">
-
-        <button mat-raised-button color="primary" (click)="openDialog()" class="pink-bg">
+        <button mat-raised-button color="primary" (click)="openDialog('', 'new')" class="pink-bg">
           <mat-icon mat-list-icon>add</mat-icon> Add Announcement
         </button>
-
       </div>
     </section>
   </div>
-   <div class="col-md-12" *ngIf="announcementData.length == 0">
-     <section>
-       <h2>No New Announcement found!</h2>
-     </section>
-   </div>
-    <div class="col-md-3" *ngFor="let item of announcementData">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title text-capitalize">{{item.title}}</h4>
-          <p class="card-text text-muted text-capitalize">{{item.description}}</p>
-          <hr>
-          <small class="text-muted">Published: {{item.created_date |  date:'medium'}}</small>
-        </div>
+  <div class="col-md-12" *ngIf="announcementData.length == 0">
+    <section>
+      <h2>No New Announcement found!</h2>
+    </section>
+  </div>
+  <div class="col-md-4" *ngFor="let item of announcementData">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-capitalize">{{item.title}}
+        <button *ngIf="userRole !== 'student'"  mat-icon-button class="pull-right more-icon"
+          [matMenuTriggerFor]="notify">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #notify="matMenu">
+          <button mat-menu-item (click)="openDialog(item, 'edit')">Edit</button>
+          <button mat-menu-item (click)="deleteAnnouncement(item._id)">Delete</button>
+        </mat-menu>
+        </h4>
+        <p class="card-text text-muted text-capitalize">{{item.description}}</p>
+        <hr>
+        <small class="text-muted">Published: {{item.created_date |  date:'medium'}}</small>
       </div>
     </div>
+  </div>
 </div>

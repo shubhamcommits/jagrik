@@ -32,11 +32,15 @@ export class AnnouncementComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.storageService.getLocalData('userData').role;
 
-    this.getAnncouncementList(this.storageService.getLocalData('userData').classes[0])
+    this.getAnncouncementList()
   }
 
-  openDialog() {
+  openDialog(data:any, type: string) {
     let dialogRef = this.dialog.open(AddAnnouncementModalComponent, {
+      data: {
+        detail: data,
+        type: type
+      },
       autoFocus: false,
       maxHeight: '90vh',
       maxWidth: '60vw',
@@ -44,18 +48,41 @@ export class AnnouncementComponent implements OnInit {
 
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       dialogRef.close()
-      this.getAnncouncementList(this.storageService.getLocalData('userData').classes[0])
+      this.getAnncouncementList()
     });
   }
 
-  getAnncouncementList(classId: any) {
+  getAnncouncementList() {
     return new Promise((resolve) => {
 
       // Fetch class details
       this.announcementService
-        .getAnnouncementList(classId)
+        .getAnnouncementList(this.storageService.getLocalData('userData').classes[0])
         .then((res) => {
           this.announcementData = res['announcements']
+        })
+        .catch(() => {
+          // Fire error toast
+          this.utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
+    });
+  }
+
+  deleteAnnouncement(id: any) {
+    return new Promise((resolve) => {
+
+      // Fetch class details
+      this.announcementService
+        .deleteAnnouncement(id)
+        .then((res) => {
+          this.getAnncouncementList()
+          this.utilityService.fireToast(
+            'success',
+            `Announcement deleted successfully`
+          );
         })
         .catch(() => {
           // Fire error toast

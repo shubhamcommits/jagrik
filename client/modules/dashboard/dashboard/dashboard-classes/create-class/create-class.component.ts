@@ -22,8 +22,8 @@ export class CreateClassComponent implements OnInit {
 
   /**
    * This function opens the Swal modal
-   * @param title 
-   * @param imageUrl 
+   * @param title
+   * @param imageUrl
    */
   openModal(title: string) {
     return this.utilityService.getSwalModal({

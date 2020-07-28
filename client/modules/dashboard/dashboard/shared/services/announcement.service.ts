@@ -42,13 +42,14 @@ export class AnnouncementService {
    * This function is responsible for update announcement
    * @object data
    */
-  updateNewAnnouncement(description: any, title: any, classId: any) {
-    let formData: FormData = new FormData();
-    formData.append('description', description);
-    formData.append('title', title);
-    formData.append('classId', classId);
+  updateAnnouncement(description: any, title: any, classId: any, id: any) {
     return this.httpClient
-      .patch(environment.baseApiUrl + '/announcement/edit-announcement', formData)
+      .put(environment.baseApiUrl + '/announcement/edit-announcement', {
+        classId: classId,
+        description: description,
+        title: title,
+        announcementId: id,
+      })
       .toPromise();
   }
 

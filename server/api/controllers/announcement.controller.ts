@@ -79,7 +79,7 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let announcementId = req.body.announcementId;
+          let announcementId:any = req.query.announcementId;
 
           //call editAnnouncement to announcement service function
           await announcementService.deleteAnnouncement(authorization, announcementId)

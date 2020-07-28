@@ -74,3 +74,19 @@ $yellow: #fca311;
   height: 45px;
 }
 
+.pull-right{
+  float: right;
+}
+.noti-p{
+  margin: 0px !important;
+  line-height: 20px !important;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+h4{
+  margin-bottom: 0px !important;
+}
+.menu-btn{
+  border-bottom: 1px solid lightgray !important;
+}

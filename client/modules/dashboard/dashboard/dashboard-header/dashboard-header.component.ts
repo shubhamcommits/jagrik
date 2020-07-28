@@ -3,21 +3,23 @@ import { AuthenticationService } from 'modules/authentication/shared/services/au
 import { StorageService } from 'src/shared/services/storage-service/storage.service'
 import { Router } from '@angular/router'
 import { UtilityService } from 'src/shared/services/utility-service/utility.service'
-
+import { AnnouncementService } from '../shared/services/announcement.service';
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
   styleUrls: ['./dashboard-header.component.scss'],
 })
 export class DashboardHeaderComponent implements OnInit {
-  constructor(private _Injector: Injector, private _Router: Router) {}
+  constructor(private _Injector: Injector, private _Router: Router, private announcementService: AnnouncementService) {}
 
   showFiller = false;
   isExpanded = true;
   showSubmenu: boolean = false;
   isShowing = false;
   userRole = '';
+  userClass = ''
   showSubSubMenu: boolean = false;
+  announcementData: any = [];
 
   ngOnInit(): void {
     // Storage Service instance
@@ -25,7 +27,9 @@ export class DashboardHeaderComponent implements OnInit {
 
     // Fetch the user role
     this.userRole = storageService.getLocalData('userData').role;
-    console.log(this.userRole);
+    if (storageService.getLocalData('userData').classes.length > 0) {
+      this.userClass = storageService.getLocalData('userData').classes[0]
+    }
 
   }
 
@@ -96,5 +100,19 @@ export class DashboardHeaderComponent implements OnInit {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+
+  getAnncouncementList() {
+    return new Promise((resolve) => {
+
+      // Fetch class details
+      this.announcementService
+        .getAnnouncementList(this.userClass)
+        .then((res) => {
+          this.announcementData = res['announcements']
+        })
+        .catch(() => {
+        });
+    });
   }
 }

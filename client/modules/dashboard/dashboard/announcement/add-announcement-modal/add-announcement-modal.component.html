@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add Announcement</h1>
+<h1 mat-dialog-title>{{data.type == 'new' ? 'New' : 'Edit'}} Announcement</h1>
 <mat-dialog-content class="mat-typography">
 <div class="example-form">
   <form [formGroup]="inputForm">
@@ -15,5 +15,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button (click)="addAnnouncement()" cdkFocusInitial>Verify</button>
+  <button mat-button (click)="data.type == 'new' ? addAnnouncement() : updateAnnouncement()"
+    cdkFocusInitial>{{data.type == 'new' ? 'Save' : 'Update'}}</button>
 </mat-dialog-actions>
