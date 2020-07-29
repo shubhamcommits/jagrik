@@ -40,7 +40,7 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId:any = req.query.classId;
+          let classId:any = req.body.classId;
 
           //call getAnnouncements to announcement service function
           await announcementService.getAnnouncements(authorization, classId)
@@ -91,7 +91,7 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let announcementId:any = req.query.announcementId;
+          let announcementId:any = req.body.announcementId;
 
           //call editAnnouncement to announcement service function
           await announcementService.deleteAnnouncement(authorization, announcementId)

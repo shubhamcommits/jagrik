@@ -35,7 +35,7 @@ export class BonusTaskController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId:any = req.query.classId;
+          let classId:any = req.body.classId;
 
           //call getBonusTasks to BonusTask service function
           await bonusTaskService.getBonusTasks(authorization, classId)
@@ -80,13 +80,60 @@ export class BonusTaskController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let bonusTaskId:any = req.query.bonusTaskId;
+          let bonusTaskId:any = req.body.bonusTaskId;
 
           //call deleteBonusTask to BonusTask service function
           await bonusTaskService.deleteBonusTask(authorization, bonusTaskId)
             .then((response) => {
               return res.status(200).json({
                 message: "Bonus Task Deleted successfully",
+              });
+            });
+        } catch (err) {
+          return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || " Internal Server Error"),
+          });
+        }
+      }
+
+      async assignUserBonusTask(req: Request, res: Response, next: NextFunction) {
+        try {
+            //fetch authorization from header of request
+          let authorization = req.headers.authorization;
+          let studentId:any = req.body.studentId;
+
+          //call deleteBonusTask to BonusTask service function
+          await bonusTaskService.assignUserBonusTask(authorization, studentId)
+            .then((response) => {
+              return res.status(200).json({
+                message: "Bonus Task Assigned successfully",
+              });
+            });
+        } catch (err) {
+          return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || " Internal Server Error"),
+          });
+        }
+      }
+
+      async StudentSubmitBonusTask(req: Request, res: Response, next: NextFunction) {
+        try {
+          // Image Data from the request
+          let img_data:any = fs.readFileSync(req['file'].path)
+
+          let img:String = Buffer.from(img_data, 'binary').toString('base64');
+
+            //fetch authorization from header of request
+          let authorization = req.headers.authorization;
+          let bonusTaskId = req.body.bonusTaskId;
+
+          //call deleteBonusTask to BonusTask service function
+          await bonusTaskService.StudentSubmitBonusTask(authorization, bonusTaskId, img)
+            .then((response) => {
+              return res.status(200).json({
+                message: "Bonus Task Submitted successfully",
               });
             });
         } catch (err) {

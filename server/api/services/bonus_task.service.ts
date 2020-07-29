@@ -48,7 +48,8 @@ export class BonusTaskService {
                 for(let i in class_bonus_tasks){
                     let bonus_task_creator:any = User.findById({_id: class_bonus_tasks[i].created_by})
                     let add ={
-                    announcement_classId: class_bonus_tasks[i].announcement_class,
+                    bonus_task_id: class_bonus_tasks[i]._id,
+                    classId: class_bonus_tasks[i].task_class,
                     title: class_bonus_tasks[i].title,
                     description: class_bonus_tasks[i].description,
                     created_on: class_bonus_tasks[i].  created_date,
@@ -113,4 +114,60 @@ export class BonusTaskService {
         }
       }
 
+      async assignUserBonusTask(token: any, studentId: String) {
+        try {
+            //verify token and decode user data
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
+           
+            if(user.role === "facilitator" || user.role === "super-admin"){
+                // check if user is associated with the classId
+                let assign_user_bonus_tasks = await User.findByIdAndUpdate(
+                    {_id: studentId},
+                    {show_bonus_task: true}
+                    );
+                return;
+            }else{
+                throw new Error("401 - Access denied");  
+            }
+    
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+      }
+
+      async StudentSubmitBonusTask(token: any, bonusTaskId: String, supporting_doc:String) {
+        try {
+            //verify token and decode user data
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
+           
+            // check if user has permission to submit bonus tasks
+            let permission = user.show_bonus_task;
+            if(permission){
+                let bonusTask:any = await BonusTask.findById({_id:bonusTaskId});
+                let bonusTaskSubmitted={
+                    bonus_task_title:bonusTask.title,
+                    bonus_task_description: bonusTask.description,
+                    supporting_doc: supporting_doc,
+                    submitted_date: moment().format(),
+                }
+                let user_bonus_tasks = user.bonus_tasks;
+                user_bonus_tasks.push(bonusTaskSubmitted);
+                let update_user_bonus_tasks = await User.findByIdAndUpdate(
+                    {_id: user._id},
+                    { $set: {bonus_tasks: user_bonus_tasks, show_bonus_task: false} },
+                    { new: true }
+                    );
+                return;
+            }else{
+                throw new Error("401 - Access denied"); 
+            } 
+
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+      }
 }

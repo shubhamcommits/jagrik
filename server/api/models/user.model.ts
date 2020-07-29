@@ -107,6 +107,30 @@ const UserSchema = new Schema({
     type: Date,
     default: moment().format(),
   },
+  show_bonus_task: {
+    type: Boolean,
+    default: false
+  },
+  bonus_tasks: [
+    new Schema({
+      bonus_task_title:{
+        type: String,
+        default: null,
+      },
+      bonus_task_description:{
+        type: String,
+        default: null,
+      },
+      supporting_doc: {
+        type: String,
+        data: Buffer,
+      },
+      submitted_date: {
+        type: Date,
+        default: null,
+      }
+    }),
+  ],
   files: [
     {
       type: String,
