@@ -635,18 +635,63 @@ export class ClassService {
                 if(selfTasks[n].status=='complete'){
                   is_any_self_task_complete=true;
                   let IndividualTask:any =  await Task.findById({_id: selfTasks[n]._task})
-                  indTask.push({
-                    user_id: self._id,
-                    user_name: self.full_name,
-                    user_email: self.email,
-                    user_profile: self.profile_pic,
-                    user_taskId: selfTasks[n]._task,
-                    user_task_title: IndividualTask.title,
-                    user_task_description: IndividualTask.description,
-                    user_task_points: IndividualTask.points,
-                    user_task_type: IndividualTask.type,
-                    user_task_supporting_doc: selfTasks[n].supporting_doc
-                  });
+                  
+                  let taskIdAgainstBonusTask = selfTasks[n]._task;
+                  let self_bonus_tasks = self.bonus_tasks;
+                  let bonusTaskStatus;
+                  let bonusTaskSupportingDoc;
+                  let bonus_task_title;
+                  let bonus_task_description;
+                  let bonus_task_submitted_date;
+
+                  if(selfTasks[n].bonus_task){
+                    // check in users bonus task array
+                    for(let btItr in self_bonus_tasks){
+                      if(self_bonus_tasks[btItr].taskIdAgainstBonusTask == taskIdAgainstBonusTask){
+                        bonusTaskStatus = self_bonus_tasks[btItr].status;
+                        bonusTaskSupportingDoc = self_bonus_tasks[btItr].supporting_doc;
+                        bonus_task_title = self_bonus_tasks[btItr].bonus_task_title;
+                        bonus_task_description = self_bonus_tasks[btItr].bonus_task_description;
+                        bonus_task_submitted_date = self_bonus_tasks[btItr].submitted_date;
+                      }
+                    }
+                  }
+                  if(selfTasks[n].bonus_task){
+                    indTask.push({
+                      user_id: self._id,
+                      user_name: self.full_name,
+                      user_email: self.email,
+                      user_profile: self.profile_pic,
+                      user_taskId: selfTasks[n]._task,
+                      user_task_title: IndividualTask.title,
+                      user_task_description: IndividualTask.description,
+                      user_task_points: IndividualTask.points,
+                      user_task_type: IndividualTask.type,
+                      user_task_supporting_doc: selfTasks[n].supporting_doc,
+                      user_task_assigned_bonus_task: selfTasks[n].bonus_task,
+                      user_task_assigned_bonus_task_date: selfTasks[n].bonus_task_assigned_on,
+                      bonusTaskStatus:bonusTaskStatus,
+                      bonusTaskSupportingDoc:bonusTaskSupportingDoc,
+                      bonus_task_title:bonus_task_title,
+                      bonus_task_description:bonus_task_description,
+                      bonus_task_submitted_date:bonus_task_submitted_date
+                    });
+                  }else{
+                    indTask.push({
+                      user_id: self._id,
+                      user_name: self.full_name,
+                      user_email: self.email,
+                      user_profile: self.profile_pic,
+                      user_taskId: selfTasks[n]._task,
+                      user_task_title: IndividualTask.title,
+                      user_task_description: IndividualTask.description,
+                      user_task_points: IndividualTask.points,
+                      user_task_type: IndividualTask.type,
+                      user_task_supporting_doc: selfTasks[n].supporting_doc,
+                      user_task_assigned_bonus_task: selfTasks[n].bonus_task,
+                    });
+                  }
+                  
                   break;
                 }
               }

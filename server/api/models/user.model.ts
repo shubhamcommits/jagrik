@@ -140,7 +140,7 @@ const UserSchema = new Schema({
         default: null
       },
       submitted_date: {
-        type: Date,
+        type: Schema.Types.Date,
         default: null,
       },
       status: {
@@ -198,6 +198,14 @@ const UserSchema = new Schema({
         type: String,
         data: Buffer,
       },
+      bonus_task:{
+        type: Boolean,
+        default: false
+      },
+      bonus_task_assigned_on:{
+        type: Schema.Types.Date,
+        default: null
+      }
     }),
   ],
 });

@@ -122,9 +122,18 @@ export class BonusTaskService {
            
             if(user.role === "facilitator" || user.role === "super-admin"){
                 // check if user is associated with the classId
+                let user_tasks = user.tasks;
+                let updated_user_tasks=[];
+                for(let i in user_tasks){
+                    if(user_tasks[i]._task==taskIdAgainstBonusTask){
+                        user_tasks[i].bonus_task=true;
+                        user_tasks[i].bonus_task_assigned_on = moment().format();
+                    }
+                    updated_user_tasks.push(user_tasks[i]);
+                }
                 let assign_user_bonus_tasks = await User.findByIdAndUpdate(
                     {_id: studentId},
-                    { $set: {taskIdAgainstBonusTask: taskIdAgainstBonusTask, show_bonus_task:true} },
+                    { $set: {taskIdAgainstBonusTask: taskIdAgainstBonusTask, show_bonus_task:true, tasks: updated_user_tasks} },
                     );
                 return;
             }else{
