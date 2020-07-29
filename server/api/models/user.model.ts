@@ -108,6 +108,10 @@ const UserSchema = new Schema({
     default: moment().format(),
   },
   show_bonus_task: {
+    type: Boolean,
+    default: false
+  },
+  taskIdAgainstBonusTask:{
     type: String,
     default: null
   },

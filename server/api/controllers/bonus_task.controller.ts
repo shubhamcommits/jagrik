@@ -9,7 +9,7 @@ export class BonusTaskController {
 
     async createBonusTask(req: Request, res: Response, next: NextFunction) {
         try {
-           
+
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let classId = req.body.classId;
@@ -35,14 +35,14 @@ export class BonusTaskController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId:any = req.body.classId;
+          let classId = req.body.classId;
 
           //call getBonusTasks to BonusTask service function
           await bonusTaskService.getBonusTasks(authorization, classId)
             .then((response) => {
               return res.status(200).json({
                 message: "Bonus Tasks fetched successfully",
-                announcements: response,
+                result: response.result,
               });
             });
         } catch (err) {
@@ -121,6 +121,7 @@ export class BonusTaskController {
 
       async StudentSubmitBonusTask(req: Request, res: Response, next: NextFunction) {
         try {
+          console.log("reached");
           // Image Data from the request
           let img_data:any = fs.readFileSync(req['file'].path)
 
@@ -170,12 +171,13 @@ export class BonusTaskController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-    
+
           //call getSelfSubmittedBonusTask to BonusTask service function
           await bonusTaskService.getSelfSubmittedBonusTask(authorization)
             .then((response) => {
               return res.status(200).json({
                 message: "Submitted Bonus Tasks Fetched successfully",
+                submittedTasks: response.submittedTasks,
               });
             });
         } catch (err) {

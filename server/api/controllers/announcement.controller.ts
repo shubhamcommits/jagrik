@@ -14,7 +14,7 @@ export class AnnouncementController {
           let img_data:any = fs.readFileSync(req['file'].path)
 
           let img:String = Buffer.from(img_data, 'binary').toString('base64');
-           
+
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let classId = req.body.classId;
@@ -47,7 +47,7 @@ export class AnnouncementController {
             .then((response) => {
               return res.status(200).json({
                 message: "Announcement fetched successfully",
-                announcements: response,
+                result: response.result,
               });
             });
         } catch (err) {
@@ -65,7 +65,7 @@ export class AnnouncementController {
           let img_data:any = fs.readFileSync(req['file'].path)
 
           let img:String = Buffer.from(img_data, 'binary').toString('base64');
-           
+
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let announcementId = req.body.announcementId;

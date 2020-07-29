@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
-import { authsRoutes, classRoutes, taskRoutes, teamRoutes, userRoutes, announcementRoutes } from './routes';
+import { authsRoutes, classRoutes, taskRoutes, teamRoutes, userRoutes, announcementRoutes, bonusTaskRoutes} from './routes';
 import { tasks } from './utils/data';
 
 // Defining new Express application
@@ -96,7 +96,10 @@ app.use('/api/teams', teamRoutes)
 app.use('/api/users', userRoutes);
 
 // Announcement Routes
-app.use('/api/announcement', announcementRoutes);
+app.use('/api/announcements', announcementRoutes);
+
+// Announcement Routes
+app.use('/api/bonustasks', bonusTaskRoutes);
 
 // Invalid routes handling middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
