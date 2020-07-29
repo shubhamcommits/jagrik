@@ -148,6 +148,7 @@ export class BonusTaskService {
             if(permission){
                 let bonusTask:any = await BonusTask.findById({_id:bonusTaskId});
                 let bonusTaskSubmitted={
+                    bonus_task_id: bonusTaskId,
                     bonus_task_title:bonusTask.title,
                     bonus_task_description: bonusTask.description,
                     supporting_doc: supporting_doc,

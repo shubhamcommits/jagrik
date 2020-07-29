@@ -113,6 +113,10 @@ const UserSchema = new Schema({
   },
   bonus_tasks: [
     new Schema({
+      bonus_task_id:{
+        type: Schema.Types.ObjectId,
+        ref: 'BonusTask',
+      },
       bonus_task_title:{
         type: String,
         default: null,
