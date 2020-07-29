@@ -102,9 +102,10 @@ export class BonusTaskController {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let studentId:any = req.body.studentId;
+          let taskIdAgainstBonusTask:any = req.body.taskId;
 
           //call deleteBonusTask to BonusTask service function
-          await bonusTaskService.assignUserBonusTask(authorization, studentId)
+          await bonusTaskService.assignUserBonusTask(authorization, studentId, taskIdAgainstBonusTask)
             .then((response) => {
               return res.status(200).json({
                 message: "Bonus Task Assigned successfully",

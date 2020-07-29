@@ -42,29 +42,25 @@ export class AnnouncementService {
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
            
-            if(user.role === "facilitator" || user.role === "super-admin"){
-                // check if user is associated with the classId
-                let class_announcements: any = await Announcement.find({announcement_class: classId});
-                let result=[];
-                for(let i in class_announcements){
-                    let announcement_creator:any = User.findById({_id: class_announcements[i].created_by})
-                    let add ={
-                    announcementId: class_announcements[i]._id,
-                    announcement_classId: class_announcements[i].announcement_class,
-                    title: class_announcements[i].title,
-                    description: class_announcements[i].description,
-                    announcement_doc: class_announcements[i].announcement_doc,
-                    created_on: class_announcements[i].  created_date,
-                    created_by_full_name: announcement_creator.full_name,
-                    created_by_email: announcement_creator.email,
-                    created_by_profile_pic: announcement_creator.profile_pic,
-                }
-                result.push(add);
-                }
-                      return result;
-            }else{
-                throw new Error("401 - Access denied");  
+            // check if user is associated with the classId
+            let class_announcements: any = await Announcement.find({announcement_class: classId});
+            let result=[];
+            for(let i in class_announcements){
+                let announcement_creator:any = User.findById({_id: class_announcements[i].created_by})
+                let add ={
+                announcementId: class_announcements[i]._id,
+                announcement_classId: class_announcements[i].announcement_class,
+                title: class_announcements[i].title,
+                description: class_announcements[i].description,
+                announcement_doc: class_announcements[i].announcement_doc,
+                created_on: class_announcements[i].  created_date,
+                created_by_full_name: announcement_creator.full_name,
+                created_by_email: announcement_creator.email,
+                created_by_profile_pic: announcement_creator.profile_pic,
             }
+            result.push(add);
+            }
+            return result;
     
         } catch (err) {
             //catch unexpected errors
