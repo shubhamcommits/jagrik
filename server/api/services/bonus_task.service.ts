@@ -3,17 +3,17 @@ import moment from "moment";
 import jwt from "jsonwebtoken";
 
 export class BonusTaskService {
-    
+
     async createBonusTask(token: any, classId: String, title: String, description: String) {
         try {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-           
+
             if(user.role === "facilitator" || user.role === "super-admin"){
                 // check if user is associated with the classId
                 let checkAssociationInClass: any = await Class.find({class_creator: user._id},{_id: classId});
-                
+
                 if(checkAssociationInClass!=null){
                     let jagrik_class_bonus_task = await BonusTask.create({
                         task_class: classId,
@@ -21,14 +21,15 @@ export class BonusTaskService {
                         description: description,
                         created_by: user._id
                       });
+
                       return;
                 }else{
-                    throw new Error("401 - Access denied");  
+                    throw new Error("401 - Access denied");
                 }
             }else{
-                throw new Error("401 - Access denied");  
+                throw new Error("401 - Access denied");
             }
-    
+
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);
@@ -40,30 +41,32 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-            
-            if(!user.show_bonus_task){
-                return;
+
+            if(user.role!=="facilitator" && !user.show_bonus_task){
+                return null;
             }
-            
+
             // check if user is associated with the classId
             let class_bonus_tasks: any = await BonusTask.find({task_class: classId});
+
             let result=[];
             for(let i in class_bonus_tasks){
                 let bonus_task_creator:any = User.findById({_id: class_bonus_tasks[i].created_by})
                 let add ={
-                bonus_task_id: class_bonus_tasks[i]._id,
-                classId: class_bonus_tasks[i].task_class,
-                title: class_bonus_tasks[i].title,
-                description: class_bonus_tasks[i].description,
-                created_on: class_bonus_tasks[i].  created_date,
-                created_by_full_name: bonus_task_creator.full_name,
-                created_by_email: bonus_task_creator.email,
-                created_by_profile_pic: bonus_task_creator.profile_pic,
+                  bonus_task_id: class_bonus_tasks[i]._id,
+                  classId: class_bonus_tasks[i].task_class,
+                  title: class_bonus_tasks[i].title,
+                  description: class_bonus_tasks[i].description,
+                  created_on: class_bonus_tasks[i].  created_date,
+                  created_by_full_name: bonus_task_creator.full_name,
+                  created_by_email: bonus_task_creator.email,
+                  created_by_profile_pic: bonus_task_creator.profile_pic,
+                }
+                result.push(add);
             }
-            result.push(add);
-            }
-            return result;
-    
+            // console.log(result);
+            return {result: result};
+
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);
@@ -75,7 +78,7 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-           
+
             if(user.role === "facilitator" || user.role === "super-admin"){
                 // check if user is associated with the classId
                 let class_bonus_task_edit = await BonusTask.findByIdAndUpdate(
@@ -85,9 +88,9 @@ export class BonusTaskService {
                 )
                 return;
             }else{
-                throw new Error("401 - Access denied");  
+                throw new Error("401 - Access denied");
             }
-    
+
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);
@@ -99,15 +102,15 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-           
+
             if(user.role === "facilitator" || user.role === "super-admin"){
                 // check if user is associated with the classId
                 let class_bonus_task_edit = await BonusTask.findByIdAndDelete({_id: bonusTaskId});
                 return;
             }else{
-                throw new Error("401 - Access denied");  
+                throw new Error("401 - Access denied");
             }
-    
+
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);
@@ -119,25 +122,27 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-           
+
             if(user.role === "facilitator" || user.role === "super-admin"){
+              let student:any = await User.findById({_id: studentId});
                 // check if user is associated with the classId
-                let user_tasks = user.tasks;
-                let updated_user_tasks=[];
-                for(let i in user_tasks){
-                    if(user_tasks[i]._task==taskIdAgainstBonusTask){
-                        user_tasks[i].bonus_task=true;
-                        user_tasks[i].bonus_task_assigned_on = moment().format();
+                let student_tasks = student.tasks;
+                let updated_student_tasks=[];
+                for(let i in student_tasks){
+                    if(student_tasks[i]._task==taskIdAgainstBonusTask){
+                        student_tasks[i].bonus_task=true;
+                        student_tasks[i].bonus_task_assigned_on = moment().format();
                     }
-                    updated_user_tasks.push(user_tasks[i]);
+                    updated_student_tasks.push(student_tasks[i]);
                 }
+
                 let assign_user_bonus_tasks = await User.findByIdAndUpdate(
                     {_id: studentId},
-                    { $set: {taskIdAgainstBonusTask: taskIdAgainstBonusTask, show_bonus_task:true, tasks: updated_user_tasks} },
+                    { $set: {taskIdAgainstBonusTask: taskIdAgainstBonusTask, show_bonus_task:true, tasks: updated_student_tasks} },
                     );
                 return;
             }else{
-                throw new Error("401 - Access denied");  
+                throw new Error("401 - Access denied");
             }
         } catch (err) {
             //catch unexpected errors
@@ -150,7 +155,7 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-           
+
             // check if user has permission to submit bonus tasks
             let permission = user.show_bonus_task;
             if(permission){
@@ -173,8 +178,8 @@ export class BonusTaskService {
                     );
                 return;
             }else{
-                throw new Error("401 - Access denied"); 
-            } 
+                throw new Error("401 - Access denied");
+            }
 
         } catch (err) {
             //catch unexpected errors
@@ -187,7 +192,7 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-            
+
             if(user.role === "facilitator" || user.role === "super-admin"){
                 let student:any = await User.findById({_id:studentId});
                 let failToSubmitBonusTask={
@@ -214,7 +219,7 @@ export class BonusTaskService {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
-            return user.bonus_tasks;
+            return {submittedTasks: user.bonus_tasks};
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);

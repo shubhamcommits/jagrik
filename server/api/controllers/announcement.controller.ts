@@ -52,7 +52,7 @@ export class AnnouncementController {
             .then((response) => {
               return res.status(200).json({
                 message: "Announcement fetched successfully",
-                announcements: response,
+                result: response.result,
               });
             });
         } catch (err) {

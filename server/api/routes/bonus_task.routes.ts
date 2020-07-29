@@ -21,7 +21,7 @@ routes.post('/create-bonus-task',bonusTaskController.createBonusTask);
 
 routes.post('/assign-user-bonus-task', bonusTaskController.assignUserBonusTask);
 
-routes.post('/user-submit-bonus-task',upload.single('supporting_doc'),bonusTaskController.assignUserBonusTask);
+routes.post('/user-submit-bonus-task',upload.single('supporting_doc'),bonusTaskController.StudentSubmitBonusTask);
 
 routes.post('/cancel-user-assigned-bonus-task', bonusTaskController.cancelAssignedBonusTask);
 
