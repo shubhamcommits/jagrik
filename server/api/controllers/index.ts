@@ -4,6 +4,7 @@ import { UserController } from './user.controller'
 import { TaskController } from './task.controller'
 import { TeamController } from './team.controller'
 import { AnnouncementController } from './announcement.controller'
+import { BonusTaskController } from './bonus_task.controller'
 
 /*  ==========================
  *  -- EXPORTS CONTROLLERS --
@@ -27,6 +28,9 @@ export {
   UserController,
 
   // Announcement Controller
-  AnnouncementController
+  AnnouncementController,
+
+  // Bonus Task Controller
+  BonusTaskController,
 
 }

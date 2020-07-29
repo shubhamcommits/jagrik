@@ -4,8 +4,8 @@ import { nanoid } from "nanoid";
 
 const { Schema } = mongoose;
 
-const AnnouncementSchema = new Schema({
-  announcement_class: {
+const BonusTaskSchema = new Schema({
+  task_class: {
     type: Schema.Types.ObjectId,
     ref: "Class",
     default: null,
@@ -22,10 +22,6 @@ const AnnouncementSchema = new Schema({
     type: Date,
     default: moment().format(),
   },
-  announcement_doc: {
-    type: String,
-    data: Buffer,
-  },
   created_by: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -33,6 +29,6 @@ const AnnouncementSchema = new Schema({
   },
 });
 
-const Announcement = mongoose.model("Announcement", AnnouncementSchema);
+const BonusTask = mongoose.model("BonusTask", BonusTaskSchema);
 
-export { Announcement };
+export { BonusTask };
