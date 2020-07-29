@@ -23,6 +23,10 @@ routes.post('/assign-user-bonus-task', bonusTaskController.assignUserBonusTask);
 
 routes.post('/user-submit-bonus-task',upload.single('supporting_doc'),bonusTaskController.assignUserBonusTask);
 
+routes.post('/cancel-user-assigned-bonus-task', bonusTaskController.cancelAssignedBonusTask);
+
+routes.get('/get-user-submitted-bonus-task', bonusTaskController.getSelfSubmittedBonusTask);
+
 routes.get('/get-class-bonus-tasks', bonusTaskController.getBonusTasks);
 
 routes.put('/edit-bonus-task', bonusTaskController.editBonusTask);

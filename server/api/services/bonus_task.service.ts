@@ -41,7 +41,7 @@ export class BonusTaskService {
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
             
-            if(user.show_bonus_task ==null){
+            if(!user.show_bonus_task){
                 return;
             }
             
@@ -124,13 +124,12 @@ export class BonusTaskService {
                 // check if user is associated with the classId
                 let assign_user_bonus_tasks = await User.findByIdAndUpdate(
                     {_id: studentId},
-                    {show_bonus_task: taskIdAgainstBonusTask}
+                    { $set: {taskIdAgainstBonusTask: taskIdAgainstBonusTask, show_bonus_task:true} },
                     );
                 return;
             }else{
                 throw new Error("401 - Access denied");  
             }
-    
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);
@@ -145,7 +144,7 @@ export class BonusTaskService {
            
             // check if user has permission to submit bonus tasks
             let permission = user.show_bonus_task;
-            if(permission!=null){
+            if(permission){
                 let bonusTask:any = await BonusTask.findById({_id:bonusTaskId});
                 let bonusTaskSubmitted={
                     bonus_task_id: bonusTaskId,
@@ -153,13 +152,14 @@ export class BonusTaskService {
                     bonus_task_description: bonusTask.description,
                     supporting_doc: supporting_doc,
                     submitted_date: moment().format(),
-                    taskIdAgainstBonusTask: permission
+                    taskIdAgainstBonusTask: user.taskIdAgainstBonusTask,
+                    status:'Complete'
                 }
                 let user_bonus_tasks = user.bonus_tasks;
                 user_bonus_tasks.push(bonusTaskSubmitted);
                 let update_user_bonus_tasks = await User.findByIdAndUpdate(
                     {_id: user._id},
-                    { $set: {bonus_tasks: user_bonus_tasks, show_bonus_task: null} },
+                    { $set: {bonus_tasks: user_bonus_tasks, show_bonus_task: false, taskIdAgainstBonusTask: null } },
                     { new: true }
                     );
                 return;
@@ -167,6 +167,45 @@ export class BonusTaskService {
                 throw new Error("401 - Access denied"); 
             } 
 
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+      }
+
+      async cancelAssignedBonusTask(token: any, studentId:String) {
+        try {
+            //verify token and decode user data
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
+            
+            if(user.role === "facilitator" || user.role === "super-admin"){
+                let student:any = await User.findById({_id:studentId});
+                let failToSubmitBonusTask={
+                    status:"Incomplete",
+                    taskIdAgainstBonusTask: student.taskIdAgainstBonusTask
+                }
+                let student_bonus_tasks = student.bonus_tasks;
+                student_bonus_tasks.push(failToSubmitBonusTask);
+                let update_user_bonus_tasks = await User.findByIdAndUpdate(
+                    {_id: studentId},
+                    { $set: {bonus_tasks: student_bonus_tasks, show_bonus_task: false, taskIdAgainstBonusTask: null } },
+                    { new: true }
+                    );
+                return
+            }
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+      }
+
+      async getSelfSubmittedBonusTask(token: any) {
+        try {
+            //verify token and decode user data
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user:any = await User.findById({_id: userVerify._id});
+            return user.bonus_tasks;
         } catch (err) {
             //catch unexpected errors
             throw new Error(err);

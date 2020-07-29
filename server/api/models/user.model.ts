@@ -116,9 +116,15 @@ const UserSchema = new Schema({
       bonus_task_id:{
         type: Schema.Types.ObjectId,
         ref: 'BonusTask',
+        default: null
+      },
+      show_bonus_task:{
+        type: Boolean,
+        default: false,
       },
       taskIdAgainstBonusTask:{
-        type: String
+        type: String,
+        default: null
       },
       bonus_task_title:{
         type: String,
@@ -131,10 +137,15 @@ const UserSchema = new Schema({
       supporting_doc: {
         type: String,
         data: Buffer,
+        default: null
       },
       submitted_date: {
         type: Date,
         default: null,
+      },
+      status: {
+        type: String,
+        default: 'Incomplete'
       }
     }),
   ],

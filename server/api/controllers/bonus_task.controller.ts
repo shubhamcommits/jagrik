@@ -104,7 +104,7 @@ export class BonusTaskController {
           let studentId:any = req.body.studentId;
           let taskIdAgainstBonusTask:any = req.body.taskId;
 
-          //call deleteBonusTask to BonusTask service function
+          //call assignUserBonusTask to BonusTask service function
           await bonusTaskService.assignUserBonusTask(authorization, studentId, taskIdAgainstBonusTask)
             .then((response) => {
               return res.status(200).json({
@@ -130,11 +130,52 @@ export class BonusTaskController {
           let authorization = req.headers.authorization;
           let bonusTaskId = req.body.bonusTaskId;
 
-          //call deleteBonusTask to BonusTask service function
+          //call StudentSubmitBonusTask to BonusTask service function
           await bonusTaskService.StudentSubmitBonusTask(authorization, bonusTaskId, img)
             .then((response) => {
               return res.status(200).json({
                 message: "Bonus Task Submitted successfully",
+              });
+            });
+        } catch (err) {
+          return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || " Internal Server Error"),
+          });
+        }
+      }
+
+      async cancelAssignedBonusTask(req: Request, res: Response, next: NextFunction) {
+        try {
+            //fetch authorization from header of request
+          let authorization = req.headers.authorization;
+          let studentId = req.body.studentId;
+
+          //call cancelAssignedBonusTask to BonusTask service function
+          await bonusTaskService.cancelAssignedBonusTask(authorization, studentId)
+            .then((response) => {
+              return res.status(200).json({
+                message: "Bonus Task Cancelled successfully",
+              });
+            });
+        } catch (err) {
+          return res.status(500).json({
+            message: "Internal Server Error!",
+            error: new Error(err || " Internal Server Error"),
+          });
+        }
+      }
+
+      async getSelfSubmittedBonusTask(req: Request, res: Response, next: NextFunction) {
+        try {
+            //fetch authorization from header of request
+          let authorization = req.headers.authorization;
+    
+          //call getSelfSubmittedBonusTask to BonusTask service function
+          await bonusTaskService.getSelfSubmittedBonusTask(authorization)
+            .then((response) => {
+              return res.status(200).json({
+                message: "Submitted Bonus Tasks Fetched successfully",
               });
             });
         } catch (err) {
