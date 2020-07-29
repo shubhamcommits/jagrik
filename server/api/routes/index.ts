@@ -4,6 +4,7 @@ import { userRoutes } from './user.routes';
 import { taskRoutes } from './task.routes';
 import { teamRoutes } from './team.routes';
 import { announcementRoutes } from './announcement.routes';
+import {bonusTaskRoutes} from './bonus_task.routes';
 
 /*  =====================
  *  -- EXPORTS ROUTES --
@@ -27,6 +28,9 @@ export {
   userRoutes as userRoutes,
 
   // ANNOUNCEMENT
-  announcementRoutes as announcementRoutes
+  announcementRoutes as announcementRoutes,
+
+  //Bonus Task
+  bonusTaskRoutes as bonusTaskRoutes
 
 }
