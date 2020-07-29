@@ -46,7 +46,7 @@ export class AnnouncementService {
             let class_announcements: any = await Announcement.find({announcement_class: classId});
             let result=[];
             for(let i in class_announcements){
-                let announcement_creator:any = User.findById({_id: class_announcements[i].created_by})
+                let announcement_creator:any = await User.findById({_id: class_announcements[i].created_by})
                 let add ={
                 announcementId: class_announcements[i]._id,
                 announcement_classId: class_announcements[i].announcement_class,
