@@ -25,7 +25,12 @@ const AnnouncementSchema = new Schema({
   announcement_doc: {
     type: String,
     data: Buffer,
-  }
+  },
+  created_by: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    default: null
+  },
 });
 
 const Announcement = mongoose.model("Announcement", AnnouncementSchema);
