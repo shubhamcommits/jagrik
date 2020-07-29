@@ -184,9 +184,6 @@ const UserSchema = new Schema({
         type: String,
         data: Buffer,
       },
-      experience_description: {
-        type: String,
-      },
     }),
   ],
 });
