@@ -54,7 +54,7 @@
       </button>
       <mat-menu #notify="matMenu">
         <button mat-menu-item *ngFor="let item of announcementData" class="menu-btn">
-          <h4>{{item.title}} <small class="pull-right">{{item.created_date |  date:'shortDate'}}</small></h4>
+          <h4>{{item.title}} <small class="pull-right">{{item.created_on |  date:'shortDate'}}</small></h4>
           <p class="text-muted noti-p">{{item.description}}</p>
           <hr>
         </button>

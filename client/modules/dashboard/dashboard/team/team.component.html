@@ -1,5 +1,6 @@
 <div class="row" *ngIf="userRole !== 'student'">
-  <div class="col-md-12" *ngIf="teamArray.length == 0 && newUser.length == 0" style="max-height: 60vh;text-align: center;">
+  <div *ngIf="!teamArrayExist && newUser.length === 0" class="col-md-12"
+    style="max-height: 60vh;text-align: center;">
     <h4>No teams and team member found !</h4>
     <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
   </div>

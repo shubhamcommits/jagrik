@@ -36,6 +36,7 @@ export class TeamComponent implements OnInit {
   dataSource: TeamElement[] = [];
   newUser: AssignTeamElement[] = [];
   teamArray: any = [];
+  teamArrayExist: false;
   userRole = '';
   className = '';
 
@@ -85,12 +86,6 @@ export class TeamComponent implements OnInit {
           this.newUser = [];
           data.forEach((element) => {
             if (element['team_name'] !== 'No Team') {
-              this.dataSource.push({
-                name: `${element['first_name']} ${element['last_name']}`,
-                position: i++,
-                className: this.className,
-                team: element['team_name'],
-              });
               if (this.teamArray[element['team_name']] !== undefined) {
                 this.teamArray[element['team_name']].push({
                   name: `${element['first_name']} ${element['last_name']}`,
@@ -109,6 +104,8 @@ export class TeamComponent implements OnInit {
                   user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://via.placeholder.com/100x100.png?text=Jagrik'
                 })
               }
+
+              this.teamArrayExist = true
 
             } else {
 

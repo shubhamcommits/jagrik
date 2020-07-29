@@ -1,34 +1,63 @@
 <div class="row">
-  <div class="col-md-12" *ngIf="userRole !== 'student'">
-    <section>
-      <div class="jk-button-row pb-4">
-        <button mat-raised-button color="primary" (click)="openDialog('', 'new')" class="pink-bg">
-          <mat-icon mat-list-icon>add</mat-icon> Add Announcement
-        </button>
-      </div>
-    </section>
+  <div class="col-md-6 offset-3 mb-2" *ngIf="userRole !== 'student'">
+     <div class="card">
+       <form [formGroup]="inputForm">
+       <div class="card-body">
+         <div class="row">
+          <div class="col-md-2">
+           <img src="https://img.icons8.com/ultraviolet/40/000000/user-female-circle.png" />
+          </div>
+          <div class="col-md-10">
+            <mat-form-field class="example-full-width">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Title" formControlName="title" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="Description" formControlName="description" value="">
+            </mat-form-field>
+          </div>
+         </div>
+         <p class="card-text text-muted text-capitalize"></p>
+         <hr>
+         <button mat-raised-button color="primary" class="pink-bg pull-right mb-2" (click)="addAnnouncement()">
+           Post
+         </button>
+       </div>
+       </form>
+     </div>
   </div>
-  <div class="col-md-12" *ngIf="announcementData.length == 0">
+  <div class="col-md-12 text-center" *ngIf="announcementData.length == 0">
     <section>
       <h2>No New Announcement found!</h2>
     </section>
   </div>
-  <div class="col-md-4" *ngFor="let item of announcementData">
+  <div class="col-md-6 offset-3  mb-2" *ngFor="let item of announcementData">
     <div class="card">
       <div class="card-body">
+         <div class="row">
+           <div class="col-md-2">
+             <img src="https://img.icons8.com/ultraviolet/45/000000/user-female-circle.png" />
+           </div>
+           <div class="col-md-10">
+             <h4 style="margin-bottom: 5px;"><strong>{{item.created_by_full_name}}</strong> <small
+                 class="pull-right">{{item.created_on |  date:'mediumDate'}}</small></h4>
+             <h5 class="text-muted">{{item.announcement_classId}}</h5>
+           </div>
+         </div>
         <h4 class="card-title text-capitalize">{{item.title}}
-        <button *ngIf="userRole !== 'student'"  mat-icon-button class="pull-right more-icon"
+        </h4>
+        <p class="card-text text-muted text-capitalize">{{item.description}}</p>
+        <hr>
+        <button *ngIf="userRole !== 'student'" mat-icon-button class="pull-right more-icon"
           [matMenuTriggerFor]="notify">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #notify="matMenu">
           <button mat-menu-item (click)="openDialog(item, 'edit')">Edit</button>
-          <button mat-menu-item (click)="deleteAnnouncement(item._id)">Delete</button>
+          <button mat-menu-item (click)="deleteAnnouncement(item.announcementId)">Delete</button>
         </mat-menu>
-        </h4>
-        <p class="card-text text-muted text-capitalize">{{item.description}}</p>
-        <hr>
-        <small class="text-muted">Published: {{item.created_date |  date:'medium'}}</small>
       </div>
     </div>
   </div>

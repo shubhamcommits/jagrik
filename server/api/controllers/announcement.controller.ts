@@ -9,11 +9,16 @@ export class AnnouncementController {
 
     async createAnnouncement(req: Request, res: Response, next: NextFunction) {
         try {
-
+          let img: String;
           // Image Data from the request
-          let img_data:any = fs.readFileSync(req['file'].path)
+          if (req['file']) {
+            let img_data: any = fs.readFileSync(req['file'].path)
 
-          let img:String = Buffer.from(img_data, 'binary').toString('base64');
+            img = Buffer.from(img_data, 'binary').toString('base64');
+          } else {
+            img = ''
+          }
+         
            
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
@@ -40,7 +45,7 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId:any = req.body.classId;
+          let classId:any = req.query.classId;
 
           //call getAnnouncements to announcement service function
           await announcementService.getAnnouncements(authorization, classId)
@@ -61,10 +66,15 @@ export class AnnouncementController {
       async editAnnouncement(req: Request, res: Response, next: NextFunction) {
         try {
 
+          let img: String;
           // Image Data from the request
-          let img_data:any = fs.readFileSync(req['file'].path)
+          if (req['file']) {
+            let img_data: any = fs.readFileSync(req['file'].path)
 
-          let img:String = Buffer.from(img_data, 'binary').toString('base64');
+            img = Buffer.from(img_data, 'binary').toString('base64');
+          } else {
+            img = ''
+          }
            
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
@@ -91,7 +101,7 @@ export class AnnouncementController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let announcementId:any = req.body.announcementId;
+          let announcementId:any = req.query.announcementId;
 
           //call editAnnouncement to announcement service function
           await announcementService.deleteAnnouncement(authorization, announcementId)
