@@ -22,6 +22,10 @@ const AnnouncementSchema = new Schema({
     type: Date,
     default: moment().format(),
   },
+  announcement_doc: {
+    type: String,
+    data: Buffer,
+  }
 });
 
 const Announcement = mongoose.model("Announcement", AnnouncementSchema);

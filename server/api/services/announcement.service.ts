@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export class AnnouncementService {
     
-    async createAnnouncement(token: any, classId: String, title: String, description: String) {
+    async createAnnouncement(token: any, classId: String, title: String, description: String, announcement_doc: String) {
         try {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -18,7 +18,8 @@ export class AnnouncementService {
                     let jagrik_class_announcement = await Announcement.create({
                         announcement_class: classId,
                         title: title,
-                        description: description
+                        description: description,
+                        announcement_doc: announcement_doc
                       });
                       return;
                 }else{
@@ -54,7 +55,7 @@ export class AnnouncementService {
         }
       }
 
-      async editAnnouncement(token: any, announcementId: String, title: String, description: String) {
+      async editAnnouncement(token: any, announcementId: String, title: String, description: String, announcement_doc:String) {
         try {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -64,7 +65,7 @@ export class AnnouncementService {
                 // check if user is associated with the classId
                 let class_announcement_edit = await Announcement.findByIdAndUpdate(
                     { _id: announcementId },
-                    { $set: {title: title, description: description} },
+                    { $set: {title: title, description: description, announcement_doc: announcement_doc} },
                     { new: true }
                 )
                 return;

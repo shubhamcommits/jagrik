@@ -9,6 +9,12 @@ export class AnnouncementController {
 
     async createAnnouncement(req: Request, res: Response, next: NextFunction) {
         try {
+
+          // Image Data from the request
+          let img_data:any = fs.readFileSync(req['file'].path)
+
+          let img:String = Buffer.from(img_data, 'binary').toString('base64');
+           
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let classId = req.body.classId;
@@ -16,7 +22,7 @@ export class AnnouncementController {
           let description = req.body.description;
 
           //call createAnnouncement to announcement service function
-          await announcementService.createAnnouncement(authorization, classId,title, description)
+          await announcementService.createAnnouncement(authorization, classId,title, description,img)
             .then((response) => {
               return res.status(200).json({
                 message: "Announcement has successfully been created",
@@ -54,6 +60,12 @@ export class AnnouncementController {
 
       async editAnnouncement(req: Request, res: Response, next: NextFunction) {
         try {
+
+          // Image Data from the request
+          let img_data:any = fs.readFileSync(req['file'].path)
+
+          let img:String = Buffer.from(img_data, 'binary').toString('base64');
+           
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let announcementId = req.body.announcementId;
@@ -61,7 +73,7 @@ export class AnnouncementController {
           let description = req.body.description;
 
           //call editAnnouncement to announcement service function
-          await announcementService.editAnnouncement(authorization, announcementId, title, description)
+          await announcementService.editAnnouncement(authorization, announcementId, title, description,img)
             .then((response) => {
               return res.status(200).json({
                 message: "Announcement Edited successfully",
