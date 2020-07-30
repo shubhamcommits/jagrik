@@ -36,7 +36,7 @@ export class TeamComponent implements OnInit {
   dataSource: TeamElement[] = [];
   newUser: AssignTeamElement[] = [];
   teamArray: any = [];
-  teamArrayExist: false;
+  teamArrayExist: Boolean = false;
   userRole = '';
   className = '';
 

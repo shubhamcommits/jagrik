@@ -72,7 +72,7 @@ export class AnnouncementComponent implements OnInit {
       this.announcementService
         .getAnnouncementList(this.storageService.getLocalData('userData').classes[0])
         .then((res) => {
-          this.announcementData = res['announcements']
+          this.announcementData = res['result'];
         })
         .catch(() => {
           // Fire error toast
