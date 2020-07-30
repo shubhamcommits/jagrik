@@ -109,7 +109,7 @@ export class DashboardHeaderComponent implements OnInit {
       this.announcementService
         .getAnnouncementList(this.userClass)
         .then((res) => {
-          this.announcementData = res['announcements']
+          this.announcementData = res['result']
         })
         .catch(() => {
         });

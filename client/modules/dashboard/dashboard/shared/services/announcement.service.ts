@@ -15,7 +15,7 @@ export class AnnouncementService {
    */
   getAnnouncementList(classId: any) {
     return this.httpClient
-      .get(environment.baseApiUrl + '/announcement/get-class-announcements', {
+      .get(environment.baseApiUrl + '/announcements/get-class-announcements', {
         params: {
           classId: classId,
         },
@@ -30,7 +30,7 @@ export class AnnouncementService {
    */
   addNewAnnouncement(description: any, title: any, classId: any) {
     return this.httpClient
-      .post(environment.baseApiUrl + '/announcement/create-announcement', {
+      .post(environment.baseApiUrl + '/announcements/create-announcement', {
         classId: classId,
         description: description,
         title: title,
@@ -44,7 +44,7 @@ export class AnnouncementService {
    */
   updateAnnouncement(description: any, title: any, classId: any, id: any) {
     return this.httpClient
-      .put(environment.baseApiUrl + '/announcement/edit-announcement', {
+      .put(environment.baseApiUrl + '/announcements/edit-announcement', {
         classId: classId,
         description: description,
         title: title,
@@ -59,7 +59,7 @@ export class AnnouncementService {
   */
   deleteAnnouncement(announcementId: any) {
     return this.httpClient
-      .delete(environment.baseApiUrl + '/announcement/delete-announcement', {
+      .delete(environment.baseApiUrl + '/announcements/delete-announcement', {
         params: {
           announcementId: announcementId,
         },
