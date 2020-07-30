@@ -7,9 +7,14 @@ const { Schema } = mongoose;
 const BonusTaskSchema = new Schema({
   task_class: {
     type: Schema.Types.ObjectId,
-    ref: "Class",
+    ref: 'Class',
     default: null,
   },
+  students: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    default: null,
+  }],
   title: {
     type: Schema.Types.String,
     required: true,
@@ -25,7 +30,7 @@ const BonusTaskSchema = new Schema({
   created_by: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    default: null
+    default: null,
   },
 });
 
