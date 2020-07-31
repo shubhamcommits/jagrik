@@ -1,0 +1,92 @@
+import { Component, OnInit } from '@angular/core';
+import { TeamService } from '../shared/services/team.service';
+import { UtilityService } from 'src/shared/services/utility-service/utility.service';
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
+import { ClassService } from '../shared/services/class.service';
+
+
+@Component({
+  selector: 'app-bonus-task',
+  templateUrl: './bonus-task.component.html',
+  styleUrls: ['./bonus-task.component.scss'],
+  styles: [
+    `
+      :host {
+        display: inline-block;
+        width: 100%;
+      }
+    `,
+  ],
+})
+export class BonusTaskComponent implements OnInit {
+
+  userRole = '';
+  className = '';
+  constructor(
+    private teamService: TeamService,
+    private utilityService: UtilityService,
+    private storageService: StorageService,
+    private classService: ClassService
+  ) {}
+
+  ngOnInit(): void {
+    this.userRole = this.storageService.getLocalData('userData').role;
+    this.getClassDetails(
+      this.storageService.getLocalData('userData').classes[0]
+    );
+    this.getTeams();
+  }
+
+  assignTeam(userId) {
+    this.teamService
+      .createTeam(
+        this.storageService.getLocalData('userData').classes[0],
+        userId
+      )
+      .then((res) => {
+        console.log(res);
+        this.getTeams();
+        this.utilityService.fireToast('success', `Successfully Assigned Team`);
+      })
+      .catch(() => {
+        // Fire error toast
+        this.utilityService.fireToast(
+          'error',
+          `Some unexpected error occured, please try again!`
+        );
+      });
+  }
+
+  getTeams() {
+    this.teamService
+      .getTeams(this.storageService.getLocalData('userData').classes[0])
+      .then((res) => {
+
+      })
+      .catch(() => {
+        // Fire error toast
+        this.utilityService.fireToast(
+          'error',
+          `Some unexpected error occured, please try again!`
+        );
+      });
+  }
+
+  getClassDetails(classId: any) {
+    return new Promise((resolve) => {
+      // Fetch class details
+      this.classService
+        .getClassDetails(classId)
+        .then((res) => {
+          this.className = res['class']['name'];
+        })
+        .catch(() => {
+          // Fire error toast
+          this.utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
+    });
+  }
+}

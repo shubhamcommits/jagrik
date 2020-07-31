@@ -36,10 +36,9 @@ export class TeamComponent implements OnInit {
   dataSource: TeamElement[] = [];
   newUser: AssignTeamElement[] = [];
   teamArray: any = [];
-  teamArrayExist: Boolean = false;
+  teamArrayExist: boolean = false;
   userRole = '';
   className = '';
-
   constructor(
     private teamService: TeamService,
     private utilityService: UtilityService,
@@ -105,7 +104,7 @@ export class TeamComponent implements OnInit {
                 })
               }
 
-              this.teamArrayExist = true
+              this.teamArrayExist = true;
 
             } else {
 
