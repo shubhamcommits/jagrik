@@ -13,14 +13,22 @@ export class BonusTaskController {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
           let classId = req.body.classId;
+          let students = req.body.students;
           let title = req.body.title;
           let description = req.body.description;
 
           //call createBonusTask to BonusTask service function
-          await bonusTaskService.createBonusTask(authorization, classId,title, description)
+          await bonusTaskService
+            .createBonusTask(
+              authorization,
+              classId,
+              title,
+              description,
+              students
+            )
             .then((response) => {
               return res.status(200).json({
-                message: "Bonus Task created successfully",
+                message: 'Bonus Task created successfully',
               });
             });
         } catch (err) {
@@ -59,13 +67,21 @@ export class BonusTaskController {
           let authorization = req.headers.authorization;
           let bonusTaskId = req.body.bonusTaskId;
           let title = req.body.title;
+          let students = req.body.students;
           let description = req.body.description;
 
           //call editBonusTask to BonusTask service function
-          await bonusTaskService.editBonusTask(authorization, bonusTaskId, title, description)
+          await bonusTaskService
+            .editBonusTask(
+              authorization,
+              bonusTaskId,
+              title,
+              description,
+              students
+            )
             .then((response) => {
               return res.status(200).json({
-                message: "Bonus Task Edited successfully",
+                message: 'Bonus Task Edited successfully',
               });
             });
         } catch (err) {
