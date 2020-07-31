@@ -38,7 +38,8 @@
 </div>
 <br><br>
 
-<mat-accordion *ngIf="userRole !== 'student' && teamArrayExist && newUser.length !== 0">
+<mat-accordion *ngIf="userRole !== 'student'  && newUser.length !== 0">
+  <!-- *ngIf="userRole !== 'student'  && newUser.length !== 0" -->
 <mat-expansion-panel style="background-color: gainsboro;">
     <mat-expansion-panel-header>
       <mat-panel-title>

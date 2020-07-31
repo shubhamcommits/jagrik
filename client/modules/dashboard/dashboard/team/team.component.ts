@@ -114,6 +114,7 @@ export class TeamComponent implements OnInit {
                 _id: element['user_id'],
                 className: this.className,
               });
+              console.log(this.newUser);
             }
           });
         }
