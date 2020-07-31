@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Bonus Task</h1>
+<mat-dialog-content class="mat-typography">
+<div class="example-form">
+  <form [formGroup]="inputForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description" value="">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Select Students</mat-label>
+      <mat-select formControlName="students" multiple>
+         <mat-option #allSelected (click)="toggleAllSelection()" value="0">All</mat-option>
+        <mat-option *ngFor="let team of data.teams" [value]="team.user_id"
+          (click)="tosslePerOne(allSelected.viewValue)">
+          {{team.first_name + ' ' + team.last_name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="addBonusTask()" cdkFocusInitial>Verify</button>
+</mat-dialog-actions>

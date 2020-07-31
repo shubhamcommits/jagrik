@@ -1,0 +1,28 @@
+<div class="row">
+
+  <div class="col-md-6">
+    <h2 class="justify-content-center text-uppercase">Bonus Task</h2>
+    <h3 class="justify-content-center text-uppercase">All Bonus Tasks</h3>
+  </div>
+  <div class="col-md-6 text-right" >
+    <section *ngIf="userRole !== 'student'">
+      <div class="jk-button-row pb-4">
+        <button mat-raised-button color="primary" class="pink-bg" (click)="openDialog()">
+          <mat-icon mat-list-icon>add</mat-icon> Add Bonus Task</button>
+      </div>
+    </section>
+  </div>
+  <div class="col-md-3" *ngFor="let item of bonusTaskData">
+    <div class="card text-left">
+      <div class="card-body">
+        <h4 class="card-title">{{item.title}}</h4>
+        <p class="card-text medium-text">{{item.description}}</p>
+        <hr>
+        <span class="text-muted">{{item.students.length}} Members</span>
+        <button *ngIf="userRole !== 'student'" mat-raised-button class="pull-right" color="accent">Details</button>
+         <button *ngIf="userRole == 'student' && !item.isUploaded" mat-raised-button class="pull-right" color="accent"
+           (click)="openResponseDialog(item)">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>

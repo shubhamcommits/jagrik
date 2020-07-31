@@ -46,49 +46,115 @@ export class BonusTaskService {
              throw new Error(err);
            }
          }
+  
+  async getBonusTasks(token: any, classId: String) {
+    try {
+      //verify token and decode user data
+      let userVerify: any = jwt.verify(
+        token.split(' ')[1],
+        process.env.JWT_KEY
+      );
+      let class_bonus_tasks: any;
+      let user: any = await User.findById({ _id: userVerify._id });
 
-         async getBonusTasks(token: any, classId: String) {
-           try {
-             //verify token and decode user data
-             let userVerify: any = jwt.verify(
-               token.split(' ')[1],
-               process.env.JWT_KEY
-             );
-             let user: any = await User.findById({ _id: userVerify._id });
+      if (user.role !== 'facilitator') {
+       class_bonus_tasks = await BonusTask.find({
+         task_class: classId,
+         students: user._id
+        });
+      } else {
+        // check if user is associated with the classId
+        class_bonus_tasks = await BonusTask.find({
+          task_class: classId,
+        });
 
-             if (user.role !== 'facilitator' && !user.show_bonus_task) {
-               return null;
-             }
+      }
 
-             // check if user is associated with the classId
-             let class_bonus_tasks: any = await BonusTask.find({
-               task_class: classId,
-             });
+      // console.log(result);
+      return { result: class_bonus_tasks };
+    } catch (err) {
+      //catch unexpected errors
+      throw new Error(err);
+    }
+  }
 
-             let result = [];
-             for (let i in class_bonus_tasks) {
-               let bonus_task_creator: any = User.findById({
-                 _id: class_bonus_tasks[i].created_by,
-               });
-               let add = {
-                 bonus_task_id: class_bonus_tasks[i]._id,
-                 classId: class_bonus_tasks[i].task_class,
-                 title: class_bonus_tasks[i].title,
-                 description: class_bonus_tasks[i].description,
-                 created_on: class_bonus_tasks[i].created_date,
-                 created_by_full_name: bonus_task_creator.full_name,
-                 created_by_email: bonus_task_creator.email,
-                 created_by_profile_pic: bonus_task_creator.profile_pic,
-               };
-               result.push(add);
-             }
-             // console.log(result);
-             return { result: result };
-           } catch (err) {
-             //catch unexpected errors
-             throw new Error(err);
-           }
-         }
+  async submitBonusTaskResponse(token: any, bonusTaskId: String, doc:any) {
+    try {
+      //verify token and decode user data
+      let userVerify: any = jwt.verify(
+        token.split(' ')[1],
+        process.env.JWT_KEY
+      );
+      let user: any = await User.findById({ _id: userVerify._id });
+
+      let bonusTask = await BonusTask.findById({ _id: bonusTaskId })
+
+      if (user.role !== 'facilitator') {
+        let response: any = []
+        if (bonusTask['response']) {
+          response = bonusTask['response']
+        }
+        response.push({ user_id: user._id, user_name: user.first_name + ' ' + user.last_name, doc: doc})
+        let class_bonus_task_edit = await BonusTask.findByIdAndUpdate(
+          { _id: bonusTaskId },
+          {
+            $set: {
+              response: response
+            },
+          },
+          { new: true }
+        );
+        return;
+      } 
+
+    } catch (err) {
+      //catch unexpected errors
+      throw new Error(err);
+    }
+  }
+
+        //  async getBonusTasks(token: any, classId: String) {
+        //    try {
+        //      //verify token and decode user data
+        //      let userVerify: any = jwt.verify(
+        //        token.split(' ')[1],
+        //        process.env.JWT_KEY
+        //      );
+        //      let user: any = await User.findById({ _id: userVerify._id });
+
+        //      if (user.role !== 'facilitator' && !user.show_bonus_task) {
+        //        return null;
+        //      }
+
+        //      // check if user is associated with the classId
+        //      let class_bonus_tasks: any = await BonusTask.find({
+        //        task_class: classId,
+        //      });
+
+        //      let result = [];
+        //      for (let i in class_bonus_tasks) {
+        //        let bonus_task_creator: any = User.findById({
+        //          _id: class_bonus_tasks[i].created_by,
+        //        });
+        //        let add = {
+        //          bonus_task_id: class_bonus_tasks[i]._id,
+        //          classId: class_bonus_tasks[i].task_class,
+        //          title: class_bonus_tasks[i].title,
+        //          description: class_bonus_tasks[i].description,
+        //          created_on: class_bonus_tasks[i].created_date,
+        //          created_by_full_name: bonus_task_creator.full_name,
+        //          created_by_email: bonus_task_creator.email,
+        //          created_by_profile_pic: bonus_task_creator.profile_pic,
+        //        };
+        //        result.push(add);
+        //      }
+        //      // console.log(result);
+        //      return { result: result };
+        //    } catch (err) {
+        //      //catch unexpected errors
+        //      throw new Error(err);
+        //    }
+        //  }
 
          async editBonusTask(
            token: any,

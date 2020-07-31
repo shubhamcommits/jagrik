@@ -23,6 +23,20 @@ const BonusTaskSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  response: [new Schema({
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    user_name: {
+      type: String,
+    },
+    doc: {
+      type: String,
+      data: Buffer,
+    },
+  })],
   created_date: {
     type: Date,
     default: moment().format(),

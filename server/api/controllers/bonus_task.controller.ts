@@ -43,7 +43,7 @@ export class BonusTaskController {
         try {
             //fetch authorization from header of request
           let authorization = req.headers.authorization;
-          let classId = req.body.classId;
+          let classId:any = req.query.classId;
 
           //call getBonusTasks to BonusTask service function
           await bonusTaskService.getBonusTasks(authorization, classId)
@@ -148,7 +148,7 @@ export class BonusTaskController {
           let bonusTaskId = req.body.bonusTaskId;
 
           //call StudentSubmitBonusTask to BonusTask service function
-          await bonusTaskService.StudentSubmitBonusTask(authorization, bonusTaskId, img)
+          await bonusTaskService.submitBonusTaskResponse(authorization, bonusTaskId, img)
             .then((response) => {
               return res.status(200).json({
                 message: "Bonus Task Submitted successfully",

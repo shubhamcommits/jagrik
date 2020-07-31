@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
-import { ClassService } from '../shared/services/class.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { AddBonusTaskModalComponent } from './add-bonus-task-modal/add-bonus-task-modal.component';
+import { UploadTaskModalComponent } from './upload-task-modal/upload-task-modal.component';
+import { BonusTaskService } from '../shared/services/bonustask.service';
 
 @Component({
   selector: 'app-bonus-task',
@@ -22,31 +24,78 @@ export class BonusTaskComponent implements OnInit {
 
   userRole = '';
   className = '';
+  teamData: any = []
+  bonusTaskData: any = []
+  isUploaded: Boolean = false;
   constructor(
     private teamService: TeamService,
     private utilityService: UtilityService,
     private storageService: StorageService,
-    private classService: ClassService
-  ) {}
+    public dialog: MatDialog,
+    private bonusTaskService: BonusTaskService
+  ) { }
 
   ngOnInit(): void {
+    this.getBonusTaskList()
     this.userRole = this.storageService.getLocalData('userData').role;
-    this.getClassDetails(
-      this.storageService.getLocalData('userData').classes[0]
-    );
     this.getTeams();
   }
 
-  assignTeam(userId) {
-    this.teamService
-      .createTeam(
-        this.storageService.getLocalData('userData').classes[0],
-        userId
-      )
+  openDialog() {
+    let dialogRef = this.dialog.open(AddBonusTaskModalComponent, {
+      data: {
+        teams: this.teamData
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      maxWidth: '60vw',
+    });
+
+    dialogRef.componentInstance.getBonusTaskData.subscribe(($e) => {
+      dialogRef.close()
+      this.getBonusTaskList()
+    });
+  }
+
+  openResponseDialog(task:any) {
+    let dialogRef = this.dialog.open(UploadTaskModalComponent, {
+      data: {
+        task
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      minWidth: '40vw',
+    });
+
+    dialogRef.componentInstance.getResonseData.subscribe(($e) => {
+      dialogRef.close()
+      this.getBonusTaskList()
+    });
+  }
+
+  getBonusTaskList() {
+    this.bonusTaskService
+      .getBonusTaskList(this.storageService.getLocalData('userData').classes[0])
       .then((res) => {
-        console.log(res);
-        this.getTeams();
-        this.utilityService.fireToast('success', `Successfully Assigned Team`);
+        var temp:any = res['result']
+        temp.forEach(element => {
+          if (element['response']) {
+            element['response'].forEach(element1 => {
+              if (element1.user_id == this.storageService.getLocalData('userData')._id) {
+                element['isUploaded'] = true
+              } else {
+                element['isUploaded'] = false
+              }
+            });
+          } else {
+            element['isUploaded'] = false
+          }
+          this.bonusTaskData.push(element)
+        });
+        this.utilityService.fireToast(
+          'success',
+          `Data fetched successfully`
+        );
       })
       .catch(() => {
         // Fire error toast
@@ -61,7 +110,7 @@ export class BonusTaskComponent implements OnInit {
     this.teamService
       .getTeams(this.storageService.getLocalData('userData').classes[0])
       .then((res) => {
-
+        this.teamData = res['teams']
       })
       .catch(() => {
         // Fire error toast
@@ -70,23 +119,5 @@ export class BonusTaskComponent implements OnInit {
           `Some unexpected error occured, please try again!`
         );
       });
-  }
-
-  getClassDetails(classId: any) {
-    return new Promise((resolve) => {
-      // Fetch class details
-      this.classService
-        .getClassDetails(classId)
-        .then((res) => {
-          this.className = res['class']['name'];
-        })
-        .catch(() => {
-          // Fire error toast
-          this.utilityService.fireToast(
-            'error',
-            `Some unexpected error occured, please try again!`
-          );
-        });
-    });
   }
 }

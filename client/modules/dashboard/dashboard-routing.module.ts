@@ -13,7 +13,7 @@ import { TeamComponent } from './dashboard/team/team.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
 import { AnnouncementComponent } from '../dashboard/dashboard/announcement/announcement.component';
-import { BonusTaskComponent } from '../dashboard/dashboard/bonus-task/bonus-task.component';
+import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component';
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +26,7 @@ const routes: Routes = [
           { path: 'inbox', component: DashboardInboxComponent },
           { path: 'tasks', component: TasksBoardComponent },
           { path: 'resource-list', component: ResourcePageComponent },
-          { path: 'bonus-task', component: BonusTaskComponent },
+          { path: 'bouns-tasks', component: BonusTaskComponent },
           { path: 'announcement', component: AnnouncementComponent },
           { path: 'classes/list', component: DashboardClassesComponent },
           {

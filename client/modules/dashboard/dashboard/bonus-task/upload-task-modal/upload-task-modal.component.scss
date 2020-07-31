@@ -1,0 +1,58 @@
+.m-align {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  ;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+  border-top: 1px solid rgba(0, 0, 0, .125);
+}
+
+.card-title {
+  margin-bottom: 8px !important;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.img-square-wrapper {
+  padding: 10px;
+  max-width: 40%;
+  max-height: 178px;
+}
+
+.img-square-wrapper img {
+  height: 100%;
+}
+
+.task-level {
+  display: inline-block;
+  min-width: 9px;
+  height: 9px;
+  border-radius: 50% !important;
+}
+
+.gold {
+  background: gold;
+}
+
+.silver {
+  background: silver;
+}
+
+.bronze {
+  background: #cd7f32;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

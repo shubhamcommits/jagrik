@@ -17,7 +17,14 @@ const bonusTaskController = new BonusTaskController();
 // Routes List
 const routes = express.Router();
 
-routes.post('/create-bonus-task',bonusTaskController.createBonusTask);
+routes.post('/create-bonus-task', bonusTaskController.createBonusTask);
+
+routes.put('/edit-bonus-task', bonusTaskController.editBonusTask);
+
+routes.get('/get-bonus-tasks', bonusTaskController.getBonusTasks);
+
+routes.delete('/delete-bonus-task', bonusTaskController.deleteBonusTask);
+
 
 routes.post('/assign-user-bonus-task', bonusTaskController.assignUserBonusTask);
 
@@ -28,10 +35,6 @@ routes.post('/cancel-user-assigned-bonus-task', bonusTaskController.cancelAssign
 routes.get('/get-user-submitted-bonus-task', bonusTaskController.getSelfSubmittedBonusTask);
 
 routes.get('/get-class-bonus-tasks', bonusTaskController.getBonusTasks);
-
-routes.put('/edit-bonus-task', bonusTaskController.editBonusTask);
-
-routes.delete('/delete-bonus-task', bonusTaskController.deleteBonusTask);
 
 
 /*  ===================
