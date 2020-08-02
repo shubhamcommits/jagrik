@@ -1,52 +1,23 @@
-<!-- <div class="container" style="margin-top: 5%;">
-    <div class="row justify-content-center justify-content-between" style="text-align: center; background-color: #cd4266;padding: 10px;">
-        <p style="color: white;"><b>Class Members</b></p>
-        <div [routerLink]="['/dashboard', 'classes', 'invite']" [queryParams]="{ classId: classId }"
-            [class]="'Default Class'"><button class="" style="border-radius: 50%; background-color: var(--warning); border: 0px;}">+</button></div>
-        </div> -->
-    <section *ngIf="this.class" style="padding: 20px;">
-      <div class="row" style="padding-top: 30px;">
-        <div class="col-md-12">
-          <div class="row justify-content-start">
-            <div class="col-md-1" *ngFor="let item of this.class.members" style="margin: 4px;">
-              <div class="card text-center card-member ">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                   <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
-                   <h3>{{item.first_name}}&nbsp; {{item.last_name}}</h3>
+<section *ngIf="this.class" style="padding: 20px;">
+  <div class="row" style="padding-top: 30px;">
+    <div class="col-md-12">
+      <div class="row justify-content-start">
+        <ng-container *ngFor="let item of this.class.members">
+          <ng-container *ngIf="item.role === 'student'">
+            <div class="col-md-1"  style="margin: 4px;">
+              <div  class="card text-center card-member">
+                <div class="row">
+                  <div class="col-md-12 text-center" >
+                    <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
+                    <h3>{{item.first_name}}&nbsp; {{item.last_name}}</h3>
+                  </div>
                 </div>
               </div>
-              </div>
             </div>
-          </div>
-        </div>
-        </div>
+          </ng-container> 
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-        <!-- <mat-table [dataSource]="this.class.members" class="mat-elevation-z8"> -->
-            <!-- Position Column -->
-            <!-- <ng-container matColumnDef="Name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{ element?.first_name }}{{ element?.last_name }} </mat-cell>
-            </ng-container> -->
-          
-            <!-- Name Column -->
-            <!-- <ng-container matColumnDef="Email">
-              <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element?.email}} </mat-cell>
-            </ng-container> -->
-          
-            <!-- Weight Column -->
-            <!-- <ng-container matColumnDef="Role">
-              <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element?.role}} </mat-cell>
-            </ng-container>
-          
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
-        
-    </section>
-
-
-</div> -->

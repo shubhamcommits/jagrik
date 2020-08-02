@@ -12,11 +12,23 @@
     </mat-form-field>
     <mat-form-field appearance="fill" class="example-full-width">
       <mat-label>Select Students</mat-label>
+      <!-- <mat-selection-list formControlName="students" [multiple]="true">
+        <mat-list-option #allSelected (click)="toggleAllSelection()" value="0">ALL</mat-list-option>
+        <mat-list-option *ngFor="let team of data.teams" [value]="team.user_id"
+          (click)="tosslePerOne(allSelected.viewValue)">{{team.first_name + ' ' + team.last_name}}</mat-list-option>
+      </mat-selection-list> -->
       <mat-select formControlName="students" multiple>
          <mat-option #allSelected (click)="toggleAllSelection()" value="0">All</mat-option>
         <mat-option *ngFor="let team of data.teams" [value]="team.user_id"
           (click)="tosslePerOne(allSelected.viewValue)">
-          {{team.first_name + ' ' + team.last_name}}</mat-option>
+          <div class="row">
+            <div class="col-md-1 d-flex justify-content-start" style="align-items: center;"><img src="https://via.placeholder.com/40x40.png?text=Jagrik" class="rounded-circle" style="max-width: 35px;max-height: 35px;">
+            </div>
+            <div class="col-md-11 d-flex justify-content-start">
+               {{team.first_name + ' ' + team.last_name}}
+            </div>
+          </div>
+          </mat-option>
       </mat-select>
     </mat-form-field>
   </form>

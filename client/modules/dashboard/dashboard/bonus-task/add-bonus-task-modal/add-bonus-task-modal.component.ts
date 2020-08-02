@@ -13,6 +13,7 @@ import { BonusTaskService } from '../../shared/services/bonustask.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { MatOption } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-add-modal',
