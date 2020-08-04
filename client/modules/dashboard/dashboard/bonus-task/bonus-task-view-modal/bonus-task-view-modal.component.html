@@ -1,0 +1,30 @@
+<h2 class="heading text-uppercase">User Response</h2>
+ <mat-dialog-content class="mat-typography">
+   <div class="row" *ngIf="data?.task?.response.length > 0">
+
+     <div class="col-md-12 mb-3" *ngFor="let item of data?.task?.response">
+       <div class="card">
+         <div class="card-body">
+           <h4 class="card-title">{{item.user_name}}</h4>
+         </div>
+         <div class="card-horizontal">
+           <div class="img-square-wrapper">
+             <img class="img-thumbnail" src="data:image/png;base64,{{item.doc}}"
+               alt="Card image cap">
+           </div>
+           <div class="card-body">
+             <p class="card-text">{{data?.task?.description}}</p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+     <div class="row" *ngIf="data?.task?.response.length == 0">
+        <div class="col-md-12">
+          No Response Found
+        </div>
+     </div>
+ </mat-dialog-content>
+ <mat-dialog-actions align="end">
+   <button mat-button mat-dialog-close>Cancel</button>
+ </mat-dialog-actions>

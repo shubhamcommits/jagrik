@@ -19,7 +19,8 @@
         <p class="card-text medium-text">{{item.description}}</p>
         <hr>
         <span class="text-muted">{{item.students.length}} Members</span>
-        <button *ngIf="userRole !== 'student'" mat-raised-button class="pull-right" color="accent">Details</button>
+        <button *ngIf="userRole !== 'student'" mat-raised-button class="pull-right" (click)="openResponseViewDialog(item)"
+          color="accent">Details</button>
          <button *ngIf="userRole == 'student' && !item.isUploaded" mat-raised-button class="pull-right" color="accent"
            (click)="openResponseDialog(item)">Upload</button>
       </div>

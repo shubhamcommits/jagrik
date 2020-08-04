@@ -5,6 +5,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { MatDialog } from '@angular/material/dialog';
 import { AddBonusTaskModalComponent } from './add-bonus-task-modal/add-bonus-task-modal.component';
 import { UploadTaskModalComponent } from './upload-task-modal/upload-task-modal.component';
+import { BonusTaskViewModalComponent } from './bonus-task-view-modal/bonus-task-view-modal.component';
 import { BonusTaskService } from '../shared/services/bonustask.service';
 
 @Component({
@@ -70,6 +71,17 @@ export class BonusTaskComponent implements OnInit {
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       dialogRef.close()
       this.getBonusTaskList()
+    });
+  }
+
+  openResponseViewDialog(task: any) {
+    let dialogRef = this.dialog.open(BonusTaskViewModalComponent, {
+      data: {
+        task
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      minWidth: '40vw',
     });
   }
 
