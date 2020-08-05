@@ -17,18 +17,15 @@ section {
 .jk-button-row {
   display: table-cell;
 }
-
 .jk-button-row button {
   display: table-cell;
   margin-right: 8px;
 }
-
 .jk-flex-container {
   display: flex;
   justify-content: space-between;
   width: 480px;
 }
-
 .jk-button-container {
   display: flex;
   justify-content: center;
@@ -39,7 +36,6 @@ section {
   padding: 10px;
   border-radius:6px;
 }
-
 .card h1{
   font-family: Montserrat;
     font-style: normal;
@@ -54,7 +50,6 @@ section {
 .img-member{
   margin-top: -40px;
 }
-
 .card-team{
   width: 210px;
   height: 160px;
@@ -62,12 +57,9 @@ section {
 .card-member{
   width: 120px;
 }
-
 .card-body{
   padding: 0px !important;
 }
-
-
 .tab-box{
   width: 90px;
   height: 90px;
