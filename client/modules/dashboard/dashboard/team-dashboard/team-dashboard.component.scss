@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 table {
   width: 100%;
 }
@@ -61,14 +62,19 @@ section {
 .card-member{
   width: 120px;
 }
- 
+
 .card-body{
   padding: 0px !important;
 }
 
-.mat-tab-label {
-  opacity: 1 !important;
-  color: black !important;
-  border-radius: 0% !important;
-  margin: 5px;
+
+.tab-box{
+  width: 90px;
+  height: 90px;
+}
+.tab-box label{
+  padding-top: 30px;
+}
+.pink-tab{
+  background-color: palevioletred;
 }

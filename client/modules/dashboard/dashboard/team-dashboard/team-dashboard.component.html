@@ -2,17 +2,20 @@
 <br><br>
 <!---START-->
 <mat-tab-group>
-  <mat-tab>
+  <mat-tab id="tb-tab">
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">groups</mat-icon>
-      Teams
+      <div [ngClass]="'pink-tab tab-box'">
+      <label>
+        <mat-icon class="example-tab-icon">groups</mat-icon> Teams
+      </label>
+      </div>
     </ng-template>
     <div class="row" >
       <div *ngIf="!teamArrayExist && newUser.length === 0" class="col-md-12" style="max-height: 60vh;text-align: center;">
         <h4>No teams and team member found !</h4>
         <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
       </div>
-    
+
       <div class="col-md-12">
         <div class="row justify-content-start">
           <div class="col-md-2" *ngFor="let item of teamArray | keyvalue">
@@ -28,16 +31,19 @@
               </div>
             </div>
           </div>
-    
+
         </div>
       </div>
     </div>
   </mat-tab>
 
-  <mat-tab>
+  <mat-tab id="tb-tab1">
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">person</mat-icon>
-      Members
+       <div [ngClass]="'pink-tab tab-box'">
+         <label>
+            <mat-icon class="example-tab-icon">person</mat-icon> Members
+         </label>
+       </div>
     </ng-template>
     <div class="row" style="padding-top: 30px;" *ngIf="userRole !== 'student'">
       <div class="col-md-12">

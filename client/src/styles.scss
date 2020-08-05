@@ -54,10 +54,14 @@ align-items: flex-start;
   height: 90px !important;
   padding: 0px !important;
 }
+
 .mat-tab-label-active .task-level {
   min-width: 80px !important;
   height: 80px !important;
   border-radius: 50% !important;
+}
+.mat-tab-label-active .tab-box {
+  background-color: #E72066 !important;
 }
 .mat-table {
   width: 100% !important;
