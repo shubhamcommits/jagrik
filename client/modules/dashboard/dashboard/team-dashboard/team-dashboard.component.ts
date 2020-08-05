@@ -32,6 +32,7 @@ export interface AssignTeamElement {
   ],
 })
 export class TeamDashboardComponent implements OnInit {
+  Mattabs;
   displayedColumns: string[] = ['position', 'name', 'className', 'team'];
   dataSource: TeamElement[] = [];
   newUser: AssignTeamElement[] = [];
