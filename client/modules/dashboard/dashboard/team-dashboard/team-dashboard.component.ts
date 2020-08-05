@@ -106,16 +106,12 @@ export class TeamDashboardComponent implements OnInit {
 
               this.teamArrayExist = true;
 
-            } else {
-
-
-              this.newUser.push({
-                name: `${element['first_name']} ${element['last_name']}`,
-                _id: element['user_id'],
-                className: this.className,
-              });
-              console.log(this.newUser);
             }
+            this.newUser.push({
+              name: `${element['first_name']} ${element['last_name']}`,
+              _id: element['user_id'],
+              className: this.className,
+            });
           });
         }
       })
