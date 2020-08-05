@@ -1,0 +1,67 @@
+table {
+  width: 100%;
+}
+
+section {
+  display: table;
+}
+
+.jk-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  width: 120px;
+}
+
+.jk-button-row {
+  display: table-cell;
+}
+
+.jk-button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+.jk-flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+}
+
+.jk-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+.card{
+  box-shadow: 0 0 19px #0000006e;
+  padding: 10px;
+  border-radius:6px;
+}
+
+.card h1{
+  font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 18px;
+}
+.rounded-circle{
+  max-width: 60px;
+  max-height: 60px;
+}
+.img-member{
+  margin-top: -40px;
+}
+
+.card-team{
+  width: 210px;
+  height: 160px;
+}
+.card-member{
+  width: 160px;
+}
+ 
+.card-body{
+  padding: 0px !important;
+}

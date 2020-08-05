@@ -17,6 +17,7 @@ import { ClassAgendaComponent } from './dashboard/dashboard-classes/class-agenda
 import { UserComponent } from './dashboard/user/user.component';
 import { JoinClassComponent } from './dashboard/dashboard-classes/join-class/join-class.component';
 import { TeamComponent } from './dashboard/team/team.component';
+import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboard.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // Material Import
@@ -106,7 +107,8 @@ import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-v
     BonusTaskComponent,
     AddBonusTaskModalComponent,
     UploadTaskModalComponent,
-    BonusTaskViewModalComponent
+    BonusTaskViewModalComponent,
+    TeamDashboardComponent
   ],
   imports: [
     CommonModule,

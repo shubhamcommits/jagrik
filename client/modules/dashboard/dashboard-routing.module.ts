@@ -14,6 +14,7 @@ import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.compone
 import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
 import { AnnouncementComponent } from '../dashboard/dashboard/announcement/announcement.component';
 import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component';
+import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboard.component';
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +40,7 @@ const routes: Routes = [
             ],
           },
           { path: 'team', component: TeamComponent },
+          { path: 'team-dashboard', component: TeamDashboardComponent },
           { path: 'user', component: UserComponent },
         ],
       },
