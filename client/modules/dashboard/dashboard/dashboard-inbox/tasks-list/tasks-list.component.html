@@ -112,7 +112,7 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-           <div *ngIf="taskStatus?.teamTask !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
+           <div  class="col-6 text-capitalize"><button mat-raised-button
                style="color: #cd4266;"
                (click)="openDialog(task)">UPLOAD</button></div>
         </div>

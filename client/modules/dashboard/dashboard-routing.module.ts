@@ -15,6 +15,7 @@ import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/reso
 import { AnnouncementComponent } from '../dashboard/dashboard/announcement/announcement.component';
 import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component';
 import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboard.component';
+import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 const routes: Routes = [
   {
     path: '',
@@ -41,6 +42,7 @@ const routes: Routes = [
           },
           { path: 'team', component: TeamComponent },
           { path: 'team-dashboard', component: TeamDashboardComponent },
+          { path: 'leaderboard', component: LeaderboardViewComponent },
           { path: 'user', component: UserComponent },
         ],
       },

@@ -78,6 +78,7 @@ import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component'
 import { AddBonusTaskModalComponent } from './dashboard/bonus-task/add-bonus-task-modal/add-bonus-task-modal.component';
 import { UploadTaskModalComponent } from './dashboard/bonus-task/upload-task-modal/upload-task-modal.component';
 import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-view-modal/bonus-task-view-modal.component';
+import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -108,7 +109,8 @@ import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-v
     AddBonusTaskModalComponent,
     UploadTaskModalComponent,
     BonusTaskViewModalComponent,
-    TeamDashboardComponent
+    TeamDashboardComponent,
+    LeaderboardViewComponent
   ],
   imports: [
     CommonModule,
