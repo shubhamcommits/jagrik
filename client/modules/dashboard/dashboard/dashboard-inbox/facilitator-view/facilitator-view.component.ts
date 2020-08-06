@@ -44,9 +44,15 @@ export class FacilitatorViewComponent implements OnInit {
       maxHeight: '90vh',
       maxWidth: '60vw'
     });
+
+    dialogRef.componentInstance.getResonseData.subscribe(($e) => {
+      dialogRef.close()
+      this.getCompletedTeam(this.storageService.getLocalData('userData').classes[0])
+    });
   }
 
   getCompletedTeam(classId) {
+    this.dataSource = []
     return new Promise((resolve) => {
       // Call the service function
       this.classService

@@ -60,6 +60,19 @@ export class TeamService {
   }
 
   /**
+  * This function is responsible for assign points
+  * @object data
+  */
+  assignPoint(teamId: any, teamPoints: any) {
+    return this.httpClient
+      .post(environment.baseApiUrl + '/teams/submit-task-points', {
+        teamId: teamId,
+        teamPoints: teamPoints,
+      })
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for upload document against task
    * @param image
    * @param taskId

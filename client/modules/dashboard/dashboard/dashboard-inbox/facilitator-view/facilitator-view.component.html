@@ -13,7 +13,7 @@
   <div class="col-md-3" *ngFor="let item of dataSource">
     <div class="card text-left">
       <div class="card-body">
-        <h4 class="card-title">{{item.team_name}} <span class="pull-right">10 Point</span></h4>
+        <h4 class="card-title">{{item.team_name}} <span class="pull-right">{{item.team_points}}</span></h4>
         <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
         <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View All</button>
       </div>
