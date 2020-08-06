@@ -89,8 +89,8 @@ export class TeamService {
           if (user.role === "facilitator" || user.role === "super-admin") {
             let team: any = Team.find({_id: teamId},{team_creator: user._id});
             if(team){
-                await Team.findByIdAndUpdate(
-                    {_id: team._id},
+                await Team.findOneAndUpdate(
+                    { _id: teamId},
                     {points: teamPoints}
                 );
                 return;
