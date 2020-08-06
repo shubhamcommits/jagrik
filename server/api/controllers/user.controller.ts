@@ -257,12 +257,13 @@ export class UserController {
             // Fetch Authorization header
             let authorization = req.headers.authorization;
             let taskId = req.body.taskId;
+            let description = req.body.description;
             let experience_description = req.body.experience_description
             let teamId = req.body.teamId
 
             // Call the profilePictureUpdate function from the service
             await userService
-                .taskSupportingDocUpload(img, authorization, taskId, experience_description, teamId)
+                .taskSupportingDocUpload(img, authorization, taskId, experience_description, teamId, description)
 
                 // Proceed with the status 200 response
                 .then((response) => {

@@ -65,11 +65,12 @@ export class TeamService {
    * @param taskId
    * @param teamId
    */
-  uploadTaskDocument(image: File, teamId: any, taskId: any) {
+  uploadTaskDocument(image: File, teamId: any, taskId: any, description: any) {
     let formData: FormData = new FormData();
     formData.append('supporting_doc', image);
     formData.append('taskId', taskId);
     formData.append('teamId', teamId);
+    formData.append('description', description);
     return this.httpClient
       .post(environment.baseApiUrl + '/users/task-doc-upload', formData)
       .toPromise();

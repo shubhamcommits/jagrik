@@ -33,6 +33,10 @@ export class TaskViewComponent implements OnInit {
         Validators.nullValidator,
         FileValidator.maxContentSize(1048576),
       ]),
+      description: new FormControl(null, [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
     });
   }
 
@@ -46,7 +50,8 @@ export class TaskViewComponent implements OnInit {
         .uploadTaskDocument(
           this.inputForm.value['removablefile']['files'][0],
           this.userData.teams[0]._id,
-          this.data.task._id
+          this.data.task._id,
+          this.inputForm.value['description']
         )
         .then((res) => {
           // Fire sucess toast

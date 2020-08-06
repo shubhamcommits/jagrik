@@ -53,6 +53,10 @@ const TeamSchema = new Schema({
         default: moment().format(),
         required: true
       },
+      description: {
+        type: String,
+        data: Buffer,
+      },
       supporting_doc: {
         type: String,
         data: Buffer,

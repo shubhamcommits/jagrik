@@ -6,15 +6,18 @@
     <p><b>Maximum Points:</b> {{ data?.task?.points }}</p>
 
 </div>
-
-
-<mat-form-field [formGroup]="inputForm">
+<form [formGroup]="inputForm">
+<mat-form-field class="example-full-width">
+  <mat-label>Description</mat-label>
+  <input matInput placeholder="Description" formControlName="description" value="">
+</mat-form-field>
+<mat-form-field>
     <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file"></ngx-mat-file-input>
     <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
-
+</form>
 <div class="form-group">
     <button class="btn btn-sm btn-primary" [disabled]="!inputForm.valid" (click)="submitFile()" mat-dialog-close>Submit</button>
 </div>

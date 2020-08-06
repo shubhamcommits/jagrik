@@ -52,7 +52,7 @@ section {
 }
 .card-team{
   width: 210px;
-  height: 160px;
+  height: 180px;
 }
 .card-member{
   width: 120px;
@@ -69,4 +69,10 @@ section {
 }
 .pink-tab{
   background-color: palevioletred;
+  font-size: 12px;
+}
+::ng-deep {
+  .mat-tab-label {
+    border-radius: 20% !important;
+  }
 }

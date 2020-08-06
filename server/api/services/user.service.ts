@@ -73,7 +73,7 @@ export class UserService {
         }
     }
 
-    async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String) {
+    async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String, description: String) {
         try {
             //verify token and decode user data
 
@@ -97,6 +97,7 @@ export class UserService {
 
                     if(JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         user.tasks[i]._task = taskId;
+                        user.tasks[i].description = description;
                         user.tasks[i].supporting_doc = img_data;
                         user.tasks[i].status = 'complete';
                         console.log("Matched");
@@ -120,6 +121,7 @@ export class UserService {
 
                     if(JSON.stringify(team.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         team.tasks[i]._task = taskId;
+                        team.tasks[i].description = description;
                         team.tasks[i].supporting_doc = img_data;
                         team.tasks[i].status = 'complete';
                     }

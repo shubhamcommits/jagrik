@@ -202,6 +202,10 @@ const UserSchema = new Schema({
         type: String,
         data: Buffer,
       },
+      description: {
+        type: String,
+        data: Buffer,
+      },
       bonus_task:{
         type: Boolean,
         default: false
