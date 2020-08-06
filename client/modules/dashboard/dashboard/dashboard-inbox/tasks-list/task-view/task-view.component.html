@@ -1,4 +1,8 @@
-<h1 mat-dialog-title>Proof Uploading!</h1>
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center">
+    <h1 mat-dialog-title>Proof Uploading</h1>
+  </div>
+</div>
 <div mat-dialog-content>
 
     <p><b>Type:</b> {{ data?.task?.title }}</p>
@@ -12,12 +16,19 @@
   <input matInput placeholder="Description" formControlName="description" value="">
 </mat-form-field>
 <mat-form-field>
+  <mat-icon aria-hidden="false" aria-label="Example home icon">attach_file</mat-icon>>
     <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file"></ngx-mat-file-input>
     <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
 </form>
-<div class="form-group">
-    <button class="btn btn-sm btn-primary" [disabled]="!inputForm.valid" (click)="submitFile()" mat-dialog-close>Submit</button>
-</div>
+<div class="row form-group d-flex justify-content-center" style="padding: 0px;">
+    <div class="col-md-6" style="padding: 0px;">
+    <button class="btn btn-sm btn-danger" style="width: 100%;border-radius: 0px; min-height: 40px;" mat-dialog-close>Cancel</button>
+  </div>
+  <div class="col-md-6" style="padding: 0px;">
+    <button class="btn btn-sm btn-primary" style="width: 100%; border-radius: 0px; min-height: 40px;" [disabled]="!inputForm.valid" (click)="submitFile()" mat-dialog-close>Submit</button>
+  </div>
+
+  </div>

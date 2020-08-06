@@ -68,11 +68,15 @@ section {
   padding-top: 30px;
 }
 .pink-tab{
-  background-color: palevioletred;
-  font-size: 12px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 0% !important;
 }
 ::ng-deep {
   .mat-tab-label {
-    border-radius: 20% !important;
+    border-radius: 0% !important;
+  }
+  .mat-tab-label-active .tab-box {
+    background-color:transparent !important;
   }
 }
