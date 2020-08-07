@@ -6,7 +6,7 @@
             <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;">
           </mat-list-item>
         <mat-list-item class="parent"  [routerLink]="['/dashboard', 'inbox']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+          <span class="full-width" *ngIf="(isExpanded || isShowing)">Dashboard</span>
           <mat-icon mat-list-icon>dashboard</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent"  [routerLink]="['/dashboard', 'tasks']">
@@ -21,11 +21,11 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Classes</span>
           <mat-icon mat-list-icon>content_paste</mat-icon>
         </mat-list-item>
-        <mat-list-item class="parent" [routerLink]="['/dashboard', 'leaderboard']">
+        <mat-list-item class="parent" [routerLink]="['/dashboard', 'leaderboard']" *ngIf="userRole ==='facilitator'">
           <span class="full-width" *ngIf="isExpanded || isShowing">Leaderboard</span>
           <mat-icon mat-list-icon>content_paste</mat-icon>
         </mat-list-item>
-        <mat-list-item class="parent" [routerLink]="['/dashboard', 'team']">
+        <mat-list-item class="parent" [routerLink]="['/dashboard', 'team']" *ngIf="userRole ==='facilitator'">
           <span class="full-width" *ngIf="isExpanded || isShowing">Teams</span>
           <mat-icon mat-list-icon>group_work</mat-icon>
         </mat-list-item>

@@ -75,3 +75,26 @@ align-items: flex-start;
 .res-page .mat-icon-no-color {
   margin-top: -20px;
 }
+.mat-drawer-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  overflow: auto;
+  background-color: #e3e3e8;
+}
+
+.card{
+  border-radius: .5rem;
+}
+.card-heading span {
+  height: 2px;
+  background-color: #bfbfbf;
+  width: 15%;
+  display: block;
+}
+
+.card-heading, .card-heading h2{
+  color: #CE4166;
+  margin-bottom: 20px;
+}
