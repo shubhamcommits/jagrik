@@ -1,14 +1,17 @@
-<h3 *ngIf="!is_completedTask" class="d-flex justify-content-center">Since you monitor everything.</h3>
-<img *ngIf="!is_completedTask" style="max-height: 55vh;" src="assets/undraw_financial_data.svg">
-<span *ngIf="!is_completedTask" class="d-flex justify-content-center">Please create the teams if not done and wait for
-  the students to submit the
-    tasks for you to evaluate!</span>
+<ng-container *ngIf="is_completedTask">
+    <div class="row">
+      <div class="col-md-12">
+        <img style="max-height: 55vh;max-width: 100%;" src="assets/undraw_time_management_30iu.svg">
+      </div>
+      <div class="col-md-12">
+        <span class="d-flex justify-content-center">Waiting for Submissions</span>
+      </div>
+    </div>
+</ng-container>
 
-<div *ngIf="is_completedTask" class="row" >
 
-  <!-- <div class="col-md-12">
-    <h1 class="d-flex justify-content-start text-capitalize">Task Verification Requests</h1>
-  </div> -->
+<ng-container *ngIf="!is_completedTask">
+<div  class="row" >
   <div class="col-md-3" *ngFor="let item of dataSource">
     <div class="card text-left">
       <div class="card-body">
@@ -18,4 +21,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
+</ng-container>
+
+  <!-- <div class="col-md-12">
+    <h1 class="d-flex justify-content-start text-capitalize">Task Verification Requests</h1>
+  </div> -->
