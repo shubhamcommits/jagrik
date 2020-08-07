@@ -1,6 +1,50 @@
-<h1 class="d-flex justify-content-center">Welcome to Jagrik!</h1>
-<span class="d-flex justify-content-center">aims to create a lived experience for participants</span>
+<!-- <h1 class="d-flex justify-content-center">Welcome to Jagrik!</h1>
+<span class="d-flex justify-content-center">aims to create a lived experience for participants</span> -->
 
 <app-no-team *ngIf="userData && userData.role === 'student' && userData.teams.length == 0"></app-no-team>
+<div class="row" *ngIf="userData && userData.role === 'facilitator'">
 
-<app-facilitator-view *ngIf="userData && userData.role === 'facilitator'"></app-facilitator-view>
+
+    <div class="col-md-6">
+        <div class="card card-dashboard" style="padding: 25px;">
+            <div class="card-body">
+                <div class="card-heading">
+                    <h2 style="margin: 0px !important;">Tasks Pending for Verification</h2>
+                <span></span>
+                </div>
+                <app-facilitator-view></app-facilitator-view>
+            </div>  
+        </div>   
+    </div>
+    <div class="col-md-6">
+        <div class="card card-dashboard" style="padding: 25px;">
+            <div class="card-body">
+                <div class="card-heading">
+                    <h2 style="margin: 0px !important;">Leaderboard</h2>
+                <span></span>
+                </div>
+                <app-leaderboard-view></app-leaderboard-view>
+            </div>  
+        </div> 
+    </div>
+
+</div>
+
+
+<div class="row" *ngIf="userData.role === 'student'">
+
+    <div class="col-md-12">
+        <app-assign-random-task
+        *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
+        (card)="getCard($event)">
+        </app-assign-random-task>
+    
+        <app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
+            [cardId]="this.card._id">
+        </app-tasks-list>
+
+    </div>
+    <!-- <div class="col-md-6">
+        <app-leaderboard-view></app-leaderboard-view>
+    </div> -->
+</div>

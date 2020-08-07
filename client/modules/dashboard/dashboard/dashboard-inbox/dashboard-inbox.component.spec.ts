@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardInboxComponent } from './dashboard-inbox.component';
+import { NgModule } from '@angular/core';
+import { LeaderboardViewComponent } from "../leaderboard/leaderboard.component";
+import { TasksListComponent } from "./tasks-list/tasks-list.component";
+import { AssignRandomTaskComponent } from "./assign-random-task/assign-random-task.component";
 
 describe('DashboardInboxComponent', () => {
   let component: DashboardInboxComponent;
@@ -23,3 +27,8 @@ describe('DashboardInboxComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@NgModule({
+  imports: [LeaderboardViewComponent,TasksListComponent,AssignRandomTaskComponent],
+
+})export class DashboardInboxModule{}

@@ -33,7 +33,7 @@ export class LeaderboardViewComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  displayedColumns: string[] = ['team_name', 'team_members', 'team_points'];
+  displayedColumns: string[] = ['S.No','team_name', 'team_points'];
   dataSource: TeamElement[] = [];
   userRole: any = ''
 
