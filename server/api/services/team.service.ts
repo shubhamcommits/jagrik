@@ -16,8 +16,13 @@ export class TeamService {
          ) {
            try {
              // Find the list of cards
+             let team:any = await Team.findOne({ _id: teamId });
+             let usedCardIds = team.tasks.map((card) => {
+               return card._card;
+             });
              let cards = await Card.find({
-               theme: card_theme,
+                 theme: card_theme,
+                 _id: { $nin: usedCardIds }
              });
 
              // Map the list of card Ids
@@ -80,7 +85,7 @@ export class TeamService {
          async submitTaskPoints(
            token: any,
            teamId: string,
-           teamPoints: String
+           teamPoints: any
          ) {
            try {
              // verify token and decode user data
@@ -90,16 +95,36 @@ export class TeamService {
              );
              let user: any = await User.findById({ _id: userVerify._id });
              // check if the user has the correct permissions to create a class
-             if (user.role === 'facilitator' || user.role === 'super-admin') {
-               let team: any = Team.find(
-                 { _id: teamId },
-                 { team_creator: user._id }
-               );
-               if (team) {
-                 await Team.findOneAndUpdate(
-                   { _id: teamId },
-                   { points: teamPoints }
-                 );
+               if (user.role === 'facilitator' || user.role === 'super-admin') {
+                 
+               let team: any = await Team.findOne({
+                 _id: teamId,
+                 team_creator: user._id,
+               });
+                
+                 if (team) {
+                 let teamTask = [];
+                 let is_update:Boolean = false;
+                 team.tasks.forEach(element => {
+                     let item = element
+                     if (element.is_active === 'active') {
+                       is_update = true;
+                     }
+                     element.is_active = 'inactive';
+                     teamTask.push(element);
+                    
+                 });
+                 if (is_update === true){
+                    await Team.findOneAndUpdate(
+                    { _id: teamId },
+                    {
+                        points:
+                        parseInt(teamPoints) +
+                        parseInt(team.points),
+                        tasks: teamTask,
+                    }
+                    );
+                }
                  return;
                } else {
                  throw new Error('401 - Access denied');
