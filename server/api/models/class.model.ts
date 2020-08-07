@@ -31,6 +31,13 @@ const ClassSchema = new Schema({
       default: null,
     },
   ],
+  groups: [
+    {
+      type: Schema.Types.Mixed,
+      ref: "Group",
+      default: null,
+    },
+  ],
   created_date: {
     type: Date,
     default: moment().format(),

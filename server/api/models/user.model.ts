@@ -166,6 +166,13 @@ const UserSchema = new Schema({
       default: null,
     },
   ],
+  groups: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Group',
+      default: null,
+    },
+  ],
   teams: [
     {
       type: Schema.Types.ObjectId,
