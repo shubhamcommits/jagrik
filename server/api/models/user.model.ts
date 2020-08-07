@@ -109,39 +109,39 @@ const UserSchema = new Schema({
   },
   show_bonus_task: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  taskIdAgainstBonusTask:{
+  taskIdAgainstBonusTask: {
     type: String,
-    default: null
+    default: null,
   },
   bonus_tasks: [
     new Schema({
-      bonus_task_id:{
+      bonus_task_id: {
         type: Schema.Types.ObjectId,
         ref: 'BonusTask',
-        default: null
+        default: null,
       },
-      show_bonus_task:{
+      show_bonus_task: {
         type: Boolean,
         default: false,
       },
-      taskIdAgainstBonusTask:{
-        type: String,
-        default: null
-      },
-      bonus_task_title:{
+      taskIdAgainstBonusTask: {
         type: String,
         default: null,
       },
-      bonus_task_description:{
+      bonus_task_title: {
+        type: String,
+        default: null,
+      },
+      bonus_task_description: {
         type: String,
         default: null,
       },
       supporting_doc: {
         type: String,
         data: Buffer,
-        default: null
+        default: null,
       },
       submitted_date: {
         type: Schema.Types.Date,
@@ -149,8 +149,8 @@ const UserSchema = new Schema({
       },
       status: {
         type: String,
-        default: 'Incomplete'
-      }
+        default: 'Incomplete',
+      },
     }),
   ],
   files: [
@@ -213,14 +213,14 @@ const UserSchema = new Schema({
         type: String,
         data: Buffer,
       },
-      bonus_task:{
+      bonus_task: {
         type: Boolean,
-        default: false
+        default: false,
       },
-      bonus_task_assigned_on:{
+      bonus_task_assigned_on: {
         type: Schema.Types.Date,
-        default: null
-      }
+        default: null,
+      },
     }),
   ],
 });

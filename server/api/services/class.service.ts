@@ -830,7 +830,8 @@ export class ClassService {
           for(let n in selfTasks){
             if(selfTasks[n].status=='complete'){
               is_any_self_task_complete = true;
-              break;
+            } else {
+              is_any_self_task_complete = false;
             }
           }
           teamMemberTaskStatus.push({

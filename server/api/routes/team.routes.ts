@@ -11,6 +11,8 @@ routes.post('/assign-card', teamController.assignRandomCard);
 
 routes.post('/submit-task-points', teamController.submitTaskPoints);
 
+routes.get('/team-task-status', teamController.teamTaskStatus);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const TeamSchema = new Schema({
   team_creator: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   team_name: {
@@ -16,13 +16,13 @@ const TeamSchema = new Schema({
   team_members: [
     {
       type: Schema.Types.Mixed,
-      ref: "User",
+      ref: 'User',
       default: null,
     },
   ],
   points: {
     type: String,
-    default: '0'
+    default: '0',
   },
   created_date: {
     type: Date,
@@ -40,18 +40,24 @@ const TeamSchema = new Schema({
       },
       week: {
         type: Number,
-        required: true
+        required: true,
       },
       status: {
         type: Schema.Types.String,
         default: 'to do',
         enum: ['to do', 'in progress', 'waiting for score', 'completed'],
-        required: true
+        required: true,
+      },
+      is_active: {
+        type: Schema.Types.String,
+        default: 'active',
+        enum: ['active', 'inactive'],
+        required: true,
       },
       due_date: {
         type: Schema.Types.Date,
         default: moment().format(),
-        required: true
+        required: true,
       },
       description: {
         type: String,
@@ -62,13 +68,13 @@ const TeamSchema = new Schema({
         data: Buffer,
       },
       experience_description: {
-        type: String
+        type: String,
       },
       submitted_by: {
-        type: String
-      }
-    })
-  ]
+        type: String,
+      },
+    }),
+  ],
 });
 
 const Team = mongoose.model("Team", TeamSchema);
