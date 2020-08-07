@@ -49,6 +49,21 @@ export class TeamService {
       .toPromise();
   }
 
+  /**
+   * This function is responsible for getting team task status
+   * @param teamId
+   * @param week
+   */
+  teamTaskStatus(teamId) {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/teams/team-task-status', {
+        params: {
+          teamId: teamId,
+        },
+      })
+      .toPromise();
+  }
+
   fetchTasks(cardId) {
     return this.httpClient
       .get(environment.baseApiUrl + '/tasks', {
@@ -60,9 +75,9 @@ export class TeamService {
   }
 
   /**
-  * This function is responsible for assign points
-  * @object data
-  */
+   * This function is responsible for assign points
+   * @object data
+   */
   assignPoint(teamId: any, teamPoints: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
