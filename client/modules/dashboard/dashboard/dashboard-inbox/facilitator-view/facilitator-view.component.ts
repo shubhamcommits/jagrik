@@ -4,6 +4,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskDetailModalComponent } from './task-detail-modal/task-detail-modal.component';
+
 @Component({
   selector: 'app-facilitator-view',
   templateUrl: './facilitator-view.component.html',
