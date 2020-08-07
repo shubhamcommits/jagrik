@@ -6,6 +6,7 @@ import { UserService } from './user.service'
 import { TeamService } from './team.service'
 import { AnnouncementService } from './announcement.service'
 import { BonusTaskService } from './bonus_task.service'
+import { GroupService } from './group.service'
 
 
 /*  =======================
@@ -36,6 +37,9 @@ export {
   AnnouncementService as AnnouncementService,
 
   // BonusTask Service
-  BonusTaskService as BonusTaskService
+  BonusTaskService as BonusTaskService,
+
+  // Group Service
+  GroupService as GroupService
 
 }

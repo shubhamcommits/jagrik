@@ -6,6 +6,7 @@ import { Task } from './task.model'
 import { User } from './user.model'
 import {Announcement} from './announcement.model'
 import {BonusTask} from './bonus_task.model'
+import {Group} from './group.model'
 
 /*  =====================
  *  -- EXPORTS MODELS --
@@ -35,5 +36,8 @@ export {
   Announcement,
 
   // BonusTask Model
-  BonusTask
+  BonusTask,
+
+  // Group Model
+  Group
 }
