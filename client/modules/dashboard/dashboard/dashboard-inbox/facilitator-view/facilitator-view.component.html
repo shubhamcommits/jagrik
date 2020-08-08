@@ -10,14 +10,14 @@
 </ng-container>
 
 
-<ng-container *ngIf="is_completedTask">
+<!-- <ng-container *ngIf="is_completedTask">
 <div  class="row" >
   <div class="col-md-4" *ngFor="let item of dataSource">
     <div class="card text-left">
       <div class="card-body">
         <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}} 
         <span class="pull-left"><b>Points:</b>&nbsp;{{item.team_points}}</span></h4>
-        <!-- <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p> -->
+        <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
             <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View</button>
@@ -28,8 +28,44 @@
     </div>
   </div>
 </div> 
-</ng-container>
-
+</ng-container> -->
+<ng-container *ngIf="is_completedTask">
+  <table class="c mat-elevation-z8">
+    <thead style="border-bottom: 1px solid #e0e0e0;">
+    <th style="padding-top: 20px; padding-bottom: 20px;">S.No</th>
+    <th> Team Name</th>
+    <th> Task Points </th>
+    <th>Status</th>
+    <th> Action </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSource;let i=index">
+        <td style="padding-top: 20px; padding-bottom: 20px;">{{i+1}}</td>
+        <td>{{ item.team_name }}</td>
+        <td>{{ item.team_points }}</td>
+        <td><div class="button btn-danger" style="background-color: #fa5c7d;border-color: #fa5c7d;border-radius: .25rem;width: 55px;font-size: 11px;">Pending</div></td>
+        <td class="cell_action" style="padding-top: 20px; padding-bottom: 20px;"><button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent"><mat-icon>launch</mat-icon>View</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div  class="row" >
+    <div class="col-md-4" *ngFor="let item of dataSource">
+      <div class="card text-left">
+        <div class="card-body">
+          <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}} 
+          <span class="pull-left"><b>Points:</b>&nbsp;{{item.team_points}}</span></h4>
+           <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+              <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>  -->
+  </ng-container>
   <!-- <div class="col-md-12">
     <h1 class="d-flex justify-content-start text-capitalize">Task Verification Requests</h1>
   </div> -->

@@ -1,4 +1,61 @@
-<div class="row" *ngIf="data && userData">
+<div class="container">
+  <div class="row">
+      <div class="col-md-4 col-xl-3">
+          <div class="card bg-c-blue order-card">
+              <div class="card-block">
+                  <h3 class="m-b-20">Week</h3>
+                  <h2 class="text-right"><mat-icon class="icon-top" >today</mat-icon><span>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</span></h2>
+                  <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-md-4 col-xl-3">
+          <div class="card bg-c-green order-card">
+              <div class="card-block">
+                  <h3 class="m-b-20 text-capitalize">{{data?.card?.theme}}</h3>
+                  <h2 class="text-right"><mat-icon class="icon-top">call_to_action</mat-icon><span>{{data?.card?.dice_number}}</span></h2>
+                  <!-- <p class="m-b-0" class="text-capitalize">{{data?.card?.theme}}</p> -->
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-md-4 col-xl-3">
+          <div class="card bg-c-yellow order-card">
+              <div class="card-block">
+                  <h3 class="m-b-20">Team Task Status</h3>
+                  <h2 class="text-right"><mat-icon class="icon-top">autorenew</mat-icon><span>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</span></h2>
+                  <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-md-4 col-xl-3" >
+          <div class="card bg-c-pink order-card" style="height: 100%;">
+              <div class="card-block">
+                  <h3 class="m-b-20">User Task Status</h3>
+                  <!-- <h2 class="text-right"><mat-icon class="icon-top">User</mat-icon><span>486</span></h2>
+                  <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+                  <div class="row" *ngFor="let item of taskStatus?.teamMembers">
+                    <div class="col-md-9">
+                      <p class="text-capitalize"><b>{{item.user_name}}</b></p>
+                    </div>
+                    <div class="col-md-3">
+                        <div style="border-radius:50%; background-color:rgb(255, 60, 0);width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false">
+                        </div>
+                        <div style="border-radius:50%; background-color:rgb(123, 255, 0);width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === true">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
+</div>
+
+
+<!-- Cards End-->
+<!-- <div class="row" *ngIf="data && userData">
   <div class="col-md-4">
     <div class="card" style="height:100%; overflow: hidden;">
       <div class="row">
@@ -22,7 +79,7 @@
       </div>
       <div class="card-body">
         <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
-        <!-- <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div> -->
+         <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div> 
         <div class="row" *ngFor="let item of taskStatus?.teamMembers">
           <div class="col-md-9">
             <p class="text-capitalize"><b>{{item.user_name}}</b></p>
@@ -32,11 +89,11 @@
               </div>
           </div>
         </div>
-          <!-- </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p> -->
+           </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p> 
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- <mat-grid-list cols="4" *ngIf="data && userData">
   <mat-grid-tile>
    <mat-card [style.background]="'white'">
@@ -121,12 +178,17 @@
 <!-- Task List -->
 
 <div class="row">
-<div class="col-6" style="display: block; justify-content: center;">
-<div class="justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
-  <p style="color: white;"><b>Community Tasks</b></p></div>
+<div class="col-12" style="display: block; justify-content: center;">
+  <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+    <div class="card-body">
+        <div class="card-heading">
+            <h2 style="margin: 0px !important;">Community Task</h2>
+        <span></span>
+        </div>
+
 
   <!-- TABS COM -->
-<mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;border: 7px solid #cd4266;background-color: white;" >
+<mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
   <mat-tab  class="gold task-level">
    <ng-template mat-tab-label>
                 <span [ngClass]="'gold task-level'"></span>
@@ -134,8 +196,8 @@
   <ng-container *ngFor="let task of this.data.tasks" >
     <div *ngIf="task.category == 'community' && task?.type== 'gold'" class="task-list"  >
       <div class="row">
-        <div class="col-12 text-capitalize" >
-          <span class="text">Description:{{ task?.description }}</span></div>
+        <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
+          <!-- <span class="text">Description:{{ task?.description }}</span></div> -->
       </div><br>
       <div class="row">
         <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
@@ -178,7 +240,7 @@
         </div><br>
         <div class="row">
           <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-           <div  class="col-6 text-capitalize"><button mat-raised-button
+           <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
                style="color: #cd4266;"
                (click)="openDialog(task)">UPLOAD</button></div>
         </div>
@@ -187,17 +249,23 @@
   </mat-tab>
 
 </mat-tab-group>
-
+</div>
+</div>
+</div>
 </div>
 
-
  <!-- SELF TASKS -->
-<div class="col-6">
-  <div class="justify-content-center" style="text-align: center; background-color: #cd4266;padding: 10px; width: 100%;">
-    <p style="color: white;"><b>Self Tasks</b></p></div>
+<div class="row" style="margin-top:30px;">
+<div class="col-12">
+  <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+    <div class="card-body">
+        <div class="card-heading">
+            <h2 style="margin: 0px !important;">Self Task</h2>
+        <span></span>
+        </div>
 
     <!-- TABS SELF -->
- <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;border: 7px solid #cd4266;background-color: white;" >
+ <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
   <mat-tab  >
     <ng-template mat-tab-label>
       <span [ngClass]="'gold task-level'"></span>
@@ -255,5 +323,6 @@
     </mat-tab>
 
   </mat-tab-group>
-
+  </div>
+  </div>
   </div>

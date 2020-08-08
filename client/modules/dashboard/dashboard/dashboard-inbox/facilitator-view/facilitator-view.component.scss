@@ -20,3 +20,16 @@
   display: flex;
   flex-direction: column;
 }
+
+th{
+  color: #cc4266;
+}
+table.c {
+  table-layout: auto;
+  width: 100%;  
+}
+
+td.cell_action {
+  display: flex;
+  justify-content: center;
+}
