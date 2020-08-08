@@ -3947,3 +3947,38 @@ caption {
   background: #cd7f32;
 }
 
+.task-list{
+  background-color: white;
+  box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.15);
+  // border: 0.5px solid !important;
+  padding: 5px; 
+  margin: 8px;
+}
+.task-card-heading{
+  background-color: #f3b44f;
+  min-height: 35px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  align-items: center;
+}
+.noti-p{
+  margin: 0px !important;
+  line-height: 20px !important;
+   white-space: inherit;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.noti-p::after{
+  content: "...";
+  position: absolute;
+}
+.text {
+  display: block;
+  width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

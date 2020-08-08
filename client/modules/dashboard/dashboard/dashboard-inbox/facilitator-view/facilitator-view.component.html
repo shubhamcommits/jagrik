@@ -1,4 +1,4 @@
-<ng-container *ngIf="is_completedTask">
+<ng-container *ngIf="!is_completedTask">
     <div class="row">
       <div class="col-md-12">
         <img style="max-height: 55vh;max-width: 100%;" src="assets/undraw_time_management_30iu.svg">
@@ -10,14 +10,20 @@
 </ng-container>
 
 
-<ng-container *ngIf="!is_completedTask">
+<ng-container *ngIf="is_completedTask">
 <div  class="row" >
-  <div class="col-md-3" *ngFor="let item of dataSource">
+  <div class="col-md-4" *ngFor="let item of dataSource">
     <div class="card text-left">
       <div class="card-body">
-        <h4 class="card-title">{{item.team_name}} <span class="pull-right">{{item.team_points}}</span></h4>
-        <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
-        <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View All</button>
+        <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}} 
+        <span class="pull-left"><b>Points:</b>&nbsp;{{item.team_points}}</span></h4>
+        <!-- <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p> -->
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-center">
+            <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View</button>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

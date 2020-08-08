@@ -1,6 +1,45 @@
-<mat-grid-list cols="4" *ngIf="data && userData">
+<div class="row" *ngIf="data && userData">
+  <div class="col-md-4">
+    <div class="card" style="height:100%; overflow: hidden;">
+      <div class="row">
+        <div class="col-md-12 task-card-heading d-flex justify-content-center">Card
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
+        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
+        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
+        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" style="height: 100%; overflow: hidden;">
+      <div class="row">
+        <div class="col-md-12 task-card-heading d-flex justify-content-center">Task Status
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
+        <!-- <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div> -->
+        <div class="row" *ngFor="let item of taskStatus?.teamMembers">
+          <div class="col-md-9">
+            <p class="text-capitalize"><b>{{item.user_name}}</b></p>
+          </div>
+          <div class="col-md-3">
+              <div style="border-radius:50%; background-color:rgb(255, 60, 0);width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false">
+              </div>
+          </div>
+        </div>
+          <!-- </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <mat-grid-list cols="4" *ngIf="data && userData">
   <mat-grid-tile>
-    <mat-card [style.background]="'rgb(243, 179, 79)'">
+   <mat-card [style.background]="'white'">
       <mat-card-header>
         <mat-card-title> Card</mat-card-title>
       </mat-card-header>
@@ -11,6 +50,20 @@
         <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
       </mat-card-content>
     </mat-card>
+
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12 task-card-heading d-flex justify-content-center">Card
+        </div>
+      </div>
+    
+      <div class="card-body">
+        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
+        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
+        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
+        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
+      </div>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-card [style.border]="'solid 1px #cc4266'">
@@ -24,8 +77,20 @@
 
       </mat-card-content>
     </mat-card>
+    <div class="card" style="height: 100%;">
+      <div class="row">
+        <div class="col-md-12 task-card-heading d-flex justify-content-center">Task Status
+        </div>
+      </div>
+    
+      <div class="card-body">
+        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
+        <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
+          </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
+      </div>
+    </div>
   </mat-grid-tile>
-  <!-- <mat-grid-tile>
+<mat-grid-tile>
     <mat-card [style.background]="'rgb(243, 179, 79)'">
       <mat-card-header>
         <mat-card-title>Leaderboard</mat-card-title>
@@ -49,8 +114,8 @@
         </p>
       </mat-card-content>
     </mat-card>
-  </mat-grid-tile> -->
-</mat-grid-list>
+  </mat-grid-tile> 
+</mat-grid-list> -->
 
 
 <!-- Task List -->
@@ -61,15 +126,16 @@
   <p style="color: white;"><b>Community Tasks</b></p></div>
 
   <!-- TABS COM -->
-<mat-tab-group style="width: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: center;" >
+<mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;border: 7px solid #cd4266;background-color: white;" >
   <mat-tab  class="gold task-level">
    <ng-template mat-tab-label>
                 <span [ngClass]="'gold task-level'"></span>
    </ng-template>
   <ng-container *ngFor="let task of this.data.tasks" >
-    <div *ngIf="task.category == 'community' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px;margin: 8px;">
+    <div *ngIf="task.category == 'community' && task?.type== 'gold'" class="task-list"  >
       <div class="row">
-        <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
+        <div class="col-12 text-capitalize" >
+          <span class="text">Description:{{ task?.description }}</span></div>
       </div><br>
       <div class="row">
         <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
@@ -86,7 +152,7 @@
       <span [ngClass]="'silver task-level'"></span>
     </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'community' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px;margin: 8px;">
+      <div *ngIf="task.category == 'community' && task?.type== 'silver'" class="task-list" >
         <div class="row">
           <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
@@ -106,7 +172,7 @@
       <span [ngClass]="'bronze task-level'"></span>
     </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'community' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
+      <div *ngIf="task.category == 'community' && task?.type== 'bronze'" class="task-list" >
         <div class="row">
           <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
@@ -131,13 +197,13 @@
     <p style="color: white;"><b>Self Tasks</b></p></div>
 
     <!-- TABS SELF -->
- <mat-tab-group style="width: 100%; display: flex; align-items: center;" >
+ <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;border: 7px solid #cd4266;background-color: white;" >
   <mat-tab  >
     <ng-template mat-tab-label>
       <span [ngClass]="'gold task-level'"></span>
     </ng-template>
     <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'self' && task?.type== 'gold'"  style="border: 1px solid; padding: 5px; margin: 8px;">
+      <div *ngIf="task.category == 'self' && task?.type== 'gold'" class="task-list">
         <div class="row">
           <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
         </div><br>
@@ -155,7 +221,7 @@
         <span [ngClass]="'silver task-level'"></span>
       </ng-template>
       <ng-container *ngFor="let task of this.data.tasks" >
-        <div *ngIf="task.category == 'self' && task?.type== 'silver'"  style="border: 1px solid; padding: 5px; margin: 8px;">
+        <div *ngIf="task.category == 'self' && task?.type== 'silver'" class="task-list" >
           <div class="row">
             <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
           </div><br>
@@ -175,7 +241,7 @@
         <span [ngClass]="'bronze task-level'"></span>
       </ng-template>
       <ng-container *ngFor="let task of this.data.tasks" >
-        <div *ngIf="task.category == 'self' && task?.type== 'bronze'"  style="border: 1px solid; padding: 5px; margin: 8px;">
+        <div *ngIf="task.category == 'self' && task?.type== 'bronze'" class="task-list" >
           <div class="row">
             <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
           </div><br>
