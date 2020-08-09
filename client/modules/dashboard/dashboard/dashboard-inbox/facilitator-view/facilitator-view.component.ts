@@ -29,6 +29,7 @@ export class FacilitatorViewComponent implements OnInit {
 
   is_completedTask = false;
   dataSource: any = [];
+  displayedColumns: string[] = ['S.No','team_name','task_points','status','action'];
 
   ngOnInit(): void {
     this.getCompletedTeam(

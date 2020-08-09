@@ -38,6 +38,40 @@
     </table>
   </div>
 </div>
+<!-- <div class="row">
+    <div class="col-md-12">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <ng-container *ngFor="let element of dataSource">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                {{element.team_name}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{element.team_points}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+                <p *ngFor="let item of element.team_members">{{item}}</p>
+          </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+</div> -->
+<mat-accordion>
+  <section matSort class="mat-elevation-z2 mat-header-row">
+    <span class="mat-header-cell" mat-sort-header="vesselName">S.No</span>
+    <span class="mat-header-cell" mat-sort-header="vesselId">Team Name</span>
+    <span class="mat-header-cell" mat-sort-header="vesselStatus">Team Points</span>
+  </section>
+  <mat-expansion-panel *ngFor="let element of dataSource;let i=index" >
+    <mat-expansion-panel-header class="mat-row">
+    <span class="mat-cell">{{i+1}}</span>
+    <span class="mat-cell">{{element.team_name}}</span>
+      <span class="mat-cell">{{element.team_points}}</span>
+    </mat-expansion-panel-header>
+    <p *ngFor="let item of element.team_members">{{item}}</p>
+  </mat-expansion-panel>
+  </mat-accordion>
 <div class="row" *ngIf="userRole == 'student'">
   <p class="pl-3">You have not access of this page!</p>
 </div>

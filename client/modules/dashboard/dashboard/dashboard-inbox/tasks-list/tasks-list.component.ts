@@ -31,6 +31,7 @@ export class TasksListComponent implements OnInit {
   userData: any;
   taskStatus: any;
   individualTaskStatus: any;
+  displayedColumns: string[] = ['Description',];
 
   @Input('cardId') cardId: any;
 

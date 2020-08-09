@@ -1,11 +1,11 @@
- <h2 class="heading text-uppercase">{{data?.team?.team_name}}</h2>
+ <h2 class="heading text-uppercase" style="text-align: center;">TASK BY {{data?.team?.team_name}}</h2>
 <mat-dialog-content class="mat-typography">
   <div class="row">
     <div class="col-md-12">
       <button mat-raised-button class="text-uppercase m-align" color="accent">Community Task</button>
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">{{data?.team?.team_task_title}}</h4>
+          <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
           <p class="card-text text-right">{{data?.team?.team_task_points}} Points <span
               class="ml-3 task-level {{data?.team?.team_task_type}}"></span><span
               class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
@@ -16,7 +16,7 @@
               alt="Card image cap">
           </div>
           <div class="card-body">
-            <p class="card-text">{{data?.team?.team_task_description}}</p>
+            <p class="card-text">TEXT SUBMITTED BY STUDENT</p>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
     <div class="col-md-12 mb-3" *ngFor="let item of data?.team?.team_members_tasks">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">{{item.user_task_title}}</h4>
+          <h4 class="card-title">{{item.user_task_description}}</h4>
           <p class="card-text text-right">{{item.user_task_points}} Points <span
               class="ml-3 task-level {{item.user_task_type}}"></span><span
               class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
@@ -38,7 +38,7 @@
               alt="Card image cap">
           </div>
           <div class="card-body">
-            <p class="card-text">{{item.user_task_description}}</p>
+            <p class="card-text">TEXT SUBMITTED BY STUDENT</p>
           </div>
         </div>
       </div>

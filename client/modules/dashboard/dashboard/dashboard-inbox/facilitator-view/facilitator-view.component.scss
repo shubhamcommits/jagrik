@@ -23,6 +23,14 @@
 
 th{
   color: #cc4266;
+  text-align: center;
+  justify-content: center;
+}
+td{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 }
 table.c {
   table-layout: auto;
@@ -31,5 +39,10 @@ table.c {
 
 td.cell_action {
   display: flex;
+  justify-content: center;
+}
+.level-one{
+  color: #cc4266;
+  text-align: center;
   justify-content: center;
 }
