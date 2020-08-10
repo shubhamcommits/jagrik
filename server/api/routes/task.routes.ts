@@ -9,6 +9,8 @@ const routes = express.Router();
 
 routes.get('/', taskController.fetchTasks)
 
+routes.get('/all-team-task', taskController.fetchTasksByTeamId);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================
