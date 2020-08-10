@@ -13,6 +13,10 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Tasks Board</span>
           <mat-icon mat-list-icon>work_outline</mat-icon>
         </mat-list-item>
+        <mat-list-item *ngIf="userRole ==='student'" class=" parent" [routerLink]="['/dashboard', 'pending-task']">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Previous Task</span>
+          <mat-icon mat-list-icon>list</mat-icon>
+        </mat-list-item>
         <mat-list-item class="parent" [routerLink]="['/dashboard', 'bouns-tasks']">
           <span class="full-width" *ngIf="isExpanded || isShowing">Bonus Task</span>
           <mat-icon mat-list-icon>work_outline</mat-icon>

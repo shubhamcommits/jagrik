@@ -15,7 +15,7 @@
   <div class="col-md-4" *ngFor="let item of dataSource">
     <div class="card text-left">
       <div class="card-body">
-        <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}} 
+        <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}}
         <span class="pull-left"><b>Points:</b>&nbsp;{{item.team_points}}</span></h4>
         <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
         <div class="row">
@@ -23,11 +23,11 @@
             <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
-</div> 
+</div>
 </ng-container> -->
 <ng-container *ngIf="is_completedTask">
   <!-- <table class="c mat-elevation-z8">
@@ -61,7 +61,7 @@
 
     <ng-container matColumnDef="task_points">
       <th mat-header-cell *matHeaderCellDef class="level-one"> Task Points </th>
-      <td mat-cell *matCellDef="let element"> {{element.team_points}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.team_task_points}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
@@ -73,7 +73,7 @@
       <th mat-header-cell *matHeaderCellDef class="level-one"> Action </th>
       <td mat-cell *matCellDef="let element" class="cell_action" style="padding-top: 20px; padding-bottom: 20px;"><button mat-raised-button class="pull-right" (click)="openDialog(element)" color="accent"><mat-icon>launch</mat-icon>View</button></td>
     </ng-container>
-    
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -82,7 +82,7 @@
     <div class="col-md-4" *ngFor="let item of dataSource">
       <div class="card text-left">
         <div class="card-body">
-          <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}} 
+          <h4 class="card-title"><b>Team:</b>&nbsp;{{item.team_name}}
           <span class="pull-left"><b>Points:</b>&nbsp;{{item.team_points}}</span></h4>
            <p class="card-text medium-text" *ngFor="let member of item.team_members_tasks">{{member.user_name}}</p>
           <div class="row">
@@ -90,7 +90,7 @@
               <button mat-raised-button class="pull-right" (click)="openDialog(item)" color="accent">View</button>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

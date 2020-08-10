@@ -16,6 +16,7 @@ import { AnnouncementComponent } from '../dashboard/dashboard/announcement/annou
 import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component';
 import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboard.component';
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
+import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
 const routes: Routes = [
   {
     path: '',
@@ -42,6 +43,7 @@ const routes: Routes = [
           },
           { path: 'team', component: TeamComponent },
           { path: 'team-dashboard', component: TeamDashboardComponent },
+          { path: 'pending-task', component: PendingTaskViewComponent },
           { path: 'leaderboard', component: LeaderboardViewComponent },
           { path: 'user', component: UserComponent },
         ],

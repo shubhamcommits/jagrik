@@ -74,6 +74,16 @@ export class TeamService {
       .toPromise();
   }
 
+  fetchTasksByTeamId(teamId) {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/tasks/all-team-task', {
+        params: {
+          teamId: teamId,
+        },
+      })
+      .toPromise();
+  }
+
   /**
    * This function is responsible for assign points
    * @object data
