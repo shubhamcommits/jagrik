@@ -56,6 +56,14 @@ export class PendingTaskViewComponent implements OnInit {
       .then((res) => {
         console.log(res['tasks']);
         this.taskData = res['tasks'];
+        this.taskData.forEach(element => {
+          if (this.teamData[element['week']] !== undefined) {
+            this.teamData[element['week']].push(element)
+          } else {
+            this.teamData[element['week']] = []
+            this.teamData[element['week']].push(element)
+          }
+        });
       })
       .catch(() => {
         // Fire error toast

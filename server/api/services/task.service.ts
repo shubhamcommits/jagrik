@@ -87,6 +87,7 @@ export class TaskService {
                             newEle.team_name = tasks['team_name'];
                             newEle.task_description = task['description'];
                             newEle.task_type = task['type'];
+                            newEle.week = element['week'];
                             newEle.type = 'team';
                             taskData.push(newEle);
                           }
@@ -119,6 +120,7 @@ export class TaskService {
                                       ' ' +
                                       user['last_name'];
                                   newEle.task_type = task['type'];
+                                  newEle.week = element['week'];
                                   newEle.type = 'single';
                                   taskData.push(newEle);
                                 }
