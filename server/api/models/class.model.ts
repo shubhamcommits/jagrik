@@ -7,34 +7,38 @@ const { Schema } = mongoose;
 const ClassSchema = new Schema({
   class_creator: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     default: null,
   },
-  class_creator_is_student:{
+  class_creator_is_student: {
     type: Boolean,
     default: false,
   },
-  class_creator_student:{
+  is_open: {
+    type: Boolean,
+    default: true,
+  },
+  class_creator_student: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     default: null,
   },
   name: {
     type: Schema.Types.String,
     required: true,
-    default: "default_class",
+    default: 'default_class',
   },
   members: [
     {
       type: Schema.Types.Mixed,
-      ref: "User",
+      ref: 'User',
       default: null,
     },
   ],
   groups: [
     {
       type: Schema.Types.Mixed,
-      ref: "Group",
+      ref: 'Group',
       default: null,
     },
   ],

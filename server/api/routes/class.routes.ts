@@ -54,6 +54,8 @@ routes.post("/join-class", classController.joinClass);
 
 routes.post("/create-teams", classController.createTeam);
 
+routes.post('/close-class', classController.closeClass);
+
 routes.post("/get-teams", classController.getTeams);
 
 routes.get("/get-team-members", classController.getTeamMembers);

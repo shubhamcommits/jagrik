@@ -67,6 +67,18 @@ export class ClassService {
   }
 
   /**
+   * Service function to call the http request to close class
+   * @param classId
+   */
+  closeClass(classId: any) {
+    return this.httpClient
+      .post(environment.baseApiUrl + '/classes/close-class', {
+        classId: classId,
+      })
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for get team status of task
    * @param teamId
    */
@@ -95,10 +107,16 @@ export class ClassService {
   }
 
   /**
- * This function is responsible for add new resource
- * @object data
- */
-  addNewResource(image: File, upload_file: File, description: any, title: any, classId: any) {
+   * This function is responsible for add new resource
+   * @object data
+   */
+  addNewResource(
+    image: File,
+    upload_file: File,
+    description: any,
+    title: any,
+    classId: any
+  ) {
     let formData: FormData = new FormData();
     formData.append('upload_file', upload_file);
     formData.append('image', image);
