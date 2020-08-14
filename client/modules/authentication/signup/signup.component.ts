@@ -139,7 +139,7 @@ export class SignupComponent implements OnInit {
             }
 
             // Navigate the User to main dashboard
-            this._Router.navigate(['/dashboard', 'inbox'])
+            this._Router.navigate(['/dashboard', 'classes', 'list']);
 
             // Resolve with sucess
             resolve(res)

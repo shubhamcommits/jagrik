@@ -35,6 +35,8 @@ export class DashboardClassesComponent implements OnInit {
           '/dashboard', 'classes', 'agenda'],
           { queryParams: { classId: this.classes[0] } },
         );
+        window.location.href =
+          '#/dashboard/classes/agenda?classId=' + this.classes[0];
       }
     }
     console.log(this.userData);
@@ -54,5 +56,8 @@ export class DashboardClassesComponent implements OnInit {
     this.router.navigate(['/dashboard', 'classes', 'agenda'], {
       queryParams: { classId: userData.classes[0] },
     });
+
+    // window.location.href =
+    //   '#/dashboard/classes/agenda?classId=' + userData.classes[0];
   }
 }

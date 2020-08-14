@@ -10,7 +10,9 @@ import { AnnouncementService } from '../shared/services/announcement.service';
   styleUrls: ['./dashboard-header.component.scss'],
 })
 export class DashboardHeaderComponent implements OnInit {
-  constructor(private _Injector: Injector, private _Router: Router, private announcementService: AnnouncementService) {}
+  constructor(private _Injector: Injector, private _Router: Router, private announcementService: AnnouncementService) {
+
+  }
 
   showFiller = false;
   isExpanded = true;

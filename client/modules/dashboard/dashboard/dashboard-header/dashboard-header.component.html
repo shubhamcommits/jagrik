@@ -1,7 +1,7 @@
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
-    <mat-nav-list>
+    <mat-nav-list class="{{userClass == '' ? 'hide' : 'show'}}">
           <mat-list-item class="parent" style="margin-bottom: 50px;">
             <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;">
           </mat-list-item>
@@ -56,9 +56,11 @@
 
   <div class="example-sidenav-content">
     <mat-toolbar class="example-toolbar">
-      <button mat-icon-button (click)="isExpanded = !isExpanded">
+      <button mat-icon-button class="{{userClass == '' ? 'hide' : 'show'}}" (click)="isExpanded = !isExpanded">
         <mat-icon>menu</mat-icon>
       </button>
+       <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;"
+         class="{{userClass == '' ? 'show' : 'hide'}}">
       <span class="jk-spacer"></span>
       <button mat-button routerLink="/dashboard/user">Profile</button>
       <button mat-button [matMenuTriggerFor]="notify" (click)="getAnncouncementList()">
