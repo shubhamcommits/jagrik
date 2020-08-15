@@ -791,6 +791,8 @@ export class ClassService {
                              user_task_type: IndividualTask.type,
                              user_task_supporting_doc:
                                selfTasks[n].supporting_doc,
+                             user_task_explaination:
+                               selfTasks[n].description,
                              user_task_assigned_bonus_task:
                                selfTasks[n].bonus_task,
                            });
@@ -830,6 +832,8 @@ export class ClassService {
                        team_task_type: TeamTask.type,
                        team_task_supporting_doc:
                          completedTeamTask.supporting_doc,
+                       team_task_explaination:
+                         completedTeamTask.description,
                        team_card_theme: CardDetail.theme,
                        team_card_dice_number: CardDetail.dice_number,
                        team_card_description: CardDetail.description,
