@@ -98,6 +98,20 @@ export class TeamService {
   }
 
   /**
+   * This function is responsible for reject task
+   * @object data
+   */
+  rejectTask(teamId: any, teamPoints: any, comment: any) {
+    return this.httpClient
+      .post(environment.baseApiUrl + '/teams/reject-task', {
+        teamId: teamId,
+        teamPoints: teamPoints,
+        comment: comment
+      })
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for upload document against task
    * @param image
    * @param taskId

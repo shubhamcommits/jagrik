@@ -45,7 +45,7 @@ const TeamSchema = new Schema({
       status: {
         type: Schema.Types.String,
         default: 'to do',
-        enum: ['to do', 'in progress', 'waiting for score', 'completed'],
+        enum: ['to do', 'in progress', 'waiting for score', 'completed', 'rejected'],
         required: true,
       },
       is_active: {
@@ -60,6 +60,10 @@ const TeamSchema = new Schema({
         required: true,
       },
       description: {
+        type: String,
+        data: Buffer,
+      },
+      reason: {
         type: String,
         data: Buffer,
       },

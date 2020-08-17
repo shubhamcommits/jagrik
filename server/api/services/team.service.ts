@@ -137,6 +137,71 @@ export class TeamService {
              throw new Error(err);
            }
          }
+  
+        async rejectTeamTask(
+            token: any,
+            teamId: string,
+            teamPoints: any,
+            comment: string
+          ) {
+            try {
+              // verify token and decode user data
+              let userVerify: any = jwt.verify(
+                token.split(' ')[1],
+                process.env.JWT_KEY
+              );
+              let user: any = await User.findById({ _id: userVerify._id });
+              // check if the user has the correct permissions to create a class
+              if (user.role === 'facilitator' || user.role === 'super-admin') {
+
+                let team: any = await Team.findOne({
+                  _id: teamId,
+                  team_creator: user._id,
+                });
+
+                if (team) {
+                  let teamTask = [];
+                  let is_update: Boolean = false;
+                  team.tasks.forEach(element => {
+                    let item = element
+                   
+                    if (element.is_active === 'active') {
+                      is_update = true;
+                      item.status = 'rejected';
+                      item['reason'] = comment;
+                    }
+                    item.is_active = 'inactive';
+                    
+                    teamTask.push(item);
+
+                    console.log('====================================');
+                    console.log(item);
+                    console.log('====================================');
+
+                  });
+                  if (is_update === true) {
+                    await Team.findOneAndUpdate(
+                      { _id: teamId },
+                      {
+                        points:
+                          parseInt(teamPoints) +
+                          parseInt(team.points),
+                        tasks: teamTask,
+                      }
+                    );
+                  }
+                  return;
+                } else {
+                  throw new Error('401 - Access denied');
+                }
+              } else {
+                throw new Error('401 - Access denied');
+              }
+            } catch (err) {
+              // Catch unexpected errors
+              throw new Error(err);
+            }
+          }
 
          async teamTaskStatus(token: any, teamId: string) {
            try {

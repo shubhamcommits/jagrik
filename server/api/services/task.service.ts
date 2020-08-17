@@ -89,6 +89,7 @@ export class TaskService {
                             newEle.task_type = task['type'];
                             newEle.week = element['week'];
                             newEle.type = 'team';
+                            newEle.reason = element['status'] == 'rejected' ? element['reason'] : '';
                             taskData.push(newEle);
                           }
                         });

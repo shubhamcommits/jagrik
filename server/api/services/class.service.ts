@@ -853,6 +853,9 @@ export class ClassService {
                throw new Error('401 - Access denied');
              }
            } catch (err) {
+             console.log('====================================');
+             console.log(err);
+             console.log('====================================');
              // Catch unexpected errors
              throw new Error(err);
            }

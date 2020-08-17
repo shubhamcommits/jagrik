@@ -84,6 +84,43 @@ export class TeamController {
              });
            }
          }
+       /**
+        * This function is responsible for rejecting team task
+        * @param req
+        * @param res
+        * @param next
+        */
+        async rejectTeamTask(
+          req: Request,
+          res: Response,
+          next: NextFunction
+        ) {
+          try {
+            // Fetch the authorization header from the request
+
+            let authorization = req.headers.authorization;
+            // let authorization="abcd"
+            let teamId = req.body.teamId;
+
+            let teamPoints = req.body.teamPoints;
+            let comments = req.body.comment;
+
+            // Call the service function to get all the classes
+            await teamService
+              .rejectTeamTask(authorization, teamId, teamPoints, comments)
+              .then(() => {
+                return res.status(200).json({
+                  message: 'Team task rejected',
+                });
+              });
+          } catch (err) {
+
+            return res.status(500).json({
+              message: 'Internal Server Error!',
+              error: new Error(err || ' Internal Server Error'),
+            });
+          }
+        }
 
          /**
           * This function is responsible for checking team task status
