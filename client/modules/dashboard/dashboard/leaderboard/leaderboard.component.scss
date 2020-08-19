@@ -1,12 +1,12 @@
-::ng-deep{
-  .mat-cell{
+::ng-deep {
+  .mat-cell {
     text-align: left;
   }
 
-.level-one {
-  background-color: #ffffff;
-  color: #cc4266;
-}
+  .level-one {
+    background-color: #ffffff;
+    color: #cc4266;
+  }
 }
 
 
@@ -33,6 +33,7 @@
 .element-row.expanded {
   border-bottom-color: transparent;
 }
+
 $mat-header-row-height: 56px;
 $mat-row-height: 48px;
 $mat-row-horizontal-padding: 24px;
@@ -49,7 +50,8 @@ $mat-row-horizontal-padding: 24px;
   min-height: $mat-row-height;
 }
 
-.mat-row, .mat-header-row {
+.mat-row,
+.mat-header-row {
   display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -67,9 +69,14 @@ $mat-row-horizontal-padding: 24px;
   }
 }
 
-.mat-cell, .mat-header-cell {
+.mat-cell,
+.mat-header-cell {
   flex: 1;
   overflow: hidden;
   word-wrap: break-word;
+}
+
+.leader-header {
+  color: #cc4266;
 }
 
