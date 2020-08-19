@@ -30,7 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["src/assets/jquery.sha1.js"]
           },
           "configurations": {
             "production": {

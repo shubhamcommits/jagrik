@@ -79,6 +79,23 @@ export class ClassService {
   }
 
   /**
+   * Service function to call the http request to create meeting
+   * @param classId
+   * @param meetingInfo
+   */
+  scheduleMeeting(classId: any, meetingInfo: any) {
+    console.log('====================================');
+    console.log(meetingInfo);
+    console.log('====================================');
+    return this.httpClient
+      .post(environment.baseApiUrl + '/classes/schedule-meeting', {
+        classId: classId,
+        meetingInfo: meetingInfo,
+      })
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for get team status of task
    * @param teamId
    */

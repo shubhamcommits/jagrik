@@ -25,6 +25,7 @@
     "@angular/router": "~9.1.7",
     "crypto": "^1.0.1",
     "crypto-js": "^4.0.0",
+    "jquery": "^3.5.1",
     "ngx-material-file-input": "^2.1.1",
     "ngx-ui-loader": "^9.1.1",
     "rxjs": "~6.5.4",
