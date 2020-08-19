@@ -404,7 +404,6 @@ export class ClassController {
              console.log(err);
              console.log('====================================');
              return res.status(500).json({
-               
                message: 'Internal Server Error!',
                error: new Error(err || ' Internal Server Error'),
              });
@@ -433,9 +432,36 @@ export class ClassController {
                  });
                });
            } catch (err) {
-             console.log('====================================');
-             console.log(err);
-             console.log('====================================');
+             return res.status(500).json({
+               message: 'Internal Server Error!',
+               error: new Error(err || ' Internal Server Error'),
+             });
+           }
+         }
+
+         async scheduleMeeting(
+           req: Request,
+           res: Response,
+           next: NextFunction
+         ) {
+           try {
+             // Fetch the authorization header from the request
+
+             let authorization = req.headers.authorization;
+             // let authorization="abcd"
+             let classId: any = req.body.classId;
+             let meetingInfo: any = req.body.meetingInfo;
+
+             // Call the service function to get all the classes
+             await classService
+               .scheduleMeeting(authorization, classId, meetingInfo)
+               .then((status) => {
+                 return res.status(200).json({
+                   message: 'Meeting scheduled successfully',
+                   teamStatus: status,
+                 });
+               });
+           } catch (err) {
              return res.status(500).json({
                message: 'Internal Server Error!',
                error: new Error(err || ' Internal Server Error'),

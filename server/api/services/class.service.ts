@@ -244,28 +244,26 @@ export class ClassService {
           * This function is responsible for closing class
           * @param class_code
           */
-  async closeClass(class_code: String) {
+         async closeClass(class_code: String) {
            console.log('====================================');
            console.log(class_code);
            console.log('====================================');
            try {
              // Fetch the class by id
-              await Class.findOne({ _id: class_code })
-                .then((jagrik_class) => {
-                  
-                })
-                .then(async () => {
-                  // join a class -> save the user id as the member
-                  let classUpdate = await Class.findByIdAndUpdate(
-                    { _id: class_code },
-                    {
-                      is_open: false,
-                    },
-                    { new: true }
-                  );
+             await Class.findOne({ _id: class_code })
+               .then((jagrik_class) => {})
+               .then(async () => {
+                 // join a class -> save the user id as the member
+                 let classUpdate = await Class.findByIdAndUpdate(
+                   { _id: class_code },
+                   {
+                     is_open: false,
+                   },
+                   { new: true }
+                 );
 
-                  return;
-                });
+                 return;
+               });
 
              // Return class
              return 'Successfully closed class!';
@@ -791,8 +789,7 @@ export class ClassService {
                              user_task_type: IndividualTask.type,
                              user_task_supporting_doc:
                                selfTasks[n].supporting_doc,
-                             user_task_explaination:
-                               selfTasks[n].description,
+                             user_task_explaination: selfTasks[n].description,
                              user_task_assigned_bonus_task:
                                selfTasks[n].bonus_task,
                            });
@@ -832,8 +829,7 @@ export class ClassService {
                        team_task_type: TeamTask.type,
                        team_task_supporting_doc:
                          completedTeamTask.supporting_doc,
-                       team_task_explaination:
-                         completedTeamTask.description,
+                       team_task_explaination: completedTeamTask.description,
                        team_card_theme: CardDetail.theme,
                        team_card_dice_number: CardDetail.dice_number,
                        team_card_description: CardDetail.description,
@@ -1016,6 +1012,31 @@ export class ClassService {
              // token = opentok.generateToken(sessionId);
 
              return { api_key: VIDEO_API_KEY, sessionId, token };
+           } catch (err) {
+             // Catch unexpected errors
+             throw new Error(err);
+           }
+         }
+
+         async scheduleMeeting(token: any, classId: String, meetingInfo: any) {
+           try {
+             // verify token and decode user data
+             let user: any = jwt.verify(
+               token.split(' ')[1],
+               process.env.JWT_KEY
+             );
+
+             let sessionId = await Class.findOne({ _id: classId });
+             let schedules = sessionId['schedules'];
+             schedules.push(meetingInfo);
+             await Class.findOneAndUpdate(
+               { _id: classId },
+               { $push: { schedules: schedules } },
+               { new: true }
+             ).then((res) => {
+                return res;
+             }); 
+           
            } catch (err) {
              // Catch unexpected errors
              throw new Error(err);

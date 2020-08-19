@@ -70,6 +70,7 @@ routes.post('/student-create-class', classController.studentCreateClass);
 
 routes.get("/get-team-member-task-status", classController.getTeamMemberStatus);
 
+routes.post('/schedule-meeting', classController.scheduleMeeting);
 
 /**
  * POST - create a sessionId and save it in the class db

@@ -35,6 +35,51 @@ const ClassSchema = new Schema({
       default: null,
     },
   ],
+  schedules: [
+    new Schema({
+      title: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      create: {
+        type: String,
+      },
+      create_rec: {
+        type: String,
+      },
+      end_url: {
+        type: String,
+        data: Buffer,
+      },
+      get_all_recording: {
+        type: String,
+      },
+      get_meeting_info: {
+        type: String,
+      },
+      get_meeting_url: {
+        type: String,
+      },
+      get_recording_url: {
+        type: String,
+      },
+      is_meeting_running: {
+        type: String,
+      },
+      join_attende: {
+        type: String,
+      },
+      join_moderate: {
+        type: String,
+      },
+      status: {
+        type: Boolean,
+        default: true,
+      },
+    }),
+  ],
   groups: [
     {
       type: Schema.Types.Mixed,
