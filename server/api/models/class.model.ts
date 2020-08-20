@@ -43,6 +43,13 @@ const ClassSchema = new Schema({
       description: {
         type: String,
       },
+      date: {
+        type: Date,
+        default: moment().format(),
+      },
+      time: {
+        type: String,
+      },
       create: {
         type: String,
       },

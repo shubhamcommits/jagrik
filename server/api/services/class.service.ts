@@ -1027,8 +1027,8 @@ export class ClassService {
              );
 
              let sessionId = await Class.findOne({ _id: classId });
-             let schedules = sessionId['schedules'];
-             schedules.push(meetingInfo);
+             let schedules = meetingInfo;
+        
              await Class.findOneAndUpdate(
                { _id: classId },
                { $push: { schedules: schedules } },

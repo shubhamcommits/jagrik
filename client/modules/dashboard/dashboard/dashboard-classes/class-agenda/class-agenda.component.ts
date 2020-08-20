@@ -1,13 +1,12 @@
-import { Component, Inject, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
-  Validators,
   FormBuilder,
 } from '@angular/forms';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { ClassService } from '../../shared/services/class.service';
+import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 declare var $: any;
 require('src/assets/jquery.sha1.js');
@@ -21,12 +20,14 @@ export class ClassAgendaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private storageService: StorageService,
     private utilityService: UtilityService,
-    private classService: ClassService
+    private classService: ClassService,
+    private httpClient: HttpClient
   ) {}
   @Output() public getResonseData = new EventEmitter<string>();
   inputForm: FormGroup;
   userData: any = [];
   urlArray: any = {};
+  allMeetings: any = [];
 
   ngOnInit(): void {
     this.userData = this.storageService.getLocalData('userData');
@@ -37,6 +38,7 @@ export class ClassAgendaComponent implements OnInit {
       this.storageService.setLocalData('new', 'no');
       window.location.reload();
     }
+    this.getClassDetails();
     var self = this;
     $(document).ready(
       function () {
@@ -139,6 +141,8 @@ export class ClassAgendaComponent implements OnInit {
           var $salt = 'kQ3eMjzk08iGHgUBmG2zBZjq5o7JbU5Of10CYIDRg';
           var $title = $('#title').val();
           var $description = $('#description').val();
+          var $date = $('#date').val();
+          var $time = $('#time').val();
           var $meetingID = $.URLEncode($('#meetingID').val());
           var $meetingName = $.URLEncode($('#meetingName').val());
           var $moderatorPW = $.URLEncode($('#moderatorPW').val());
@@ -149,6 +153,8 @@ export class ClassAgendaComponent implements OnInit {
             $meetingID == '' ||
             $title == '' ||
             $description == '' ||
+            $date == '' ||
+            $time == '' ||
             $meetingName == '' ||
             $moderatorPW == '' ||
             $attendeePW == ''
@@ -156,207 +162,207 @@ export class ClassAgendaComponent implements OnInit {
             alert('All fields are requuired');
             return false;
           }
-            if ($('#advanced_form').length) {
-              var $welcome = $.URLEncode($('#welcomeMessage').val());
-              var $logoutURL = $.URLEncode($('#logoutURL').val());
-              var $maxParticipants = $.URLEncode($('#maxParticipants').val());
-              var $voiceBridge = $.URLEncode($('#voiceBridge').val());
-              var $dialNumber = $.URLEncode($('#dialNumber').val());
-              var $meta_test = $.URLEncode($('#meta_test').val());
-              var $meta_description = $.URLEncode($('#meta_description').val());
-              var $recordID = $.URLEncode($('#recordID').val());
-              var $tokenID = $.URLEncode($('#tokenID').val());
+          if ($('#advanced_form').length) {
+            var $welcome = $.URLEncode($('#welcomeMessage').val());
+            var $logoutURL = $.URLEncode($('#logoutURL').val());
+            var $maxParticipants = $.URLEncode($('#maxParticipants').val());
+            var $voiceBridge = $.URLEncode($('#voiceBridge').val());
+            var $dialNumber = $.URLEncode($('#dialNumber').val());
+            var $meta_test = $.URLEncode($('#meta_test').val());
+            var $meta_description = $.URLEncode($('#meta_description').val());
+            var $recordID = $.URLEncode($('#recordID').val());
+            var $tokenID = $.URLEncode($('#tokenID').val());
 
-              //Creates the URLs
-              var $params =
-                'name=' +
-                $meetingName +
-                '&meetingID=' +
-                $meetingID +
-                '&moderatorPW=' +
-                $moderatorPW +
-                '&attendeePW=' +
-                $attendeePW +
-                '&welcome=' +
-                $welcome;
-              $params +=
-                '&logoutURL=' +
-                $logoutURL +
-                '&maxParticipants=' +
-                $maxParticipants +
-                '&voiceBridge=' +
-                $voiceBridge +
-                '&dialNumber=' +
-                $dialNumber +
-                '&meta_test=' +
-                $meta_test +
-                '&meta_description=' +
-                $meta_description;
-              var $createURL =
-                $server +
-                'create?' +
-                $params +
-                '&checksum=' +
-                $.sha1('create' + $params + $salt);
+            //Creates the URLs
+            var $params =
+              'name=' +
+              $meetingName +
+              '&meetingID=' +
+              $meetingID +
+              '&moderatorPW=' +
+              $moderatorPW +
+              '&attendeePW=' +
+              $attendeePW +
+              '&welcome=' +
+              $welcome;
+            $params +=
+              '&logoutURL=' +
+              $logoutURL +
+              '&maxParticipants=' +
+              $maxParticipants +
+              '&voiceBridge=' +
+              $voiceBridge +
+              '&dialNumber=' +
+              $dialNumber +
+              '&meta_test=' +
+              $meta_test +
+              '&meta_description=' +
+              $meta_description;
+            var $createURL =
+              $server +
+              'create?' +
+              $params +
+              '&checksum=' +
+              $.sha1('create' + $params + $salt);
 
-              $params =
-                'name=' +
-                $meetingName +
-                '&meetingID=' +
-                $meetingID +
-                '&moderatorPW=' +
-                $moderatorPW +
-                '&attendeePW=' +
-                $attendeePW +
-                '&welcome=' +
-                $welcome;
-              $params +=
-                '&logoutURL=' +
-                $logoutURL +
-                '&maxParticipants=' +
-                $maxParticipants +
-                '&voiceBridge=' +
-                $voiceBridge +
-                '&dialNumber=' +
-                $dialNumber +
-                '&meta_test=' +
-                $meta_test +
-                '&meta_description=' +
-                $meta_description +
-                '&record=true';
-              var $createURLwithRecording =
-                $server +
-                'create?' +
-                $params +
-                '&checksum=' +
-                $.sha1('create' + $params + $salt);
+            $params =
+              'name=' +
+              $meetingName +
+              '&meetingID=' +
+              $meetingID +
+              '&moderatorPW=' +
+              $moderatorPW +
+              '&attendeePW=' +
+              $attendeePW +
+              '&welcome=' +
+              $welcome;
+            $params +=
+              '&logoutURL=' +
+              $logoutURL +
+              '&maxParticipants=' +
+              $maxParticipants +
+              '&voiceBridge=' +
+              $voiceBridge +
+              '&dialNumber=' +
+              $dialNumber +
+              '&meta_test=' +
+              $meta_test +
+              '&meta_description=' +
+              $meta_description +
+              '&record=true';
+            var $createURLwithRecording =
+              $server +
+              'create?' +
+              $params +
+              '&checksum=' +
+              $.sha1('create' + $params + $salt);
 
-              $params = 'recordID=' + $recordID + '&publish=true';
-              var $publishRecordingsURL =
-                $server +
-                'publishRecordings?' +
-                $params +
-                '&checksum=' +
-                $.sha1('getRecordings' + $params + $salt);
+            $params = 'recordID=' + $recordID + '&publish=true';
+            var $publishRecordingsURL =
+              $server +
+              'publishRecordings?' +
+              $params +
+              '&checksum=' +
+              $.sha1('getRecordings' + $params + $salt);
 
-              $params = 'recordID=' + $recordID + '&publish=false';
-              var $unpublishRecordingsURL =
-                $server +
-                'publishRecordings?' +
-                $params +
-                '&checksum=' +
-                $.sha1('getRecordings' + $params + $salt);
+            $params = 'recordID=' + $recordID + '&publish=false';
+            var $unpublishRecordingsURL =
+              $server +
+              'publishRecordings?' +
+              $params +
+              '&checksum=' +
+              $.sha1('getRecordings' + $params + $salt);
 
-              $params = 'recordID=' + $recordID;
-              var $deleteRecordingsURL =
-                $server +
-                'deleteRecordings?' +
-                $params +
-                '&checksum=' +
-                $.sha1('getRecordings' + $params + $salt);
+            $params = 'recordID=' + $recordID;
+            var $deleteRecordingsURL =
+              $server +
+              'deleteRecordings?' +
+              $params +
+              '&checksum=' +
+              $.sha1('getRecordings' + $params + $salt);
 
-              $params =
-                'meetingID=' +
-                $meetingID +
-                '&password=' +
-                $moderatorPW +
-                '&fullName=' +
-                $userName +
-                '&userID=' +
-                $userID +
-                '&configToken=' +
-                $tokenID;
-              var $joinModeratorURL =
-                $server +
-                'join?' +
-                $params +
-                '&checksum=' +
-                $.sha1('join' + $params + $salt);
+            $params =
+              'meetingID=' +
+              $meetingID +
+              '&password=' +
+              $moderatorPW +
+              '&fullName=' +
+              $userName +
+              '&userID=' +
+              $userID +
+              '&configToken=' +
+              $tokenID;
+            var $joinModeratorURL =
+              $server +
+              'join?' +
+              $params +
+              '&checksum=' +
+              $.sha1('join' + $params + $salt);
 
-              $params =
-                'meetingID=' +
-                $meetingID +
-                '&password=' +
-                $attendeePW +
-                '&fullName=' +
-                $userName +
-                '&userID=' +
-                $userID +
-                '&configToken=' +
-                $tokenID;
-              var $joinAttendeeURL =
-                $server +
-                'join?' +
-                $params +
-                '&checksum=' +
-                $.sha1('join' + $params + $salt);
-            } else {
-              //Creates the URLs
-              var $params =
-                'name=' +
-                $meetingName +
-                '&meetingID=' +
-                $meetingID +
-                '&moderatorPW=' +
-                $moderatorPW +
-                '&attendeePW=' +
-                $attendeePW;
-              var $createURL =
-                $server +
-                'create?' +
-                $params +
-                '&checksum=' +
-                $.sha1('create' + $params + $salt);
+            $params =
+              'meetingID=' +
+              $meetingID +
+              '&password=' +
+              $attendeePW +
+              '&fullName=' +
+              $userName +
+              '&userID=' +
+              $userID +
+              '&configToken=' +
+              $tokenID;
+            var $joinAttendeeURL =
+              $server +
+              'join?' +
+              $params +
+              '&checksum=' +
+              $.sha1('join' + $params + $salt);
+          } else {
+            //Creates the URLs
+            var $params =
+              'name=' +
+              $meetingName +
+              '&meetingID=' +
+              $meetingID +
+              '&moderatorPW=' +
+              $moderatorPW +
+              '&attendeePW=' +
+              $attendeePW;
+            var $createURL =
+              $server +
+              'create?' +
+              $params +
+              '&checksum=' +
+              $.sha1('create' + $params + $salt);
 
-              $params =
-                'name=' +
-                $meetingName +
-                '&meetingID=' +
-                $meetingID +
-                '&moderatorPW=' +
-                $moderatorPW +
-                '&attendeePW=' +
-                $attendeePW +
-                '&record=true';
-              var $createURLwithRecording =
-                $server +
-                'create?' +
-                $params +
-                '&checksum=' +
-                $.sha1('create' + $params + $salt);
+            $params =
+              'name=' +
+              $meetingName +
+              '&meetingID=' +
+              $meetingID +
+              '&moderatorPW=' +
+              $moderatorPW +
+              '&attendeePW=' +
+              $attendeePW +
+              '&record=true';
+            var $createURLwithRecording =
+              $server +
+              'create?' +
+              $params +
+              '&checksum=' +
+              $.sha1('create' + $params + $salt);
 
-              $params =
-                'meetingID=' +
-                $meetingID +
-                '&password=' +
-                $moderatorPW +
-                '&fullName=' +
-                $userName +
-                '&userID=' +
-                $userID;
-              var $joinModeratorURL =
-                $server +
-                'join?' +
-                $params +
-                '&checksum=' +
-                $.sha1('join' + $params + $salt);
+            $params =
+              'meetingID=' +
+              $meetingID +
+              '&password=' +
+              $moderatorPW +
+              '&fullName=' +
+              $userName +
+              '&userID=' +
+              $userID;
+            var $joinModeratorURL =
+              $server +
+              'join?' +
+              $params +
+              '&checksum=' +
+              $.sha1('join' + $params + $salt);
 
-              $params =
-                'meetingID=' +
-                $meetingID +
-                '&password=' +
-                $attendeePW +
-                '&fullName=' +
-                $userName +
-                '&userID=' +
-                $userID;
-              var $joinAttendeeURL =
-                $server +
-                'join?' +
-                $params +
-                '&checksum=' +
-                $.sha1('join' + $params + $salt);
-            }
+            $params =
+              'meetingID=' +
+              $meetingID +
+              '&password=' +
+              $attendeePW +
+              '&fullName=' +
+              $userName +
+              '&userID=' +
+              $userID;
+            var $joinAttendeeURL =
+              $server +
+              'join?' +
+              $params +
+              '&checksum=' +
+              $.sha1('join' + $params + $salt);
+          }
 
           $params = 'meetingID=' + $meetingID;
           var $isMeetingRunningURL =
@@ -423,11 +429,16 @@ export class ClassAgendaComponent implements OnInit {
           console.debug('meetingID: [' + decodeURIComponent($meetingID) + ']');
           console.debug('configXML: [' + decodeURIComponent($configXML) + ']');
 
-
-
+          var wnd = window.open($createURL, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+          setTimeout(function () {
+            wnd.close();
+          }, 3000);
+          self.urlArray = {}
           self.urlArray['create'] = $createURL;
 
           self.urlArray['title'] = $title;
+          self.urlArray['date'] = $date;
+          self.urlArray['time'] = $time;
 
           self.urlArray['description'] = $description;
 
@@ -452,7 +463,6 @@ export class ClassAgendaComponent implements OnInit {
           self.scheduleMeeting();
 
           $('#bbb')[0].reset();
-
         });
         var m, b;
         $.extend({
@@ -496,23 +506,33 @@ export class ClassAgendaComponent implements OnInit {
 
   scheduleMeeting() {
     return new Promise((resolve) => {
-
-
       this.classService
         .scheduleMeeting(this.userData.classes[0], this.urlArray)
         .then((res) => {
-
           // Fire error toast
           this.utilityService.fireToast('success', `Your Meetiing scheduled`);
-
+          this.getClassDetails();
         })
         .catch(() => {
           // Fire error toast
           this.utilityService.fireToast('warning', `Something went wrong`);
-
-          // Resolve the promise
-          resolve();
         });
     });
   }
+
+  getClassDetails() {
+    return new Promise((resolve) => {
+      // Fetch class details
+      this.classService
+        .getClassDetails(this.userData.classes[0])
+        .then((res) => {
+          this.allMeetings = res['class'];
+        })
+        .catch(() => {
+          // Fire error toast
+          this.utilityService.fireToast('warning', `Something went wrong`);
+        });
+    });
+  }
+
 }

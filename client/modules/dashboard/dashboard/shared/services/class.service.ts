@@ -84,9 +84,6 @@ export class ClassService {
    * @param meetingInfo
    */
   scheduleMeeting(classId: any, meetingInfo: any) {
-    console.log('====================================');
-    console.log(meetingInfo);
-    console.log('====================================');
     return this.httpClient
       .post(environment.baseApiUrl + '/classes/schedule-meeting', {
         classId: classId,
