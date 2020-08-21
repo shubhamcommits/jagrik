@@ -15,3 +15,30 @@ span{
     padding: 10px;
     cursor: pointer;
   }
+
+  .invite-student{
+    background-color: #CE4166;
+    max-width: 300px;
+    color: white;
+    border-radius: 3%;
+    min-height: 100px;
+    padding: 20px;
+    margin: 5px;
+    height: 100%;
+    cursor: pointer;
+  }
+  .card-title{
+    text-align: center;
+  }
+  .copy-code{
+    text-align: center;
+    background: #FCB040;
+    color: white;
+    border: 0;
+    padding: 7px;
+    display: flex;
+    font-size: larger;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
