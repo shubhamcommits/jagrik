@@ -59,7 +59,7 @@
   </mat-sidenav>
 
   <div class="example-sidenav-content">
-    <mat-toolbar class="example-toolbar {{userClass == '' || !showSideMenu ? 'nav-toolbar' : ''}}">
+    <mat-toolbar class="example-toolbar {{userClass == '' || !showSideMenu ? 'nav-toolbar' : ''}}" >
       <button mat-icon-button class="{{userClass == '' || !showSideMenu ? 'hide' : 'show'}}"
         (click)="isExpanded = !isExpanded">
         <mat-icon>menu</mat-icon>
@@ -67,6 +67,8 @@
        <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;"
          class="{{userClass == '' || !showSideMenu ? 'show' : 'hide'}}">
       <span class="jk-spacer"></span>
+      <button mat-button class="{{!showSideMenu ? 'show' : 'hide'}}"
+        (click)="isExpanded = !isExpanded" routerLink="/dashboard/team">Teams</button>
       <button mat-button routerLink="/dashboard/user">Profile</button>
       <button mat-button [matMenuTriggerFor]="notify" (click)="getAnncouncementList()">
         <mat-icon>notifications</mat-icon>

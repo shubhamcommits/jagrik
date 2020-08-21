@@ -18,7 +18,7 @@ export class AssignRandomTaskComponent implements OnInit {
   showAssignCard = true;
 
   // Theme Variable
-  theme = 'fundamental duties';
+  theme = 'fundamental rights';
 
   // Card Output Event Emitter
   @Output('card') card = new EventEmitter();

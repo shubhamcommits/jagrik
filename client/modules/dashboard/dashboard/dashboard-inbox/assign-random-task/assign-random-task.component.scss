@@ -1,5 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,800);
 
+::ng-deep {
+    .mat-drawer-content {
+      position: relative;
+      z-index: 1;
+      display: block;
+      height: 100%;
+      overflow: auto;
+      background-image: url('/assets/card_board.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+        width: 100%;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-right: 0;
+        margin-left: 0;
+        top: 65px;
+    }
+    .container {
+        width:  100vw;
+        padding-right: 0px; 
+        padding-left: 0px;
+        margin-right: 0;
+        margin-left: 0; 
+    }
+    
+  }
+
 h2{
     font-size: 35px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -20,3 +50,103 @@ img{
     width: 100%;
     margin-bottom: 25px;
 }
+.card-left{
+    display: flex;
+    align-items: flex-end;
+}
+.theme-card_1{
+    background-image: url('/assets/Card1.png');
+}
+.theme-card_2{
+    background-image: url('/assets/Dots.png');
+}
+
+.theme-card{
+    background-color: #CE4166;
+    max-width: 370px;
+    min-width: 370px;
+    color: white;
+    border-radius: 3%;
+    min-height: 100px;
+    padding: 20px;
+    margin: 5px;
+    height: 100%;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-FR{
+    background-color: #CE4166;
+    background-image: url('/assets/Dots.png');
+}
+.card-FD{
+    background-color: #f3b54e;
+    background-image: url('/assets/Dots.png');
+}
+.container-FR{
+    background-color: #CE4166;
+    height: 500px;
+}
+.container-FD{
+    background-color: #f3b54e;
+    height: 500px;
+}
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    border: 1px solid #f1f1f1;
+    max-width: 370px;
+    min-width: 370px;
+    min-height: 100px;
+    color: white;
+    border-radius: 3%;
+    min-height: 100px;
+    margin: 5px;
+    height: 100%;
+    overflow: visible;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 3%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 3%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: #CE4166;
+    color: black;
+}
+
+  
+  /* Style the back side */
+  .flip-card-back {
+    background-color: #CE4166;
+    color: white;
+    transform: rotateY(180deg);
+  }

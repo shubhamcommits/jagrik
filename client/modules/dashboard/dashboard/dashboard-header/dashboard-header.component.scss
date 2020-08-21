@@ -14,7 +14,7 @@ $yellow: #fca311;
 
 .example-sidenav-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   // position: fixed;
   width: -moz-available;
@@ -55,6 +55,7 @@ $yellow: #fca311;
     position: absolute;
     border-bottom: 1px solid #f3b44f;
     background-color: white;
+    
 }
 .mat-drawer.mat-drawer-side{
   background: rgb(243, 179, 79);
@@ -105,6 +106,13 @@ h4{
 .show{
   display: block;
 }
+::ng-deep{
+  .mat-toolbar .example-toolbar .nav-toolbar .mat-toolbar-single-row .hidex{
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
 .active-link{
   background: black !important;
   color: rgb(243, 179, 79);
@@ -115,8 +123,11 @@ h4{
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ff5f6d, #ffc371);
+    background: linear-gradient(to right, #fec370, #fd7e14, #cd4266);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 110px;
+    height: 220px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 30px;
   }
 }
