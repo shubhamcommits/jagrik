@@ -58,7 +58,7 @@ export class SigninComponent implements OnInit {
           storageService.setLocalData('authToken', JSON.stringify(res['token']))
 
           // Navigate the User to main dashboard
-          this._Router.navigate(['/dashboard', 'classes', 'list']);
+          this._Router.navigate(['/dashboard', 'inbox']);
 
           // Resolve with sucess
           resolve(res)

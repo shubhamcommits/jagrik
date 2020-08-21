@@ -10,16 +10,19 @@ import { AnnouncementService } from '../shared/services/announcement.service';
   styleUrls: ['./dashboard-header.component.scss'],
 })
 export class DashboardHeaderComponent implements OnInit {
-  constructor(private _Injector: Injector, private _Router: Router, private announcementService: AnnouncementService) {
-
-  }
+  constructor(
+    private _Injector: Injector,
+    private _Router: Router,
+    private announcementService: AnnouncementService
+  ) {}
 
   showFiller = false;
   isExpanded = true;
+  showSideMenu: boolean = true;
   showSubmenu: boolean = false;
   isShowing = false;
   userRole = '';
-  userClass = ''
+  userClass = '';
   showSubSubMenu: boolean = false;
   announcementData: any = [];
 
@@ -30,9 +33,8 @@ export class DashboardHeaderComponent implements OnInit {
     // Fetch the user role
     this.userRole = storageService.getLocalData('userData').role;
     if (storageService.getLocalData('userData').classes.length > 0) {
-      this.userClass = storageService.getLocalData('userData').classes[0]
+      this.userClass = storageService.getLocalData('userData').classes[0];
     }
-
   }
 
   navigateToUserProfile() {
@@ -106,15 +108,13 @@ export class DashboardHeaderComponent implements OnInit {
 
   getAnncouncementList() {
     return new Promise((resolve) => {
-
       // Fetch class details
       this.announcementService
         .getAnnouncementList(this.userClass)
         .then((res) => {
-          this.announcementData = res['result']
+          this.announcementData = res['result'];
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     });
   }
 }

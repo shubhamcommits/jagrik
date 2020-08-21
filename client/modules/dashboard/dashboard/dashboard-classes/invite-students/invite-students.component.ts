@@ -4,73 +4,90 @@ import { ClassService } from '../../shared/services/class.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { ClassDetailsComponent } from '../class-details/class-details.component';
-
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
 @Component({
   selector: 'app-invite-students',
   templateUrl: './invite-students.component.html',
-  styleUrls: ['./invite-students.component.scss']
+  styleUrls: ['./invite-students.component.scss'],
 })
 export class InviteStudentsComponent implements OnInit {
-
   constructor(
     private _Injector: Injector,
     private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
-  ) { }
+    private _Router: Router,
+    private storageService: StorageService
+  ) {}
 
   // Invite Students form variable
-  inviteStudentsForm: FormGroup
+  inviteStudentsForm: FormGroup;
 
-  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId')
+  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
 
   // Class Details Object
-  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute, this._Router)
+  classDetails = new ClassDetailsComponent(
+    this._Injector,
+    this._ActivatedRoute,
+    this._Router
+  );
 
   // Class Object
-  class: any
+  class: any;
 
   ngOnInit() {
-
     // Initialise the formgroup
     this.inviteStudentsForm = new FormGroup({
-      email: new FormControl(null, [Validators.email, Validators.required, Validators.nullValidator]),
-    })
+      email: new FormControl(null, [
+        Validators.email,
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+    });
   }
 
   async ngAfterViewInit() {
-
     // Fetch class details
-    this.class = await this.classDetails.getClassDetails(this.classId)
+    if (this.classId !== null && this.classId !== 'null') {
+      this.class = await this.classDetails.getClassDetails(this.classId);
+    } else {
+      this.class = await this.classDetails.getClassDetails(
+        this.storageService.getLocalData('userData').classes[0]
+      );
+    }
+
   }
 
   onSubmit() {
     return new Promise((resolve) => {
-
       // Class Service instance
-      let classService = this._Injector.get(ClassService)
+      let classService = this._Injector.get(ClassService);
 
       // Utility Service Instance
-      let utilityService = this._Injector.get(UtilityService)
+      let utilityService = this._Injector.get(UtilityService);
 
-      classService.inviteToClass(this.inviteStudentsForm.value.email, this.classId)
+      classService
+        .inviteToClass(this.inviteStudentsForm.value.email, this.classId)
         .then((res) => {
-          console.log(res)
-          utilityService.fireToast('success', `Invitation sent to ${this.inviteStudentsForm.value.email}`)
-          this.inviteStudentsForm.reset()
-          resolve()
+          console.log(res);
+          utilityService.fireToast(
+            'success',
+            `Invitation sent to ${this.inviteStudentsForm.value.email}`
+          );
+          this.inviteStudentsForm.reset();
+          resolve();
         })
         .catch(() => {
           // Fire error toast
-          utilityService.fireToast('error', `Some unexpected error occured, please try again!`)
-        })
-
-    })
+          utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
+    });
   }
 
   clickToCopy() {
-
     // Utility Service Instance
-    let utilityService = this._Injector.get(UtilityService)
+    let utilityService = this._Injector.get(UtilityService);
 
     // Create HTML Element
     const selBox = document.createElement('textarea');
@@ -98,7 +115,6 @@ export class InviteStudentsComponent implements OnInit {
     document.body.removeChild(selBox);
 
     // Fire info toast
-    utilityService.fireToast('info', `Copied to Clipboard`)
+    utilityService.fireToast('info', `Copied to Clipboard`);
   }
-
 }
