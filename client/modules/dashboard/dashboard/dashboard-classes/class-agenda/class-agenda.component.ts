@@ -87,7 +87,8 @@ export class ClassAgendaComponent implements OnInit {
 </config>';
 
         $('#reload').click(function () {
-          $('#bbb')[0].reset();
+          // $('#bbb')[0].reset();
+          $('#bbb :input').val('');
         });
 
         $('#clear').click(function () {
@@ -462,7 +463,7 @@ export class ClassAgendaComponent implements OnInit {
 
           self.scheduleMeeting();
 
-          $('#bbb')[0].reset();
+          $('#bbb :input').val('');
         });
         var m, b;
         $.extend({
