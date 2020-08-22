@@ -1,19 +1,14 @@
 
 <!-- <img *ngIf="!showChooseTheme" class="d-flex justify-content-center" src="assets/undraw_team_goals.svg"> -->
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <h2 class="d-flex justify-content-center mb-4 mt-4" *ngIf="!showChooseTheme">Choose a theme for your card</h2>
 <div class="row" *ngIf="!showChooseTheme" style="height: 400px;">
     <div class="col-md-6 card-left">
-        <!-- <div class="flip-card-inner">
-            <div class="theme-card card-FR flip-card-front" *ngIf="!showChooseTheme && showAssignCard" (click)="this.theme = 'fundamental rights'" (click)="showChooseTheme = true" >
+            <div class="theme-card card-FR " *ngIf="!showChooseTheme && showAssignCard" (click)="this.theme = 'fundamental rights'" (click)="showChooseTheme = true" >
                 <img src="assets/text1.png" alt="">
              </div>
-             <div class="flip-card-back">
-                 Hello
-             </div>
-        </div> -->
-        <div class="flip-card ">
+        <!-- <div class="flip-card ">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <img src="assets/text1.png" alt="">
@@ -22,7 +17,7 @@
                 <button class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Rights</button>
               </div>
             </div>
-          </div>
+          </div> -->
         
     </div>
     <div class="col-md-6" >
@@ -36,17 +31,27 @@
 <div class="container" *ngIf="showChooseTheme && theme == 'fundamental rights'">
     <div class="container-FR" style="width: 100vw;">
         <!-- <img src="assets/text1.png" alt=""> -->
-        <h1>FUNDAMENTAL</h1>
-        <h2>RIGHTS</h2>
+        <div class="w3-container">
+            <h1 class="w3-center w3-animate-right">Fundamental Duties</h1>
+          </div>
     </div>
     <button class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Rights</button>
 
 </div>
-<div class="container" *ngIf="showChooseTheme && theme == 'fundamental duties'">
-    <div class="container-FD" style="width: 100%;">
-        <img src="assets/text2.png" alt="">
-    </div>
-    <button class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Duties</button>
+<div class="row d-flex justify-content-center" *ngIf="showChooseTheme && theme == 'fundamental duties'" >
+    <!-- <div class="container-FD" style="width: 100%;"> -->
+        <div class="w3-container">
+            <h1 id="hideMe" class="w3-center w3-animate-right text-uppercase" style="color: #808080;
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;">You Selected:<br></h1>
+            <h1 id="hideMex" class="w3-center w3-animate-right text-uppercase" style="color: #f3b44f;
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 1;">Fundamental<br> Duties</h1>
+          </div>
+    <!-- </div> -->
+    <!-- <button class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Duties</button> -->
 
 </div>
 
@@ -55,8 +60,8 @@
 
     <p *ngIf="!showAssignCard">You've assigned a new card to your team - your feed will update very soon!</p>
 
-    <button *ngIf="showChooseTheme && theme == 'fundamental rights'" class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Rights</button>
-    <button *ngIf="showChooseTheme && theme == 'fundamental duties'" class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Duties</button>
+    <button *ngIf="showChooseTheme && theme == 'fundamental rights'" class="btn btn-dice btn-md"  (click)="this.assignCard()">Fundamental Rights</button>
+    <button id="hideMeDice" *ngIf="showChooseTheme && theme == 'fundamental duties'" class="btn btn-dice btn-md"  (click)="this.assignCard()"></button>
 </div>
 
 <div class="d-flex justify-content-center" *ngIf="showChooseTheme" (click)="showChooseTheme = false">

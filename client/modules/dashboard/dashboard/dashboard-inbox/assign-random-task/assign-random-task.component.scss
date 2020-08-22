@@ -150,3 +150,44 @@ img{
     color: white;
     transform: rotateY(180deg);
   }
+
+  #hideMe {
+    -webkit-animation: cssAnimation 0.5s forwards; 
+    animation: cssAnimation 0.5s forwards;
+}
+@keyframes cssAnimation {
+    0%   {opacity: 0;}
+    99%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+#hideMex {
+    -webkit-animation: cssAnimationx 2s forwards; 
+    animation: cssAnimationx 2s forwards;
+}
+@keyframes cssAnimationx {
+    0%   {opacity: 0;}
+    99%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+#hideMeDice {
+    -webkit-animation: cssAnimationdice 3s forwards; 
+    animation: cssAnimationdice 3s forwards;
+}
+@keyframes cssAnimationdice {
+    0%   {opacity: 0;}
+    90%  {opacity: 1;}
+    100% {opacity: 1;}
+}
+.w3-animate-right{
+    animation-delay: 2s;
+}
+
+.btn-dice{
+    background-image: url('/assets/Dice.png');
+    width: 120px;
+    height: 120px;
+    background-color: #f3b54e;
+    border-radius: 17%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
