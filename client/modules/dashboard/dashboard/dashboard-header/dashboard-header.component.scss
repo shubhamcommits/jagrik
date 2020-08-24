@@ -54,14 +54,15 @@ $yellow: #fca311;
     top: 0;
     position: absolute;
     border-bottom: 1px solid #f3b44f;
-    background-color: white;
-    
+    background-color: #f3b44f;
+
 }
 .mat-drawer.mat-drawer-side{
   background: rgb(243, 179, 79);
 }
 .jk-spacer {
   flex: 1 1 auto;
+  text-align: center;
 }
 .mat-drawer-container{
   background-color: white;
