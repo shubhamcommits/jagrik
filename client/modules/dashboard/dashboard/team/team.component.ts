@@ -39,6 +39,7 @@ export class TeamComponent implements OnInit {
   teamArrayExist: boolean = false;
   userRole = '';
   className = '';
+  isOpen:Boolean = true
   constructor(
     private teamService?: TeamService,
     private utilityService?: UtilityService,
@@ -135,6 +136,7 @@ export class TeamComponent implements OnInit {
       this.classService
         .getClassDetails(classId)
         .then((res) => {
+          this.isOpen = res['class']['is_open'];
           this.className = res['class']['name']
         })
         .catch(() => {

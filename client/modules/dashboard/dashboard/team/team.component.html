@@ -1,4 +1,10 @@
-<div class="row" >
+<div class="row" *ngIf="isOpen">
+  <div  class="col-md-12" style="max-height: 60vh;text-align: center;">
+    <h4>Please close your class then visit again !</h4>
+    <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
+  </div>
+</div>
+<div class="row" *ngIf="!isOpen">
   <div *ngIf="!teamArrayExist && newUser.length === 0" class="col-md-12" style="max-height: 60vh;text-align: center;">
     <h4>No teams and team member found !</h4>
     <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
@@ -37,8 +43,7 @@
   </div>
 </div>
 <br><br>
-
-<mat-accordion *ngIf="userRole !== 'student'  && newUser.length !== 0">
+<mat-accordion *ngIf="userRole !== 'student'  && newUser.length !== 0 && !isOpen">
   <!-- *ngIf="userRole !== 'student'  && newUser.length !== 0" -->
 <mat-expansion-panel style="background-color: gainsboro;">
     <mat-expansion-panel-header>
@@ -90,7 +95,7 @@
     </div>
   </div>
 </div>
-</div> 
+</div>
 <div class="row" *ngIf="userRole == 'student'">
   <p class="pl-3">You have not access of this page!</p>
 </div>
