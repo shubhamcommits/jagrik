@@ -40,10 +40,10 @@ export class TeamComponent implements OnInit {
   userRole = '';
   className = '';
   constructor(
-    private teamService: TeamService,
-    private utilityService: UtilityService,
-    private storageService: StorageService,
-    private classService: ClassService
+    private teamService?: TeamService,
+    private utilityService?: UtilityService,
+    private storageService?: StorageService,
+    private classService?: ClassService
   ) {}
 
   ngOnInit(): void {

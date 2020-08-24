@@ -17,7 +17,8 @@ export class ClassDetailsComponent implements OnInit {
   ) {}
 
   classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
-  userRole:any = []
+  userRole: any = []
+  isOpen:Boolean = false
   async ngOnInit() {
     this.class = await this.getClassDetails(this.classId);
     const storageService = this._Injector.get(StorageService);
@@ -35,6 +36,7 @@ export class ClassDetailsComponent implements OnInit {
       classService
         .closeClass(this.classId)
         .then((res) => {
+          this.getClassDetails(this.classId)
           resolve(res);
         })
         .catch(() => {
@@ -72,6 +74,7 @@ export class ClassDetailsComponent implements OnInit {
       classService
         .getClassDetails(classId)
         .then((res) => {
+          this.isOpen = res['class']['is_open']
           resolve(res['class'] || {});
         })
         .catch(() => {

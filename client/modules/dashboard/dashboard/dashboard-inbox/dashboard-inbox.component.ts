@@ -1,9 +1,11 @@
+import { TeamComponent } from './../team/team.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
-
+import { ClassDetailsComponent } from '../dashboard-classes/class-details/class-details.component';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard-inbox',
   templateUrl: './dashboard-inbox.component.html',
@@ -12,10 +14,23 @@ import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.c
 export class DashboardInboxComponent implements OnInit {
   constructor(
     private injector: Injector,
-    public dashboardHeaderComponent: DashboardHeaderComponent
-  ) {}
+    public dashboardHeaderComponent: DashboardHeaderComponent,
+    private _ActivatedRoute: ActivatedRoute,
+    private _Router: Router
+  ) { }
+
+  classDetails = new ClassDetailsComponent(
+    this.injector,
+    this._ActivatedRoute,
+    this._Router
+  );
+
+  teamComponent = new TeamComponent();
+
 
   userData: any;
+
+  is_open: Boolean = false
 
   card: any = {
     _id: '',
@@ -23,11 +38,14 @@ export class DashboardInboxComponent implements OnInit {
     dice_number: '',
   };
 
-  showAssignTask = true;
+  showAssignTask:Boolean = false;
+
 
   async ngOnInit() {
+    this.is_open = this.classDetails.isOpen
     this.userData = await this.getUserData();
     this.dashboardHeaderComponent.showSideMenu = false;
+    this.showAssignTask = this.teamComponent.newUser.length > 0 ? true : false
     if (this.userData.tasks.length > 0)
       this.card._id = this.userData.tasks[this.userData.tasks.length - 1]._card;
   }

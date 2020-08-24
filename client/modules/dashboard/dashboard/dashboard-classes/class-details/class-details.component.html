@@ -5,7 +5,8 @@
       [queryParams]="{ classId: classId }">Agenda</button>
     <button mat-raised-button color="{{checkColor('Members')}}" [routerLink]="['/dashboard', 'classes', 'members']"
       [queryParams]="{ classId: classId }">Members</button>
-    <button mat-raised-button :color="{{checkColor('Invite')}}" [routerLink]="['/dashboard', 'classes', 'invite']"
+    <button *ngIf="isOpen" mat-raised-button :color="{{checkColor('Invite')}}"
+      [routerLink]="['/dashboard', 'classes', 'invite']"
       [queryParams]="{ classId: classId }">Invite Users</button>
 <button *ngIf="userRole == 'facilitator'" mat-raised-button :color="{{checkColor('Invite')}}" style="float: right;"
   (click)="closeClass()">Freeze Class</button>

@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4" style="display: flex;flex-direction: column;">
+    <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="is_open">
       <div class="card card-dashboard" style="padding: 25px;height: 100%;">
         <div class="card-body">
           <div class="card-heading">
@@ -36,6 +36,18 @@
           </div>
           <app-invite-students>
             </app-invite-students>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && showAssignTask">
+      <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h2 style="margin: 0px !important;">Teams</h2>
+            <span></span>
+          </div>
+          <app-team>
+          </app-team>
         </div>
       </div>
     </div>
