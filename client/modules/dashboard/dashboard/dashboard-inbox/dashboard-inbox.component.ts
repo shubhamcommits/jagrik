@@ -1,7 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
-import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 import { ClassService } from '../shared/services/class.service';
 import { TeamService } from '../shared/services/team.service';
