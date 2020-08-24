@@ -1,60 +1,59 @@
 <mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
-    (mouseleave)="mouseleave()">
-    <mat-nav-list class="{{userClass == '' || !showSideMenu ? 'hide' : 'show'}}" *ngIf="isExpanded || isShowing">
+  <mat-sidenav #sidenav class="example-sidenav" mode="over"
+    class="{{userClass == '' || !showSideMenu ? '' : 'show'}}" (click)="sidenav.toggle()">
+    <mat-nav-list>
           <mat-list-item class="parent" routerLinkActive="active-link" style="margin-bottom: 50px;">
-            <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;">
-             <button  mat-icon-button
-               class="{{userClass == '' || !showSideMenu ? 'hide' : 'show'}}" (click)="isExpanded = !isExpanded">
+            <img  src="assets/logo.png" style="max-width: 150px;">
+             <button  mat-icon-button>
                <mat-icon>close</mat-icon>
              </button>
           </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'inbox']">
-          <span class="full-width" *ngIf="(isExpanded || isShowing)">Dashboard</span>
+          <span class="full-width">Dashboard</span>
           <mat-icon mat-list-icon>dashboard</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'tasks']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Tasks Board</span>
+          <span class="full-width">Tasks Board</span>
           <mat-icon mat-list-icon>work_outline</mat-icon>
         </mat-list-item>
         <mat-list-item *ngIf="userRole ==='student'" routerLinkActive="active-link" class="parent"
           [routerLink]="['/dashboard', 'pending-task']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Previous Task</span>
+          <span class="full-width">Previous Task</span>
           <mat-icon mat-list-icon>list</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'bouns-tasks']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Bonus Task</span>
+          <span class="full-width">Bonus Task</span>
           <mat-icon mat-list-icon>work_outline</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'classes', 'list']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Classes</span>
+          <span class="full-width">Classes</span>
           <mat-icon mat-list-icon>content_paste</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'leaderboard']"
           *ngIf="userRole ==='facilitator'">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Leaderboard</span>
+          <span class="full-width">Leaderboard</span>
           <mat-icon mat-list-icon>content_paste</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'team']"
           *ngIf="userRole ==='facilitator'">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Teams</span>
+          <span class="full-width">Teams</span>
           <mat-icon mat-list-icon>group_work</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Help</span>
+          <span class="full-width">Help</span>
           <mat-icon mat-list-icon>help</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'resource-list']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Resources</span>
+          <span class="full-width">Resources</span>
           <mat-icon mat-list-icon>import_contacts</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" [routerLink]="['/dashboard', 'announcement']">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Announcement</span>
+          <span class="full-width">Announcement</span>
         <mat-icon mat-list-icon>notifications</mat-icon>
         </mat-list-item>
         <mat-list-item class="parent" routerLinkActive="active-link" (click)="signOut()"
           style="position: absolute;bottom: 10px;">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
+          <span class="full-width">Logout</span>
           <mat-icon mat-list-icon>settings_power</mat-icon>
         </mat-list-item>
     </mat-nav-list>
@@ -64,18 +63,17 @@
 
   <div class="example-sidenav-content">
     <mat-toolbar class="example-toolbar {{userClass == '' || !showSideMenu ? 'nav-toolbar' : ''}}" >
-      <button *ngIf="!isExpanded" mat-icon-button
-        class="{{userClass == '' || !showSideMenu ? 'hide' : 'show'}}"
-        (click)="isExpanded = !isExpanded">
+      <button  mat-icon-button
+        (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;"
-         class="{{userClass == '' || !showSideMenu ? 'show' : 'hide'}}">
+      <!-- <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;"
+         class="{{userClass == '' || !showSideMenu ? 'show' : 'hide'}}"> -->
       <span class="jk-spacer">
-        <img *ngIf="showSideMenu" src="assets/logo.png" style="max-width: 150px;">
+        <img  src="assets/logo.png" style="max-width: 150px;">
       </span>
       <button mat-button class="{{!showSideMenu ? 'show' : 'hide'}}"
-        (click)="isExpanded = !isExpanded" routerLink="/dashboard/team">Teams</button>
+       routerLink="/dashboard/team">Teams</button>
       <button mat-button routerLink="/dashboard/user">Profile</button>
       <button mat-button [matMenuTriggerFor]="notify" (click)="getAnncouncementList()">
         <mat-icon>notifications</mat-icon>
