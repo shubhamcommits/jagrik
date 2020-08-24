@@ -63,28 +63,39 @@
 
   <div class="example-sidenav-content">
     <mat-toolbar class="example-toolbar {{userClass == '' || !showSideMenu ? 'nav-toolbar' : ''}}" >
-      <button  mat-icon-button
-        (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+
+      <div class="container-fluid custom-fluid">
+      <div class="row custom-row">
+        <div class="col-md-4"><button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button></div>
+        <div class="col-md-4">
+          <span class="jk-spacer">
+            <img src="assets/logo.png" style="max-width: 150px;">
+          </span>
+        </div>
+        <div class="col-md-4 right-div">
+          <button mat-button class="{{!showSideMenu ? 'show' : 'hide'}}" routerLink="/dashboard/team">Teams</button>
+          <button mat-button routerLink="/dashboard/user">Profile</button>
+          <button mat-button [matMenuTriggerFor]="notify" (click)="getAnncouncementList()">
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <mat-menu #notify="matMenu">
+            <button mat-menu-item *ngFor="let item of announcementData" class="menu-btn">
+              <h4>{{item.title}} <small class="pull-right">{{item.created_on |  date:'shortDate'}}</small></h4>
+              <p class="text-muted noti-p">{{item.description}}</p>
+              <hr>
+            </button>
+          </mat-menu>
+        </div>
+        </div>
+      </div>
+
+
       <!-- <img *ngIf="isExpanded || isShowing" src="assets/logo.png" style="max-width: 150px;"
          class="{{userClass == '' || !showSideMenu ? 'show' : 'hide'}}"> -->
-      <span class="jk-spacer">
-        <img  src="assets/logo.png" style="max-width: 150px;">
-      </span>
-      <button mat-button class="{{!showSideMenu ? 'show' : 'hide'}}"
-       routerLink="/dashboard/team">Teams</button>
-      <button mat-button routerLink="/dashboard/user">Profile</button>
-      <button mat-button [matMenuTriggerFor]="notify" (click)="getAnncouncementList()">
-        <mat-icon>notifications</mat-icon>
-      </button>
-      <mat-menu #notify="matMenu">
-        <button mat-menu-item *ngFor="let item of announcementData" class="menu-btn">
-          <h4>{{item.title}} <small class="pull-right">{{item.created_on |  date:'shortDate'}}</small></h4>
-          <p class="text-muted noti-p">{{item.description}}</p>
-          <hr>
-        </button>
-      </mat-menu>
+
+
     </mat-toolbar>
   </div>
   <div class="container-fluid">

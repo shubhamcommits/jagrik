@@ -132,3 +132,14 @@ h4{
     font-size: 30px;
   }
 }
+.right-div{
+  display: flex;
+  justify-content: right;
+  flex-direction:row;
+}
+.custom-fluid{
+  top: 10px;
+}
+.custom-row{
+  top: 0px;
+}
