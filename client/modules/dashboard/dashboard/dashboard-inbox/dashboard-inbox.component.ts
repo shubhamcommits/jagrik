@@ -1,11 +1,10 @@
-import { TeamComponent } from './../team/team.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
-import { ClassDetailsComponent } from '../dashboard-classes/class-details/class-details.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ClassService } from '../shared/services/class.service';
+import { TeamService } from '../shared/services/team.service';
 @Component({
   selector: 'app-dashboard-inbox',
   templateUrl: './dashboard-inbox.component.html',
@@ -14,18 +13,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DashboardInboxComponent implements OnInit {
   constructor(
     private injector: Injector,
-    public dashboardHeaderComponent: DashboardHeaderComponent,
-    private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
+    private classService: ClassService,
+    private teamService: TeamService,
+    public dashboardHeaderComponent: DashboardHeaderComponent
   ) { }
 
-  classDetails = new ClassDetailsComponent(
-    this.injector,
-    this._ActivatedRoute,
-    this._Router
-  );
-
-  teamComponent = new TeamComponent();
 
 
   userData: any;
@@ -38,14 +30,12 @@ export class DashboardInboxComponent implements OnInit {
     dice_number: '',
   };
 
-  showAssignTask:Boolean = false;
-
+  showAssignTask: Boolean = false;
+  showTeam: Boolean = false;
 
   async ngOnInit() {
-    this.is_open = this.classDetails.isOpen
+    this.dashboardHeaderComponent.showSideMenu = false
     this.userData = await this.getUserData();
-    this.dashboardHeaderComponent.showSideMenu = false;
-    this.showAssignTask = this.teamComponent.newUser.length > 0 ? true : false
     if (this.userData.tasks.length > 0)
       this.card._id = this.userData.tasks[this.userData.tasks.length - 1]._card;
   }
@@ -68,6 +58,7 @@ export class DashboardInboxComponent implements OnInit {
       userService
         .get()
         .then((res) => {
+          this.getClassDetails(res['user']['classes'][0])
           storageService.setLocalData('userData', JSON.stringify(res['user']));
           resolve(res['user']);
         })
@@ -75,5 +66,41 @@ export class DashboardInboxComponent implements OnInit {
           resolve({});
         });
     });
+  }
+
+  getClassDetails(classId: any) {
+    return new Promise((resolve) => {
+      // Fetch class details
+      this.classService
+        .getClassDetails(classId)
+        .then((res) => {
+          this.is_open = res['class']['is_open']
+          if (this.is_open == false) {
+            this.getTeams()
+          }
+        })
+        .catch(() => {
+        });
+    });
+  }
+
+  getTeams() {
+    this.teamService
+      .getTeams(this.userData.classes[0])
+      .then((res) => {
+        let data: any = res['teams'];
+        if (data.length > 0) {
+          var i = 1;
+          data.forEach((element) => {
+            if (element['team_name'] !== 'No Team') {
+
+            } else {
+              this.showTeam = true
+            }
+          });
+        }
+      })
+      .catch(() => {
+      });
   }
 }
