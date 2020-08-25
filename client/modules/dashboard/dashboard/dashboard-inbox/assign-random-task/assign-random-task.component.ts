@@ -53,7 +53,7 @@ export class AssignRandomTaskComponent implements OnInit {
 
     setTimeout(() => {
       this.assignCard()
-    }, 2200);
+    }, 3000);
   }
 
   assignCard() {
