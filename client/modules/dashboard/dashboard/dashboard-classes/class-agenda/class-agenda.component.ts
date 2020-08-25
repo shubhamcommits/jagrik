@@ -140,16 +140,16 @@ export class ClassAgendaComponent implements OnInit {
           //Gets the variables
           var $server = 'https://golearn.webinargolearn.org/bigbluebutton/api/';
           var $salt = 'kQ3eMjzk08iGHgUBmG2zBZjq5o7JbU5Of10CYIDRg';
-          var $title = $('#title').val();
-          var $description = $('#description').val();
+          var $title = 'Title';
+          var $description = 'description';
           var $date = $('#date').val();
           var $time = $('#time').val();
-          var $meetingID = $.URLEncode($('#meetingID').val());
-          var $meetingName = $.URLEncode($('#meetingName').val());
-          var $moderatorPW = $.URLEncode($('#moderatorPW').val());
-          var $attendeePW = $.URLEncode($('#attendeePW').val());
-          var $userName = $.URLEncode($('#userName').val());
-          var $userID = $.URLEncode($('#userID').val());
+          var $meetingID = $.URLEncode('sf-ddsf-'+ new Date());
+          var $meetingName = $.URLEncode('Meeting Class');
+          var $moderatorPW = $.URLEncode('1234');
+          var $attendeePW = $.URLEncode('1234');
+          var $userName = $.URLEncode(self.userData.first_name + ' ' + self.userData.last_name);
+          var $userID = $.URLEncode('');
           if (
             $meetingID == '' ||
             $title == '' ||
