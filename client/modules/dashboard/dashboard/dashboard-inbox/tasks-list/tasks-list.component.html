@@ -9,7 +9,7 @@
               </div>
           </div>
       </div>
-      
+
       <div class="col-md-4 col-xl-3">
           <div class="card bg-c-green order-card">
               <div class="card-block">
@@ -19,7 +19,7 @@
               </div>
           </div>
       </div>
-      
+
       <div class="col-md-4 col-xl-3">
           <div class="card bg-c-yellow order-card">
               <div class="card-block">
@@ -29,7 +29,7 @@
               </div>
           </div>
       </div>
-      
+
       <div class="col-md-4 col-xl-3" >
           <div class="card bg-c-pink order-card" style="height: 100%;">
               <div class="card-block">
@@ -79,7 +79,7 @@
       </div>
       <div class="card-body">
         <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
-         <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div> 
+         <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div>
         <div class="row" *ngFor="let item of taskStatus?.teamMembers">
           <div class="col-md-9">
             <p class="text-capitalize"><b>{{item.user_name}}</b></p>
@@ -89,7 +89,7 @@
               </div>
           </div>
         </div>
-           </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p> 
+           </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@
         <div class="col-md-12 task-card-heading d-flex justify-content-center">Card
         </div>
       </div>
-    
+
       <div class="card-body">
         <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
         <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
@@ -139,7 +139,7 @@
         <div class="col-md-12 task-card-heading d-flex justify-content-center">Task Status
         </div>
       </div>
-    
+
       <div class="card-body">
         <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
         <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
@@ -171,169 +171,179 @@
         </p>
       </mat-card-content>
     </mat-card>
-  </mat-grid-tile> 
+  </mat-grid-tile>
 </mat-grid-list> -->
 
 
 <!-- Task List -->
-
-<div class="row">
-<div class="col-12" style="display: block; justify-content: center;">
-  <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-    <div class="card-body">
-        <div class="card-heading">
-            <h2 style="margin: 0px !important;">Community Task</h2>
-        <span></span>
-        </div>
-
-
-  <!-- TABS COM -->
-<mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
-  <mat-tab  class="gold task-level">
-   <ng-template mat-tab-label>
-                <span [ngClass]="'gold task-level'"></span>
-   </ng-template>
-  
-    <!-- <table mat-table [dataSource]="this.data.tasks" class="mat-elevation-z8">
-      <ng-container matColumnDef="Description" >
-        <th mat-header-cell *matHeaderCellDef class="level-one"> Description </th>
-        <td mat-cell *matCellDef="let task">
-          <ng-template [ngIf]="task.category == 'community' && task?.type=='gold'">
-          <div >{{ task?.description }}</div>
-        </ng-template>
-        </td>
-        
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table> -->
-    <ng-container *ngFor="let task of this.data.tasks" >
-    <div *ngIf="task.category == 'community' && task?.type== 'gold'" class="task-list"  >
-      <div class="row">
-        <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
-           <!-- <span class="text">Description:{{ task?.description }}</span></div> -->
-      </div><br>
-      <div class="row">
-        <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-         <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
-             style="color: #cd4266;"
-             (click)="openDialog(task)">UPLOAD</button></div>
-      </div> 
-    </div>
-  </ng-container>
-  </mat-tab>
-
-  <mat-tab  class="task-level">
-    <ng-template mat-tab-label>
-      <span [ngClass]="'silver task-level'"></span>
-    </ng-template>
-    <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'community' && task?.type== 'silver'" class="task-list" >
-        <div class="row">
-          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
-        </div><br>
-        <div class="row">
-          <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Points: {{ task?.points }}</div>
-           <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize"><button mat-raised-button
-               style="color: #cd4266;"
-               (click)="openDialog(task)">UPLOAD</button></div>
-        </div>
+<div class="container">
+  <div class="row">
+  <div class="col-12" style="display: block; justify-content: center;">
+    <div class="card card-dashboard" style="height: 100%;">
+      <div class="card-header">
+          <h2 style="margin: 0px !important;">Community Task</h2>
       </div>
-    </ng-container>
-  </mat-tab>
+      <div class="card-body">
 
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <span [ngClass]="'bronze task-level'"></span>
-    </ng-template>
-    <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'community' && task?.type== 'bronze'" class="task-list" >
-        <div class="row">
-          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
-        </div><br>
-        <div class="row">
-           <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-12 text-capitalize"><button mat-raised-button
-               style="color: #cd4266;"
-               (click)="openDialog(task)">UPLOAD</button></div>
-        </div>
-      </div>
-    </ng-container>
-  </mat-tab>
 
-</mat-tab-group>
-</div>
-</div>
-</div>
-</div>
-
- <!-- SELF TASKS -->
-<div class="row" style="margin-top:30px;">
-<div class="col-12">
-  <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-    <div class="card-body">
-        <div class="card-heading">
-            <h2 style="margin: 0px !important;">Self Task</h2>
-        <span></span>
-        </div>
-
-    <!-- TABS SELF -->
- <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
-  <mat-tab  >
-    <ng-template mat-tab-label>
-      <span [ngClass]="'gold task-level'"></span>
-    </ng-template>
-    <ng-container *ngFor="let task of this.data.tasks" >
-      <div *ngIf="task.category == 'self' && task?.type== 'gold'" class="task-list">
-        <div class="row">
-          <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
-        </div><br>
-        <div class="row">
-         <div class="col-12 text-capitalize" *ngIf="individualTaskStatus == false"><button mat-raised-button style="color: #cd4266;"
-             (click)="openDialog(task)">UPLOAD</button></div>
-        </div>
-      </div>
-    </ng-container>
-  </mat-tab>
-
-    <mat-tab >
+    <!-- TABS COM -->
+    <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
+      <mat-tab  class="gold task-level">
       <ng-template mat-tab-label>
-        <span [ngClass]="'silver task-level'"></span>
+          <span [ngClass]="'gold task-level'">GOLD</span>
       </ng-template>
-      <ng-container *ngFor="let task of this.data.tasks" >
-        <div *ngIf="task.category == 'self' && task?.type== 'silver'" class="task-list" >
+        <ng-container *ngFor="let task of this.data.tasks" >
+        <div *ngIf="task.category == 'community' && task?.type== 'gold'" class="task-list"  >
           <div class="row">
-            <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
+            <div class="col-12 text-capitalize heading">Description</div>
+            <div class="col-12">
+              <p>{{ task?.description }}</p>
+            </div>
           </div><br>
           <div class="row">
-             <div class="col-12 text-capitalize" *ngIf="individualTaskStatus == false"><button mat-raised-button style="color: #cd4266;"
-                 (click)="openDialog(task)">UPLOAD</button></div>
-          </div>
-        </div>
-      </ng-container>
-
-    </mat-tab>
-
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <span [ngClass]="'bronze task-level'"></span>
-      </ng-template>
-      <ng-container *ngFor="let task of this.data.tasks" >
-        <div *ngIf="task.category == 'self' && task?.type== 'bronze'" class="task-list" >
-          <div class="row">
-            <div class="col-12 text-capitalize" >Description:{{ task?.description }}</div>
-          </div><br>
-          <div class="row">
-            <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
-            <div class="col-6 text-capitalize" *ngIf="individualTaskStatus == false"><button mat-raised-button style="color: #cd4266;"
+            <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
+            <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                mat-raised-button class="task-btn"
                 (click)="openDialog(task)">UPLOAD</button></div>
           </div>
         </div>
       </ng-container>
+      </mat-tab>
+
+      <mat-tab  class="task-level">
+        <ng-template mat-tab-label>
+          <span [ngClass]="'silver task-level'">SILVER</span>
+        </ng-template>
+        <ng-container *ngFor="let task of this.data.tasks" >
+          <div *ngIf="task.category == 'community' && task?.type== 'silver'" class="task-list" >
+            <div class="row">
+             <div class="col-12 text-capitalize heading">Description</div>
+             <div class="col-12">
+               <p>{{ task?.description }}</p>
+             </div>
+            </div><br>
+            <div class="row">
+              <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
+              <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                  mat-raised-button
+                  class="task-btn"
+                  (click)="openDialog(task)">UPLOAD</button></div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-tab>
+
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span [ngClass]="'bronze task-level'">BRONZE</span>
+        </ng-template>
+        <ng-container *ngFor="let task of this.data.tasks" >
+          <div *ngIf="task.category == 'community' && task?.type== 'bronze'" class="task-list" >
+            <div class="row">
+              <div class="col-12 text-capitalize heading">Description</div>
+              <div class="col-12">
+                <p>{{ task?.description }}</p>
+              </div>
+
+            </div><br>
+            <div class="row">
+              <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
+              <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button mat-raised-button
+                  class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-tab>
+
+    </mat-tab-group>
+    </div>
+    </div>
+    </div>
+  </div>
+
+ <!-- SELF TASKS -->
+  <div class="row" style="margin-top:30px;">
+  <div class="col-12">
+    <div class="card card-dashboard" style="height: 100%;">
+       <div class="card-header">
+         <h2 style="margin: 0px !important;">Self Task</h2>
+       </div>
+      <div class="card-body">
+
+      <!-- TABS SELF -->
+  <mat-tab-group style="width: 100%;height: 100%; display: flex; align-items: center ;min-height: 350px; justify-content: start;" >
+    <mat-tab  >
+      <ng-template mat-tab-label>
+        <span [ngClass]="'gold task-level'">GOLD</span>
+      </ng-template>
+      <ng-container *ngFor="let task of this.data.tasks" >
+        <div *ngIf="task.category == 'self' && task?.type== 'gold'" class="task-list">
+          <div class="row">
+             <div class="col-12 text-capitalize heading">Description</div>
+             <div class="col-12">
+               <p>{{ task?.description }}</p>
+             </div>
+          </div><br>
+          <div class="row">
+          <div class="col-12 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button mat-raised-button
+              class="task-btn"
+              (click)="openDialog(task)">UPLOAD</button></div>
+          </div>
+        </div>
+      </ng-container>
     </mat-tab>
 
-  </mat-tab-group>
+      <mat-tab >
+        <ng-template mat-tab-label>
+          <span [ngClass]="'silver task-level'">SILVER</span>
+        </ng-template>
+        <ng-container *ngFor="let task of this.data.tasks" >
+          <div *ngIf="task.category == 'self' && task?.type== 'silver'" class="task-list" >
+            <div class="row">
+               <div class="col-12 text-capitalize heading">Description</div>
+               <div class="col-12">
+                 <p>{{ task?.description }}</p>
+               </div>
+            </div><br>
+            <div class="row">
+              <div class="col-12 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button
+                  mat-raised-button
+                  class="task-btn"
+                  (click)="openDialog(task)">UPLOAD</button></div>
+            </div>
+          </div>
+        </ng-container>
+
+      </mat-tab>
+
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span [ngClass]="'bronze task-level'">BRONZE</span>
+        </ng-template>
+        <ng-container *ngFor="let task of this.data.tasks" >
+          <div *ngIf="task.category == 'self' && task?.type== 'bronze'" class="task-list" >
+            <div class="row">
+               <div class="col-12 text-capitalize heading">Description</div>
+               <div class="col-12">
+                 <p>{{ task?.description }}</p>
+               </div>
+            </div><br>
+            <div class="row">
+              <div class="col-6 text-capitalize" style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
+              <div class="col-6 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button mat-raised-button
+                  class="task-btn"
+                  (click)="openDialog(task)">UPLOAD</button></div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-tab>
+
+    </mat-tab-group>
+    </div>
+    </div>
   </div>
   </div>
-  </div>
+</div>

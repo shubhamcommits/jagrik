@@ -12,6 +12,13 @@ import { UtilityService } from 'src/shared/services/utility-service/utility.serv
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss'],
+  styles: [
+    `
+      :host {
+        display: inline-block;
+      }
+    `,
+  ],
 })
 export class TasksListComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];

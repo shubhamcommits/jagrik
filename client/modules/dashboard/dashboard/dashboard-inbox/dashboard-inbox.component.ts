@@ -8,6 +8,14 @@ import { TeamService } from '../shared/services/team.service';
   selector: 'app-dashboard-inbox',
   templateUrl: './dashboard-inbox.component.html',
   styleUrls: ['./dashboard-inbox.component.scss'],
+  styles: [
+    `
+      :host {
+        display: inline-block;
+        width: 100%;
+      }
+    `,
+  ],
 })
 export class DashboardInboxComponent implements OnInit {
   constructor(

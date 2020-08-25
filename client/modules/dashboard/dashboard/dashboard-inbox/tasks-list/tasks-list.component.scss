@@ -3933,9 +3933,11 @@ caption {
 //   }
 
 .task-level{
-  min-width: 70px ;
-  height: 70px ;
-  border-radius: 50% !important;
+  min-width: 150px ;
+  height: 40px ;
+  line-height: 40px;
+  color: black;
+  // border-radius: 50% !important;
 }
 .gold{
   background: gold;
@@ -3948,11 +3950,9 @@ caption {
 }
 
 .task-list{
-  background-color: white;
-  box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.15);
-  // border: 0.5px solid !important;
-  padding: 5px; 
-  margin: 8px;
+ background-color: #ddd;
+ padding: 15px;
+ margin-top: 15px;
 }
 .task-card-heading{
   background-color: #f3b44f;
@@ -4045,4 +4045,33 @@ caption {
 }
 .card-dashboard{
   min-height: 400px;
+}
+.card-header{
+  background-color: #f3b44f;
+  text-align: center;
+  color: black;
+  text-transform: uppercase;
+}
+.task-btn {
+  color: white;
+  background: #cd4266;
+  width: 100px;
+  float: right;
+}
+.new-col{
+  display: flex;
+  height: 0%;
+  align-items: flex-end;
+}
+.new-label{
+   display: flex;
+   height: 0%;
+   align-items: flex-start;
+   font-weight: bold;
+}
+.heading{
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 10px;
+  text-decoration: underline;
 }
