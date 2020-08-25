@@ -15,6 +15,8 @@ routes.post('/reject-task', teamController.rejectTeamTask);
 
 routes.get('/team-task-status', teamController.teamTaskStatus);
 
+routes.get('/team-dice-status', teamController.teamDiceStatus);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

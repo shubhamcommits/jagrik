@@ -52,11 +52,24 @@ export class TeamService {
   /**
    * This function is responsible for getting team task status
    * @param teamId
-   * @param week
    */
   teamTaskStatus(teamId) {
     return this.httpClient
       .get(environment.baseApiUrl + '/teams/team-task-status', {
+        params: {
+          teamId: teamId,
+        },
+      })
+      .toPromise();
+  }
+
+  /**
+   * This function is responsible for getting team dice status
+   * @param teamId
+   */
+  teamDiceStatus(teamId) {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/teams/team-dice-status', {
         params: {
           teamId: teamId,
         },

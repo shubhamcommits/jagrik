@@ -12,6 +12,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
       :host {
         display: inline-block;
         width: 100%;
+        padding-top: 40px;
       }
     `,
   ],

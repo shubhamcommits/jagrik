@@ -155,4 +155,35 @@ export class TeamController {
              });
            }
          }
-       }
+  
+          /**
+          * This function is responsible for checking team dice status
+          * @param req
+          * @param res
+          * @param next
+          */
+          async teamDiceStatus(req: Request, res: Response, next: NextFunction) {
+            try {
+              // Fetch the authorization header from the request
+
+              let authorization = req.headers.authorization;
+              // let authorization="abcd"
+              let teamId: any = req.query.teamId;
+
+              // Call the service function to get all the classes
+              await teamService
+                .teamDiceStatus(authorization, teamId)
+                .then((response) => {
+                  return res.status(200).json({
+                    message: 'data fetched successfully!',
+                    response: response,
+                  });
+                });
+            } catch (err) {
+              return res.status(500).json({
+                message: 'Internal Server Error!',
+                error: new Error(err || ' Internal Server Error'),
+              });
+            }
+          }
+}

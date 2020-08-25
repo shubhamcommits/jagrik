@@ -13,6 +13,10 @@ export class AssignRandomTaskComponent implements OnInit {
 
   // Show Choose theme
   showChooseTheme = false;
+  gifName: string;
+  selectedDice: Number;
+  fundamentalRightDice: any = [1, 2, 3, 4, 5, 6]
+  fundamentalDutieDice: any = [1, 2, 3, 4, 5, 6]
 
   // Show assign card
   showAssignCard = true;
@@ -25,7 +29,32 @@ export class AssignRandomTaskComponent implements OnInit {
   // Week Variable
   @Input('week') week: any;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTeamDiceStatus()
+  }
+
+  getDiceNumber() {
+    if (this.theme === 'fundamental rights') {
+      this.selectedDice = this.fundamentalRightDice[Math.floor(Math.random() * this.fundamentalRightDice.length)];
+    } else {
+      this.selectedDice = this.fundamentalDutieDice[Math.floor(Math.random() * this.fundamentalDutieDice.length)];
+    }
+
+    this.getGif()
+
+  }
+
+  getGif() {
+    if (this.theme === 'fundamental rights') {
+      this.gifName = '/assets/pink/Pink_' + this.selectedDice + '.gif'
+    } else {
+      this.gifName = '/assets/yellow/Dice_' + this.selectedDice + '.gif'
+    }
+
+    setTimeout(() => {
+      this.assignCard()
+    }, 2200);
+  }
 
   assignCard() {
     return new Promise((resolve) => {
@@ -60,6 +89,43 @@ export class AssignRandomTaskComponent implements OnInit {
           this.showChooseTheme = !this.showChooseTheme;
           this.showAssignCard = !this.showAssignCard;
           resolve();
+        });
+    });
+  }
+
+  getTeamDiceStatus() {
+    return new Promise((resolve) => {
+      // User Service Instance
+      let teamService = this.injector.get(TeamService);
+
+      let utilityService = this.injector.get(UtilityService);
+
+      teamService
+        .teamDiceStatus(this.getUserData().teams[0]._id)
+        .then((res) => {
+          console.log(res);
+
+          let data: any = res['response']['card']
+
+          data.forEach(element => {
+            if (element.theme === 'fundamental rights') {
+              this.fundamentalRightDice = this.fundamentalRightDice.filter(function (item) {
+                return item !== element.dice_number
+              })
+            } else if (element.theme === 'fundamental duties') {
+              this.fundamentalDutieDice = this.fundamentalDutieDice.filter(function (item) {
+                return item !== element.dice_number
+              })
+            }
+          });
+
+        })
+        .catch(() => {
+          utilityService.fireToast(
+            'info',
+            `Seems like your other team partner has already assigned a card to your team, please check the dashboard in a while!`,
+            3000
+          );
         });
     });
   }

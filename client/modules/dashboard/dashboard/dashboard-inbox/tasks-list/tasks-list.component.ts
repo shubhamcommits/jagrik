@@ -15,7 +15,7 @@ import { UtilityService } from 'src/shared/services/utility-service/utility.serv
   styles: [
     `
       :host {
-        display: inline-block;
+        width: 100%;
       }
     `,
   ],

@@ -174,9 +174,6 @@ export class TeamService {
                     
                     teamTask.push(item);
 
-                    console.log('====================================');
-                    console.log(item);
-                    console.log('====================================');
 
                   });
                   if (is_update === true) {
@@ -238,4 +235,34 @@ export class TeamService {
              throw new Error(err);
            }
          }
-       }
+  
+        async teamDiceStatus(token: any, teamId: string) {
+          try {
+            // verify token and decode user data
+            let userVerify: any = jwt.verify(
+              token.split(' ')[1],
+              process.env.JWT_KEY
+            );
+
+            // check all existing task status
+            let team: any = await Team.findOne({ _id: teamId })
+            let taskStatus = false;
+
+            let usedCardIds = team.tasks.map((card) => {
+              return card._card;
+            });
+            let cards = await Card.find({
+              _id: { $in: usedCardIds }
+            });
+
+              return {
+                status: true,
+                card: cards
+              };
+
+          } catch (err) {
+            // Catch unexpected errors
+            throw new Error(err);
+          }
+        }
+  }
