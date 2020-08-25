@@ -55,15 +55,17 @@ export class LeaderboardViewComponent implements OnInit {
           this.dataSource = [];
           data.tasks.forEach(element => {
             let teammebername = [];
-            element.team_members_tasks.forEach(element1 => {
-              teammebername.push(element1.user_name)
-            });
+            if (element.team_members_tasks){
+              element.team_members_tasks.forEach((element1) => {
+                teammebername.push(element1.user_name);
+              });
 
-            this.dataSource.push({
-              team_name: `${element['team_name']}`,
-              team_points: element['team_points'],
-              team_members: teammebername
-            });
+              this.dataSource.push({
+                team_name: `${element['team_name']}`,
+                team_points: element['team_points'],
+                team_members: teammebername,
+              });
+            }
           })
 
             // Fire sucess toast

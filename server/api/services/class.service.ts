@@ -676,6 +676,7 @@ export class ClassService {
                let class_exist: any = await Class.findById({ _id: classId });
 
                if (class_exist) {
+
                  let result = [];
                  let get_all_teams_of_class: any = await Team.find({
                    team_creator: user._id,
@@ -685,11 +686,13 @@ export class ClassService {
 
                  // Traverse over 'get_all_teams_of_class' using loop
                  for (let i in get_all_teams_of_class) {
+                   
                    let teamTasks = get_all_teams_of_class[i].tasks;
 
                    let is_any_team_task_complete = false;
                    let completedTeamTask = null;
 
+                  
                    for (let j in teamTasks) {
                      // Check the status of team tasks(if status is completed then proceed further)
                      if (teamTasks[j].status == 'complete') {
@@ -709,12 +712,16 @@ export class ClassService {
                      continue;
                    }
 
+                   
                    // Find out all the team members in a particular team and loop over each team member
                    let teamMembers = get_all_teams_of_class[i].team_members;
+                  
+                   
                    
                    let indTask = [];
 
                    for (let k in teamMembers) {
+                      
                      let self: any = await User.findById({
                        _id: teamMembers[k],
                      });
