@@ -12,7 +12,8 @@ export class TeamService {
          async assignRandomSelfCard(
            card_theme: any,
            week: any,
-           teamId: string
+           teamId: string,
+           diceNumber: any
          ) {
            try {
              // Find the list of cards
@@ -22,7 +23,8 @@ export class TeamService {
              });
              let cards = await Card.find({
                  theme: card_theme,
-                 _id: { $nin: usedCardIds }
+                _id: { $nin: usedCardIds },
+                 dice_number: diceNumber
              });
 
              // Map the list of card Ids

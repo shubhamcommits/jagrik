@@ -681,6 +681,8 @@ export class ClassService {
                    team_creator: user._id,
                  });
 
+           
+
                  // Traverse over 'get_all_teams_of_class' using loop
                  for (let i in get_all_teams_of_class) {
                    let teamTasks = get_all_teams_of_class[i].tasks;
@@ -709,6 +711,7 @@ export class ClassService {
 
                    // Find out all the team members in a particular team and loop over each team member
                    let teamMembers = get_all_teams_of_class[i].team_members;
+                   
                    let indTask = [];
 
                    for (let k in teamMembers) {

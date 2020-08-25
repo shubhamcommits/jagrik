@@ -64,7 +64,7 @@ export class AssignRandomTaskComponent implements OnInit {
       let utilityService = this.injector.get(UtilityService);
 
       teamService
-        .assignCard(this.theme, this.week, this.getUserData().teams[0]._id)
+        .assignCard(this.theme, this.week, this.getUserData().teams[0]._id, this.selectedDice)
         .then((res) => {
           console.log(res);
           this.card.emit(res['card']);

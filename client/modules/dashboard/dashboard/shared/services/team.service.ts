@@ -39,12 +39,13 @@ export class TeamService {
    * @param theme
    * @param week
    */
-  assignCard(theme: String, week: Number, teamId: String) {
+  assignCard(theme: String, week: Number, teamId: String, diceNumber: Number) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/assign-card', {
         card_theme: theme,
         week: week,
         teamId: teamId,
+        diceNumber: diceNumber
       })
       .toPromise();
   }

@@ -19,12 +19,12 @@ export class TeamController {
            try {
              // Fetch the headers and user data from the request
              let {
-               body: { card_theme, week, teamId },
+               body: { card_theme, week, teamId, diceNumber},
              } = req;
 
              // Call assign random task to user service function
              await teamService
-               .assignRandomSelfCard(card_theme, week, teamId)
+               .assignRandomSelfCard(card_theme, week, teamId, diceNumber)
 
                // Proceed with the status 200 response
                .then((response) => {
@@ -146,9 +146,7 @@ export class TeamController {
                  });
                });
            } catch (err) {
-               console.log('====================================');
-               console.log(err);
-               console.log('====================================');
+               
              return res.status(500).json({
                message: 'Internal Server Error!',
                error: new Error(err || ' Internal Server Error'),
