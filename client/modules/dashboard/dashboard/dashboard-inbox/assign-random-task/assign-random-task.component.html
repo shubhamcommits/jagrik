@@ -28,14 +28,17 @@
 </div>
 
 
-<div class="container" *ngIf="showChooseTheme && theme == 'fundamental rights'">
-    <div class="container-FR" style="width: 100vw;">
-        <!-- <img src="assets/text1.png" alt=""> -->
+<div class="row d-flex justify-content-center" *ngIf="showChooseTheme && theme == 'fundamental rights'">
         <div class="w3-container">
-            <h1 class="w3-center w3-animate-right">Fundamental Duties</h1>
+            <h1 id="hideMe" class="w3-center w3-animate-right text-uppercase" style="color: #808080;
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;">You Selected:<br></h1>
+            <h1 id="hideMex" class="w3-center w3-animate-right text-uppercase" style="color: #cd4266;
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 1;">Fundamental<br> Rights</h1>
           </div>
-    </div>
-    <button class="btn btn-primary btn-md"  (click)="this.assignCard()">Fundamental Rights</button>
 
 </div>
 <div class="row d-flex justify-content-center" *ngIf="showChooseTheme && theme == 'fundamental duties'" >
