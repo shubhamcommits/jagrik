@@ -23,10 +23,11 @@
           <h2 style="margin: 0px !important;">Leaderboard</h2>
           <span></span>
         </div>
-        <app-leaderboard-view></app-leaderboard-view>
+        <app-class-agenda></app-class-agenda>
       </div>
     </div>
   </div>
+
   <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="is_open">
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
@@ -53,11 +54,24 @@
   </div>
 
 </div>
+<div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
+  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h2 style="margin: 0px !important;">Leaderboard</h2>
+          <span></span>
+        </div>
+        <app-leaderboard-view></app-leaderboard-view>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="row" *ngIf="userData.role === 'student'">
-
-  <div class="col-md-12">
+<app-tasks-board></app-tasks-board>
+  <!-- <div class="col-md-12">
     <app-assign-random-task
       *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
       (card)="getCard($event)">
@@ -65,9 +79,9 @@
 
     <app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
       [cardId]="this.card._id">
-    </app-tasks-list>
+    </app-tasks-list> 
 
-  </div>
+  </div>-->
   <!-- <div class="col-md-6">
         <app-leaderboard-view></app-leaderboard-view>
     </div> -->

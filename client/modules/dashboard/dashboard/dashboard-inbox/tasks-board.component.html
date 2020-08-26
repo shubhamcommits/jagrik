@@ -1,0 +1,19 @@
+<app-assign-random-task
+    *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
+    (card)="getCard($event)" [week]="week">
+</app-assign-random-task>
+
+<app-assign-random-task
+  *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length > 0 && showAssignTask === true"
+  (card)="getCard($event)" [week]="week">
+</app-assign-random-task>
+
+<app-tasks-list class="container"
+  *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0 && showAssignTask === false"
+    [cardId]="this.card._id">
+</app-tasks-list>
+
+<app-facilitator-view *ngIf="userData && userData.role !== 'student'">
+</app-facilitator-view>
+
+

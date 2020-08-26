@@ -170,23 +170,39 @@ img{
     100% {opacity: 1;}
 }
 #hideMeDice {
-    -webkit-animation: cssAnimationdice 3s forwards; 
-    animation: cssAnimationdice 3s forwards;
+    -webkit-animation: cssAnimationdice 4s forwards; 
+    animation: cssAnimationdice 4s forwards;
 }
 @keyframes cssAnimationdice {
     0%   {opacity: 0;}
-    90%  {opacity: 1;}
+    90%  {opacity: 0;}
+    96%  {opacity: 0.5;}
     100% {opacity: 1;}
 }
 .w3-animate-right{
     animation-delay: 2s;
 }
 
-.btn-dice{
-    background-image: url('/assets/Dice.png');
+.btn-dice_yellow{
+    background-image: url('/assets/yellow_dice_6.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 218px 218px;
     width: 120px;
     height: 120px;
     background-color: #f3b54e;
+    border-radius: 17%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-dice_pink{
+    background-image: url('/assets/pink_dice_6.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 218px 218px;
+    width: 120px;
+    height: 120px;
+    background-color: #cd4266;
     border-radius: 17%;
     margin-top: 10px;
     margin-bottom: 10px;

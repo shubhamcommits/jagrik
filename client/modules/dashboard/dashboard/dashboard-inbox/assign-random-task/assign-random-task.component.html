@@ -63,11 +63,15 @@
 
     <p *ngIf="!showAssignCard">You've assigned a new card to your team - your feed will update very soon!</p>
     <img *ngIf="gifName && showAssignCard" src="{{gifName}}" style="width:100px;height:100px">
-    <button *ngIf="!gifName && showChooseTheme && theme == 'fundamental rights'" class="btn btn-dice btn-md"
+
+    <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental rights'" 
+      class="btn btn-dice_pink btn-md"
       (click)="this.getDiceNumber()"></button>
+
     <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental duties'"
-      class="btn btn-dice btn-md"
+      class="btn btn-dice_yellow btn-md"
       (click)="this.getDiceNumber()"></button>
+
 </div>
 
 <div class="d-flex justify-content-center" *ngIf="showChooseTheme" (click)="showChooseTheme = false">
