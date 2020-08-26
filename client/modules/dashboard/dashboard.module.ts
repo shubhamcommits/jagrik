@@ -70,6 +70,7 @@ import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitato
 import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
+import { TaskRejectModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-reject-modal/task-reject-modal.component';
 import { AddModalComponent } from './dashboard/resource-page/add-modal/app-add-modal.component';
 import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
 import { AnnouncementComponent } from '../dashboard/dashboard/announcement/announcement.component';
@@ -81,6 +82,8 @@ import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-v
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
 import { PendingTaskViewModalComponent } from './dashboard/pending-task/pending-task-view-modal/pending-task-view-modal.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import 'hammerjs';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -115,6 +118,7 @@ import { PendingTaskViewModalComponent } from './dashboard/pending-task/pending-
     LeaderboardViewComponent,
     PendingTaskViewComponent,
     PendingTaskViewModalComponent,
+    TaskRejectModalComponent,
   ],
   imports: [
     CommonModule,
@@ -164,6 +168,7 @@ import { PendingTaskViewModalComponent } from './dashboard/pending-task/pending-
     PortalModule,
     ScrollingModule,
     MaterialFileInputModule,
+    DateInputsModule,
   ],
 })
 export class DashboardModule {}

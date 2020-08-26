@@ -65,6 +65,14 @@ export class LeaderboardViewComponent implements OnInit {
                 team_points: element['team_points'],
                 team_members: teammebername,
               });
+            } else {
+
+
+              this.dataSource.push({
+                team_name: `${element['team_name']}`,
+                team_points: 0,
+                team_members: teammebername,
+              });
             }
           })
 

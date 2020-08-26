@@ -690,16 +690,18 @@ export class ClassService {
                    let teamTasks = get_all_teams_of_class[i].tasks;
 
                    let is_any_team_task_complete = false;
+                   let is_active = 'inactive';
                    let completedTeamTask = null;
 
                   
                    for (let j in teamTasks) {
                      // Check the status of team tasks(if status is completed then proceed further)
-                     if (teamTasks[j].status == 'complete') {
-                       is_any_team_task_complete = true;
-                       completedTeamTask = teamTasks[j];
-                       break;
-                     }
+                     is_active = teamTasks[j].is_active;
+                      if (teamTasks[j].status == 'complete') {
+                        is_any_team_task_complete = true;
+                        completedTeamTask = teamTasks[j];
+                        break;
+                      }
                    }
 
                    if (is_any_team_task_complete == false) {
@@ -826,10 +828,12 @@ export class ClassService {
                      let CardDetail: any = await Card.findById({
                        _id: TeamTask._card,
                      });
+                    
                      result.push({
                        team_id: get_all_teams_of_class[i]._id,
                        team_name: get_all_teams_of_class[i].team_name,
                        team_status: 'complete',
+                       team_verify_status: is_active,
                        team_points: get_all_teams_of_class[i].points,
                        team_members_tasks: indTask,
                        team_taskId: completedTeamTask._task,
@@ -859,9 +863,6 @@ export class ClassService {
                throw new Error('401 - Access denied');
              }
            } catch (err) {
-             console.log('====================================');
-             console.log(err);
-             console.log('====================================');
              // Catch unexpected errors
              throw new Error(err);
            }

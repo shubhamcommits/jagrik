@@ -1,4 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -10,9 +16,11 @@ import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 declare var $: any;
 require('src/assets/jquery.sha1.js');
+import { PopupSettings } from '@progress/kendo-angular-dateinputs';
 @Component({
   selector: 'app-class-agenda',
   templateUrl: './class-agenda.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./class-agenda.component.scss'],
 })
 export class ClassAgendaComponent implements OnInit {
@@ -28,6 +36,11 @@ export class ClassAgendaComponent implements OnInit {
   userData: any = [];
   urlArray: any = {};
   allMeetings: any = [];
+  public popupSettings: PopupSettings = {
+    appendTo: 'component',
+    animate: false,
+    popupClass: 'crimson',
+  };
 
   ngOnInit(): void {
     this.userData = this.storageService.getLocalData('userData');
@@ -144,11 +157,13 @@ export class ClassAgendaComponent implements OnInit {
           var $description = 'description';
           var $date = $('#date').val();
           var $time = $('#time').val();
-          var $meetingID = $.URLEncode('sf-ddsf-'+ new Date());
+          var $meetingID = $.URLEncode('sf-ddsf-' + new Date());
           var $meetingName = $.URLEncode('Meeting Class');
           var $moderatorPW = $.URLEncode('1234');
           var $attendeePW = $.URLEncode('1234');
-          var $userName = $.URLEncode(self.userData.first_name + ' ' + self.userData.last_name);
+          var $userName = $.URLEncode(
+            self.userData.first_name + ' ' + self.userData.last_name
+          );
           var $userID = $.URLEncode('');
           if (
             $meetingID == '' ||
@@ -430,11 +445,15 @@ export class ClassAgendaComponent implements OnInit {
           console.debug('meetingID: [' + decodeURIComponent($meetingID) + ']');
           console.debug('configXML: [' + decodeURIComponent($configXML) + ']');
 
-          var wnd = window.open($createURL, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+          var wnd = window.open(
+            $createURL,
+            '_blank',
+            'location=yes,height=570,width=520,scrollbars=yes,status=yes'
+          );
           setTimeout(function () {
             wnd.close();
           }, 3000);
-          self.urlArray = {}
+          self.urlArray = {};
           self.urlArray['create'] = $createURL;
 
           self.urlArray['title'] = $title;
@@ -535,5 +554,4 @@ export class ClassAgendaComponent implements OnInit {
         });
     });
   }
-
 }

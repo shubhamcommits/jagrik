@@ -1,0 +1,17 @@
+ <h2 class="heading text-uppercase" style="text-align: center;">TASK REJECTION FORM</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="inputForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Comment (Use in case of reject)</mat-label>
+          <input matInput placeholder="Comment (Use in case of reject)" formControlName="comment" value="">
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="rejectTask()">Submit</button>
+</mat-dialog-actions>

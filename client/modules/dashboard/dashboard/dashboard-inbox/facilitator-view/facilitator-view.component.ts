@@ -49,7 +49,11 @@ export class FacilitatorViewComponent implements OnInit {
 
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       dialogRef.close()
-      this.getCompletedTeam(this.storageService.getLocalData('userData').classes[0])
+      if($e !== 'error'){
+        this.getCompletedTeam(
+          this.storageService.getLocalData('userData').classes[0]
+        );
+      }
     });
   }
 
@@ -62,9 +66,11 @@ export class FacilitatorViewComponent implements OnInit {
         .then((res) => {
           var data: any = res;
           data.tasks.forEach(element => {
-            if (element['team_status'] === 'complete'){
+            if (
+              element['team_status'] === 'complete'
+            ) {
               this.dataSource.push(element);
-          }
+            }
           });
 
           if (this.dataSource.length > 0) {
