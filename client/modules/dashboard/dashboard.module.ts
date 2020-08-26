@@ -82,8 +82,12 @@ import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-v
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
 import { PendingTaskViewModalComponent } from './dashboard/pending-task/pending-task-view-modal/pending-task-view-modal.component';
-import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import {
+  DateInputsModule,
+  CalendarModule,
+} from '@progress/kendo-angular-dateinputs';
 import 'hammerjs';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -169,6 +173,8 @@ import 'hammerjs';
     ScrollingModule,
     MaterialFileInputModule,
     DateInputsModule,
+    CalendarModule,
+    NgxMaterialTimepickerModule,
   ],
 })
 export class DashboardModule {}

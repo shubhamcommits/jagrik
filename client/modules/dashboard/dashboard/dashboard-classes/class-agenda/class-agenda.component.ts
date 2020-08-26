@@ -4,6 +4,8 @@ import {
   EventEmitter,
   Output,
   ViewEncapsulation,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 import {
   FormGroup,
@@ -16,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 declare var $: any;
 require('src/assets/jquery.sha1.js');
-import { PopupSettings } from '@progress/kendo-angular-dateinputs';
+import { CalendarView } from '@progress/kendo-angular-dateinputs';
 @Component({
   selector: 'app-class-agenda',
   templateUrl: './class-agenda.component.html',
@@ -36,11 +38,25 @@ export class ClassAgendaComponent implements OnInit {
   userData: any = [];
   urlArray: any = {};
   allMeetings: any = [];
-  public popupSettings: PopupSettings = {
-    appendTo: 'component',
-    animate: false,
-    popupClass: 'crimson',
-  };
+  public events: string[] = [];
+
+  @ViewChild('actbtn') actbtn: ElementRef;
+
+  public onActiveDateChange(value: Date): void {
+    console.log('====================================');
+    console.log(value);
+    console.log('====================================');
+  }
+
+  public onActiveViewChange(view: CalendarView): void {
+    console.log('====================================');
+    console.log(view);
+    console.log('====================================');
+  }
+
+  public onChange(value: Date): void {
+    this.actbtn.nativeElement.click();
+  }
 
   ngOnInit(): void {
     this.userData = this.storageService.getLocalData('userData');

@@ -1,1 +1,48 @@
 @import 'modules/dashboard/dashboard/dashboard-header/dashboard-header.component.scss';
+
+
+.k-calendar .k-content>table,
+.k-calendar .k-calendar-content>table {
+  width: 100% !important;
+}
+
+
+ .k-icon.k-i-loading {
+   font-size: 64px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+
+ .k-calendar {
+   margin: 0 auto;
+ }
+ .example-wrapper {
+   min-height: 280px;
+   align-content: flex-start;
+ }
+
+ .example-wrapper p,
+ .example-col p {
+   margin: 0 0 10px;
+ }
+
+ .example-wrapper p:first-child,
+ .example-col p:first-child {
+   margin-top: 0;
+ }
+
+ .example-col {
+   display: inline-block;
+   vertical-align: top;
+   padding-right: 20px;
+   padding-bottom: 20px;
+ }
+
+ .example-config {
+   margin: 0 0 20px;
+   padding: 20px;
+   background-color: rgba(0, 0, 0, .03);
+   border: 1px solid rgba(0, 0, 0, .08);
+ }
