@@ -67,7 +67,8 @@ export class FacilitatorViewComponent implements OnInit {
           var data: any = res;
           data.tasks.forEach(element => {
             if (
-              element['team_status'] === 'complete'
+              element['team_status'] === 'complete' &&
+              element['team_verify_status'] === 'active'
             ) {
               this.dataSource.push(element);
             }
