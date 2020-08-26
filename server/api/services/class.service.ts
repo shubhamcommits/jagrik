@@ -697,10 +697,12 @@ export class ClassService {
                    for (let j in teamTasks) {
                      // Check the status of team tasks(if status is completed then proceed further)
                      is_active = teamTasks[j].is_active;
+                     if (teamTasks[j].is_active == 'active') {
+                       is_active = teamTasks[j].is_active;
+                     }
                       if (teamTasks[j].status == 'complete') {
                         is_any_team_task_complete = true;
                         completedTeamTask = teamTasks[j];
-                        break;
                       }
                    }
 
