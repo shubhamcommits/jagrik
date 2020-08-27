@@ -312,6 +312,31 @@ export class ClassController {
              });
            }
          }
+  
+          async getTeamDetails(req: Request, res: Response, next: NextFunction) {
+            try {
+              // Fetch the authorization header from the request
+
+              let authorization = req.headers.authorization;
+              // let authorization="abcd"
+              let classId = String(req.body.classId);
+
+              // Call the service function to get all the classes
+              await classService
+                .getTeamDetails(authorization, classId)
+                .then((teams) => {
+                  return res.status(200).json({
+                    message: 'Teams have been fetched successfully!',
+                    teams: teams,
+                  });
+                });
+            } catch (err) {
+              return res.status(500).json({
+                message: 'Internal Server Error!',
+                error: new Error(err || ' Internal Server Error'),
+              });
+            }
+          }
 
          async getTeamMembers(req: Request, res: Response, next: NextFunction) {
            try {

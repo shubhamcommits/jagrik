@@ -55,7 +55,8 @@
     </mat-expansion-panel-header>
     <div class="row">
       <div class="col-md-12">
-        <p *ngFor="let item of element.team_members; let i=index" style="text-align: left;">Team Member {{i+1}}:{{item}}
+        <p *ngFor="let item of element.team_members; let i=index" style="text-align: left;">Team Member
+          {{i+1}} : {{item['name']}}
         </p>
       </div>
     </div>

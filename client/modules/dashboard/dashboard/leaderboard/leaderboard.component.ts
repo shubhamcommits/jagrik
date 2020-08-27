@@ -49,31 +49,16 @@ export class LeaderboardViewComponent implements OnInit {
     return new Promise((resolve) => {
       // Call the service function
       this.classService
-        .getCompletedTaskTeam(classId)
+        .getTeamDetails(classId)
         .then((res) => {
           var data: any = res;
           this.dataSource = [];
-          data.tasks.forEach(element => {
-            let teammebername = [];
-            if (element.team_members_tasks){
-              element.team_members_tasks.forEach((element1) => {
-                teammebername.push(element1.user_name);
-              });
-
-              this.dataSource.push({
-                team_name: `${element['team_name']}`,
-                team_points: element['team_points'],
-                team_members: teammebername,
-              });
-            } else {
-
-
-              this.dataSource.push({
-                team_name: `${element['team_name']}`,
-                team_points: 0,
-                team_members: teammebername,
-              });
-            }
+          data.teams.forEach(element => {
+            this.dataSource.push({
+              team_name: `${element['team_name']}`,
+              team_points: element['team_points'],
+              team_members: element['team_members'],
+            });
           })
 
             // Fire sucess toast

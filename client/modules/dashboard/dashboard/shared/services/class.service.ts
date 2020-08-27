@@ -121,6 +121,18 @@ export class ClassService {
   }
 
   /**
+   * This function is responsible for get team details
+   * @param classIId
+   */
+  getTeamDetails(classId: any) {
+    return this.httpClient
+      .post(environment.baseApiUrl + '/classes/get-team-details', {
+          classId: classId,
+      })
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for add new resource
    * @object data
    */
