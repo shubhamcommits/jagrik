@@ -44,3 +44,8 @@
 .example-full-width{
   width: 100%;
 }
+::ng-deep {
+.mat-dialog-container {
+  padding: 0px !important;
+}
+}

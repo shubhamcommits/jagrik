@@ -129,12 +129,12 @@ export class AddMeetingModalComponent implements OnInit {
           //Gets the variables
           var $server = 'https://golearn.webinargolearn.org/bigbluebutton/api/';
           var $salt = 'kQ3eMjzk08iGHgUBmG2zBZjq5o7JbU5Of10CYIDRg';
-          var $title = 'Title';
+          var $title = 'Jamghat';
           var $description = 'description';
           var $date = $('#date').val();
           var $time = $('#time').val();
           var $meetingID = $.URLEncode('sf-ddsf-' + new Date());
-          var $meetingName = $.URLEncode('Meeting Class');
+          var $meetingName = $.URLEncode('Meeting Jamghat');
           var $moderatorPW = $.URLEncode('1234');
           var $attendeePW = $.URLEncode('1234');
           var $userName = $.URLEncode(self.userData.first_name + ' ' + self.userData.last_name);

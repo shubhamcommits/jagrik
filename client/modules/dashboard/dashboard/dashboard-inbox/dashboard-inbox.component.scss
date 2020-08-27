@@ -14,8 +14,13 @@ h1{
 }
 .card-dashboard{
     min-height: 400px;
+    max-height: 580px;
     height: 100%;
-  }
+}
+.card-body{
+    overflow: auto;
+
+}
 .row {
     display: -webkit-box;
     display: -webkit-flex;

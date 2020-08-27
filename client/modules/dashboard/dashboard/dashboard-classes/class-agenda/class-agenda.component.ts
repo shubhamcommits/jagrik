@@ -4,6 +4,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { ClassService } from '../../shared/services/class.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 import * as $ from 'jquery';
 declare var $: any;
 require('src/assets/jquery.sha1.js');
@@ -12,6 +13,7 @@ import { AddMeetingModalComponent } from "./add-meeting-modal/add-meeting-modal.
   selector: 'app-class-agenda',
   templateUrl: './class-agenda.component.html',
   styleUrls: ['./class-agenda.component.scss'],
+  providers: [DatePipe]
 })
 export class ClassAgendaComponent implements OnInit {
   constructor(
@@ -25,6 +27,8 @@ export class ClassAgendaComponent implements OnInit {
   userData: any = [];
   urlArray: any = {};
   allMeetings: any = [];
+  myDate = new Date();
+  myTime = Date.now();
 
   ngOnInit(): void {
 
@@ -46,8 +50,10 @@ export class ClassAgendaComponent implements OnInit {
         team: '',
       },
       autoFocus: false,
-      maxHeight: '90vh',
+      maxHeight: '80vh',
+      minHeight: '50vh',
       maxWidth: '60vw',
+      minWidth: '40vw',
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       dialogRef.close();

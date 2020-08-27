@@ -751,18 +751,6 @@ export class ClassService {
 
                   
                    for (let j in teamTasks) {
-<<<<<<< HEAD
-                    // Check the status of team tasks(if status is completed then proceed further)
-                    is_active = teamTasks[j].is_active;
-                    if (teamTasks[j].is_active == 'active') {
-                      is_active = teamTasks[j].is_active;
-                    }
-                     if (teamTasks[j].status == 'complete') {
-                       is_any_team_task_complete = true;
-                       completedTeamTask = teamTasks[j];
-                     }
-                  }
-=======
                      // Check the status of team tasks(if status is completed then proceed further)
                      if (teamTasks[j].is_active == 'active' && teamTasks[j].status == 'complete') {
                        is_active = teamTasks[j].is_active;
@@ -772,7 +760,6 @@ export class ClassService {
                      }
                    }
 
->>>>>>> 6b41b424e7f5ed3a7ef12f8fe4519a98968e33bf
                    if (is_any_team_task_complete == false) {
                      // return, The overall team status is Incomplete
                      result.push({
