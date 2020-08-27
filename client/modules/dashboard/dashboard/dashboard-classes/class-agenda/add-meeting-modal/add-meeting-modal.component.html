@@ -1,0 +1,48 @@
+ <h2 class="heading text-uppercase" style="text-align: center;">ADD NEW MEETING</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-md-12">
+      <form id="bbb" action="#" [formGroup]="inputForm">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" class="form-control" id="date" placeholder="Date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <input type="time" class="form-control" id="time" placeholder="Time" required>
+        </div>
+        <!-- <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Meeting Title"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" id="description" placeholder="Description"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="meetingID">Meeting ID</label>
+              <input type="text" class="form-control" id="meetingID"
+                placeholder="d03aa-b4a25-46846-e4025-84ea8" required>
+            </div> -->
+        <!-- <div class="form-group">
+              <label for="meetingName">Meeting Name</label>
+              <input type="text" class="form-control" id="meetingName" placeholder="Demo Meeting"
+                required>
+            </div> -->
+
+        <!-- <input type="hidden" value="12345" class="form-control" id="moderatorPW" placeholder="****" required>
+            <input type="hidden" value="12345" class="form-control" id="attendeePW" placeholder="****" required> -->
+        <!-- <input type="hidden" size="60" id="userName" value="{{userData.first_name + ' ' + userData.last_name}}"
+               placeholder="John Doe" /> -->
+        <input type="hidden" size="60" id="userID" value="" />
+        <!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
+      </form>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button id="submit">Submit</button>
+</mat-dialog-actions>

@@ -692,18 +692,17 @@ export class ClassService {
                    let is_any_team_task_complete = false;
                    let is_active = 'inactive';
                    let completedTeamTask = null;
+                   let activeCardId = ''
 
                   
                    for (let j in teamTasks) {
                      // Check the status of team tasks(if status is completed then proceed further)
-                     is_active = teamTasks[j].is_active;
-                     if (teamTasks[j].is_active == 'active') {
+                     if (teamTasks[j].is_active == 'active' && teamTasks[j].status == 'complete') {
                        is_active = teamTasks[j].is_active;
+                       activeCardId = teamTasks[j]._card;
+                       is_any_team_task_complete = true;
+                       completedTeamTask = teamTasks[j];
                      }
-                      if (teamTasks[j].status == 'complete') {
-                        is_any_team_task_complete = true;
-                        completedTeamTask = teamTasks[j];
-                      }
                    }
 
                    if (is_any_team_task_complete == false) {
@@ -734,7 +733,9 @@ export class ClassService {
                      let is_any_self_task_complete = false;
                      // Check status of each team member task(if status completed then return the team, team members, task status, task completion proofs)
                      for (let n in selfTasks) {
-                       if (selfTasks[n].status == 'complete') {
+                  
+                       if (selfTasks[n].status == 'complete' && selfTasks[n]._card.toString() == activeCardId.toString()) {
+                        
                          is_any_self_task_complete = true;
                          let IndividualTask: any = await Task.findById({
                            _id: selfTasks[n]._task,
