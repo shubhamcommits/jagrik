@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --max-http-header-size=80000 server.ts",
+    "dev": "ts-node-dev --max-http-header-size=800000 server.ts",
     "build": "tsc",
     "stage": "NODE_ENV=production ts-node server.ts",
     "prod": "NODE_ENV=production node server.js"

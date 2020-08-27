@@ -70,6 +70,7 @@ import { FacilitatorViewComponent } from './dashboard/dashboard-inbox/facilitato
 import { TaskViewComponent } from './dashboard/dashboard-inbox/tasks-list/task-view/task-view.component';
 import { TasksBoardComponent } from './dashboard/tasks-board/tasks-board.component';
 import { TaskDetailModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
+import { AddMeetingModalComponent } from './dashboard/dashboard-classes/class-agenda/add-meeting-modal/add-meeting-modal.component';
 import { TaskRejectModalComponent } from './dashboard/dashboard-inbox/facilitator-view/task-reject-modal/task-reject-modal.component';
 import { AddModalComponent } from './dashboard/resource-page/add-modal/app-add-modal.component';
 import { ResourcePageComponent } from '../dashboard/dashboard/resource-page/resource-page.component';
@@ -123,6 +124,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     PendingTaskViewComponent,
     PendingTaskViewModalComponent,
     TaskRejectModalComponent,
+    AddMeetingModalComponent
   ],
   imports: [
     CommonModule,

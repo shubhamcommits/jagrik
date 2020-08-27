@@ -692,9 +692,11 @@ export class ClassService {
                    let is_any_team_task_complete = false;
                    let is_active = 'inactive';
                    let completedTeamTask = null;
+                   let activeCardId = ''
 
                   
                    for (let j in teamTasks) {
+<<<<<<< HEAD
                     // Check the status of team tasks(if status is completed then proceed further)
                     is_active = teamTasks[j].is_active;
                     if (teamTasks[j].is_active == 'active') {
@@ -705,6 +707,17 @@ export class ClassService {
                        completedTeamTask = teamTasks[j];
                      }
                   }
+=======
+                     // Check the status of team tasks(if status is completed then proceed further)
+                     if (teamTasks[j].is_active == 'active' && teamTasks[j].status == 'complete') {
+                       is_active = teamTasks[j].is_active;
+                       activeCardId = teamTasks[j]._card;
+                       is_any_team_task_complete = true;
+                       completedTeamTask = teamTasks[j];
+                     }
+                   }
+
+>>>>>>> 6b41b424e7f5ed3a7ef12f8fe4519a98968e33bf
                    if (is_any_team_task_complete == false) {
                      // return, The overall team status is Incomplete
                      result.push({
@@ -733,7 +746,9 @@ export class ClassService {
                      let is_any_self_task_complete = false;
                      // Check status of each team member task(if status completed then return the team, team members, task status, task completion proofs)
                      for (let n in selfTasks) {
-                       if (selfTasks[n].status == 'complete') {
+                  
+                       if (selfTasks[n].status == 'complete' && selfTasks[n]._card.toString() == activeCardId.toString()) {
+                        
                          is_any_self_task_complete = true;
                          let IndividualTask: any = await Task.findById({
                            _id: selfTasks[n]._task,

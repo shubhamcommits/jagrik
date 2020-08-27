@@ -1,111 +1,37 @@
-<ng-template *ngFor="let item of allMeetings.schedules">
-<div class="card" style="width: 500px;">
-  <div class="row no-gutters">
-      <div class="col-sm-5">
-          <h1 style="font-size: 50px;" class="text-uppercase"><b>{{item.date |  date:'mediumDate'}} {{item.time}}</b></h1>
-      </div>
-      <div class="col-sm-7">
-          <div class="card-body">
-              <h5 class="card-title">{{item.title}}</h5>
-              <a *ngIf="userData.role != 'student'" href="{{item.join_moderate}}" target="_blank"
-                class="btn btn-primary btn-sm">Start</a><a *ngIf="userData.role == 'student'"
-                  href="{{item.join_attende}}" target="_blank" class="btn btn-primary btn-sm">Start</a>
-          </div>
-      </div>
-  </div>
-</div>
-</ng-template>
-<div class="container" style="margin-top: 5%;margin-bottom: 40px;" >
+<div class="container" style="margin-top: 5%;">
   <div class="row">
     <div class="col-md-6">
       <h2>All Meetings</h2>
       <div class="card">
         <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of allMeetings.schedules">
-            <td scope="row">{{item.title}}</td>
-            <td>{{item.date |  date:'mediumDate'}} {{item.time}}</td>
-            <td><a *ngIf="userData.role != 'student'" href="{{item.join_moderate}}" target="_blank"
-                class="btn btn-primary btn-sm">Start</a><a *ngIf="userData.role == 'student'"
-                  href="{{item.join_attende}}" target="_blank" class="btn btn-primary btn-sm">Start</a></td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of allMeetings.schedules">
+                <td scope="row">{{item.title}}</td>
+                <td>{{item.date |  date:'mediumDate'}} {{item.time}}</td>
+                <td><a *ngIf="userData.role != 'student'" href="{{item.join_moderate}}" target="_blank"
+                    class="btn btn-primary btn-sm">Start</a><a *ngIf="userData.role == 'student'"
+                    href="{{item.join_attende}}" target="_blank" class="btn btn-primary btn-sm">Start</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <div class="col-md-6" *ngIf="userData.role != 'student'">
       <h2>Schedule New Meetings</h2>
       <div class="card">
         <div class="card-body">
-          <form id="bbb" action="#" [formGroup]="inputForm">
-            <div class="form-group">
-              <kendo-calendar style="width:100%" (activeViewChange)="onActiveViewChange($event)"
-                (activeViewDateChange)="onActiveDateChange($event)" (valueChange)="onChange($event)">
-              </kendo-calendar>
-
-              <input #actbtn [ngxTimepicker]="picker" id="time" style="display: none;">
-              <ngx-material-timepicker #picker></ngx-material-timepicker>
-
-              <!--<kendo-datetimepicker #datepicker (close)="closeDatepicker($event, 'close')" style="display: none;">
-              </kendo-datetimepicker> -->
-            </div>
-
-            <input type="hidden" size="60" id="userID" value="" />
-            <button type="button" class="btn btn-primary" id="submit" style="display: none;" #submit></button>
-          </form>
+            <button type="button" class="btn btn-primary" (click)="addMeeting()">Create New Meeting</button>
         </div>
       </div>
-
-        <!-- <div class="example-form">
-          <div id="content">
-            <form id="bbb" action="#" [formGroup]="inputForm">
-              <table id="basic_form">
-                <tr>
-                  <td id="field">Meeting ID</td>
-                  <td><input type="text" size="60" class="form-control" id="meetingID" value=""
-                      placeholder="d03aa-b4a25-46846-e4025-84ea8" required /></td>
-                </tr>
-                <tr>
-                  <td id="field">Meeting Name</td>
-                  <td><input type="text" size="60" class="form-control" id="meetingName" value=""
-                      placeholder="Demo Meeting" /></td>
-                </tr>
-                <tr>
-                  <td id="field">Moderator Password</td>
-                  <td><input type="text" class="form-control" size="60" id="moderatorPW" value="" placeholder="mp" />
-                  </td>
-                </tr>
-                <tr>
-                  <td id="field">Attendee Password</td>
-                  <td><input type="text" class="form-control" size="60" id="attendeePW" value="" placeholder="ap" />
-                  </td>
-                </tr>
-              </table>
-              <input type="hidden" size="60" id="userName" value="" placeholder="John Doe" />
-              <input type="hidden" size="60" id="userID" value="" />
-              <div id="buttons">
-                <button type="button" id="submit">Submit</button> &nbsp;
-                <button type="button" id="clear">Clear</button> &nbsp;
-                <button type="button" id="reload">Reload</button> &nbsp;
-              </div>
-            </form>
-
-            <br />
-
-            <div id="links">
-            </div>
-
-          </div>
-        </div> -->
     </div>
   </div>
 </div>
