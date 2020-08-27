@@ -599,6 +599,61 @@ export class ClassService {
              throw new Error(err);
            }
          }
+  
+          async getTeamDetails(token: any, classId: String) {
+            try {
+              // verify token and decode user data
+              let userVerify: any = jwt.verify(
+                token.split(' ')[1],
+                process.env.JWT_KEY
+              );
+              let user: any = await User.findById({ _id: userVerify._id });
+              // let class_members: any = await User.find(classes: )
+
+              // finding class_creator id from class table
+              let user_class: any = await Class.findById({ _id: classId });
+              
+              let teams: any = await Team.find({
+                team_creator: user_class.class_creator,
+              });
+
+              let result = [];
+              for (let i in teams) {
+                 
+               
+                var teammembers = []
+                  
+                for (let index in teams[i]['team_members']) {
+            
+                  let member: any = await User.findById({
+                    _id: teams[i]['team_members'][index],
+                  });
+              
+                  let member_class = {
+                    user_id: member._id,
+                    first_name: member.first_name,
+                    last_name: member.last_name,
+                    name: member.first_name + ' ' + member.last_name,
+                    user_profile_pic: member.profile_pic,
+                  };
+                  teammembers.push(member_class)
+                };
+
+                var teamArray = {
+                  'team_name': teams[i]['team_name'],
+                  'team_points': teams[i]['points'],
+                  'team_members': teammembers
+                }
+                result.push(teamArray)
+                
+              }
+
+              return result;
+            } catch (err) {
+              // Catch unexpected errors
+              throw new Error(err);
+            }
+          }
 
          async getTeamMembers(token: any, teamId: String) {
            try {

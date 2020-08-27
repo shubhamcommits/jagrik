@@ -58,6 +58,8 @@ routes.post('/close-class', classController.closeClass);
 
 routes.post("/get-teams", classController.getTeams);
 
+routes.post("/get-team-details", classController.getTeamDetails);
+
 routes.get("/get-team-members", classController.getTeamMembers);
 
 routes.get("/get-completed-team-tasks", classController.getCompletedTeamTasks);
