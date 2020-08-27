@@ -33,7 +33,6 @@ section {
 }
 .card{
   box-shadow: 0 0 19px #0000006e;
-  padding: 10px;
   border-radius:6px;
 }
 .card h1{
@@ -52,10 +51,11 @@ section {
 }
 .card-team{
   width: 210px;
+  padding: 10px;
   height: 180px;
 }
 .card-member{
-  width: 120px;
+  width: 150px;
 }
 .card-body{
   padding: 0px !important;

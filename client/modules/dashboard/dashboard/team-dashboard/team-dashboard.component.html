@@ -1,5 +1,4 @@
 
-<br><br>
 <!---START-->
 <mat-tab-group class="d-flex justify-content-center">
   <mat-tab id="tb-tab">
@@ -48,10 +47,13 @@
     <div class="row" style="padding-top: 30px;padding-bottom: 30px;" *ngIf="userRole !== 'student'">
       <div class="col-md-12">
         <div class="row justify-content-start">
-          <div class="col-md-2" *ngFor="let item of newUser">
+          <div class="col-md-1" *ngFor="let item of newUser">
             <div class="card text-center card-member ">
+              <div class="card-header" style="background-color: #cd4266;padding: 20px;">
+
+              </div>
               <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" style="align-items: center" >
                   <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
                   <h3>{{item.name}}</h3>
                 </div>

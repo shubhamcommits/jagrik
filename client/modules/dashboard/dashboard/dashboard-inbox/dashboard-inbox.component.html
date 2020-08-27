@@ -20,7 +20,7 @@
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">Leaderboard</h2>
+          <h2 style="margin: 0px !important;">Jamghat</h2>
           <span></span>
         </div>
         <app-class-agenda></app-class-agenda>
@@ -32,7 +32,7 @@
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">My Class</h2>
+          <h2 style="margin: 0px !important;">My Cohort</h2>
           <span></span>
         </div>
         <app-invite-students>
@@ -55,7 +55,7 @@
 
 </div>
 <div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
-  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+  <div class="col-md-6" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
@@ -67,8 +67,19 @@
     </div>
   </div>
 </div>
-
-
+<div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
+  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h2 style="margin: 0px !important;">Cohort Members</h2>
+          <span></span>
+        </div>
+        <app-team-dashboard></app-team-dashboard>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row" *ngIf="userData.role === 'student'">
 <app-tasks-board></app-tasks-board>
   <!-- <div class="col-md-12">

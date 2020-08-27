@@ -1,3 +1,20 @@
+<ng-template *ngFor="let item of allMeetings.schedules">
+<div class="card" style="width: 500px;">
+  <div class="row no-gutters">
+      <div class="col-sm-5">
+          <h1 style="font-size: 50px;" class="text-uppercase"><b>{{item.date |  date:'mediumDate'}} {{item.time}}</b></h1>
+      </div>
+      <div class="col-sm-7">
+          <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <a *ngIf="userData.role != 'student'" href="{{item.join_moderate}}" target="_blank"
+                class="btn btn-primary btn-sm">Start</a><a *ngIf="userData.role == 'student'"
+                  href="{{item.join_attende}}" target="_blank" class="btn btn-primary btn-sm">Start</a>
+          </div>
+      </div>
+  </div>
+</div>
+</ng-template>
 <div class="container" style="margin-top: 5%;margin-bottom: 40px;" >
   <div class="row">
     <div class="col-md-6">
