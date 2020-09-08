@@ -290,4 +290,87 @@ export class UserController {
             })
         }
     }
+
+    async assignWildCard(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            // Fetch the headers and user data from the request
+            let {headers: { authorization }} = req
+
+
+            // Call assign random task to user service function
+            await userService.assignWildCard(authorization)
+
+                // Proceed with the status 200 response
+                .then((response) => {
+                    return res.status(200).json({
+                        message: "User has been assigned with a wild card!",
+                        user: response.user,
+                    })
+                })
+
+                // Catch the errors from the service function
+                .catch((err) => {
+                    return res.status(400).json({
+                        message:
+                            "Bad Request, kindly trace the error stack for more details!",
+                        error: new Error(
+                            err ||
+                            "Bad Request, kindly trace the error stack for more details!"
+                        ),
+                    })
+                })
+        } catch (err) {
+            return res.status(500).json({
+                message: "Internal Server Error!",
+                error: new Error(err || "Internal Server Error!"),
+            })
+        }
+    }
+
+    async uploadWildCardDoc(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            // Fetch the headers and user data from the request
+            let img_data: any = fs.readFileSync(req['file'].path)
+
+            let img: String = Buffer.from(img_data, 'binary').toString('base64');
+
+            // Fetch Authorization header
+            let authorization = req.headers.authorization;
+            let taskId = req.body.taskId;
+            let description = req.body.description;
+            let title = req.body.title;
+            let experience_description = req.body.experience_description
+
+
+            // Call assign random task to user service function
+            await userService.wildTaskSupportingDocUpload(img, authorization, taskId, experience_description, description, title)
+
+                // Proceed with the status 200 response
+                .then((response) => {
+                    return res.status(200).json({
+                        message: response.message,
+                        user: response.user,
+                    })
+                })
+
+                // Catch the errors from the service function
+                .catch((err) => {
+                    return res.status(400).json({
+                        message:
+                            "Bad Request, kindly trace the error stack for more details!",
+                        error: new Error(
+                            err ||
+                            "Bad Request, kindly trace the error stack for more details!"
+                        ),
+                    })
+                })
+        } catch (err) {
+            return res.status(500).json({
+                message: "Internal Server Error!",
+                error: new Error(err || "Internal Server Error!"),
+            })
+        }
+    }
 }

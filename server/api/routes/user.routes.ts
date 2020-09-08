@@ -43,12 +43,21 @@ routes.post( '/profile-picture', upload.single('profile_picture'), userControlle
  */
 routes.post('/assign-card', userController.assignRandomCard);
 
+routes.get('/assign-wild-card', userController.assignWildCard);
+
 routes.get('/team', userController.getTeam);
 
 routes.post(
   '/task-doc-upload',
   upload.single('supporting_doc'),
   userController.taskSupportingDocUpload
+);
+
+
+routes.post(
+  '/wild-task-doc-upload',
+  upload.single('supporting_doc'),
+  userController.uploadWildCardDoc
 );
 
 /*  ===================

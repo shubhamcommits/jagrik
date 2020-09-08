@@ -153,6 +153,45 @@ const UserSchema = new Schema({
       },
     }),
   ],
+  wild_tasks: [
+    new Schema({
+      _task: {
+        type: Schema.Types.ObjectId,
+        ref: 'Task',
+      },
+      _card: {
+        type: Schema.Types.ObjectId,
+        ref: 'Card',
+      },
+      description: {
+        type: String,
+        default: null,
+      },
+      title: {
+        type: String,
+        default: null,
+      },
+      wild_task_description: {
+        type: String,
+        default: null,
+      },
+      supporting_doc: {
+        type: String,
+        data: Buffer,
+        default: null,
+      },
+      submitted_date: {
+        type: Schema.Types.Date,
+        default: null,
+      },
+      status: {
+        type: String,
+        default: 'to do',
+        enum: ['to do', 'in progress', 'waiting for score', 'completed'],
+        required: true,
+      },
+    }),
+  ],
   files: [
     {
       type: String,

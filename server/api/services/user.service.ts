@@ -211,4 +211,59 @@ export class UserService {
         }
 
     }
+
+    async assignWildCard(token: any) {
+        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+
+        let card = await Card.findOne({ theme: 'child rights' });
+
+        let task = {
+            _card: card.id,
+            status: 'to do'
+        }
+
+        user = await User.findByIdAndUpdate(
+            { _id: user._id },
+            { $push: { wild_tasks: task } },
+            { new: true }
+        )
+
+        return {
+            user: user
+        }
+    }
+
+    async wildTaskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, description: String, title: String) {
+        try {
+            //verify token and decode user data
+
+            let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            let user: any = await User.findById({ _id: userVerify._id });
+
+            let wildTask = []
+
+            user.wild_tasks.forEach(element => {
+
+                if (element.status === 'to do') {
+                    
+                    element._task = taskId
+                    element.description = description
+                    element.title = title
+                    element.wild_task_description = experience_description
+                    element.status = 'complete'
+                    element.supporting_doc = img_data
+
+                }
+                    wildTask.push(element)
+                
+                
+            });
+
+            user = await User.findByIdAndUpdate({ _id: userVerify._id }, { wild_tasks: wildTask });
+            return { user: user, message: 'Docs Uploaded'};
+        } catch (err) {
+            //catch unexpected errors
+            throw new Error(err);
+        }
+    }
 }
