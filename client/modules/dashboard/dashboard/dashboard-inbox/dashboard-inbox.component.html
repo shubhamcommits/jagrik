@@ -75,12 +75,16 @@
           <div class="card-body">
             <div class="card-heading">
               <h1 style="margin: 0px !important;">My Cohort</h1>
+              <!-- <h4 style="float: right;">Done adding members?</h4>
+              <br> -->
+              <button class="btn btn-jagrik btn-primary" style="float: right;"(click)="closeClass()">Freeze Class</button>
               <span></span>
             </div>
             <app-invite-students>
             </app-invite-students>
           </div>
         </div>
+        
       </div>
       <div class="col-md-12 row-next" style="display: flex;flex-direction: column;" *ngIf="is_open">
         <div class="card card-dashboard" style="padding: 25px;height: 100%;">
@@ -125,3 +129,4 @@
         <app-leaderboard-view></app-leaderboard-view>
     </div> -->
 </div>
+
