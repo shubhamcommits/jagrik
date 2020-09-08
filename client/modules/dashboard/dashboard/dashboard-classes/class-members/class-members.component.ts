@@ -2,6 +2,7 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { ClassDetailsComponent } from '../class-details/class-details.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
 
 
 export interface PeriodicElement {
@@ -35,6 +36,7 @@ export class ClassMembersComponent implements OnInit {
   constructor(
     private _Injector: Injector,
     private _ActivatedRoute: ActivatedRoute,
+    private storageService: StorageService,
     private _Router: Router
   ) { }
 
@@ -45,7 +47,7 @@ export class ClassMembersComponent implements OnInit {
   class: any
 
   // Fetch class from the route
-  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId')
+  classId = this.storageService.getLocalData('userData').classes[0];
 
   displayedColumns: string[] = ['Name', 'Email', 'Role'];
   dataSource = ELEMENT_DATA;

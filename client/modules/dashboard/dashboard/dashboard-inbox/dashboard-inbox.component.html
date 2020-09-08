@@ -2,14 +2,15 @@
 <span class="d-flex justify-content-center">aims to create a lived experience for participants</span> -->
 
 <app-no-team *ngIf="userData && userData.role === 'student' && userData.teams.length == 0"></app-no-team>
+
+
+<!-- FINAL STAGE  -->
 <div class="row" *ngIf="userData && userData.role === 'facilitator'">
-
-
   <div class="col-md-8" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
     <div class="card card-dashboard" style="padding: 25px;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">Tasks Pending for Verification</h2>
+          <h1 style="margin: 0px !important;">Tasks Pending for Verification</h1>
           <span></span>
         </div>
         <app-facilitator-view></app-facilitator-view>
@@ -20,59 +21,31 @@
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">Jamghat</h2>
+          <h1 style="margin: 0px !important;">Upcoming Jamghats</h1>
           <span></span>
         </div>
         <app-class-agenda></app-class-agenda>
       </div>
     </div>
   </div>
-
-  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="is_open">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h2 style="margin: 0px !important;">My Cohort</h2>
-          <span></span>
-        </div>
-        <app-invite-students>
-        </app-invite-students>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h2 style="margin: 0px !important;">Teams</h2>
-          <span></span>
-        </div>
-        <app-team>
-        </app-team>
-      </div>
-    </div>
-  </div>
-
 </div>
 <div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
-  <div class="col-md-6" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+  <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">Leaderboard</h2>
+          <h1 style="margin: 0px !important;">Leaderboard</h1>
           <span></span>
         </div>
         <app-leaderboard-view></app-leaderboard-view>
       </div>
     </div>
   </div>
-</div>
-<div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
-  <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+  <div class="col-md-8" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
       <div class="card-body">
         <div class="card-heading">
-          <h2 style="margin: 0px !important;">Cohort Members</h2>
+          <h1 style="margin: 0px !important;">Cohort Members</h1>
           <span></span>
         </div>
         <app-team-dashboard></app-team-dashboard>
@@ -80,6 +53,65 @@
     </div>
   </div>
 </div>
+
+<div class="row row-next" *ngIf="userData && userData.role === 'facilitator'">
+  <div class="col-md-8" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h1 style="margin: 0px !important;">Cohort Members</h1>
+          <span></span>
+        </div>
+        <app-team-dashboard></app-team-dashboard>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="userData && userData.role === 'facilitator'">
+  <!-- STAGE 1 -->
+      <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="is_open">
+        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h1 style="margin: 0px !important;">My Cohort</h1>
+              <!-- <h4 style="float: right;">Done adding members?</h4>
+              <br> -->
+              <button class="btn btn-jagrik btn-primary" style="float: right;"(click)="closeClass()">Freeze Class</button>
+              <span></span>
+            </div>
+            <app-invite-students>
+            </app-invite-students>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-12 row-next" style="display: flex;flex-direction: column;" *ngIf="is_open">
+        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h1 style="margin: 0px !important;">Current Cohort Members</h1>
+              <span></span>
+            </div>
+            <app-class-members></app-class-members>
+          </div>
+        </div>
+      </div>
+  <!-- STAGE 2 -->
+      <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && showTeam">
+        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h1 style="margin: 0px !important;">Teams</h1>
+              <span></span>
+            </div>
+            <app-team>
+            </app-team>
+          </div>
+        </div>
+      </div>
+</div>
+
 <div class="row" *ngIf="userData.role === 'student'">
 <app-tasks-board></app-tasks-board>
   <!-- <div class="col-md-12">
@@ -97,3 +129,4 @@
         <app-leaderboard-view></app-leaderboard-view>
     </div> -->
 </div>
+
