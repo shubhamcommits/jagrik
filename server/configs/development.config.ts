@@ -25,7 +25,7 @@ function devConfigInit() {
     "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";
 
   // Database Url String
-  process.env.dbURL = process.env.dbURL || `mongodb://localhost:27017/jagrik`;
+  process.env.dbURL = process.env.dbURL || `mongodb+srv://Advitya_Jagrik:Advaysood10@cluster-jagrik.bk8kn.mongodb.net/jagrik?retryWrites=true&w=majority`;
 
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER =
