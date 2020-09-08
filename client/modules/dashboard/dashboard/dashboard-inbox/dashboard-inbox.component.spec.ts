@@ -8,6 +8,7 @@ import { AssignRandomTaskComponent } from "./assign-random-task/assign-random-ta
 import { TeamDashboardComponent } from "../team-dashboard/team-dashboard.component";
 import { TasksBoardComponent } from "../tasks-board/tasks-board.component";
 import { ClassAgendaComponent } from "../dashboard-classes/class-agenda/class-agenda.component";
+import { ClassMembersComponent } from "../dashboard-classes/class-members/class-members.component";
 
 describe('DashboardInboxComponent', () => {
   let component: DashboardInboxComponent;
@@ -32,6 +33,6 @@ describe('DashboardInboxComponent', () => {
 });
 
 @NgModule({
-  imports: [LeaderboardViewComponent,TasksListComponent,AssignRandomTaskComponent,TeamDashboardComponent,TasksBoardComponent,ClassAgendaComponent],
+  imports: [LeaderboardViewComponent,TasksListComponent,AssignRandomTaskComponent,TeamDashboardComponent,TasksBoardComponent,ClassAgendaComponent, ClassMembersComponent],
 
 })export class DashboardInboxModule{}

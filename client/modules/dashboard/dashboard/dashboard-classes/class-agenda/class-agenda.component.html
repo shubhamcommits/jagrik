@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-center" *ngFor="let item of allMeetings.schedules">
   <!-- {{myTime| date:'HH:mm'}} {{item.time}} -->
   <!-- //&& item.time > (myTime | date:'HH:mm') -->
-<div class="card" style="width: 500px;border-radius: 0%;" *ngIf="(item.date |  date:'dd-MMM-yyyy hh:mm a') > (myDate | date: 'dd-MMM-yyyy hh:mm as') ||( (item.date |  date:'dd-MMM-yyyy') == (myDate | date: 'dd-MMM-yyyy') && item.time > (myTime | date:'HH:mm')) ">
+<div class="card" style="width: 500px;border-radius: 0%;margin-bottom:20px;" *ngIf="(item.date |  date:'dd-MMM-yyyy hh:mm a') > (myDate | date: 'dd-MMM-yyyy hh:mm as') || ( (item.date |  date:'dd-MMM-yyyy') == (myDate | date: 'dd-MMM-yyyy') && item.time > (myTime | date:'HH:mm')) ">
   <div class="row no-gutters ">
       <div class="col-sm-5" style="justify-content: center;
       align-items: center;
