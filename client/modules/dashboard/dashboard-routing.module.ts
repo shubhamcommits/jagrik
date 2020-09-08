@@ -17,6 +17,8 @@ import { BonusTaskComponent } from './dashboard/bonus-task/bonus-task.component'
 import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboard.component';
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
+import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -30,6 +32,7 @@ const routes: Routes = [
           { path: 'tasks', component: TasksBoardComponent },
           { path: 'resource-list', component: ResourcePageComponent },
           { path: 'bouns-tasks', component: BonusTaskComponent },
+          { path: 'wild-tasks', component: WildTaskComponent },
           { path: 'announcement', component: AnnouncementComponent },
           { path: 'classes/list', component: DashboardClassesComponent },
           {

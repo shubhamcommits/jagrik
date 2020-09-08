@@ -1,0 +1,72 @@
+<!-- <div class="card">
+  <div class="card-header" style="background-color: #cd4266;text-align: center;color: white;">
+    Task Experience
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><b>Type:</b> {{ data?.task?.title }}</h5>
+    <h5 class="card-title"><b>Description:</b> {{ data?.task?.description }}</h5>
+    <h5 class="card-title"><b>Maximum Points:</b> {{ data?.task?.points }}</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+
+<div style="background-color: #cd4266;height: 240px;padding-right: 20px;padding-left: 20px;">
+  <div class="row" style="align-items: center; height: 100%;">
+    <div class="col-4 d-flex justify-content-center" style="color: white;">
+      <h1 style="font-size: 35px;">Task Experience</h1>
+      <h5>Please add data detailing your task experience</h5>
+    </div>
+    <div class="col-8">
+      <img src="assets/undraw_uploading_go67.svg" alt="" style="
+    max-height: 240px;
+    max-width: 100%;
+">
+    </div>
+  </div>
+
+</div>
+<div style="padding: 20px;">
+  <h5 class="card-title"><b>Type:</b> {{ data?.task?.title }}</h5>
+  <h5 class="card-title"><b>Description:</b> {{ data?.task?.description }}</h5>
+  <h5 class="card-title"><b>Maximum Points:</b> {{ data?.task?.points }}</h5>
+
+  <!--
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center">
+    <h1 mat-dialog-title>Proof Uploading</h1>
+  </div>
+</div>
+<div mat-dialog-content>
+
+    <p><b>Type:</b> {{ data?.task?.title }}</p>
+    <p><b>Description:</b> {{ data?.task?.description }}</p>
+    <p><b>Maximum Points:</b> {{ data?.task?.points }}</p>
+
+</div> -->
+  <form [formGroup]="inputForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">publish</mat-icon>
+      <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file">
+      </ngx-mat-file-input>
+      <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="row form-group d-flex justify-content-center" style="padding: 0px;">
+    <div class="col-md-6" style="padding: 0px;">
+      <button class="btn btn-sm btn-danger" style="width: 100%;border-radius: 0px; min-height: 40px;"
+        mat-dialog-close>Cancel</button>
+    </div>
+    <div class="col-md-6" style="padding: 0px;">
+      <button class="btn btn-sm btn-primary" style="width: 100%; border-radius: 0px; min-height: 40px;"
+        [disabled]="!inputForm.valid" (click)="submitFile()" mat-dialog-close>Submit</button>
+    </div>
+
+  </div>
+</div>

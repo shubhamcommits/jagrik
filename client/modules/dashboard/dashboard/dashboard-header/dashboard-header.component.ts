@@ -25,10 +25,13 @@ export class DashboardHeaderComponent implements OnInit {
   userClass = '';
   showSubSubMenu: boolean = false;
   announcementData: any = [];
+  weekCount: any = 0;
 
   ngOnInit(): void {
     // Storage Service instance
     let storageService = this._Injector.get(StorageService);
+
+    this.weekCount = storageService.getLocalData('userData').tasks.length
 
     // Fetch the user role
     this.userRole = storageService.getLocalData('userData').role;

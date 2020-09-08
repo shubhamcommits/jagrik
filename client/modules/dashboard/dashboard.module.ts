@@ -83,12 +83,14 @@ import { BonusTaskViewModalComponent } from './dashboard/bonus-task/bonus-task-v
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
 import { PendingTaskViewModalComponent } from './dashboard/pending-task/pending-task-view-modal/pending-task-view-modal.component';
+import { AddWildTaskComponent } from './dashboard/wiild-task/add-wild-task/add-wild-task.component';
 import {
   DateInputsModule,
   CalendarModule,
 } from '@progress/kendo-angular-dateinputs';
 import 'hammerjs';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -124,7 +126,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     PendingTaskViewComponent,
     PendingTaskViewModalComponent,
     TaskRejectModalComponent,
-    AddMeetingModalComponent
+    AddMeetingModalComponent,
+    WildTaskComponent,
+    AddWildTaskComponent
   ],
   imports: [
     CommonModule,

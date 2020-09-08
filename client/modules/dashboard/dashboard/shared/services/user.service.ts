@@ -23,6 +23,15 @@ export class UserService {
   }
 
   /**
+  * This function is responsible for assigning a wild card to the user
+  */
+  assignWildCard() {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/users/assign-wild-card')
+      .toPromise();
+  }
+
+  /**
    * This function is responsible for update user profile
    * @param user
    */
@@ -52,5 +61,22 @@ export class UserService {
    */
   get() {
     return this.httpClient.get(environment.baseApiUrl + '/users').toPromise();
+  }
+
+  /**
+   * This function is responsible for upload document against task
+   * @param image
+   * @param taskId
+   */
+  uploadWildTaskDocument(image: File, taskId: any, experience_description: any, description: any, title: any) {
+    let formData: FormData = new FormData();
+    formData.append('supporting_doc', image);
+    formData.append('taskId', taskId);
+    formData.append('description', description);
+    formData.append('experience_description', experience_description);
+    formData.append('title', title);
+    return this.httpClient
+      .post(environment.baseApiUrl + '/users/wild-task-doc-upload', formData)
+      .toPromise();
   }
 }

@@ -52,7 +52,7 @@ export class TeamDashboardComponent implements OnInit {
     this.getClassDetails(
       this.storageService.getLocalData('userData').classes[0]
     );
-    this.getTeams();
+
   }
 
   assignTeam(userId) {
@@ -94,6 +94,7 @@ export class TeamDashboardComponent implements OnInit {
                   team: element['team_name'],
                   user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://via.placeholder.com/100x100.png?text=Jagrik'
                 })
+
               } else {
                 this.teamArray[element['team_name']] = []
                 this.teamArray[element['team_name']].push({
@@ -107,12 +108,14 @@ export class TeamDashboardComponent implements OnInit {
 
               this.teamArrayExist = true;
 
+            } else {
+              this.newUser.push({
+                name: `${element['first_name']} ${element['last_name']}`,
+                _id: element['user_id'],
+                className: this.className,
+              });
             }
-            this.newUser.push({
-              name: `${element['first_name']} ${element['last_name']}`,
-              _id: element['user_id'],
-              className: this.className,
-            });
+
           });
         }
       })
@@ -133,6 +136,7 @@ export class TeamDashboardComponent implements OnInit {
         .getClassDetails(classId)
         .then((res) => {
           this.className = res['class']['name']
+          this.getTeams();
         })
         .catch(() => {
           // Fire error toast
