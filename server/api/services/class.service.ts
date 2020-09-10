@@ -361,7 +361,7 @@ export class ClassService {
              // Fetch the class by id
              let jagrik_class = await Class.findById({ _id: classId }).populate(
                'members',
-               'first_name last_name role email'
+               'first_name last_name role email profile_pic'
              );
 
              // Return class
