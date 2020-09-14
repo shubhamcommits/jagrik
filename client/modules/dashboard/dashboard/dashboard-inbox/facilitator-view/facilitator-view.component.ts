@@ -46,7 +46,7 @@ export class FacilitatorViewComponent implements OnInit {
 
   openDialog(team: any) {
     this.storageService.setLocalData('team_task_detail', JSON.stringify(team));
-    this.router.navigate(['dashboard/task-detail/'+team.id]);
+    this.router.navigate(['dashboard/task-detail/' + team.team_id]);
     // let dialogRef = this.dialog.open(TaskDetailModalComponent, {
     //   data: {
     //     team,
