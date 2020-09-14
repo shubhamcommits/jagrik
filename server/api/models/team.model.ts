@@ -45,7 +45,13 @@ const TeamSchema = new Schema({
       status: {
         type: Schema.Types.String,
         default: 'to do',
-        enum: ['to do', 'in progress', 'waiting for score', 'completed', 'rejected'],
+        enum: [
+          'to do',
+          'in progress',
+          'waiting for score',
+          'completed',
+          'rejected',
+        ],
         required: true,
       },
       is_active: {
@@ -61,12 +67,28 @@ const TeamSchema = new Schema({
       },
       description: {
         type: String,
-        data: Buffer,
+      },
+      remark: {
+        type: String,
+        default: null,
       },
       reason: {
         type: String,
-        data: Buffer,
       },
+      bonus_point: {
+        type: Number,
+        default: 0,
+      },
+      teacher_review: [
+        new Schema({
+          question: {
+            type: String,
+          },
+          answer: {
+            type: String,
+          },
+        }),
+      ],
       supporting_doc: {
         type: String,
         data: Buffer,
