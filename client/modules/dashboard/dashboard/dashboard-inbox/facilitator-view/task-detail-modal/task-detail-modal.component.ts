@@ -4,6 +4,7 @@ import { TeamService } from '../../../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { TaskRejectModalComponent } from '../task-reject-modal/task-reject-modal.component';
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
 @Component({
   selector: 'app-task-detail-modal',
   templateUrl: './task-detail-modal.component.html',
@@ -12,16 +13,18 @@ import { TaskRejectModalComponent } from '../task-reject-modal/task-reject-modal
 })
 export class TaskDetailModalComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data,
     private teamService: TeamService,
     private formBuilder: FormBuilder,
     private utilityService: UtilityService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public storageService: StorageService
   ) {}
 
   @Output() public getResonseData = new EventEmitter<string>();
   inputForm: FormGroup;
+  public data:any = [];
   ngOnInit(): void {
+    this.data.team = this.storageService.getLocalData('team_task_detail');
     this.inputForm = this.formBuilder.group({
       comment: new FormControl(null, [
         Validators.required,

@@ -77,14 +77,14 @@
               <h1 style="margin: 0px !important;">My Cohort</h1>
               <!-- <h4 style="float: right;">Done adding members?</h4>
               <br> -->
-              <button class="btn btn-jagrik btn-primary" style="float: right;"(click)="closeClass()">Freeze Class</button>
+              <button class="btn btn-jagrik btn-primary" style="float: right;" (click)="closeClass()">Freeze Class</button>
               <span></span>
             </div>
             <app-invite-students>
             </app-invite-students>
           </div>
         </div>
-        
+
       </div>
       <div class="col-md-12 row-next" style="display: flex;flex-direction: column;" *ngIf="is_open">
         <div class="card card-dashboard" style="padding: 25px;height: 100%;">
@@ -122,7 +122,7 @@
 
     <app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
       [cardId]="this.card._id">
-    </app-tasks-list> 
+    </app-tasks-list>
 
   </div>-->
   <!-- <div class="col-md-6">
