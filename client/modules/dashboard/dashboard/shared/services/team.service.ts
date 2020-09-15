@@ -102,18 +102,13 @@ export class TeamService {
    * This function is responsible for assign points
    * @object data
    */
-  assignPoint(
-    teamId: any,
-    teamPoints: any,
-    comment: any,
-    bonus_point: any
-  ) {
+  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
         teamId: teamId,
         teamPoints: teamPoints,
         comment: comment,
-        bonus_point: bonus_point
+        bonus_point: bonus_point,
       })
       .toPromise();
   }
@@ -138,12 +133,19 @@ export class TeamService {
    * @param taskId
    * @param teamId
    */
-  uploadTaskDocument(image: File, teamId: any, taskId: any, description: any) {
+  uploadTaskDocument(
+    image: any,
+    teamId: any,
+    taskId: any,
+    qa: any
+  ) {
     let formData: FormData = new FormData();
-    formData.append('supporting_doc', image);
+    image.forEach((element) => {
+      formData.append('supporting_doc', element);
+    });
     formData.append('taskId', taskId);
     formData.append('teamId', teamId);
-    formData.append('description', description);
+    formData.append('qa', JSON.stringify(qa));
     return this.httpClient
       .post(environment.baseApiUrl + '/users/task-doc-upload', formData)
       .toPromise();

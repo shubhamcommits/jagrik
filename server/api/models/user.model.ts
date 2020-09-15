@@ -248,6 +248,22 @@ const UserSchema = new Schema({
         type: String,
         data: Buffer,
       },
+      supporting_docs: [
+        {
+          type: String,
+          data: Buffer,
+        },
+      ],
+      ques_review: [
+        new Schema({
+          question: {
+            type: String,
+          },
+          answer: {
+            type: String,
+          },
+        }),
+      ],
       description: {
         type: String,
         data: Buffer,

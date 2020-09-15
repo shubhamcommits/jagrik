@@ -248,41 +248,58 @@ export class UserController {
 
     async taskSupportingDocUpload(req: Request, res: Response, next: NextFunction) {
         try {
+            
 
-            // Image Data from the request
-            let img_data:any = fs.readFileSync(req['file'].path)
+            // Image Data from the request   
+            let images:any[] = [];
+            req['files'].forEach((element) => {
+                let img_data: any = fs.readFileSync(element.path);
 
-           let img:String = Buffer.from(img_data, 'binary').toString('base64');
+                let img: String = Buffer.from(img_data, 'binary').toString(
+                  'base64'
+                );
+
+                images.push(img);
+
+            });
+            
 
             // Fetch Authorization header
             let authorization = req.headers.authorization;
             let taskId = req.body.taskId;
-            let description = req.body.description;
-            let experience_description = req.body.experience_description
+            let description = req.body.qa;
+            // let experience_description = req.body.experience_description
             let teamId = req.body.teamId
 
             // Call the profilePictureUpdate function from the service
             await userService
-                .taskSupportingDocUpload(img, authorization, taskId, experience_description, teamId, description)
+              .taskSupportingDocUpload(
+                images,
+                authorization,
+                taskId,
+                teamId,
+                description
+              )
 
-                // Proceed with the status 200 response
-                .then((response) => {
-                    return res.status(200).json({
-                        message: "User has successfully uploaded supporting document for the task!",
-                    })
-                })
+              // Proceed with the status 200 response
+              .then((response) => {
+                return res.status(200).json({
+                  message:
+                    'User has successfully uploaded supporting document for the task!',
+                });
+              })
 
-                // Catch the errors from the service function
-                .catch((err) => {
-                    return res.status(400).json({
-                        message:
-                            "Bad Request, kindly trace the error stack for more details!",
-                        error: new Error(
-                            err ||
-                            "Bad Request, kindly trace the error stack for more details!"
-                        ),
-                    })
-                })
+              // Catch the errors from the service function
+              .catch((err) => {
+                return res.status(400).json({
+                  message:
+                    'Bad Request, kindly trace the error stack for more details!',
+                  error: new Error(
+                    err ||
+                      'Bad Request, kindly trace the error stack for more details!'
+                  ),
+                });
+              });
         } catch (err) {
             return res.status(500).json({
                 message: "Internal Server Error!",
@@ -366,6 +383,7 @@ export class UserController {
                         ),
                     })
                 })
+            
         } catch (err) {
             return res.status(500).json({
                 message: "Internal Server Error!",

@@ -73,10 +73,9 @@ export class UserService {
         }
     }
 
-    async taskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, teamId: String, description: String) {
+    async taskSupportingDocUpload(img_data: any[], token: any, taskId: String, teamId: String, description: any) {
         try {
             //verify token and decode user data
-
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
             let user:any = await User.findById({_id: userVerify._id});
 
@@ -97,8 +96,10 @@ export class UserService {
 
                     if(JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         user.tasks[i]._task = taskId;
-                        user.tasks[i].description = description;
-                        user.tasks[i].supporting_doc = img_data;
+                        // user.tasks[i].description = description;
+                        user.tasks[i].supporting_doc = img_data[0];
+                        user.tasks[i].supporting_docs = img_data;
+                        user.tasks[i].ques_review = JSON.parse(description);
                         user.tasks[i].status = 'complete';
                         console.log("Matched");
                     }
@@ -121,8 +122,10 @@ export class UserService {
 
                     if(JSON.stringify(team.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         team.tasks[i]._task = taskId;
-                        team.tasks[i].description = description;
-                        team.tasks[i].supporting_doc = img_data;
+                        // team.tasks[i].description = description;
+                        team.tasks[i].supporting_doc = img_data[0];
+                        team.tasks[i].supporting_docs = img_data;
+                        team.tasks[i].ques_review = JSON.parse(description);
                         team.tasks[i].status = 'complete';
                     }
                     updated_tasks.push(team.tasks[i]);  
