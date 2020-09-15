@@ -18,6 +18,7 @@ import { TeamDashboardComponent } from './dashboard/team-dashboard/team-dashboar
 import { LeaderboardViewComponent } from './dashboard/leaderboard/leaderboard.component';
 import { PendingTaskViewComponent } from './dashboard/pending-task/pending-task.component';
 import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
+import { TaskDetailModalComponent } from '../dashboard/dashboard/dashboard-inbox/facilitator-view/task-detail-modal/task-detail-modal.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
         component: DashboardHeaderComponent,
         children: [
           { path: 'inbox', component: DashboardInboxComponent },
+          { path: 'task-detail/:taskId', component: TaskDetailModalComponent },
           { path: 'tasks', component: TasksBoardComponent },
           { path: 'resource-list', component: ResourcePageComponent },
           { path: 'bouns-tasks', component: BonusTaskComponent },

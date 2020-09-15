@@ -4,7 +4,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskDetailModalComponent } from './task-detail-modal/task-detail-modal.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-facilitator-view',
   templateUrl: './facilitator-view.component.html',
@@ -24,12 +24,19 @@ export class FacilitatorViewComponent implements OnInit {
     private classService: ClassService,
     private storageService: StorageService,
     private utilityService: UtilityService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {}
 
   is_completedTask = false;
   dataSource: any = [];
-  displayedColumns: string[] = ['S.No','team_name','task_points','status','action'];
+  displayedColumns: string[] = [
+    'S.No',
+    'team_name',
+    'task_points',
+    'status',
+    'action',
+  ];
 
   ngOnInit(): void {
     this.getCompletedTeam(
@@ -38,34 +45,36 @@ export class FacilitatorViewComponent implements OnInit {
   }
 
   openDialog(team: any) {
-    let dialogRef = this.dialog.open(TaskDetailModalComponent, {
-      data: {
-        team,
-      },
-      autoFocus: false,
-      maxHeight: '90vh',
-      maxWidth: '60vw'
-    });
+    this.storageService.setLocalData('team_task_detail', JSON.stringify(team));
+    this.router.navigate(['dashboard/task-detail/' + team.team_id]);
+    // let dialogRef = this.dialog.open(TaskDetailModalComponent, {
+    //   data: {
+    //     team,
+    //   },
+    //   autoFocus: false,
+    //   maxHeight: '90vh',
+    //   maxWidth: '60vw',
+    // });
 
-    dialogRef.componentInstance.getResonseData.subscribe(($e) => {
-      dialogRef.close()
-      if($e !== 'error'){
-        this.getCompletedTeam(
-          this.storageService.getLocalData('userData').classes[0]
-        );
-      }
-    });
+    // dialogRef.componentInstance.getResonseData.subscribe(($e) => {
+    //   dialogRef.close();
+    //   if ($e !== 'error') {
+    //     this.getCompletedTeam(
+    //       this.storageService.getLocalData('userData').classes[0]
+    //     );
+    //   }
+    // });
   }
 
   getCompletedTeam(classId) {
-    this.dataSource = []
+    this.dataSource = [];
     return new Promise((resolve) => {
       // Call the service function
       this.classService
         .getCompletedTaskTeam(classId)
         .then((res) => {
           var data: any = res;
-          data.tasks.forEach(element => {
+          data.tasks.forEach((element) => {
             if (
               element['team_status'] === 'complete' &&
               element['team_verify_status'] === 'active'
@@ -78,10 +87,7 @@ export class FacilitatorViewComponent implements OnInit {
             this.is_completedTask = true;
           }
           // Fire sucess toast
-          this.utilityService.fireToast(
-            'success',
-            `Data fetched successfully`
-          );
+          this.utilityService.fireToast('success', `Data fetched successfully`);
         })
         .catch(() => {
           // Fire error toast

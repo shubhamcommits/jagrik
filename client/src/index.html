@@ -34,4 +34,10 @@
 <body class="mat-typography">
   <app-root></app-root>
 </body>
+<script>
+  $('.nav-tabs a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+  })
+</script>
 </html>

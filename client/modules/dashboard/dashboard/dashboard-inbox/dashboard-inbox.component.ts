@@ -23,13 +23,11 @@ export class DashboardInboxComponent implements OnInit {
     private classService: ClassService,
     private teamService: TeamService,
     public dashboardHeaderComponent: DashboardHeaderComponent
-  ) { }
-
-
+  ) {}
 
   userData: any;
 
-  is_open: Boolean = false
+  is_open: Boolean = false;
 
   card: any = {
     _id: '',
@@ -41,7 +39,7 @@ export class DashboardInboxComponent implements OnInit {
   showTeam: Boolean = false;
 
   async ngOnInit() {
-    this.dashboardHeaderComponent.showSideMenu = false
+    this.dashboardHeaderComponent.showSideMenu = false;
     this.userData = await this.getUserData();
     if (this.userData.tasks.length > 0)
       this.card._id = this.userData.tasks[this.userData.tasks.length - 1]._card;
@@ -65,7 +63,7 @@ export class DashboardInboxComponent implements OnInit {
       userService
         .get()
         .then((res) => {
-          this.getClassDetails(res['user']['classes'][0])
+          this.getClassDetails(res['user']['classes'][0]);
           storageService.setLocalData('userData', JSON.stringify(res['user']));
           resolve(res['user']);
         })
@@ -81,12 +79,28 @@ export class DashboardInboxComponent implements OnInit {
       this.classService
         .getClassDetails(classId)
         .then((res) => {
-          this.is_open = res['class']['is_open']
+          this.is_open = res['class']['is_open'];
           if (this.is_open == false) {
-            this.getTeams()
+            this.getTeams();
           }
         })
+        .catch(() => {});
+    });
+  }
+
+  closeClass() {
+    return new Promise((resolve) => {
+
+
+      // Fetch class details
+     this.classService
+        .closeClass(this.userData.classes[0])
+        .then((res) => {
+          this.getClassDetails(this.userData.classes[0]);
+          resolve(res);
+        })
         .catch(() => {
+          resolve({});
         });
     });
   }
@@ -100,14 +114,12 @@ export class DashboardInboxComponent implements OnInit {
           var i = 1;
           data.forEach((element) => {
             if (element['team_name'] !== 'No Team') {
-
             } else {
-              this.showTeam = true
+              this.showTeam = true;
             }
           });
         }
       })
-      .catch(() => {
-      });
+      .catch(() => {});
   }
 }
