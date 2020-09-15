@@ -67,10 +67,18 @@ export class TeamController {
              let teamId = req.body.teamId;
 
              let teamPoints = req.body.teamPoints;
+             let comment = req.body.comment;
+             let bonus_point = req.body.bonus_point;
 
              // Call the service function to get all the classes
              await teamService
-               .submitTaskPoints(authorization, teamId, teamPoints)
+               .submitTaskPoints(
+                 authorization,
+                 teamId,
+                 teamPoints,
+                 comment,
+                 bonus_point
+               )
                .then(() => {
                  return res.status(200).json({
                    message: 'Points successfully allocated to the team !',

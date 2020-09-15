@@ -68,6 +68,9 @@ const TeamSchema = new Schema({
       description: {
         type: String,
       },
+      comment: {
+        type: String,
+      },
       remark: {
         type: String,
         default: null,
@@ -79,7 +82,7 @@ const TeamSchema = new Schema({
         type: Number,
         default: 0,
       },
-      teacher_review: [
+      ques_review: [
         new Schema({
           question: {
             type: String,
@@ -89,10 +92,10 @@ const TeamSchema = new Schema({
           },
         }),
       ],
-      supporting_doc: {
+      supporting_doc: [{
         type: String,
         data: Buffer,
-      },
+      }],
       experience_description: {
         type: String,
       },

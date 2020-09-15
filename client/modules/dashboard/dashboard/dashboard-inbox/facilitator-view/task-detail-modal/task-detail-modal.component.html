@@ -3,72 +3,92 @@
   <div class="row">
     <div class="col-md-8">
       <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="team-task-tab" data-toggle="pill" href="#team-task" role="tab"
+                  aria-controls="pills-home" aria-selected="true">Community Task</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
+                  id="pills-{{item.user_name}}-tab" data-toggle="pill" href="#pills-{{item.user_name}}" role="tab"
+                  [attr.aria-controls]="'pills-'+item.user_name"
+                  aria-selected="false">{{item.user_name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
  <div class="col-md-12">
-   <button mat-raised-button class="text-uppercase m-align" color="accent">Community Task</button>
-   <div class="card">
-     <div class="card-body">
-       <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
-       <p class="card-text text-right">{{data?.team?.team_task_points}} Points <span
-           class="ml-3 task-level {{data?.team?.team_task_type}}"></span><span
-           class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
+   <div class="tab-content" id="pills-tabContent">
+     <div class="tab-pane fade show active" id="team-task" role="tabpanel" aria-labelledby="team-task-tab">
+        <button mat-raised-button class="text-uppercase m-align" color="accent">Community Task</button>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
+            <p class="card-text text-right">{{data?.team?.team_task_points}} Points <span
+                class="ml-3 task-level {{data?.team?.team_task_type}}"></span><span
+                class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
+          </div>
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <img class="img-thumbnail" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
+                alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{data?.team?.team_task_explaination}}</p>
+            </div>
+          </div>
+        </div>
      </div>
-     <div class="card-horizontal">
-       <div class="img-square-wrapper">
-         <img class="img-thumbnail" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
-           alt="Card image cap">
-       </div>
-       <div class="card-body">
-         <p class="card-text">{{data?.team?.team_task_explaination}}</p>
-       </div>
-     </div>
-   </div>
- </div>
- <div class="col-md-12">
-   <button mat-raised-button class="text-uppercase m-align" color="accent">Self Task</button>
- </div>
- <div class="col-md-12 mb-3" *ngFor="let item of data?.team?.team_members_tasks">
-   <div class="card">
-     <div class="card-body">
-       <h4 class="card-title">{{item.user_task_description}}</h4>
-       <p class="card-text text-right">{{item.user_task_points}} Points <span
-           class="ml-3 task-level {{item.user_task_type}}"></span><span
-           class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
-     </div>
-     <div class="card-horizontal">
-       <div class="img-square-wrapper">
-         <img class="img-thumbnail" src="data:image/png;base64,{{item.user_task_supporting_doc}}" alt="Card image cap">
-       </div>
-       <div class="card-body">
-         <p class="card-text">{{item.user_task_explaination}}</p>
-       </div>
-     </div>
+     <div *ngFor="let item of data?.team?.team_members_tasks" id="pills-{{item.user_name}}" role="tabpanel"
+       [attr.aria-labelledby]="'pills-'+item.user_name+'-tab'" class="tab-pane fade">
 
+         <button mat-raised-button class="text-uppercase m-align" color="accent">Self Task</button>
+         <div class="card" *ngFor="let item of data?.team?.team_members_tasks">
+           <div class="card-body">
+             <h4 class="card-title">{{item.user_task_description}}</h4>
+             <p class="card-text text-right">{{item.user_task_points}} Points <span
+                 class="ml-3 task-level {{item.user_task_type}}"></span><span
+                 class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
+           </div>
+           <div class="card-horizontal">
+             <div class="img-square-wrapper">
+               <img class="img-thumbnail" src="data:image/png;base64,{{item.user_task_supporting_doc}}"
+                 alt="Card image cap">
+             </div>
+             <div class="card-body">
+               <p class="card-text">{{item.user_task_explaination}}</p>
+             </div>
+           </div>
+       </div>
+     </div>
    </div>
  </div>
-      </div>
+</div>
 
     </div>
     <div class="col-md-4">
       <div class="card">
+        <form [formGroup]="inputForm">
         <div class="card-body">
            <h3>Submit Response</h3>
-           <p>Question1</p>
-           <div class="form-check form-check-inline">
-             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-             <label class="form-check-label" for="inlineRadio1">1</label>
+           <div class="form-group">
+             <label for="">Comments</label>
+             <textarea class="form-control" formControlName="comment" rows="3"></textarea>
            </div>
-           <div class="form-check form-check-inline">
-             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-             <label class="form-check-label" for="inlineRadio2">2</label>
+           <div class="form-group">
+             <label for="bonus_point">Bonus Point</label>
+             <input type="number" class="form-control" formControlName="bonus_point" placeholder="Bonus Point">
            </div>
            <div class="form-group" style="padding-top: 20px;">
               <mat-dialog-actions align="start">
-                <button mat-button mat-dialog-close>Cancel</button>
                 <button mat-button (click)="rejectTask()">Reject</button>
                 <button mat-button (click)="verifyTask()">Verify</button>
               </mat-dialog-actions>
            </div>
         </div>
+        </form>
       </div>
     </div>
   </div>

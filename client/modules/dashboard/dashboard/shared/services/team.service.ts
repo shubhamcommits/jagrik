@@ -45,7 +45,7 @@ export class TeamService {
         card_theme: theme,
         week: week,
         teamId: teamId,
-        diceNumber: diceNumber
+        diceNumber: diceNumber,
       })
       .toPromise();
   }
@@ -102,11 +102,18 @@ export class TeamService {
    * This function is responsible for assign points
    * @object data
    */
-  assignPoint(teamId: any, teamPoints: any) {
+  assignPoint(
+    teamId: any,
+    teamPoints: any,
+    comment: any,
+    bonus_point: any
+  ) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
         teamId: teamId,
         teamPoints: teamPoints,
+        comment: comment,
+        bonus_point: bonus_point
       })
       .toPromise();
   }
@@ -120,7 +127,7 @@ export class TeamService {
       .post(environment.baseApiUrl + '/teams/reject-task', {
         teamId: teamId,
         teamPoints: teamPoints,
-        comment: comment
+        comment: comment,
       })
       .toPromise();
   }

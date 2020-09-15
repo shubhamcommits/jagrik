@@ -5,6 +5,7 @@ import { UtilityService } from 'src/shared/services/utility-service/utility.serv
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { TaskRejectModalComponent } from '../task-reject-modal/task-reject-modal.component';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-task-detail-modal',
   templateUrl: './task-detail-modal.component.html',
@@ -17,19 +18,26 @@ export class TaskDetailModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private utilityService: UtilityService,
     public dialog: MatDialog,
-    public storageService: StorageService
+    public storageService: StorageService,
+    public router: Router
   ) {}
 
   @Output() public getResonseData = new EventEmitter<string>();
   inputForm: FormGroup;
-  public data:any = [];
+  public data: any = [];
+  public comment: string = '';
+  public bonus_point: any = '';
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
+    console.log('====================================');
+    console.log(this.data.team);
+    console.log('====================================');
     this.inputForm = this.formBuilder.group({
       comment: new FormControl(null, [
         Validators.required,
         Validators.nullValidator,
       ]),
+      bonus_point: new FormControl(0),
     });
   }
 
@@ -37,9 +45,15 @@ export class TaskDetailModalComponent implements OnInit {
     return new Promise((resolve) => {
       // Call the service function
       this.teamService
-        .assignPoint(this.data.team.team_id, this.data.team.team_task_points)
+        .assignPoint(
+          this.data.team.team_id,
+          parseInt(this.data.team.team_task_points) +
+            parseInt(this.inputForm.value.bonus_point),
+          this.inputForm.value.comment,
+          this.inputForm.value.bonus_point
+        )
         .then((res) => {
-          this.getResonseData.emit('success');
+          this.router.navigate(['dashboard', 'inbox']);
           this.utilityService.fireToast(
             'success',
             `Task Verified Successfully`

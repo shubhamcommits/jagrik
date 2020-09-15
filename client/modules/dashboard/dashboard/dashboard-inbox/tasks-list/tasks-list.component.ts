@@ -60,7 +60,9 @@ export class TasksListComponent implements OnInit {
       data: {
         task,
       },
-
+        autoFocus: false,
+        maxHeight: '90vh',
+        maxWidth: '80vw',
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       this.getUploadResponse($e)
