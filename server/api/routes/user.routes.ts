@@ -3,13 +3,7 @@ import { UserController } from '../controllers'
 import multer from 'multer';
 
 // Multer Middleware
-const upload = multer({
-  dest: '../../uploads',
-  filename: (req: Request, file: any, cb: any) => {
-    const ext = file.mimetype.split('/')[1]
-    cb(null, `user-${req.headers.authorization}-${Date.now()}.${ext}`)
-  },
-})
+var upload = multer({ dest: '../../uploads/' });
 
 // User Controller with all the functions
 const userController = new UserController()
@@ -49,7 +43,7 @@ routes.get('/team', userController.getTeam);
 
 routes.post(
   '/task-doc-upload',
-  upload.single('supporting_doc'),
+  upload.array('supporting_doc'),
   userController.taskSupportingDocUpload
 );
 

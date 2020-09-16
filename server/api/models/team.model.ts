@@ -92,10 +92,17 @@ const TeamSchema = new Schema({
           },
         }),
       ],
-      supporting_doc: [{
-        type: String,
-        data: Buffer,
-      }],
+      supporting_doc:
+        {
+          type: String,
+          data: Buffer,
+        },
+      supporting_docs: [
+        {
+          type: String,
+          data: Buffer,
+        },
+      ],
       experience_description: {
         type: String,
       },
