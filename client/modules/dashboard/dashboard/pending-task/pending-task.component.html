@@ -1,18 +1,76 @@
 <div class="row">
 
   <div class="col-md-12">
-    <h2 class="justify-content-center text-uppercase">Previous Task</h2>
-    <h3 class="justify-content-center text-uppercase">All Previous Tasks</h3>
-  </div>
-  <div class="col-md-3" *ngFor="let item of taskData">
-    <div class="card text-left">
-      <div class="card-body">
-        <p class="card-text medium-text">{{item.task_description}}</p>
-        <hr>
-        <span class="text-muted">{{item.type}}</span>
-        <button  mat-raised-button class="pull-right text-uppercase"
-          (click)="openResponseViewDialog(item)" color="accent">Details</button>
-      </div>
-    </div>
+    <h1 class="justify-content-center text-uppercase text-center tracking-in-expand-fwd"><b>Previous Task</b></h1>
+    <h3 class="justify-content-center text-uppercase text-center tracking-in-expand-fwd">All Previous Tasks</h3>
   </div>
 </div>
+
+
+<div id="timeline">
+
+  <div *ngFor="let item of taskData; index as i; even as isEven; odd as isOdd">
+
+    <div class="row timeline-movement" *ngIf="isEven">
+
+      <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">{{item.week}}</span>
+        <span class="timeline-balloon-date-month">Week</span>
+      </div>
+
+
+      <div class="col-sm-6  timeline-item" >
+        <div class="row">
+          <div class="col-sm-11">
+            <div class="timeline-panel credits">
+              <ul class="timeline-panel-ul">
+                <li><span class="causale text-uppercase">{{item.card_theme}} </span></li>
+                <li><span class="causale">Dice: {{item.dice_number}} </span> </li>
+                <hr>
+                <span style="font-weight: bold;" class="text-muted pull-left">{{item.type}}</span>
+                <button mat-raised-button class="pull-right text-uppercase" (click)="openResponseViewDialog(item)"
+                  color="accent">Details</button>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!--due -->
+
+    <div class="row timeline-movement" *ngIf="isOdd">
+
+
+      <div class="timeline-badge">
+        <span class="timeline-balloon-date-day"></span>
+        <span class="timeline-balloon-date-month"></span>
+      </div>
+
+      <div class="offset-md-7 col-md-5  timeline-item">
+        <div class="row">
+          <div class="col-sm-offset-1 col-sm-11">
+            <div class="timeline-panel debits">
+              <ul class="timeline-panel-ul">
+                  <li><span class="causale text-uppercase">{{item.card_theme}} </span></li>
+                  <li><span class="causale">Dice: {{item.dice_number}} </span> </li>
+                <hr>
+                <span style="font-weight: bold;" class="text-muted pull-left">{{item.type}}</span>
+                <button mat-raised-button class="pull-right text-uppercase" (click)="openResponseViewDialog(item)"
+                  color="accent">Details</button>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!---->

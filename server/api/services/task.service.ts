@@ -77,7 +77,7 @@ export class TaskService {
                    if(element.is_active === 'inactive'){
                       await Task.findOne({
                         _id: element._task,
-                      }).then((task) => {
+                      }).populate('_card').then((task) => {
                           if (task) {
                             let newEle: any = {};
                             newEle.status = element['status'];
@@ -88,6 +88,8 @@ export class TaskService {
                             newEle.task_description = task['description'];
                             newEle.task_type = task['type'];
                             newEle.week = element['week'];
+                            newEle.card_theme = task['_card']['theme'];
+                            newEle.dice_number = task['_card']['dice_number'];
                             newEle.type = 'team';
                             newEle.reason = element['status'] == 'rejected' ? element['reason'] : '';
                             taskData.push(newEle);
@@ -106,7 +108,7 @@ export class TaskService {
                             await Task
                               .findOne({
                                 _id: element._task,
-                              }).then((task) => {
+                              }).populate('_card').then((task) => {
                                
                                 if (task) {
                                   let newEle: any = {};
@@ -121,6 +123,8 @@ export class TaskService {
                                       ' ' +
                                       user['last_name'];
                                   newEle.task_type = task['type'];
+                                  newEle.card_theme = task['_card']['theme'];
+                                  newEle.dice_number = task['_card']['dice_number'];
                                   newEle.week = element['week'];
                                   newEle.type = 'single';
                                   taskData.push(newEle);
