@@ -1,23 +1,56 @@
-<h2 class="heading text-uppercase" style="text-align: center;">TASK BY {{data?.team?.team_name}}</h2>
+<!-- <h2 class="heading text-uppercase" style="text-align: center;">TASK BY {{data?.team?.team_name}}</h2> -->
 <mat-dialog-content class="mat-typography">
+  <div class="container-fluidx task-detail-head" style="padding-left: 0px;">
+      <div class="row">
+        <div class="col-md-6">
+          TASK BY {{data?.team?.team_name}}
+        </div>
+        <div class="col-md-6">
+          {{data?.team?.team_task_type}}
+        </div>
+      </div>
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="card tabx">
+        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="team-task-tab" data-toggle="pill" href="#team-task" role="tab"
+              aria-controls="pills-home" aria-selected="true"><h2>Community Task</h2></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
+              id="pills-{{item.user_name}}-tab" data-toggle="pill" href="#pills-{{item.user_name}}" role="tab"
+              [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}}</h2></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-4">
+      <h2 class="text-center form-h">Submit Response</h2>
+    </div> -->
+  </div>
+</div>
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
       <div class="row">
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
           <div class="card tabx">
             <ul class="nav nav-tabs" id="pills-tab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="team-task-tab" data-toggle="pill" href="#team-task" role="tab"
-                  aria-controls="pills-home" aria-selected="true"><b>Community Task</b></a>
+                  aria-controls="pills-home" aria-selected="true"><h2>Community Task</h2></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
                   id="pills-{{item.user_name}}-tab" data-toggle="pill" href="#pills-{{item.user_name}}" role="tab"
-                  [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><b>{{item.user_name}}</b></a>
+                  [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}}</h2></a>
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-12">
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="team-task" role="tabpanel" aria-labelledby="team-task-tab">
@@ -224,7 +257,7 @@
 
     </div>
     <div class="col-md-4">
-      <h2 class="text-center form-h"><b>Submit Response</b></h2>
+      <h2 class="text-center form-h">Submit Response</h2>
 
       <div class="card shadow">
         <form [formGroup]="inputForm">
@@ -251,4 +284,5 @@
       </div>
     </div>
   </div>
+</div>
 </mat-dialog-content>

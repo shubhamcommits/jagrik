@@ -133,3 +133,19 @@
 .nav-tabs {
   border-bottom: 1px solid #fbc345;
 }
+
+.task-detail-head{
+  background-color: #cc4266;
+  // margin: 0px !important;
+}
+.container-fluid.task-detail-head{
+  padding-left: 0px !important;
+
+}
+.container-fluidx, .container-lg, .container-md, .container-sm, .container-xl{
+  width: 100%;
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
