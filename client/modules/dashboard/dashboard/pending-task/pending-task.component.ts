@@ -5,6 +5,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { MatDialog } from '@angular/material/dialog';
 import { BonusTaskService } from '../shared/services/bonustask.service';
 import { PendingTaskViewModalComponent } from './pending-task-view-modal/pending-task-view-modal.component'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pending-task-view',
   templateUrl: './pending-task.component.html',
@@ -31,7 +32,8 @@ export class PendingTaskViewComponent implements OnInit {
     private utilityService: UtilityService,
     private storageService: StorageService,
     public dialog: MatDialog,
-    private bonusTaskService: BonusTaskService
+    private bonusTaskService: BonusTaskService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,14 +42,17 @@ export class PendingTaskViewComponent implements OnInit {
   }
 
   openResponseViewDialog(task: any) {
-    let dialogRef = this.dialog.open(PendingTaskViewModalComponent, {
-      data: {
-        task,
-      },
-      autoFocus: false,
-      maxHeight: '90vh',
-      minWidth: '40vw',
-    });
+    // let dialogRef = this.dialog.open(PendingTaskViewModalComponent, {
+    //   data: {
+    //     task,
+    //   },
+    //   autoFocus: false,
+    //   maxHeight: '90vh',
+    //   minWidth: '40vw',
+    // });
+
+    this.storageService.setLocalData('team_task_detail', JSON.stringify(task));
+    this.router.navigate(['dashboard/task-detail/' + this.storageService.getLocalData('userData').teams[0]._id]);
   }
 
   getAllTask(teamId) {
@@ -56,16 +61,23 @@ export class PendingTaskViewComponent implements OnInit {
       .then((res) => {
         console.log(res['tasks']);
         this.taskData = res['tasks'];
-        this.taskData.forEach(element => {
-          if (this.teamData[element['week']] !== undefined) {
-            this.teamData[element['week']].push(element)
-          } else {
-            this.teamData[element['week']] = []
-            this.teamData[element['week']].push(element)
-          }
-        });
+        for (let [key, value] of Object.entries(this.taskData)) {
+          let data = value['team']
+          data['team_members_tasks'] = value['user']
+
+          this.teamData.push(data)
+
+        }
+        // this.taskData.forEach(element => {
+        //   if (this.teamData[element['week']] !== undefined) {
+        //     this.teamData[element['week']].push(element)
+        //   } else {
+        //     this.teamData[element['week']] = []
+        //     this.teamData[element['week']].push(element)
+        //   }
+        // });
       })
-      .catch(() => {
+      .catch((error) => {
         // Fire error toast
         this.utilityService.fireToast(
           'error',

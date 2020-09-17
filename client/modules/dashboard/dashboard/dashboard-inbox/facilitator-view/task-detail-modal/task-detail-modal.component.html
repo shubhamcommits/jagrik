@@ -4,6 +4,8 @@
       <div class="row">
         <div class="col-md-6">
           TASK BY {{data?.team?.team_name}}
+          Card Theme : {{data?.team?.card_theme}}
+          Dice No : {{data?.team?.dice_number}}
         </div>
         <div class="col-md-6">
           {{data?.team?.team_task_type}}
@@ -20,37 +22,21 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
-              id="pills-{{item.user_name}}-tab" data-toggle="pill" href="#pills-{{item.user_name}}" role="tab"
-              [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}}</h2></a>
+              id="pills-{{removeSpace(item.user_name)}}-tab" data-toggle="pill"
+              href="#pills-{{removeSpace(item.user_name)}}"
+              role="tab"
+              [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}} <img
+                  src="data:image/png;base64,{{item.user_profile}}" style="width: 40px; height: 40px;" /></h2></a>
           </li>
         </ul>
       </div>
     </div>
-
-    <!-- <div class="col-md-4">
-      <h2 class="text-center form-h">Submit Response</h2>
-    </div> -->
   </div>
 </div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-{{userData.role === 'student' ? '12' : '8'}}">
       <div class="row">
-        <!-- <div class="col-md-12">
-          <div class="card tabx">
-            <ul class="nav nav-tabs" id="pills-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="team-task-tab" data-toggle="pill" href="#team-task" role="tab"
-                  aria-controls="pills-home" aria-selected="true"><h2>Community Task</h2></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
-                  id="pills-{{item.user_name}}-tab" data-toggle="pill" href="#pills-{{item.user_name}}" role="tab"
-                  [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}}</h2></a>
-              </li>
-            </ul>
-          </div>
-        </div> -->
         <div class="col-md-12">
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="team-task" role="tabpanel" aria-labelledby="team-task-tab">
@@ -66,16 +52,12 @@
                       class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
 
                   <hr>
-                  <b style="margin-right: 10%;">Task Description:</b>
-                  <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
-                  <p class="card-text text-right">{{data?.team?.team_task_points}} Points <span
-                      class="ml-3 task-level {{data?.team?.team_task_type}}"></span><span
-                      class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
-
-                  <hr>
                   <span>
-                    <p><b style="margin-right: 7%; text-align: left;">User Response:</b>
-                      {{data?.team?.team_task_explaination}}</p>
+                    <h4><b style="margin-right: 7%; text-align: left;">Team Response:</b></h4>
+                    <div *ngFor="let item of data?.team?.team_task_ques_review">
+                      <p><strong>Q: {{item.question}}</strong></p>
+                      <p>A: {{item.answer}}</p>
+                    </div>
                   </span>
                   <hr>
                   <div class="container">
@@ -83,42 +65,16 @@
                       <div class="col-md-12">
 
                         <div id="demo" class="carousel slide" data-ride="carousel">
-
-
-
                           <!-- The slideshow -->
                           <br><br>
                           <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div *ngFor="let item of data?.team?.team_task_supporting_docs; let i = index"
+                              class="carousel-item {{i === 0 ? 'active' : ''}}">
                               <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" width="1500"
+                                src="data:image/png;base64,{{item}}" width="1500"
                                 height="600">
                             </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
+
 
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -134,29 +90,23 @@
                   </div>
 
                   <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
-                    alt="Card image cap">
-                  <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
-                    alt="Card image cap">
-                  <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
-                    alt="Card image cap">
-                  <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}"
-                    alt="Card image cap">
+                  <div *ngFor="let item of data?.team?.team_task_supporting_docs">
+                     <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
+                       width="20%" src="data:image/png;base64,{{item}}"
+                       alt="Card image cap">
+                     <hr>
+                  </div>
+
+
 
                 </div>
               </div>
 
             </div>
 
-            <div *ngFor="let item of data?.team?.team_members_tasks" id="pills-{{item.user_name}}" role="tabpanel"
-              [attr.aria-labelledby]="'pills-'+item.user_name+'-tab'" class="tab-pane fade">
+            <div *ngFor="let item of data?.team?.team_members_tasks" id="pills-{{removeSpace(item.user_name)}}"
+              role="tabpanel"
+              [attr.aria-labelledby]="'pills-'+removeSpace(item.user_name)+'-tab'" class="tab-pane fade">
 
               <div class="card shadow" style="margin-top: 20px;" *ngFor="let item of data?.team?.team_members_tasks">
                 <div class="card-body">
@@ -171,15 +121,13 @@
                       class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
 
                   <hr>
-                  <b style="margin-right: 10%;">Task Description:</b>
-                  <h4 class="card-title">{{item.user_task_description}}</h4>
-                  <p class="card-text text-right">{{item.user_task_points}} Points <span
-                      class="ml-3 task-level {{item.user_task_type}}"></span><span
-                      class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
-
-                  <hr>
-                  <p class="card-text"><b style="margin-right: 7%; text-align: left;">User Response:</b>
-                    {{item.user_task_explaination}}</p>
+                    <span>
+                      <h4><b style="margin-right: 7%; text-align: left;">User Response:</b></h4>
+                      <div *ngFor="let item1 of item.user_task_ques_review">
+                        <p><strong>Q: {{item1.question}}</strong></p>
+                        <p>A: {{item1.answer}}</p>
+                      </div>
+                    </span>
                   <hr>
                   <div class="container">
                     <div class="row">
@@ -192,36 +140,11 @@
                           <!-- The slideshow -->
                           <br><br>
                           <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="center-block"
-                                src="data:image/png;base64,{{data?.team?.team_task_supporting_doc}}" alt="" width="1500"
-                                height="600">
-                            </div>
+                             <div *ngFor="let item1 of item.user_task_supporting_docs; let i = index"
+                               class="carousel-item {{i === 0 ? 'active' : ''}}">
+                               <img class="center-block" src="data:image/png;base64,{{item1}}" width="1500"
+                                 height="600">
+                             </div>
 
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#demo2" data-slide="prev">
@@ -235,19 +158,12 @@
                       </div>
                     </div>
                   </div>
-<hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{item.user_task_supporting_doc}}" alt="Card image cap">
                   <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{item.user_task_supporting_doc}}" alt="Card image cap">
-                  <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{item.user_task_supporting_doc}}" alt="Card image cap">
-                  <hr>
-                  <b style="margin-right: 10%; text-align: left;">Image:</b> <img class="img-thumbnail" height="20%"
-                    width="20%" src="data:image/png;base64,{{item.user_task_supporting_doc}}" alt="Card image cap">
-
+                   <div *ngFor="let item1 of item.user_task_supporting_docs">
+                     <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
+                       width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
+                     <hr>
+                   </div>
                 </div>
               </div>
             </div>
@@ -256,7 +172,7 @@
       </div>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" [style]="userData.role === 'student' ? 'display:none' : ''">
       <h2 class="text-center form-h">Submit Response</h2>
 
       <div class="card shadow">

@@ -70,7 +70,7 @@ export class TaskService {
              let tasks:any = await Team.findOne({
                _id: teamId,
              });
-             let taskData = []
+             let taskData = {}
              if (tasks && tasks.tasks.length > 0) {
                  
                 await tasks.tasks.forEach(async (element) => {
@@ -85,14 +85,20 @@ export class TaskService {
                             newEle.supporting_doc = element['supporting_doc'];
                             newEle.task_title = task['title'];
                             newEle.team_name = tasks['team_name'];
-                            newEle.task_description = task['description'];
-                            newEle.task_type = task['type'];
+                            newEle.team_task_description = task['description'];
+                            newEle.team_task_type = task['type'];
+                            newEle.team_task_points = task['points'];
                             newEle.week = element['week'];
                             newEle.card_theme = task['_card']['theme'];
                             newEle.dice_number = task['_card']['dice_number'];
                             newEle.type = 'team';
+                            newEle.team_task_supporting_docs = element['supporting_docs'];
+                            newEle.team_task_ques_review = element['ques_review'];
                             newEle.reason = element['status'] == 'rejected' ? element['reason'] : '';
-                            taskData.push(newEle);
+                          
+                            let team = { 'team': newEle}
+                            
+                            taskData[element['week']] = team;
                           }
                         });
                      }       
@@ -110,24 +116,32 @@ export class TaskService {
                                 _id: element._task,
                               }).populate('_card').then((task) => {
                                
-                                if (task) {
+                                if (task && taskData[element['week']]) {
                                   let newEle: any = {};
                                   newEle.status = element['status'];
                                   newEle.description = element['description'];
                                   newEle.supporting_doc =
                                     element['supporting_doc'];
                                   newEle.task_title = task['title'];
-                                    newEle.task_description = task['description'];
-                                    newEle.user_name =
+                                  newEle.user_task_description = task['description'];
+                                  newEle.user_name =
                                       user['first_name'] +
                                       ' ' +
                                       user['last_name'];
-                                  newEle.task_type = task['type'];
+                                  newEle.user_profile =
+                                    user['profile_pic'];
+                                  newEle.user_task_points = task['points'];
+                                  newEle.user_task_type = task['type'];
                                   newEle.card_theme = task['_card']['theme'];
                                   newEle.dice_number = task['_card']['dice_number'];
                                   newEle.week = element['week'];
+                                  newEle.user_task_supporting_docs = element['supporting_docs'];
+                                  newEle.user_task_ques_review = element['ques_review'];
                                   newEle.type = 'single';
-                                  taskData.push(newEle);
+                                  if (!taskData[element['week']]['user']) {
+                                    taskData[element['week']]['user'] = []
+                                  }
+                                  taskData[element['week']]['user'].push(newEle);
                                 }
                               });
                              

@@ -27,11 +27,10 @@ export class TaskDetailModalComponent implements OnInit {
   public data: any = [];
   public comment: string = '';
   public bonus_point: any = '';
+  public userData:any = []
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
-    console.log('====================================');
-    console.log(this.data.team);
-    console.log('====================================');
+    this.userData = this.storageService.getLocalData('userData');
     this.inputForm = this.formBuilder.group({
       comment: new FormControl(null, [
         Validators.required,
@@ -79,5 +78,9 @@ export class TaskDetailModalComponent implements OnInit {
       dialogRef.close();
     });
     this.getResonseData.emit('error');
+  }
+
+  removeSpace(text) {
+    return text.split(/\s/).join('')
   }
 }

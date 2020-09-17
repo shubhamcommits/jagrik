@@ -826,7 +826,7 @@ export class ClassService {
                          if (selfTasks[n].bonus_task) {
                            indTask.push({
                              user_id: self._id,
-                             user_name: self.full_name,
+                             user_name: self.first_name + ' ' + self.last_name,
                              user_email: self.email,
                              user_profile: self.profile_pic,
                              user_taskId: selfTasks[n]._task,
@@ -849,7 +849,7 @@ export class ClassService {
                          } else {
                            indTask.push({
                              user_id: self._id,
-                             user_name: self.full_name,
+                             user_name: self.first_name + ' ' + self.last_name,
                              user_email: self.email,
                              user_profile: self.profile_pic,
                              user_taskId: selfTasks[n]._task,
@@ -859,6 +859,10 @@ export class ClassService {
                              user_task_type: IndividualTask.type,
                              user_task_supporting_doc:
                                selfTasks[n].supporting_doc,
+                             user_task_supporting_docs:
+                               selfTasks[n].supporting_docs,
+                             user_task_ques_review:
+                               selfTasks[n].ques_review,
                              user_task_explaination: selfTasks[n].description,
                              user_task_assigned_bonus_task:
                                selfTasks[n].bonus_task,
@@ -899,8 +903,9 @@ export class ClassService {
                        team_task_description: TeamTask.description,
                        team_task_points: TeamTask.points,
                        team_task_type: TeamTask.type,
-                       team_task_supporting_doc:
-                         completedTeamTask.supporting_doc,
+                       team_task_supporting_doc: completedTeamTask.supporting_doc,
+                       team_task_supporting_docs: completedTeamTask.supporting_docs,
+                       team_task_ques_review: completedTeamTask.ques_review,
                        team_task_explaination: completedTeamTask.description,
                        team_card_theme: CardDetail.theme,
                        team_card_dice_number: CardDetail.dice_number,
