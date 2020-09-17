@@ -34,7 +34,7 @@
             font-size: 80px;
             font-weight: 900;
             line-height: 1;">You Selected:<br></h1>
-            <h1 id="hideMex" class="w3-center w3-animate-right text-uppercase" style="color: #cd4266;
+            <h1 class="w3-center w3-animate-right text-uppercase bounce-in-top" style="color: #cd4266;
             font-size: 100px;
             font-weight: 900;
             line-height: 1;">Fundamental<br> Rights</h1>
@@ -48,7 +48,7 @@
             font-size: 80px;
             font-weight: 900;
             line-height: 1;">You Selected:<br></h1>
-            <h1 id="hideMex" class="w3-center w3-animate-right text-uppercase" style="color: #f3b44f;
+            <h1 class="w3-center w3-animate-right text-uppercase bounce-in-top" style="color: #f3b44f;
             font-size: 100px;
             font-weight: 900;
             line-height: 1;">Fundamental<br> Duties</h1>
@@ -65,12 +65,10 @@
     <img *ngIf="gifName && showAssignCard" src="{{gifName}}" style="width:100px;height:100px">
 
     <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental rights'" 
-      class="btn btn-dice_pink btn-md"
-      (click)="this.getDiceNumber()"></button>
+      class="btn btn-dice_pink btn-md" (click)="this.getDiceNumber()" ></button>
 
     <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental duties'"
-      class="btn btn-dice_yellow btn-md"
-      (click)="this.getDiceNumber()"></button>
+      class="btn btn-dice_yellow btn-md" (click)="this.getDiceNumber()"></button>
 
 </div>
 

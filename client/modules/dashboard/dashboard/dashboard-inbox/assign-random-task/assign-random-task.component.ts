@@ -3,6 +3,7 @@ import { StorageService } from 'src/shared/services/storage-service/storage.serv
 import { TeamService } from '../../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 
+
 @Component({
   selector: 'app-assign-random-task',
   templateUrl: './assign-random-task.component.html',
@@ -55,6 +56,7 @@ export class AssignRandomTaskComponent implements OnInit {
       this.assignCard()
     }, 3000);
   }
+
 
   assignCard() {
     return new Promise((resolve) => {
