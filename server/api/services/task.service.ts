@@ -89,8 +89,10 @@ export class TaskService {
                             newEle.team_task_type = task['type'];
                             newEle.team_task_points = task['points'];
                             newEle.week = element['week'];
-                            newEle.card_theme = task['_card']['theme'];
-                            newEle.dice_number = task['_card']['dice_number'];
+                            newEle.team_card_theme = task['_card']['theme'];
+                            newEle.team_card_dice_number = task['_card']['dice_number']
+                              newEle.team_card_description =
+                                task['_card']['description'];
                             newEle.type = 'team';
                             newEle.team_task_supporting_docs = element['supporting_docs'];
                             newEle.team_task_ques_review = element['ques_review'];
