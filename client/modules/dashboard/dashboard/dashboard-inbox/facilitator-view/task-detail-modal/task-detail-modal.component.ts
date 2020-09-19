@@ -6,11 +6,16 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { TaskRejectModalComponent } from '../task-reject-modal/task-reject-modal.component';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { Router } from '@angular/router';
+import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
 @Component({
   selector: 'app-task-detail-modal',
   templateUrl: './task-detail-modal.component.html',
   styleUrls: ['./task-detail-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{
+    provide: MAT_STEPPER_GLOBAL_OPTIONS, useValue: { displayDefaultIndicatorType: false }
+  }]
 })
 export class TaskDetailModalComponent implements OnInit {
   constructor(
@@ -21,7 +26,8 @@ export class TaskDetailModalComponent implements OnInit {
     public storageService: StorageService,
     public router: Router
   ) {}
-
+  formGroup = new FormGroup({ secondCtrl: new FormControl(''), })
+  
   @Output() public getResonseData = new EventEmitter<string>();
   inputForm: FormGroup;
   public data: any = [];

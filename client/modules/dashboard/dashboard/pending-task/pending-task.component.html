@@ -46,8 +46,8 @@
 
 
       <div class="timeline-badge">
-        <span class="timeline-balloon-date-day"></span>
-        <span class="timeline-balloon-date-month"></span>
+        <span class="timeline-balloon-date-day">{{item.week}}</span>
+        <span class="timeline-balloon-date-month">Week</span>
       </div>
 
       <div class="offset-md-7 col-md-5  timeline-item">
@@ -55,8 +55,9 @@
           <div class="col-sm-offset-1 col-sm-11">
             <div class="timeline-panel debits">
               <ul class="timeline-panel-ul">
-                  <li><span class="causale text-uppercase">{{item.card_theme}} </span></li>
-                  <li><span class="causale">Dice: {{item.dice_number}} </span> </li>
+                  <li><span class="causale text-uppercase">{{item.team_card_theme}} </span></li>
+                  <li><span class="causale text-uppercase">{{item.description}} </span></li>
+                  <li><span class="causale">Dice: {{item.team_card_dice_number}} </span> </li>
                 <hr>
                 <span style="font-weight: bold;" class="text-muted pull-left">{{item.type}}</span>
                 <button mat-raised-button class="pull-right text-uppercase" (click)="openResponseViewDialog(item)"

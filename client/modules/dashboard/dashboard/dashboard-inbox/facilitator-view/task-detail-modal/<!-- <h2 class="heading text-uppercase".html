@@ -1,0 +1,268 @@
+<!-- <h2 class="heading text-uppercase" style="text-align: center;">TASK BY {{data?.team?.team_name}}</h2> -->
+<mat-dialog-content class="mat-typography">
+  <div class="container-fluidx task-detail-head" style="padding-left: 0px;">
+      <div class="row row-out">
+        <div class="col-md-3" >
+          <div class="row ">
+            <h1 style="color: white; font-size: 4rem;line-height: 1;">{{data?.team?.team_name}}</h1>
+          </div>
+          <div class="row ">
+              <div class="col-md-2" *ngFor="let item of data?.team?.team_members_tasks">
+                <div class="row d-flex justify-center">
+                  <img src="data:image/png;base64,{{item.user_profile}}" style="width: 40px; height: 40px;" />
+                </div>
+                <div class="row">
+                  <h2 style="color: white; font-size: 1.5rem;line-height: 1;">{{item.user_name}} </h2>
+                </div>
+              </div>
+            
+          </div>
+          Card Theme : {{data?.team?.team_card_theme}}
+          Dice No : {{data?.team?.team_card_dice_number}}
+          Description : {{data?.team?.team_card_description}}
+          {{data?.team?.team_task_type}}
+          <!-- <img src="data:image/png;base64,{{item.user_profile}}" style="width: 40px; height: 40px;" />
+          <p>{{item.user_name}} </p> -->
+        </div>
+        <div class="col-md-8">
+          <div class="clash-card barbarian">
+            <!--       <div class="clash-card__image clash-card__image--barbarian">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian.png" alt="barbarian" />
+                  </div> -->
+                  <div class="clash-card__level clash-card__level--barbarian">Card {{data?.team?.team_card_dice_number}}</div>
+                  <div class="clash-card__unit-name text-uppercase">{{data?.team?.team_card_theme}}</div>
+                  <div class="clash-card__unit-description">
+                    {{data?.team?.team_card_description}}
+                  </div>
+            
+                  <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                    <div class="one-third">
+                      <div class="stat text-uppercase">{{data?.team?.team_task_type}}</div>
+                      <div class="stat-value">Type</div>
+                    </div>
+            
+                    <div class="one-third">
+                      <div class="stat">{{data?.team?.team_task_points}}</div>
+                      <div class="stat-value">Points</div>
+                    </div>
+            
+            <!--         <div class="one-third no-border">
+                      <div class="stat">150</div>
+                      <div class="stat-value">Cost</div>
+                    </div> -->
+            
+                  </div>
+            
+                </div>
+        </div>
+      </div>
+  <!-- <div class="row row-out">
+
+    <div class="col-md-8">
+      <div class="card tabx">
+        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="team-task-tab" data-toggle="pill" href="#team-task" role="tab"
+              aria-controls="pills-home" aria-selected="true"><h2>Community Task</h2></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngFor="let item of data?.team?.team_members_tasks"
+              id="pills-{{removeSpace(item.user_name)}}-tab" data-toggle="pill"
+              href="#pills-{{removeSpace(item.user_name)}}"
+              role="tab"
+              [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>{{item.user_name}} <img
+                  src="data:image/png;base64,{{item.user_profile}}" style="width: 40px; height: 40px;" /></h2></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+  <div class="steps-form">
+    <div class="steps-row setup-panel">
+      <div class="steps-step">
+        <a class="btn btn-indigo btn-circle" id="team-task-tab" type="button" data-toggle="pill" href="#team-task"
+              aria-controls="pills-home" aria-selected="true"><h2>1</h2></a>
+        <!-- <a href="#step-9" type="button" >1</a> -->
+        <p>Comm Task</p>
+      </div>
+      <div class="steps-step">
+        <a *ngFor="let item of data?.team?.team_members_tasks" id="pills-{{removeSpace(item.user_name)}}-tab" data-toggle="pill"
+        href="#pills-{{removeSpace(item.user_name)}}" type="button" class="btn btn-default btn-circle" [attr.aria-controls]="'pills-'+item.user_name" aria-selected="false"><h2>2</h2></a>
+        <p>Member 1</p>
+      </div>
+      <div class="steps-step">
+        <a href="#step-11" type="button" class="btn btn-default btn-circle"><h2>3</h2></a>
+        <p>Submit Response</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-{{userData.role === 'student' ? '12' : '8'}}">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="team-task" role="tabpanel" aria-labelledby="team-task-tab">
+              <div class="card shadow" style="margin-top: 40px;">
+                <div class="card-body">
+                  <b style="margin-right: 10%;">Type:</b> <button mat-raised-button class="text-uppercase m-align"
+                    color="accent">Community Task</button>
+                  <hr>
+                  <b style="margin-right: 10%;">Task Description:</b>
+                  <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
+                  <p class="card-text text-right">{{data?.team?.team_task_points}} Points <span
+                      class="ml-3 task-level {{data?.team?.team_task_type}}"></span><span
+                      class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span></p>
+
+                  <hr>
+                  <span>
+                    <h4><b style="margin-right: 7%; text-align: left;">Team Response:</b></h4>
+                    <div *ngFor="let item of data?.team?.team_task_ques_review">
+                      <p><strong>Q: {{item.question}}</strong></p>
+                      <p>A: {{item.answer}}</p>
+                    </div>
+                  </span>
+                  <hr>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+
+                        <div id="demo" class="carousel slide" data-ride="carousel">
+                          <!-- The slideshow -->
+                          <br><br>
+                          <div class="carousel-inner">
+                            <div *ngFor="let item of data?.team?.team_task_supporting_docs; let i = index"
+                              class="carousel-item {{i === 0 ? 'active' : ''}}">
+                              <img class="center-block"
+                                src="data:image/png;base64,{{item}}" width="1500"
+                                height="600">
+                            </div>
+
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                              <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                              <span class="carousel-control-next-icon"></span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr>
+                  <div *ngFor="let item of data?.team?.team_task_supporting_docs">
+                     <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
+                       width="20%" src="data:image/png;base64,{{item}}"
+                       alt="Card image cap">
+                     <hr>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngFor="let item of data?.team?.team_members_tasks" id="pills-{{removeSpace(item.user_name)}}"
+              role="tabpanel"
+              [attr.aria-labelledby]="'pills-'+removeSpace(item.user_name)+'-tab'" class="tab-pane fade">
+
+              <div class="card shadow" style="margin-top: 20px;" *ngFor="let item of data?.team?.team_members_tasks">
+                <div class="card-body">
+                  <b style="margin-right: 10%;">Type:</b><button mat-raised-button class="text-uppercase m-align"
+                    color="accent">Self Task</button>
+
+                  <hr>
+                  <b style="margin-right: 10%;">Task Description:</b>
+                  <h4 class="card-title">{{item.user_task_description}}</h4>
+                  <p class="card-text text-right">{{item.user_task_points}} Points <span
+                      class="ml-3 task-level {{item.user_task_type}}"></span><span
+                      class="pl-1 text-capitalize">{{item.user_task_type}}</span></p>
+
+                  <hr>
+                    <span>
+                      <h4><b style="margin-right: 7%; text-align: left;">User Response:</b></h4>
+                      <div *ngFor="let item1 of item.user_task_ques_review">
+                        <p><strong>Q: {{item1.question}}</strong></p>
+                        <p>A: {{item1.answer}}</p>
+                      </div>
+                    </span>
+                  <hr>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+
+                        <div id="demo2" class="carousel slide" data-ride="carousel">
+
+
+
+                          <!-- The slideshow -->
+                          <br><br>
+                          <div class="carousel-inner">
+                             <div *ngFor="let item1 of item.user_task_supporting_docs; let i = index"
+                               class="carousel-item {{i === 0 ? 'active' : ''}}">
+                               <img class="center-block" src="data:image/png;base64,{{item1}}" width="1500"
+                                 height="600">
+                             </div>
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+                              <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo2" data-slide="next">
+                              <span class="carousel-control-next-icon"></span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                   <div *ngFor="let item1 of item.user_task_supporting_docs">
+                     <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
+                       width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
+                     <hr>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4" [style]="userData.role === 'student' ? 'display:none' : ''">
+      <h2 class="text-center form-h">Submit Response</h2>
+
+      <div class="card shadow">
+        <form [formGroup]="inputForm">
+          <div class="card-body">
+            <div class="form-group">
+              <label for=""><b>Comments</b></label>
+              <textarea class="form-control" formControlName="comment" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bonus_point"><b>Bonus Point</b></label>
+              <input type="number" class="form-control" formControlName="bonus_point" placeholder="Bonus Point">
+            </div>
+            <div class="form-group" style="padding-top: 20px;">
+              <mat-dialog-actions>
+                <div class="text-center">
+                  <button class="btn-reject" style="margin-right: 5px;" mat-button
+                    (click)="rejectTask()">Reject</button>
+                  <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button>
+                </div>
+              </mat-dialog-actions>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</mat-dialog-content>
