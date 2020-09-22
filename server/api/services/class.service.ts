@@ -1022,7 +1022,22 @@ export class ClassService {
              if (team_tasks && team_tasks.length > 0) {
                for (let j in team_tasks) {
                  teamTaskCompleted = team_tasks[j].status;
-                 taskStatus = team_tasks[j].status === 'complete' ? 'Waiting for approval' : (team_tasks[j].is_active === false ? 'Pending' : 'Completed');
+                 if (
+                   team_tasks[j].status === 'complete' &&
+                   team_tasks[j].is_active === 'active'
+                 ) {
+                   taskStatus = 'Waiting for approval';
+                 } else if (
+                   team_tasks[j].status === 'complete' &&
+                   team_tasks[j].is_active === 'inactive'
+                 ) {
+                   taskStatus = 'Completed';
+                 } else if (team_tasks[j].status === 'to do') {
+                   taskStatus = 'Pending';
+                 } else if (team_tasks[j].status === 'rejected') {
+                   taskStatus = 'Rejected';
+                 }
+                  
                }
              }
 

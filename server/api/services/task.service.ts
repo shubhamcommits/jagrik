@@ -94,6 +94,22 @@ export class TaskService {
                               newEle.team_card_description =
                                 task['_card']['description'];
                             newEle.type = 'team';
+
+                             if (
+                               element['status'] === 'complete' &&
+                              element['is_active'] === 'active'
+                             ) {
+                               newEle.status_text = 'Waiting for approval';
+                             } else if (
+                               element['status'] === 'complete' &&
+                               element['is_active'] === 'inactive'
+                             ) {
+                               newEle.status_text = 'Completed';
+                             } else if (element['status'] === 'to do') {
+                               newEle.status_text = 'Pending';
+                             } else if (element['status'] === 'rejected') {
+                               newEle.status_text = 'Rejected';
+                             }
                             newEle.comment = element['comment'];
                             newEle.bonus_point = element['bonus_point'];
                             newEle.team_task_supporting_docs = element['supporting_docs'];

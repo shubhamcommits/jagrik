@@ -13,9 +13,12 @@
                             </div>
                             <div class="row">
                               <h2 style="color: white; font-size: 1.2rem;line-height: 1;">{{item.user_name}} </h2>
+
                             </div>
                       </div>
+
                 </div>
+                <p><strong>Status: </strong> {{data?.team?.status_text}}</p>
             </div>
             <div class="col-md-6" style="color: white;">
                   <div class="clash-card barbarian">
@@ -283,10 +286,16 @@
 
         <mat-step label="Verify" state="last">
           <div *ngIf="userData.role === 'student'" style="padding-top: 15px;padding-bottom: 15px;">
-            <strong>Comments</strong>
-            <p>{{data?.team?.comment}}</p>
-            <strong>Bonus Point</strong>
-            <p>{{data?.team?.bonus_point}}</p>
+            <div *ngIf="data?.team?.status !== 'rejected'">
+                  <strong>Comments</strong>
+                  <p>{{data?.team?.comment}}</p>
+                  <strong>Bonus Point</strong>
+                  <p>{{data?.team?.bonus_point}}</p>
+            </div>
+            <div *ngIf="data?.team?.status === 'rejected'">
+              <strong>Reason</strong>
+              <p>{{data?.team?.reason}}</p>
+            </div>
             <hr>
           </div>
           <form *ngIf="userData.role !== 'student'" [formGroup]="inputForm">

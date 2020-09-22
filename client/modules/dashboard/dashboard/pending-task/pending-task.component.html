@@ -24,10 +24,10 @@
           <div class="col-sm-11">
             <div class="timeline-panel credits">
               <ul class="timeline-panel-ul">
-                <li><span class="causale text-uppercase">{{item.card_theme}} </span></li>
-                <li><span class="causale">Dice: {{item.dice_number}} </span> </li>
+                <li><span class="causale text-uppercase">{{item.team_card_theme}} </span></li>
+                <li><span class="causale">Dice: {{item.team_card_dice_number}} </span> </li>
                 <hr>
-                <span style="font-weight: bold;" class="text-muted pull-left">{{item.type}}</span>
+                <span style="font-weight: bold;" class="text-muted pull-left">{{item.status_text}}</span>
                 <button mat-raised-button class="pull-right text-uppercase" (click)="openResponseViewDialog(item)"
                   color="accent">Details</button>
               </ul>
