@@ -1017,10 +1017,12 @@ export class ClassService {
              let team_tasks = team[0].tasks;
 
              var teamTaskCompleted = 'Incomplete';
+             var taskStatus = 'Pending';
 
              if (team_tasks && team_tasks.length > 0) {
                for (let j in team_tasks) {
                  teamTaskCompleted = team_tasks[j].status;
+                 taskStatus = team_tasks[j].status === 'complete' ? 'Waiting for approval' : (team_tasks[j].is_active === false ? 'Pending' : 'Completed');
                }
              }
 
@@ -1051,6 +1053,7 @@ export class ClassService {
              console.log(teamMemberTaskStatus);
              return {
                teamTask: teamTaskCompleted,
+               taskStatus: taskStatus,
                teamMembers: teamMemberTaskStatus,
              };
            } catch (err) {

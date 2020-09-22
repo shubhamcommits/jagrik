@@ -1,4 +1,4 @@
-<ng-container *ngIf="isdash== false">
+<ng-container *ngIf="isdash1 == false">
 <div class="container">
   <div class="row">
       <div class="col-md-4 col-xl-3">
@@ -351,12 +351,12 @@
 </ng-container>
 
 
-<ng-container *ngIf="isdash== true">
+<ng-container *ngIf="isdash1== true">
   <div class="d-flex justify-content-center" >
     <!-- {{myTime| date:'HH:mm'}} {{item.time}} -->
     <!-- //&& item.time > (myTime | date:'HH:mm') -->
-    <!-- <i class="material-icons pending-clock">watch_later</i> <b>Pending</b>  
-    <i class="material-icons complete-check">check_circle</i> <b>Complete</b> 
+    <!-- <i class="material-icons pending-clock">watch_later</i> <b>Pending</b>
+    <i class="material-icons complete-check">check_circle</i> <b>Complete</b>
      <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b>  -->
   <div class="card " style="width: 500px;border-radius: 0%;margin-bottom:20px;">
     <div class="row no-gutters ">
@@ -387,14 +387,14 @@
 
       <div class="col-md-12">
         <div class="row">
-          <h2>Task Status</h2>
+          <h2>Task Status: {{taskStatus?.taskStatus}}</h2>
           <hr>
         </div>
         <div class="row">
             <h3>Community Task: <i class="material-icons" ngClass="{{taskStatus?.teamTask == 'complete'  ? 'complete-check': 'pending-clock'}}">{{taskStatus?.teamTask == 'complete' ?'check_circle': 'watch_later' }}</i> <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b> </h3> <br>
         </div>
         <ng-container *ngFor="let item of taskStatus?.teamMembers">
-          <div class="row">    
+          <div class="row">
             <h3 class="text-capitalize">{{item.user_name}}'s Task:<i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3> <br>
           </div>
         </ng-container>
@@ -405,12 +405,12 @@
           <h1>Community Task Status</h1>
         </div>
         <div class="row">
-          
+
         </div>
       </div> -->
 
 
   </div>
-  
-   
+
+
 </ng-container>

@@ -19,11 +19,11 @@
             </div>
             <div class="col-md-6" style="color: white;">
                   <div class="clash-card barbarian">
-                      <div class="clash-card__level " 
+                      <div class="clash-card__level "
                       ngClass="{{data?.team?.team_card_theme === 'fundamental duties'  ? 'clash-card__level--barbarian': 'clash-card__level--barbarian-pink'}}" >Card {{data?.team?.team_card_dice_number}}</div>
                       <div class="clash-card__unit-name text-uppercase" style="line-height: 1;">{{data?.team?.team_card_theme}}</div>
                       <div class="clash-card__unit-description">{{data?.team?.team_card_description}}</div>
-                      <div class="clash-card__unit-stats clearfix" 
+                      <div class="clash-card__unit-stats clearfix"
                       ngClass="{{data?.team?.team_card_theme === 'fundamental duties'  ? 'clash-card__unit-stats--barbarian': 'clash-card__unit-stats--barbarian-pink'}}">
                             <div class="one-third">
                               <div class="stat text-uppercase">{{data?.team?.team_task_type}}</div>
@@ -40,7 +40,7 @@
       </div>
       <!-- <div class="col-md-5" [style]="userData.role === 'student' ? 'display:none' : ''">
         <h2 class="text-center form-h">Submit Response</h2>
-  
+
         <div class="card shadow">
           <form [formGroup]="inputForm">
             <div class="card-body">
@@ -76,19 +76,19 @@
           {{index +1}}
         </ng-template>
         -->
-      
+
         <!-- change default 'edit' icon -->
         <ng-template matStepperIcon="edit">
           <mat-icon>edit</mat-icon>
         </ng-template>
-      
+
         <!-- change default 'done' icon -->
-      <!-- 	
+      <!--
         <ng-template matStepperIcon="done">
           <mat-icon>done_all</mat-icon>
         </ng-template> -->
-       
-      
+
+
         <!-- changed step icons -->
         <ng-template matStepperIcon="home">
           <mat-icon>home</mat-icon>
@@ -99,18 +99,18 @@
         <ng-template matStepperIcon="last">
           <mat-icon>done_all</mat-icon>
         </ng-template>
-        
+
         <mat-step label="First Step" state="home">
           <b style="margin-right: 10%;">Type:</b> <button mat-raised-button class="text-uppercase m-align"
                           color="accent">Community Task</button>
                         <hr>
                         <b style="margin-right: 10%;">Task Description:</b>
                         <h4 class="card-title">{{data?.team?.team_task_description}}</h4>
-                        <p class="card-text text-right">{{data?.team?.team_task_points}} Points 
+                        <p class="card-text text-right">{{data?.team?.team_task_points}} Points
                             <span class="ml-3 task-level {{data?.team?.team_task_type}}"></span>
                             <span class="pl-1 text-capitalize">{{data?.team?.team_task_type}}</span>
                         </p>
-      
+
                         <hr>
                         <span>
                           <h4><b style="margin-right: 7%; text-align: left;">Team Response:</b></h4>
@@ -123,7 +123,7 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-md-12">
-      
+
                               <div id="demo" class="carousel slide" data-ride="carousel">
                                 <!-- The slideshow -->
                                 <br><br>
@@ -134,8 +134,8 @@
                                       src="data:image/png;base64,{{item}}" width="1500"
                                       height="600">
                                   </div>
-      
-      
+
+
                                   <!-- Left and right controls -->
                                   <a class="carousel-control-prev" href="#demo" data-slide="prev">
                                     <span class="carousel-control-prev-icon"></span>
@@ -148,7 +148,7 @@
                             </div>
                           </div>
                         </div>
-      
+
                         <hr>
                         <div *ngFor="let item of data?.team?.team_task_supporting_docs">
                            <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
@@ -156,11 +156,11 @@
                              alt="Card image cap">
                            <hr>
                         </div>
-          <div style="justify-content: center; display: flex;"> 
+          <div style="justify-content: center; display: flex;">
             <button mat-button matStepperNext>Continue</button>
           </div>
         </mat-step>
-      
+
 
   <!-- <ng-template *ngFor="let item of data?.team?.team_members_tasks"> -->
   <mat-step *ngFor="let item of data?.team?.team_members_tasks" label="{{item.user_name}}" state="form">
@@ -222,7 +222,7 @@
           width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
         <hr>
       </div> -->
-    
+
       <div id="image-slider" *ngFor="let item1 of item.user_task_supporting_docs;let i = index">
         <ul>
           <li ngClass="(i== 1) : 'active-img'">
@@ -239,31 +239,31 @@
           </li>
           <li>
             <img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" />
-          </li>	
+          </li>
           <li>
             <img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" />
-          </li>	
+          </li>
           <li>
             <img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" />
           </li>												 -->
         </ul>
-    
+
       </div>
-    
+
       <div id="thumbnail" *ngFor="let item1 of item.user_task_supporting_docs; let i = index">
         <ul>
           <li class="active"><img src="data:image/png;base64,{{item1}}" alt="" /></li>
           <!-- <li><img src="https://36.media.tumblr.com/0eb59d5c5bc5cde7737bb99d527247ca/tumblr_nxi8jzk8OS1rwfs76o1_540.jpg" alt="" /></li>
           <li><img src="https://40.media.tumblr.com/d4e261711a84707195d8fb9b0a94dccb/tumblr_o05avp3WSh1rn52wlo1_540.jpg" alt="" /></li>
-          <li><img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" /></li>		
-          <li><img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" /></li>	
-          <li><img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" /></li>	
+          <li><img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" /></li>
+          <li><img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" /></li>
+          <li><img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" /></li>
           <li><img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" /></li>						 -->
         </ul>
       </div>
-    
-    
-    
+
+
+
     </div>
 
     <!-- Image style 2 -->
@@ -272,17 +272,24 @@
          width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
        <hr>
      </div>
-                
-                <div style="justify-content: space-between; display: flex;"> 
+
+                <div style="justify-content: space-between; display: flex;">
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
             </mat-step>
-   
+
      <!-- </ng-template> -->
-      
+
         <mat-step label="Verify" state="last">
-          <form [formGroup]="inputForm">
+          <div *ngIf="userData.role === 'student'" style="padding-top: 15px;padding-bottom: 15px;">
+            <strong>Comments</strong>
+            <p>{{data?.team?.comment}}</p>
+            <strong>Bonus Point</strong>
+            <p>{{data?.team?.bonus_point}}</p>
+            <hr>
+          </div>
+          <form *ngIf="userData.role !== 'student'" [formGroup]="inputForm">
             <div class="card-body">
               <div class="form-group">
                 <label for=""><b>Comments</b></label>
@@ -303,12 +310,12 @@
               </div>
             </div>
           </form>
-          <div style="justify-content: space-between; display: flex;"> 
+          <div style="justify-content: space-between; display: flex;">
             <button mat-button matStepperPrevious>Back</button>
-            <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button>
+            <!-- <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button> -->
           </div>
         </mat-step>
-      
+
       </mat-horizontal-stepper>
     </div>
   </div>

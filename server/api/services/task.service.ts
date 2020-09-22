@@ -94,6 +94,8 @@ export class TaskService {
                               newEle.team_card_description =
                                 task['_card']['description'];
                             newEle.type = 'team';
+                            newEle.comment = element['comment'];
+                            newEle.bonus_point = element['bonus_point'];
                             newEle.team_task_supporting_docs = element['supporting_docs'];
                             newEle.team_task_ques_review = element['ques_review'];
                             newEle.reason = element['status'] == 'rejected' ? element['reason'] : '';

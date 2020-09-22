@@ -40,6 +40,7 @@ export class TasksListComponent implements OnInit {
   userData: any;
   substring = "inbox";
   isdash: boolean = false;
+  isdash1: boolean = true;
   taskStatus: any;
   individualTaskStatus: any;
   displayedColumns: string[] = ['Description',];
@@ -55,8 +56,8 @@ export class TasksListComponent implements OnInit {
     this.cardIdx = this.userData.tasks[this.userData['teams'][0]['tasks'].length - 1]._card;
     this.data = await this.getTaskList(this.cardIdx);
     console.log(this.cardIdx,'heilo', this.cardId);
-    
-    
+
+
     if (
       this.userData['teams'][0]['tasks'][
         this.userData['teams'][0]['tasks'].length - 1
@@ -66,7 +67,7 @@ export class TasksListComponent implements OnInit {
     }
     this.getTeamTaskStatus();
   }
-  
+
   openDialog(task: any) {
     let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
@@ -149,6 +150,9 @@ export class TasksListComponent implements OnInit {
             this.taskStatus.teamMembers.forEach((element) => {
               if (element.user_email == this.userData.email) {
                 this.individualTaskStatus = element.user_individual_task_status;
+              }
+              if (element.user_individual_task_status === false) {
+                this.isdash1 = !this.isdash1
               }
             });
           }
