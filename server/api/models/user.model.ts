@@ -233,6 +233,12 @@ const UserSchema = new Schema({
         type: Number,
         required: true,
       },
+      type: {
+        type: Schema.Types.String,
+        default: 'general',
+        enum: ['general', 'wild'],
+        required: true,
+      },
       status: {
         type: Schema.Types.String,
         default: 'to do',

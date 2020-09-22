@@ -158,6 +158,7 @@ export class TasksListComponent implements OnInit {
           }
         })
         .catch(() => {
+          this.isdash1 = !this.isdash1;
           // Fire error toast
           utilityService.fireToast(
             'error',

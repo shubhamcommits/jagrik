@@ -54,6 +54,15 @@ const TeamSchema = new Schema({
         ],
         required: true,
       },
+      type: {
+        type: Schema.Types.String,
+        default: 'general',
+        enum: [
+          'general',
+          'wild'
+        ],
+        required: true,
+      },
       is_active: {
         type: Schema.Types.String,
         default: 'active',
@@ -92,11 +101,10 @@ const TeamSchema = new Schema({
           },
         }),
       ],
-      supporting_doc:
-        {
-          type: String,
-          data: Buffer,
-        },
+      supporting_doc: {
+        type: String,
+        data: Buffer,
+      },
       supporting_docs: [
         {
           type: String,
