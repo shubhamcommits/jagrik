@@ -7,7 +7,12 @@ import { TaskRejectModalComponent } from '../task-reject-modal/task-reject-modal
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { Router } from '@angular/router';
 import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import * as $ from 'jquery';
+import * as sl from '../../../../../../src/assets/slider.js';
 
+
+declare var nextImage;
+declare var prevImage;
 @Component({
   selector: 'app-task-detail-modal',
   templateUrl: './task-detail-modal.component.html',
@@ -33,7 +38,8 @@ export class TaskDetailModalComponent implements OnInit {
   public data: any = [];
   public comment: string = '';
   public bonus_point: any = '';
-  public userData:any = []
+  public userData:any = [];
+  public confetti: boolean= false;
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
     this.userData = this.storageService.getLocalData('userData');
@@ -44,7 +50,26 @@ export class TaskDetailModalComponent implements OnInit {
       ]),
       bonus_point: new FormControl(0),
     });
+    $(function(){
+		
+      $('#thumbnail li').click(function(){
+        var thisIndex = $(this).index()
+          
+        if(thisIndex < $('#thumbnail li.active').index()){
+          prevImage(thisIndex, $(this).parents("#thumbnail").prev("#image-slider"));
+          // alert('previous image clicked');
+        }else if(thisIndex > $('#thumbnail li.active').index()){
+          nextImage(thisIndex, $(this).parents("#thumbnail").prev("#image-slider"));
+          // alert('next image clicked');
+        }
+          
+        $('#thumbnail li.active').removeClass('active');
+        $(this).addClass('active');
+    
+        });
+      });
   }
+  
 
   verifyTask() {
     return new Promise((resolve) => {

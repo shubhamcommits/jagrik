@@ -39,6 +39,7 @@ export class PendingTaskViewComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.storageService.getLocalData('userData').role;
     this.getAllTask(this.storageService.getLocalData('userData').teams[0]._id);
+    console.log(this.storageService.getLocalData('userData').teams[0]._id);
   }
 
   openResponseViewDialog(task: any) {

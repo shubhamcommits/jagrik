@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskViewComponent } from './task-view/task-view.component';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks-list',
@@ -26,6 +27,7 @@ export class TasksListComponent implements OnInit {
 
   constructor(
     private injector: Injector,
+    private router: Router,
     public dialog: MatDialog,
     private classService: ClassService
   ) {}
@@ -36,15 +38,25 @@ export class TasksListComponent implements OnInit {
   };
 
   userData: any;
+  substring = "inbox";
+  isdash: boolean = false;
   taskStatus: any;
   individualTaskStatus: any;
   displayedColumns: string[] = ['Description',];
 
   @Input('cardId') cardId: any;
+  cardIdx: any;
 
   async ngOnInit() {
-    this.data = await this.getTaskList(this.cardId);
+    let currentUrl = this.router.url;
+    this.isdash = currentUrl.includes(this.substring);
+    console.log(this.isdash);
     this.userData = this.getUserData();
+    this.cardIdx = this.userData.tasks[this.userData['teams'][0]['tasks'].length - 1]._card;
+    this.data = await this.getTaskList(this.cardIdx);
+    console.log(this.cardIdx,'heilo', this.cardId);
+    
+    
     if (
       this.userData['teams'][0]['tasks'][
         this.userData['teams'][0]['tasks'].length - 1
@@ -54,7 +66,7 @@ export class TasksListComponent implements OnInit {
     }
     this.getTeamTaskStatus();
   }
-
+  
   openDialog(task: any) {
     let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
@@ -151,12 +163,12 @@ export class TasksListComponent implements OnInit {
     });
   }
 
-  getTaskList(cardId: any) {
+  getTaskList(cardIdx: any) {
     return new Promise((resolve) => {
       const teamService = this.injector.get(TeamService);
 
       teamService
-        .fetchTasks(cardId)
+        .fetchTasks(cardIdx)
         .then((res) => {
           res['tasks'].forEach((task) => {
             task.title =

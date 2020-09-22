@@ -43,6 +43,7 @@ export class DashboardInboxComponent implements OnInit {
     this.userData = await this.getUserData();
     if (this.userData.tasks.length > 0)
       this.card._id = this.userData.tasks[this.userData.tasks.length - 1]._card;
+      console.log(this.card._id);
   }
 
   public ngOnDestroy() {

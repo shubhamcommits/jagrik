@@ -46,14 +46,18 @@ export class ClassMembersComponent implements OnInit {
   // Class Object
   class: any
 
+  userData: any;
+  // userTeam: any;
+
   // Fetch class from the route
   classId = this.storageService.getLocalData('userData').classes[0];
-
+  userTeam = this.storageService.getLocalData('userData').teams[0]._id;
   displayedColumns: string[] = ['Name', 'Email', 'Role'];
   dataSource = ELEMENT_DATA;
   
   async ngOnInit() {
-    this.class = await this.classDetails.getClassDetails(this.classId)
+    this.class = await this.classDetails.getClassDetails(this.classId);
+    console.log(this.userTeam);
   }
 
   isClassCreator() {

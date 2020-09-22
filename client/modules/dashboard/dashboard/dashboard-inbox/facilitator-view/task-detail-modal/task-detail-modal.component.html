@@ -1,5 +1,6 @@
   <div class="row" style="display: flex; justify-content: center;">
-      <div class="card col-md-9" style="border-radius: 15px;background-color: #fcb040;padding: 40px;margin: 90px;margin-bottom: 0px;border-bottom-right-radius:0;border-bottom-left-radius:0;">
+      <div class="card col-md-9" style="border-radius: 15px;padding: 40px;margin: 90px;margin-bottom: 0px;border-bottom-right-radius:0;border-bottom-left-radius:0;"
+      ngClass="{{data?.team?.team_card_theme === 'fundamental duties'  ? 'col-yellow': 'col-pink'}}">
         <div class="row">
             <div class="col-md-6" >
                 <div class="row ">
@@ -18,10 +19,12 @@
             </div>
             <div class="col-md-6" style="color: white;">
                   <div class="clash-card barbarian">
-                      <div class="clash-card__level clash-card__level--barbarian" >Card {{data?.team?.team_card_dice_number}}</div>
+                      <div class="clash-card__level " 
+                      ngClass="{{data?.team?.team_card_theme === 'fundamental duties'  ? 'clash-card__level--barbarian': 'clash-card__level--barbarian-pink'}}" >Card {{data?.team?.team_card_dice_number}}</div>
                       <div class="clash-card__unit-name text-uppercase" style="line-height: 1;">{{data?.team?.team_card_theme}}</div>
                       <div class="clash-card__unit-description">{{data?.team?.team_card_description}}</div>
-                      <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                      <div class="clash-card__unit-stats clearfix" 
+                      ngClass="{{data?.team?.team_card_theme === 'fundamental duties'  ? 'clash-card__unit-stats--barbarian': 'clash-card__unit-stats--barbarian-pink'}}">
                             <div class="one-third">
                               <div class="stat text-uppercase">{{data?.team?.team_task_type}}</div>
                               <div class="stat-value">Type</div>
@@ -76,7 +79,7 @@
       
         <!-- change default 'edit' icon -->
         <ng-template matStepperIcon="edit">
-          <mat-icon>bubble_chart</mat-icon>
+          <mat-icon>edit</mat-icon>
         </ng-template>
       
         <!-- change default 'done' icon -->
@@ -91,7 +94,7 @@
           <mat-icon>home</mat-icon>
         </ng-template>
         <ng-template matStepperIcon="form">
-          <mat-icon>format_align_center</mat-icon>
+          <mat-icon>person</mat-icon>
         </ng-template>
         <ng-template matStepperIcon="last">
           <mat-icon>done_all</mat-icon>
@@ -153,7 +156,7 @@
                              alt="Card image cap">
                            <hr>
                         </div>
-          <div>
+          <div style="justify-content: center; display: flex;"> 
             <button mat-button matStepperNext>Continue</button>
           </div>
         </mat-step>
@@ -210,13 +213,67 @@
       </div>
     </div>
     <hr>
+    <!-- Image style 1  -->
+    <div id="slider-wrapper">
+
+
+      <!-- <div *ngFor="let item1 of item.user_task_supporting_docs">
+        <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
+          width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
+        <hr>
+      </div> -->
+    
+      <div id="image-slider" *ngFor="let item1 of item.user_task_supporting_docs;let i = index">
+        <ul>
+          <li ngClass="(i== 1) : 'active-img'">
+            <img src="data:image/png;base64,{{item1}}" alt="" />
+          </li>
+          <!-- <li>
+            <img src="https://36.media.tumblr.com/0eb59d5c5bc5cde7737bb99d527247ca/tumblr_nxi8jzk8OS1rwfs76o1_540.jpg" alt="" />
+          </li>
+          <li>
+            <img src="https://40.media.tumblr.com/d4e261711a84707195d8fb9b0a94dccb/tumblr_o05avp3WSh1rn52wlo1_540.jpg" alt="" />
+          </li>
+          <li>
+            <img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" />
+          </li>
+          <li>
+            <img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" />
+          </li>	
+          <li>
+            <img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" />
+          </li>	
+          <li>
+            <img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" />
+          </li>												 -->
+        </ul>
+    
+      </div>
+    
+      <div id="thumbnail" *ngFor="let item1 of item.user_task_supporting_docs; let i = index">
+        <ul>
+          <li class="active"><img src="data:image/png;base64,{{item1}}" alt="" /></li>
+          <!-- <li><img src="https://36.media.tumblr.com/0eb59d5c5bc5cde7737bb99d527247ca/tumblr_nxi8jzk8OS1rwfs76o1_540.jpg" alt="" /></li>
+          <li><img src="https://40.media.tumblr.com/d4e261711a84707195d8fb9b0a94dccb/tumblr_o05avp3WSh1rn52wlo1_540.jpg" alt="" /></li>
+          <li><img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" /></li>		
+          <li><img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" /></li>	
+          <li><img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" /></li>	
+          <li><img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" /></li>						 -->
+        </ul>
+      </div>
+    
+    
+    
+    </div>
+
+    <!-- Image style 2 -->
      <div *ngFor="let item1 of item.user_task_supporting_docs">
        <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
          width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
        <hr>
      </div>
                 
-                <div>
+                <div style="justify-content: space-between; display: flex;"> 
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext>Next</button>
                 </div>
@@ -224,7 +281,7 @@
    
      <!-- </ng-template> -->
       
-        <mat-step label="Done" state="last">
+        <mat-step label="Verify" state="last">
           <form [formGroup]="inputForm">
             <div class="card-body">
               <div class="form-group">
@@ -246,7 +303,7 @@
               </div>
             </div>
           </form>
-          <div>
+          <div style="justify-content: space-between; display: flex;"> 
             <button mat-button matStepperPrevious>Back</button>
             <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button>
           </div>
@@ -255,4 +312,160 @@
       </mat-horizontal-stepper>
     </div>
   </div>
-<!--  -->
+<!-- SLIDER -->
+<button (click)="confetti = true">Confetti</button>
+<div class="true" *ngIf="confetti == true">
+  <div class="confetti-149"></div>
+  <div class="confetti-148"></div>
+  <div class="confetti-147"></div>
+  <div class="confetti-146"></div>
+  <div class="confetti-145"></div>
+  <div class="confetti-144"></div>
+  <div class="confetti-143"></div>
+  <div class="confetti-142"></div>
+  <div class="confetti-141"></div>
+  <div class="confetti-140"></div>
+  <div class="confetti-139"></div>
+  <div class="confetti-138"></div>
+  <div class="confetti-137"></div>
+  <div class="confetti-136"></div>
+  <div class="confetti-135"></div>
+  <div class="confetti-134"></div>
+  <div class="confetti-133"></div>
+  <div class="confetti-132"></div>
+  <div class="confetti-131"></div>
+  <div class="confetti-130"></div>
+  <div class="confetti-129"></div>
+  <div class="confetti-128"></div>
+  <div class="confetti-127"></div>
+  <div class="confetti-126"></div>
+  <div class="confetti-125"></div>
+  <div class="confetti-124"></div>
+  <div class="confetti-123"></div>
+  <div class="confetti-122"></div>
+  <div class="confetti-121"></div>
+  <div class="confetti-120"></div>
+  <div class="confetti-119"></div>
+  <div class="confetti-118"></div>
+  <div class="confetti-117"></div>
+  <div class="confetti-116"></div>
+  <div class="confetti-115"></div>
+  <div class="confetti-114"></div>
+  <div class="confetti-113"></div>
+  <div class="confetti-112"></div>
+  <div class="confetti-111"></div>
+  <div class="confetti-110"></div>
+  <div class="confetti-109"></div>
+  <div class="confetti-108"></div>
+  <div class="confetti-107"></div>
+  <div class="confetti-106"></div>
+  <div class="confetti-105"></div>
+  <div class="confetti-104"></div>
+  <div class="confetti-103"></div>
+  <div class="confetti-102"></div>
+  <div class="confetti-101"></div>
+  <div class="confetti-100"></div>
+  <div class="confetti-99"></div>
+  <div class="confetti-98"></div>
+  <div class="confetti-97"></div>
+  <div class="confetti-96"></div>
+  <div class="confetti-95"></div>
+  <div class="confetti-94"></div>
+  <div class="confetti-93"></div>
+  <div class="confetti-92"></div>
+  <div class="confetti-91"></div>
+  <div class="confetti-90"></div>
+  <div class="confetti-89"></div>
+  <div class="confetti-88"></div>
+  <div class="confetti-87"></div>
+  <div class="confetti-86"></div>
+  <div class="confetti-85"></div>
+  <div class="confetti-84"></div>
+  <div class="confetti-83"></div>
+  <div class="confetti-82"></div>
+  <div class="confetti-81"></div>
+  <div class="confetti-80"></div>
+  <div class="confetti-79"></div>
+  <div class="confetti-78"></div>
+  <div class="confetti-77"></div>
+  <div class="confetti-76"></div>
+  <div class="confetti-75"></div>
+  <div class="confetti-74"></div>
+  <div class="confetti-73"></div>
+  <div class="confetti-72"></div>
+  <div class="confetti-71"></div>
+  <div class="confetti-70"></div>
+  <div class="confetti-69"></div>
+  <div class="confetti-68"></div>
+  <div class="confetti-67"></div>
+  <div class="confetti-66"></div>
+  <div class="confetti-65"></div>
+  <div class="confetti-64"></div>
+  <div class="confetti-63"></div>
+  <div class="confetti-62"></div>
+  <div class="confetti-61"></div>
+  <div class="confetti-60"></div>
+  <div class="confetti-59"></div>
+  <div class="confetti-58"></div>
+  <div class="confetti-57"></div>
+  <div class="confetti-56"></div>
+  <div class="confetti-55"></div>
+  <div class="confetti-54"></div>
+  <div class="confetti-53"></div>
+  <div class="confetti-52"></div>
+  <div class="confetti-51"></div>
+  <div class="confetti-50"></div>
+  <div class="confetti-49"></div>
+  <div class="confetti-48"></div>
+  <div class="confetti-47"></div>
+  <div class="confetti-46"></div>
+  <div class="confetti-45"></div>
+  <div class="confetti-44"></div>
+  <div class="confetti-43"></div>
+  <div class="confetti-42"></div>
+  <div class="confetti-41"></div>
+  <div class="confetti-40"></div>
+  <div class="confetti-39"></div>
+  <div class="confetti-38"></div>
+  <div class="confetti-37"></div>
+  <div class="confetti-36"></div>
+  <div class="confetti-35"></div>
+  <div class="confetti-34"></div>
+  <div class="confetti-33"></div>
+  <div class="confetti-32"></div>
+  <div class="confetti-31"></div>
+  <div class="confetti-30"></div>
+  <div class="confetti-29"></div>
+  <div class="confetti-28"></div>
+  <div class="confetti-27"></div>
+  <div class="confetti-26"></div>
+  <div class="confetti-25"></div>
+  <div class="confetti-24"></div>
+  <div class="confetti-23"></div>
+  <div class="confetti-22"></div>
+  <div class="confetti-21"></div>
+  <div class="confetti-20"></div>
+  <div class="confetti-19"></div>
+  <div class="confetti-18"></div>
+  <div class="confetti-17"></div>
+  <div class="confetti-16"></div>
+  <div class="confetti-15"></div>
+  <div class="confetti-14"></div>
+  <div class="confetti-13"></div>
+  <div class="confetti-12"></div>
+  <div class="confetti-11"></div>
+  <div class="confetti-10"></div>
+  <div class="confetti-9"></div>
+  <div class="confetti-8"></div>
+  <div class="confetti-7"></div>
+  <div class="confetti-6"></div>
+  <div class="confetti-5"></div>
+  <div class="confetti-4"></div>
+  <div class="confetti-3"></div>
+  <div class="confetti-2"></div>
+  <div class="confetti-1"></div>
+  <div class="confetti-0"></div>
+</div>
+
+
+

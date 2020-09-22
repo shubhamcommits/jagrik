@@ -112,8 +112,45 @@
       </div>
 </div>
 
-<div class="row" *ngIf="userData.role === 'student'">
-<app-tasks-board></app-tasks-board>
+<div class="" *ngIf="userData.role !== 'facilitator'">
+<!-- <app-tasks-board></app-tasks-board> -->
+Hello
+<div class="row">
+  <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h1 style="margin: 0px !important;">Leaderboard</h1>
+          <span></span>
+        </div>
+        <app-leaderboard-view></app-leaderboard-view>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h1 style="margin: 0px !important;">Upcoming Jamghats</h1>
+          <span></span>
+        </div>
+        <app-class-agenda></app-class-agenda>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h1 style="margin: 0px !important;">My Current Task</h1>
+          <span></span>
+        </div>
+        <app-tasks-list></app-tasks-list>
+      </div>
+    </div>
+    
+  </div>
+</div>
   <!-- <div class="col-md-12">
     <app-assign-random-task
       *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
@@ -125,8 +162,6 @@
     </app-tasks-list>
 
   </div>-->
-  <!-- <div class="col-md-6">
-        <app-leaderboard-view></app-leaderboard-view>
-    </div> -->
+
 </div>
 

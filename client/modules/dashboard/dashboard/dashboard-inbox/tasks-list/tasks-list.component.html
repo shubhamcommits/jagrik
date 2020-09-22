@@ -1,3 +1,4 @@
+<ng-container *ngIf="isdash== false">
 <div class="container">
   <div class="row">
       <div class="col-md-4 col-xl-3">
@@ -347,3 +348,69 @@
   </div>
   </div>
 </div>
+</ng-container>
+
+
+<ng-container *ngIf="isdash== true">
+  <div class="d-flex justify-content-center" >
+    <!-- {{myTime| date:'HH:mm'}} {{item.time}} -->
+    <!-- //&& item.time > (myTime | date:'HH:mm') -->
+    <!-- <i class="material-icons pending-clock">watch_later</i> <b>Pending</b>  
+    <i class="material-icons complete-check">check_circle</i> <b>Complete</b> 
+     <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b>  -->
+  <div class="card " style="width: 500px;border-radius: 0%;margin-bottom:20px;">
+    <div class="row no-gutters ">
+        <div class="col-sm-5" style="justify-content: center; align-items: center; color: white;"
+        ngClass="{{data?.card?.theme === 'fundamental duties'  ? 'bg-yellow': 'bg-pink'}}">
+          <div class="row">
+            <h1 style="font-size: 50px;margin: 0 0 0px;" class="text-uppercase"><b>{{data?.card?.dice_number}}</b></h1>
+          </div>
+          <div class="row">
+            <h4 class="text-uppercase" style="margin: 0px;">Card No.</h4>
+          </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h2 class="card-title text-uppercase"><b>{{data?.card?.theme}}</b></h2>
+                <h3 class="card-title">{{data?.card?.description}}</h3>
+                <!-- <a *ngIf="userData.role != 'student'" href="{{item.join_moderate}}" target="_blank"
+                  class="btn btn-primary btn-sm">Start</a>
+                  <a *ngIf="userData.role == 'student'"
+                    href="{{item.join_attende}}" target="_blank" class="btn btn-primary btn-sm">Join</a> -->
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-12">
+        <div class="row">
+          <h2>Task Status</h2>
+          <hr>
+        </div>
+        <div class="row">
+            <h3>Community Task: <i class="material-icons" ngClass="{{taskStatus?.teamTask == 'complete'  ? 'complete-check': 'pending-clock'}}">{{taskStatus?.teamTask == 'complete' ?'check_circle': 'watch_later' }}</i> <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b> </h3> <br>
+        </div>
+        <ng-container *ngFor="let item of taskStatus?.teamMembers">
+          <div class="row">    
+            <h3 class="text-capitalize">{{item.user_name}}'s Task:<i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3> <br>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- <div class="col-md-6">
+        <div class="row">
+          <h1>Community Task Status</h1>
+        </div>
+        <div class="row">
+          
+        </div>
+      </div> -->
+
+
+  </div>
+  
+   
+</ng-container>
