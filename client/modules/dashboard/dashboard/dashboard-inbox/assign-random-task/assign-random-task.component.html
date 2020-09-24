@@ -65,10 +65,10 @@
     <img *ngIf="gifName && showAssignCard" src="{{gifName}}" style="width:100px;height:100px">
 
     <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental rights'" 
-      class="btn btn-dice_pink btn-md" (click)="this.getDiceNumber()" ></button>
+      class="btn btn-dice_pink btn-md" (click)="this.getDiceNumber()" style="max-width: 60px; max-height: 60px;"></button>
 
     <button id="hideMeDice" *ngIf="!gifName && showChooseTheme && theme == 'fundamental duties'"
-      class="btn btn-dice_yellow btn-md" (click)="this.getDiceNumber()"></button>
+      class="btn btn-dice_yellow btn-md" (click)="this.getDiceNumber()" style="max-width: 60px; max-height: 60px;"></button>
 
 </div>
 

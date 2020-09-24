@@ -23,6 +23,7 @@ import { AddWildTaskComponent } from './add-wild-task/add-wild-task.component';
 export class WildTaskComponent implements OnInit {
 
   userRole = '';
+  public confetti: boolean= false;
   userData: any = []
   showAssignTask:boolean = false
   className = '';

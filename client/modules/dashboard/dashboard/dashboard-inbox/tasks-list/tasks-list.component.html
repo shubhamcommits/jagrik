@@ -1,4 +1,4 @@
-<ng-container *ngIf="isdash == false">
+<ng-container *ngIf="isdash == false && isdash1 == true">
 <div class="container">
   <div class="row">
       <div class="col-md-4 col-xl-3">
@@ -56,126 +56,6 @@
 </div>
 </div>
 
-
-<!-- Cards End-->
-<!-- <div class="row" *ngIf="data && userData">
-  <div class="col-md-4">
-    <div class="card" style="height:100%; overflow: hidden;">
-      <div class="row">
-        <div class="col-md-12 task-card-heading d-flex justify-content-center">Card
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
-        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
-        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
-        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="card" style="height: 100%; overflow: hidden;">
-      <div class="row">
-        <div class="col-md-12 task-card-heading d-flex justify-content-center">Task Status
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
-         <div style="border-radius:50%; background-color:chartreuse;width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false"></div>
-        <div class="row" *ngFor="let item of taskStatus?.teamMembers">
-          <div class="col-md-9">
-            <p class="text-capitalize"><b>{{item.user_name}}</b></p>
-          </div>
-          <div class="col-md-3">
-              <div style="border-radius:50%; background-color:rgb(255, 60, 0);width: 23px;height: 23px;" *ngIf="item.user_individual_task_status === false">
-              </div>
-          </div>
-        </div>
-           </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- <mat-grid-list cols="4" *ngIf="data && userData">
-  <mat-grid-tile>
-   <mat-card [style.background]="'white'">
-      <mat-card-header>
-        <mat-card-title> Card</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
-        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
-        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
-        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
-      </mat-card-content>
-    </mat-card>
-
-    <div class="card">
-      <div class="row">
-        <div class="col-md-12 task-card-heading d-flex justify-content-center">Card
-        </div>
-      </div>
-
-      <div class="card-body">
-        <p class="text-capitalize"><b>Theme: </b>{{data?.card?.theme}}</p>
-        <p class="text-capitalize"><b>Description: </b>{{data?.card?.description}}</p>
-        <p class="text-capitalize"><b>Dice Number: </b>{{data?.card?.dice_number}}</p>
-        <p class="text-capitalize"><b>Week: </b>{{userData?.tasks[userData?.tasks?.length-1]?.week}}</p>
-      </div>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card [style.border]="'solid 1px #cc4266'">
-      <mat-card-header>
-        <mat-card-title>Task Status</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
-        <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
-          </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
-
-      </mat-card-content>
-    </mat-card>
-    <div class="card" style="height: 100%;">
-      <div class="row">
-        <div class="col-md-12 task-card-heading d-flex justify-content-center">Task Status
-        </div>
-      </div>
-
-      <div class="card-body">
-        <p class="text-capitalize"><b>Team Task Status: </b>{{taskStatus?.teamTask == 'complete' ? 'completed' : taskStatus?.teamTask}}</p>
-        <p class="text-capitalize" *ngFor="let item of taskStatus?.teamMembers"><b>{{item.user_name}} Status:
-          </b>{{item.user_individual_task_status == false ? 'To Do' : 'complete'}}</p>
-      </div>
-    </div>
-  </mat-grid-tile>
-<mat-grid-tile>
-    <mat-card [style.background]="'rgb(243, 179, 79)'">
-      <mat-card-header>
-        <mat-card-title>Leaderboard</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p class="text-capitalize"><b>Team Name: </b>Dummy Data</p>
-        <p class="text-capitalize"><b>Maximum Points: </b>Dummy Data</p>
-        <p class="text-capitalize"><b>Dice Number: </b>Dummy Data</p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card [style.background]="'rgb(243, 179, 79)'">
-      <mat-card-header>
-        <mat-card-title>Reviews</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quae ex molestias cum ducimus, aut
-          quidem molestiae voluptatibus eos perferendis obcaecati!
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list> -->
 
 
 <!-- Task List -->
@@ -351,9 +231,11 @@
   </div>
 </div>
 </ng-container>
+<ng-container *ngIf="isdash1 == false">
+Waiting for Facilitator Approval
+</ng-container>
 
-
-<ng-container *ngIf="isdash == true">
+<ng-container *ngIf="isdash == true && isdash1 == true">
   <div class="d-flex justify-content-center" >
     <!-- {{myTime| date:'HH:mm'}} {{item.time}} -->
     <!-- //&& item.time > (myTime | date:'HH:mm') -->
@@ -387,21 +269,34 @@
   <div class="row" *ngIf="data?.card?.theme && data?.card?.theme !== ''">
 
       <div class="col-md-12">
-        <div class="row">
+        <div class="row" style="display: flex; justify-content: center;">
           <h2>Task Status: {{taskStatus?.taskStatus}}</h2>
-          <hr>
         </div>
         <div class="row">
-            <h3>Community Task: <i class="material-icons" ngClass="{{taskStatus?.teamTask == 'complete'  ? 'complete-check': 'pending-clock'}}">{{taskStatus?.teamTask == 'complete' ?'check_circle': 'watch_later' }}</i> <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b> </h3> <br>
+          <div class="col-md-6">
+            <h3>Community Task: </h3> 
+          </div>
+          <div class="col-md-6">
+            <h3><i class="material-icons" ngClass="{{taskStatus?.teamTask == 'complete'  ? 'complete-check': 'pending-clock'}}">{{taskStatus?.teamTask == 'complete' ?'check_circle': 'watch_later' }}</i> <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b> </h3>
+          </div>
+            <br>
         </div>
         <ng-container *ngFor="let item of taskStatus?.teamMembers">
           <div class="row">
-            <h3 class="text-capitalize">{{item.user_name}}'s Task:<i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3> <br>
+            <div class="col-md-6">
+              <h3 class="text-capitalize">{{item.user_name}}'s Task:</h3>
+            </div>
+            <div class="col-md-6">
+            <h3><i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3> 
+            </div>  
+            <br>
           </div>
         </ng-container>
       </div>
   </div>
-
+  <div class="row" style="display: flex; justify-content: flex-end;">
+  <button ngClass="{{data?.card?.theme === 'fundamental duties'  ? 'bg-yellow': 'bg-pink'}}" class="btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">View Task<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
+   </div>
    <div class="row" *ngIf="!data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
 
      <div class="col-md-12">

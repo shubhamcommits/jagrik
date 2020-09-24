@@ -31,7 +31,7 @@ export class TaskViewComponent implements OnInit {
 
     this.getTeamList()
 
-    if (this.data.task.category === 'community') {
+    // if (this.data.task.category === 'community') {
       this.inputForm = new FormGroup({
         removablefile: new FormControl(null, [
           Validators.required,
@@ -61,32 +61,30 @@ export class TaskViewComponent implements OnInit {
         ]),
         answer3text: new FormControl(''),
       });
-    } else {
-      this.inputForm = new FormGroup({
-        removablefile: new FormControl(null, [
-          Validators.required,
-          Validators.nullValidator,
-          FileValidator.maxContentSize(1048576),
-        ]),
-        removablefile1: new FormControl(null, [
-          FileValidator.maxContentSize(1048576),
-        ]),
-        removablefile2: new FormControl(null, [
-          FileValidator.maxContentSize(1048576),
-        ]),
-        removablefile3: new FormControl(null, [
-          FileValidator.maxContentSize(1048576),
-        ]),
-        description: new FormControl(null, [
-          Validators.required,
-          Validators.nullValidator,
-        ]),
-        answer2: new FormControl(null, [
-          Validators.required,
-          Validators.nullValidator,
-        ])
-      });
-    }
+    // else {
+    //   this.inputForm = new FormGroup({
+    //     removablefile: new FormControl(null, [
+    //       FileValidator.maxContentSize(1048576),
+    //     ]),
+    //     removablefile1: new FormControl(null, [
+    //       FileValidator.maxContentSize(1048576),
+    //     ]),
+    //     removablefile2: new FormControl(null, [
+    //       FileValidator.maxContentSize(1048576),
+    //     ]),
+    //     removablefile3: new FormControl(null, [
+    //       FileValidator.maxContentSize(1048576),
+    //     ]),
+    //     description: new FormControl(null, [
+    //       Validators.required,
+    //       Validators.nullValidator,
+    //     ]),
+    //     answer2: new FormControl(null, [
+    //       Validators.required,
+    //       Validators.nullValidator,
+    //     ])
+    //   });
+    // }
 
 
   }

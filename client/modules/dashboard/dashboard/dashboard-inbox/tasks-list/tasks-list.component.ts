@@ -51,9 +51,10 @@ export class TasksListComponent implements OnInit {
   cardIdx: any;
 
   async ngOnInit() {
+    // console.log(this.isdash1)
     let currentUrl = this.router.url;
     this.isdash = currentUrl.includes(this.substring);
-    console.log(this.isdash);
+    // console.log(this.isdash);
     this.userData = this.getUserData();
     this.cardIdx = '';
     if (this.userData.tasks.length > 0) {
@@ -86,7 +87,7 @@ export class TasksListComponent implements OnInit {
       },
         autoFocus: false,
         maxHeight: '90vh',
-        maxWidth: '80vw',
+        maxWidth: '90vw',
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       this.getUploadResponse($e)

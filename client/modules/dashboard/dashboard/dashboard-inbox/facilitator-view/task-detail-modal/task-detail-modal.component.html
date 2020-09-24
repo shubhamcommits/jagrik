@@ -238,12 +238,12 @@
             <div *ngIf="data?.team?.status !== 'rejected'">
                   <strong>Comments</strong>
                   <p>{{data?.team?.comment}}</p>
-                  <strong>Bonus Point</strong>
-                  <p>{{data?.team?.bonus_point}}</p>
+                  <!-- <strong>Bonus Point</strong>
+                  <p>{{data?.team?.bonus_point}}</p> -->
             </div>
             <div *ngIf="data?.team?.status === 'rejected'">
               <strong>Reason</strong>
-              <p>{{data?.team?.reason}}</p>
+              <p>{{data?.team?.comment}}</p>
             </div>
             <hr>
           </div>
@@ -253,16 +253,42 @@
                 <label for=""><b>Comments</b></label>
                 <textarea class="form-control" formControlName="comment" rows="3"></textarea>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="bonus_point"><b>Bonus Point</b></label>
                 <input type="number" class="form-control" formControlName="bonus_point" placeholder="Bonus Point">
-              </div>
+              </div> -->
               <div class="form-group" style="padding-top: 20px;">
                 <mat-dialog-actions>
-                  <div class="text-center">
-                    <button class="btn-reject" style="margin-right: 5px;" mat-button
+                  <div class="text-center row">
+                    <div class="col-md-6" (click)="verifyTask()" style="display: flex;align-items: flex-end;">
+                      <div class="verify row">
+                      <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%; align-items: center;">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" style="    font-size: 40px;
+    height: 40px;
+    width: 40px;">thumb_up_alt</mat-icon>
+                      </div>
+                      <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
+                       <h3>Great Job</h3> 
+                      </div>
+                      </div>
+                    </div>
+                    <div class=" col-md-6" (click)="rejectTask()">
+                      <div class="col-md-6" (click)="verifyTask()" style="display: flex;align-items: flex-start;">
+                        <div class="reject row">
+                        <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
+                          <mat-icon aria-hidden="false" aria-label="Example home icon" style="    font-size: 40px;
+    height: 40px;
+    width: 40px;">thumb_down_alt</mat-icon>
+                        </div>
+                        <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
+                         <h3>Can do Better!</h3> 
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <button class="btn-reject" style="margin-right: 5px;" mat-button
                       (click)="rejectTask()">Reject</button>
-                    <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button>
+                    <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button> -->
                   </div>
                 </mat-dialog-actions>
               </div>
@@ -278,7 +304,7 @@
     </div>
   </div>
 <!-- SLIDER -->
-<button (click)="confetti = true">Confetti</button>
+<!-- <button (click)="confetti = true">Confetti</button>
 <div class="true" *ngIf="confetti == true">
   <div class="confetti-149"></div>
   <div class="confetti-148"></div>
@@ -433,4 +459,4 @@
 </div>
 
 
-
+ -->
