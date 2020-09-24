@@ -268,6 +268,7 @@ export class UserController {
             let authorization = req.headers.authorization;
             let taskId = req.body.taskId;
             let description = req.body.qa;
+            let help = req.body.help;
             // let experience_description = req.body.experience_description
             let teamId = req.body.teamId
 
@@ -278,7 +279,8 @@ export class UserController {
                 authorization,
                 taskId,
                 teamId,
-                description
+                description,
+                help
               )
 
               // Proceed with the status 200 response

@@ -152,7 +152,8 @@ export class TeamService {
     image: any,
     teamId: any,
     taskId: any,
-    qa: any
+    qa: any,
+    help: any
   ) {
     let formData: FormData = new FormData();
     image.forEach((element) => {
@@ -161,6 +162,7 @@ export class TeamService {
     formData.append('taskId', taskId);
     formData.append('teamId', teamId);
     formData.append('qa', JSON.stringify(qa));
+    formData.append('help', JSON.stringify(help));
     return this.httpClient
       .post(environment.baseApiUrl + '/users/task-doc-upload', formData)
       .toPromise();

@@ -74,7 +74,7 @@ export class UserService {
         }
     }
 
-    async taskSupportingDocUpload(img_data: any[], token: any, taskId: String, teamId: String, description: any) {
+    async taskSupportingDocUpload(img_data: any[], token: any, taskId: String, teamId: String, description: any, help: any) {
         try {
             //verify token and decode user data
             let userVerify: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
@@ -101,6 +101,8 @@ export class UserService {
                         user.tasks[i].supporting_doc = img_data[0];
                         user.tasks[i].supporting_docs = img_data;
                         user.tasks[i].ques_review = JSON.parse(description);
+                       
+                        
                         user.tasks[i].status = 'complete';
                         console.log("Matched");
                     }
@@ -126,6 +128,9 @@ export class UserService {
                         // team.tasks[i].description = description;
                         team.tasks[i].supporting_doc = img_data[0];
                         team.tasks[i].supporting_docs = img_data;
+                        if (JSON.parse(help).length > 0) {
+                            team.tasks[i].help_team = JSON.parse(help);
+                        }
                         team.tasks[i].ques_review = JSON.parse(description);
                         team.tasks[i].status = 'complete';
                     }

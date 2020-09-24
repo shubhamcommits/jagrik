@@ -245,9 +245,7 @@ export class ClassService {
           * @param class_code
           */
          async closeClass(class_code: String) {
-           console.log('====================================');
-           console.log(class_code);
-           console.log('====================================');
+          
            try {
              // Fetch the class by id
              await Class.findOne({ _id: class_code })
@@ -633,6 +631,7 @@ export class ClassService {
                     user_id: member._id,
                     first_name: member.first_name,
                     last_name: member.last_name,
+                    email: member.email,
                     name: member.first_name + ' ' + member.last_name,
                     user_profile_pic: member.profile_pic,
                   };

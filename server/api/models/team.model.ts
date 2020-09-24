@@ -101,6 +101,22 @@ const TeamSchema = new Schema({
           },
         }),
       ],
+      help_team: [
+        new Schema({
+          team_1: {
+            type: String,
+          },
+          team_2: {
+            type: String,
+          },
+          type: {
+            type: String,
+          },
+          week: {
+            type: String,
+          },
+        }),
+      ],
       supporting_doc: {
         type: String,
         data: Buffer,
