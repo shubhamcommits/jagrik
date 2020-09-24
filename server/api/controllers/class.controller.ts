@@ -346,15 +346,23 @@ export class ClassController {
              // let authorization="abcd"
              let teamId = req.body.teamId;
 
+             console.log('====================================');
+             console.log(teamId);
+             console.log('====================================');
+
              // Call the service function to get all the classes
              await classService
                .getTeamMembers(authorization, teamId)
-               .then(() => {
+               .then((data) => {
                  return res.status(200).json({
                    message: 'Teams have been fetched successfully!',
+                   teams: data
                  });
                });
            } catch (err) {
+             console.log('====================================');
+             console.log(err);
+             console.log('====================================');
              return res.status(500).json({
                message: 'Internal Server Error!',
                error: new Error(err || ' Internal Server Error'),

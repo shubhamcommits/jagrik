@@ -664,7 +664,7 @@ export class ClassService {
              );
              let user: any = await User.findById({ _id: userVerify._id });
              // find the userIds corresponding to the team
-             let team: any = await Team.findById({ _id: teamId });
+             let team: any = await Team.findOne({ _id: teamId });
              let userIds = team.team_members;
              // declare empty team_members array
              let team_members = [];
@@ -677,6 +677,7 @@ export class ClassService {
                  last_name: member.last_name,
                  user_profile_pic: member.profile_pic,
                  email: member.email,
+                 role: member.role
                };
                team_members.push(team_mate);
              }

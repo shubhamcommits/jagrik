@@ -21,6 +21,18 @@ export class TeamService {
   }
 
   /**
+  * Service function to get list of student with team
+  * @param teamId
+  */
+  getTeamMembers(teamId: any) {
+    return this.httpClient
+      .post(environment.baseApiUrl + '/classes/get-team-members', {
+        teamId: teamId,
+      })
+      .toPromise();
+  }
+
+  /**
    * Service function to assign team to a student
    * @param classId
    * @param userId

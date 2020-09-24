@@ -122,7 +122,7 @@ export class DashboardInboxComponent implements OnInit {
 
   getTeams() {
     this.teamService
-      .getTeams(this.userData.classes[0])
+      .getTeamMembers(this.userData.teams[0])
       .then((res) => {
         let data: any = res['teams'];
         if (data.length > 0) {

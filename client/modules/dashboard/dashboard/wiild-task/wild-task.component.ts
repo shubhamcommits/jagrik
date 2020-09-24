@@ -69,7 +69,8 @@ export class WildTaskComponent implements OnInit {
     this.userService
       .assignWildCard()
       .then((res) => {
-        this.getUserData()
+        window.location.reload();
+
       })
       .catch(() => {
         // Fire error toast
