@@ -161,6 +161,9 @@ export class TaskService {
                                   if (!taskData[element['week']]['user']) {
                                     taskData[element['week']]['user'] = []
                                   }
+                                  if (taskData[element['week']]['status_text'] === 'Waiting for approval' && element['status'] === 'to do') {
+                                    taskData[element['week']]['status_text'] = 'Incomplete'
+                                  }
                                   taskData[element['week']]['user'].push(newEle);
                                 }
                               });

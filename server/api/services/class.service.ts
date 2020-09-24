@@ -748,11 +748,13 @@ export class ClassService {
                    let is_active = 'inactive';
                    let completedTeamTask = null;
                    let activeCardId = ''
+                   let task_id = ''
 
                   
                    for (let j in teamTasks) {
                      // Check the status of team tasks(if status is completed then proceed further)
                      if (teamTasks[j].is_active == 'active' && teamTasks[j].status == 'complete') {
+                       task_id = teamTasks[j].id;
                        is_active = teamTasks[j].is_active;
                        activeCardId = teamTasks[j]._card;
                        is_any_team_task_complete = true;
@@ -895,6 +897,7 @@ export class ClassService {
                        team_id: get_all_teams_of_class[i]._id,
                        team_name: get_all_teams_of_class[i].team_name,
                        team_status: 'complete',
+                       task_id: task_id,
                        team_verify_status: is_active,
                        team_points: get_all_teams_of_class[i].points,
                        team_members_tasks: indTask,
@@ -1005,7 +1008,7 @@ export class ClassService {
            }
          }
 
-         async getTeamMemberStatus(token: any, teamId: String) {
+  async getTeamMemberStatus(token: any, teamId: String, type: String) {
            try {
              //verify token and decode user data
              let userVerify: any = jwt.verify(
@@ -1021,6 +1024,7 @@ export class ClassService {
 
              if (team_tasks && team_tasks.length > 0) {
                for (let j in team_tasks) {
+                 if (type === team_tasks[j].type){
                  teamTaskCompleted = team_tasks[j].status;
                  if (
                    team_tasks[j].status === 'complete' &&
@@ -1037,6 +1041,8 @@ export class ClassService {
                  } else if (team_tasks[j].status === 'rejected') {
                    taskStatus = 'Rejected';
                  }
+                   
+                 }
                   
                }
              }
@@ -1051,10 +1057,12 @@ export class ClassService {
                let is_any_self_task_complete = false;
 
                for (let n in selfTasks) {
-                 if (selfTasks[n].status == 'complete') {
-                   is_any_self_task_complete = true;
-                 } else {
-                   is_any_self_task_complete = false;
+                 if (type === selfTasks[n].type) {
+                   if (selfTasks[n].status == 'complete') {
+                     is_any_self_task_complete = true;
+                   } else {
+                     is_any_self_task_complete = false;
+                   }
                  }
                }
                teamMemberTaskStatus.push({

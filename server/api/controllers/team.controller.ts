@@ -65,7 +65,7 @@ export class TeamController {
              let authorization = req.headers.authorization;
              // let authorization="abcd"
              let teamId = req.body.teamId;
-
+             let taskId = req.body.taskId;
              let teamPoints = req.body.teamPoints;
              let comment = req.body.comment;
              let bonus_point = req.body.bonus_point;
@@ -77,7 +77,8 @@ export class TeamController {
                  teamId,
                  teamPoints,
                  comment,
-                 bonus_point
+                 bonus_point,
+                 taskId
                )
                .then(() => {
                  return res.status(200).json({
@@ -109,13 +110,13 @@ export class TeamController {
             let authorization = req.headers.authorization;
             // let authorization="abcd"
             let teamId = req.body.teamId;
-
+            let taskId = req.body.taskId;
             let teamPoints = req.body.teamPoints;
             let comments = req.body.comment;
 
             // Call the service function to get all the classes
             await teamService
-              .rejectTeamTask(authorization, teamId, teamPoints, comments)
+              .rejectTeamTask(authorization, teamId, teamPoints, comments, taskId)
               .then(() => {
                 return res.status(200).json({
                   message: 'Team task rejected',
@@ -142,11 +143,12 @@ export class TeamController {
 
              let authorization = req.headers.authorization;
              // let authorization="abcd"
-             let teamId:any = req.query.teamId;
+             let teamId: any = req.query.teamId;
+             let type: any = req.query.type;
 
              // Call the service function to get all the classes
              await teamService
-               .teamTaskStatus(authorization, teamId)
+               .teamTaskStatus(authorization, teamId, type)
                .then((response) => {
                  return res.status(200).json({
                    message: 'Points successfully allocated to the team !',

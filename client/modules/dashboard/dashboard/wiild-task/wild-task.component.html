@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!wildTask || wildTask.length === 0" style="height: 200px;">
+<div class="row" *ngIf="showAssignTask" style="height: 200px;">
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="theme-card" style="padding-bottom: 20px;">
@@ -9,9 +9,72 @@
   </div>
 </div>
 
-<div class="container" *ngIf="wildTask && wildTask.length > 0">
+<div class="container" *ngIf="!showAssignTask">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-blue order-card">
+          <div class="card-block">
+            <h3 class="m-b-20">Week</h3>
+            <h2 class="text-right">
+              <mat-icon class="icon-top">today</mat-icon>
+              <span>1</span>
+            </h2>
+            <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+          </div>
+        </div>
+      </div>
 
-  <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h3 class="m-b-20 text-capitalize">Child Rights</h3>
+            <h2 class="text-right">
+              <mat-icon class="icon-top">call_to_action</mat-icon><span>1</span>
+            </h2>
+            <!-- <p class="m-b-0" class="text-capitalize">{{data?.card?.theme}}</p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block">
+            <h3 class="m-b-20">Team Task Status</h3>
+            <h2 class="text-right">
+              <mat-icon class="icon-top">autorenew</mat-icon>
+              <span>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</span>
+            </h2>
+            <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-pink order-card" style="height: 100%;">
+          <div class="card-block">
+            <h3 class="m-b-20">User Task Status</h3>
+            <!-- <h2 class="text-right"><mat-icon class="icon-top">User</mat-icon><span>486</span></h2>
+                  <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+            <div class="row" *ngFor="let item of taskStatus?.teamMembers">
+              <div class="col-md-9">
+                <p class="text-capitalize"><b>{{item.user_name}}</b></p>
+              </div>
+              <div class="col-md-3">
+                <div style="border-radius:50%; background-color:rgb(255, 60, 0);width: 23px;height: 23px;"
+                  *ngIf="item.user_individual_task_status === false">
+                </div>
+                <div style="border-radius:50%; background-color:rgb(123, 255, 0);width: 23px;height: 23px;"
+                  *ngIf="item.user_individual_task_status === true">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 15px;">
     <div class="col-12" style="display: block; justify-content: center;">
       <div class="card card-dashboard" style="height: 100%;">
         <div class="card-header">
@@ -38,7 +101,8 @@
                   </div><br>
                   <div class="row">
                     <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
-                    <div *ngIf="!taskStatus" class="col-6 text-capitalize new-col"><button mat-raised-button
+                    <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                        mat-raised-button
                         class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>
@@ -59,13 +123,13 @@
                   </div><br>
                   <div class="row">
                     <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
-                    <div *ngIf="!taskStatus" class="col-6 text-capitalize new-col"><button mat-raised-button
+                    <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                        mat-raised-button
                         class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>
               </ng-container>
             </mat-tab>
-
 
             <mat-tab>
               <ng-template mat-tab-label>
@@ -82,13 +146,13 @@
                   </div><br>
                   <div class="row">
                     <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
-                    <div *ngIf="!taskStatus" class="col-6 text-capitalize new-col"><button mat-raised-button
+                    <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                        mat-raised-button
                         class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>
               </ng-container>
             </mat-tab>
-
           </mat-tab-group>
         </div>
       </div>
@@ -122,7 +186,7 @@
                     </div>
                   </div><br>
                   <div class="row">
-                    <div class="col-12 text-capitalize new-col" *ngIf="!taskStatus"><button
+                    <div class="col-12 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button
                         mat-raised-button class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>
@@ -142,7 +206,7 @@
                     </div>
                   </div><br>
                   <div class="row">
-                    <div class="col-12 text-capitalize new-col" *ngIf="!taskStatus"><button
+                    <div class="col-12 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button
                         mat-raised-button class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>
@@ -166,7 +230,7 @@
                   <div class="row">
                     <div class="col-6 text-capitalize"
                       style="display: flex; justify-content: center; align-items: center;">Type: {{ task?.type }}</div>
-                    <div class="col-6 text-capitalize new-col" *ngIf="!taskStatus"><button
+                    <div class="col-6 text-capitalize new-col" *ngIf="individualTaskStatus == false"><button
                         mat-raised-button class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
                   </div>
                 </div>

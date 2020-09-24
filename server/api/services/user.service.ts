@@ -1,5 +1,6 @@
 import { User, Card, Task, Team, Class } from "../models";
 import jwt from "jsonwebtoken";
+import { Readable } from 'stream'
 
 export class UserService {
 
@@ -94,7 +95,7 @@ export class UserService {
                     console.log(user.tasks[i]._card);
                     console.log(taskSelected._card);
 
-                    if(JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
+                    if (JSON.stringify(user.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         user.tasks[i]._task = taskId;
                         // user.tasks[i].description = description;
                         user.tasks[i].supporting_doc = img_data[0];
@@ -120,7 +121,7 @@ export class UserService {
                 
                 for(let i in team.tasks){
 
-                    if(JSON.stringify(team.tasks[i]._card) === JSON.stringify(taskSelected._card)){
+                    if (JSON.stringify(team.tasks[i]._card) === JSON.stringify(taskSelected._card)){
                         team.tasks[i]._task = taskId;
                         // team.tasks[i].description = description;
                         team.tasks[i].supporting_doc = img_data[0];
@@ -177,7 +178,8 @@ export class UserService {
             // Random card
             let task = {
                 _card: cardIds[randomCardIndex],
-                week: week
+                week: week,
+                type: 'general'
             }
 
             // verify token and decode user data
@@ -216,24 +218,60 @@ export class UserService {
     }
 
     async assignWildCard(token: any) {
-        let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+        try {
+            let user: any = jwt.verify(token.split(" ")[1], process.env.JWT_KEY);
+            // Find the list of cards
+            let team: any = await Team.findOne({ _id: user.teams[0]._id });
+            let card = await Card.findOne({ theme: 'child rights' });
 
-        let card = await Card.findOne({ theme: 'child rights' });
+            let task = {
+                _card: card.id,
+                status: 'to do',
+                type: 'wild'
+            }
 
-        let task = {
-            _card: card.id,
-            status: 'to do'
+            // check if task exist or not
+            let taskExistForWeek = await Team.findOne({
+                _id: user.teams[0],
+                tasks: { $elemMatch: { type: 'wild' } },
+            });
+
+            if (!taskExistForWeek) {
+                // Find the team
+                let team: any = await Team.findOneAndUpdate(
+                    { _id: user.teams[0] },
+                    { $push: { tasks: task } },
+                    { new: true }
+                );
+
+                // List of all users
+                let userIds = team.team_members;
+
+                // Create readable stream from the array list of userIds
+                const readableStream = Readable.from(userIds);
+
+                // Turn on the stream and repeat the process to update the users
+                readableStream.on('data', async (userId) => {
+                    await User.findByIdAndUpdate(
+                        { _id: userId },
+                        { $push: { tasks: task } },
+                        { new: true }
+                    );
+                });
+
+                return {
+                    team: team
+                };
+            } else {
+                // Catch unexpected errors
+                throw new Error('Card has already been assigned to the week!');
+            }
+        } catch (err) {
+            // Catch unexpected errors
+            throw new Error(err);
         }
 
-        user = await User.findByIdAndUpdate(
-            { _id: user._id },
-            { $push: { wild_tasks: task } },
-            { new: true }
-        )
-
-        return {
-            user: user
-        }
+        
     }
 
     async wildTaskSupportingDocUpload(img_data: String, token: any, taskId: String, experience_description: String, description: String, title: String) {
@@ -248,17 +286,14 @@ export class UserService {
             user.wild_tasks.forEach(element => {
 
                 if (element.status === 'to do') {
-                    
                     element._task = taskId
                     element.description = description
                     element.title = title
                     element.wild_task_description = experience_description
                     element.status = 'complete'
                     element.supporting_doc = img_data
-
                 }
                     wildTask.push(element)
-                
                 
             });
 

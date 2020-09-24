@@ -18,7 +18,7 @@
                       </div>
 
                 </div>
-                <p><strong>Status: </strong> {{data?.team?.status_text}}</p>
+                <p *ngIf="userData.role === 'student'"><strong>Status: </strong> {{data?.team?.status_text}}</p>
             </div>
             <div class="col-md-6" style="color: white;">
                   <div class="clash-card barbarian">
@@ -216,58 +216,7 @@
       </div>
     </div>
     <hr>
-    <!-- Image style 1  -->
-    <div id="slider-wrapper">
 
-
-      <!-- <div *ngFor="let item1 of item.user_task_supporting_docs">
-        <b style="margin-right: 10%; text-align: left;">Image:</b><img class="img-thumbnail" height="20%"
-          width="20%" src="data:image/png;base64,{{item1}}" alt="Card image cap">
-        <hr>
-      </div> -->
-
-      <div id="image-slider" *ngFor="let item1 of item.user_task_supporting_docs;let i = index">
-        <ul>
-          <li ngClass="(i== 1) : 'active-img'">
-            <img src="data:image/png;base64,{{item1}}" alt="" />
-          </li>
-          <!-- <li>
-            <img src="https://36.media.tumblr.com/0eb59d5c5bc5cde7737bb99d527247ca/tumblr_nxi8jzk8OS1rwfs76o1_540.jpg" alt="" />
-          </li>
-          <li>
-            <img src="https://40.media.tumblr.com/d4e261711a84707195d8fb9b0a94dccb/tumblr_o05avp3WSh1rn52wlo1_540.jpg" alt="" />
-          </li>
-          <li>
-            <img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" />
-          </li>
-          <li>
-            <img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" />
-          </li>
-          <li>
-            <img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" />
-          </li>
-          <li>
-            <img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" />
-          </li>												 -->
-        </ul>
-
-      </div>
-
-      <div id="thumbnail" *ngFor="let item1 of item.user_task_supporting_docs; let i = index">
-        <ul>
-          <li class="active"><img src="data:image/png;base64,{{item1}}" alt="" /></li>
-          <!-- <li><img src="https://36.media.tumblr.com/0eb59d5c5bc5cde7737bb99d527247ca/tumblr_nxi8jzk8OS1rwfs76o1_540.jpg" alt="" /></li>
-          <li><img src="https://40.media.tumblr.com/d4e261711a84707195d8fb9b0a94dccb/tumblr_o05avp3WSh1rn52wlo1_540.jpg" alt="" /></li>
-          <li><img src="https://40.media.tumblr.com/817bd6a18d9ca6877c9d5a1b7d33c198/tumblr_mx1cizinbl1qljihqo1_540.jpg" alt="" /></li>
-          <li><img src="https://40.media.tumblr.com/6fbf40647afad248b55af46361aea7f9/tumblr_nvdl4xGcxB1r3zwc2o1_540.jpg" alt="" /></li>
-          <li><img src="https://41.media.tumblr.com/77a37a7053a8d4b7b11be6d0bfed1073/tumblr_n7eb66mNme1se0g8bo1_540.jpg" alt="" /></li>
-          <li><img src="https://40.media.tumblr.com/tumblr_mbupbf3nR31rfxi00o1_r1_540.jpg" alt="" /></li>						 -->
-        </ul>
-      </div>
-
-
-
-    </div>
 
     <!-- Image style 2 -->
      <div *ngFor="let item1 of item.user_task_supporting_docs">

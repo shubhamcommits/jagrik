@@ -44,6 +44,8 @@ export class TasksListComponent implements OnInit {
   taskStatus: any;
   individualTaskStatus: any;
   displayedColumns: string[] = ['Description',];
+  week: any;
+  taskList:any = []
 
   @Input('cardId') cardId: any;
   cardIdx: any;
@@ -53,7 +55,16 @@ export class TasksListComponent implements OnInit {
     this.isdash = currentUrl.includes(this.substring);
     console.log(this.isdash);
     this.userData = this.getUserData();
-    this.cardIdx = this.userData.tasks[this.userData['teams'][0]['tasks'].length - 1]._card;
+    this.cardIdx = '';
+    if (this.userData.tasks.length > 0) {
+      this.userData.tasks.forEach(element => {
+        if (element.type !== 'wild'){
+          this.taskList.push(element)
+        }
+      });
+      this.cardIdx = this.taskList[this.taskList.length - 1]._card;
+    }
+
     this.data = await this.getTaskList(this.cardIdx);
     console.log(this.cardIdx,'heilo', this.cardId);
 
@@ -88,8 +99,6 @@ export class TasksListComponent implements OnInit {
 
   selectSelfTask(taskId: any) {
     this.userData.tasks[this.userData.tasks.length - 1]._task = taskId;
-
-    console.log(this.userData.tasks[this.userData.tasks.length - 1]._task);
 
     const storageService = this.injector.get(StorageService);
     return storageService.setLocalData(
@@ -142,7 +151,7 @@ export class TasksListComponent implements OnInit {
     return new Promise((resolve) => {
       // Call the service function
       this.classService
-        .getTeamTaskStatus(this.userData.teams[0]._id)
+        .getTeamTaskStatus(this.userData.teams[0]._id, 'general')
         .then((res) => {
           // Fire sucess toast
           this.taskStatus = res['teamStatus'];
@@ -151,14 +160,13 @@ export class TasksListComponent implements OnInit {
               if (element.user_email == this.userData.email) {
                 this.individualTaskStatus = element.user_individual_task_status;
               }
-              if (element.user_individual_task_status === false) {
+              if (element.user_individual_task_status === false && this.isdash === true) {
                 this.isdash1 = !this.isdash1
               }
             });
           }
         })
         .catch(() => {
-          this.isdash1 = !this.isdash1;
           // Fire error toast
           utilityService.fireToast(
             'error',
@@ -184,9 +192,9 @@ export class TasksListComponent implements OnInit {
             task.assigned = false;
 
             if (task.title == 'Self Task') {
-              let userData = this.getUserData();
+              // let userData = this.getUserData();
 
-              if (userData.tasks[userData.tasks.length - 1].status == 'to do') {
+              if (this.taskList[this.taskList.length - 1].status == 'to do') {
                 task.status = 'to do';
               }
             }

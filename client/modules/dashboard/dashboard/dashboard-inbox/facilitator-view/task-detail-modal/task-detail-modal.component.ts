@@ -32,7 +32,7 @@ export class TaskDetailModalComponent implements OnInit {
     public router: Router
   ) {}
   formGroup = new FormGroup({ secondCtrl: new FormControl(''), })
-  
+
   @Output() public getResonseData = new EventEmitter<string>();
   inputForm: FormGroup;
   public data: any = [];
@@ -42,6 +42,9 @@ export class TaskDetailModalComponent implements OnInit {
   public confetti: boolean= false;
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
+    console.log('====================================');
+    console.log(this.data.team );
+    console.log('====================================');
     this.userData = this.storageService.getLocalData('userData');
     this.inputForm = this.formBuilder.group({
       comment: new FormControl(null, [
@@ -51,10 +54,10 @@ export class TaskDetailModalComponent implements OnInit {
       bonus_point: new FormControl(0),
     });
     $(function(){
-		
+
       $('#thumbnail li').click(function(){
         var thisIndex = $(this).index()
-          
+
         if(thisIndex < $('#thumbnail li.active').index()){
           prevImage(thisIndex, $(this).parents("#thumbnail").prev("#image-slider"));
           // alert('previous image clicked');
@@ -62,14 +65,14 @@ export class TaskDetailModalComponent implements OnInit {
           nextImage(thisIndex, $(this).parents("#thumbnail").prev("#image-slider"));
           // alert('next image clicked');
         }
-          
+
         $('#thumbnail li.active').removeClass('active');
         $(this).addClass('active');
-    
+
         });
       });
   }
-  
+
 
   verifyTask() {
     return new Promise((resolve) => {
@@ -80,7 +83,8 @@ export class TaskDetailModalComponent implements OnInit {
           parseInt(this.data.team.team_task_points) +
             parseInt(this.inputForm.value.bonus_point),
           this.inputForm.value.comment,
-          this.inputForm.value.bonus_point
+          this.inputForm.value.bonus_point,
+          this.data.team.task_id
         )
         .then((res) => {
           this.router.navigate(['dashboard', 'inbox']);

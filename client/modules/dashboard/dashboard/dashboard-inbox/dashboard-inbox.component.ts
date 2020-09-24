@@ -1,9 +1,11 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 import { ClassService } from '../shared/services/class.service';
 import { TeamService } from '../shared/services/team.service';
+import { ClassDetailsComponent } from '../dashboard-classes/class-details/class-details.component';
 @Component({
   selector: 'app-dashboard-inbox',
   templateUrl: './dashboard-inbox.component.html',
@@ -22,7 +24,10 @@ export class DashboardInboxComponent implements OnInit {
     private injector: Injector,
     private classService: ClassService,
     private teamService: TeamService,
-    public dashboardHeaderComponent: DashboardHeaderComponent
+    private storageService: StorageService,
+    public dashboardHeaderComponent: DashboardHeaderComponent,
+    public router: Router,
+    private _ActivatedRoute: ActivatedRoute,
   ) {}
 
   userData: any;
@@ -38,12 +43,21 @@ export class DashboardInboxComponent implements OnInit {
   showAssignTask: Boolean = false;
   showTeam: Boolean = false;
 
+  classId = this.storageService.getLocalData('userData').classes[0];
+
+  class: any;
+
+  classDetails = new ClassDetailsComponent(this.injector, this._ActivatedRoute, this.router)
+
   async ngOnInit() {
     this.dashboardHeaderComponent.showSideMenu = false;
     this.userData = await this.getUserData();
-    if (this.userData.tasks.length > 0)
+
+    if (this.userData.tasks.length > 0) {
       this.card._id = this.userData.tasks[this.userData.tasks.length - 1]._card;
-      console.log(this.card._id);
+    }
+
+    this.class = await this.classDetails.getClassDetails(this.classId);
   }
 
   public ngOnDestroy() {

@@ -36,7 +36,8 @@ export class TaskRejectModalComponent implements OnInit {
           .rejectTask(
             this.data.team.team_id,
             0,
-            this.inputForm.value['comment']
+            this.inputForm.value['comment'],
+            this.data.team.task_id
           )
           .then((res) => {
             this.getResonseData.emit('success');

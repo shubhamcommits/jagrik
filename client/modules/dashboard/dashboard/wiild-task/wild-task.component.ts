@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { TeamService } from '../shared/services/team.service';
+import { ClassService } from '../shared/services/class.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,15 +23,19 @@ import { AddWildTaskComponent } from './add-wild-task/add-wild-task.component';
 export class WildTaskComponent implements OnInit {
 
   userRole = '';
+  userData: any = []
+  showAssignTask:boolean = false
   className = '';
   teamData: any = []
   bonusTaskData: any = []
   isUploaded: Boolean = false;
   wildTask: any = []
   taskList: any = []
-  taskStatus:boolean = false
+  taskStatus: any = []
+  individualTaskStatus: any;
   constructor(
     private userService: UserService,
+    private classService: ClassService,
     private teamService: TeamService,
     private utilityService: UtilityService,
     private storageService: StorageService,
@@ -38,12 +43,10 @@ export class WildTaskComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.userRole = this.storageService.getLocalData('userData').role;
-    this.wildTask = this.storageService.getLocalData('userData').wild_tasks;
-    if (this.wildTask.length > 0) {
-      this.getTaskList(this.wildTask[0]['_card'])
-      this.taskStatus = this.wildTask[0]['status'] === 'complete' ? true : false
-    }
+    this.userData = this.storageService.getLocalData('userData');
+    this.getTeamTaskStatus()
   }
 
   openDialog(task: any) {
@@ -58,7 +61,7 @@ export class WildTaskComponent implements OnInit {
 
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       dialogRef.close()
-      this.getUserData()
+      this.getTeamWildTaskStatus()
     });
   }
 
@@ -66,9 +69,7 @@ export class WildTaskComponent implements OnInit {
     this.userService
       .assignWildCard()
       .then((res) => {
-        this.storageService.setLocalData('userData', JSON.stringify(res['user']));
-        this.wildTask = res['user']['wild_tasks']
-        this.getTaskList(res['user']['wild_tasks'][0]['_card'])
+        this.getUserData()
       })
       .catch(() => {
         // Fire error toast
@@ -85,10 +86,12 @@ export class WildTaskComponent implements OnInit {
         .get()
         .then((res) => {
           this.storageService.setLocalData('userData', JSON.stringify(res['user']));
-          this.wildTask = this.storageService.getLocalData('userData').wild_tasks;
-          if (this.wildTask.length > 0) {
-            this.taskStatus = this.wildTask[0]['status'] === 'complete' ? true : false
-          }
+          this.userData = this.storageService.getLocalData('userData');
+          this.userData.tasks.forEach(element => {
+            if (element.type === 'wild') {
+              this.getTaskList(element._card)
+            }
+          });
         })
         .catch(() => {
           resolve({});
@@ -103,9 +106,55 @@ export class WildTaskComponent implements OnInit {
         .fetchTasks(cardId)
         .then((res) => {
           this.taskList = res['tasks']
+          this.getTeamWildTaskStatus()
         })
         .catch(() => {
           resolve({});
+        });
+    });
+  }
+
+  getTeamTaskStatus() {
+    return new Promise((resolve) => {
+      this.teamService
+        .teamTaskStatus(this.userData.teams[0]._id, 'wild')
+        .then((res) => {
+          if (res['response']['status'] === false) {
+            this.showAssignTask = false;
+            this.getTaskList(res['response']['cardId']);
+          } else {
+            this.showAssignTask = true;
+          }
+        })
+        .catch(() => {
+          resolve({});
+        });
+    });
+  }
+
+  getTeamWildTaskStatus() {
+
+    return new Promise((resolve) => {
+      // Call the service function
+      this.classService
+        .getTeamTaskStatus(this.userData.teams[0]._id, 'wild')
+        .then((res) => {
+          // Fire sucess toast
+          this.taskStatus = res['teamStatus'];
+          if (this.taskStatus.teamMembers.length > 0) {
+            this.taskStatus.teamMembers.forEach((element) => {
+              if (element.user_email == this.userData.email) {
+                this.individualTaskStatus = element.user_individual_task_status;
+              }
+            });
+          }
+        })
+        .catch(() => {
+          // Fire error toast
+          this.utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
         });
     });
   }

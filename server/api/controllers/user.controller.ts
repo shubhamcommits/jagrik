@@ -322,7 +322,7 @@ export class UserController {
                 .then((response) => {
                     return res.status(200).json({
                         message: "User has been assigned with a wild card!",
-                        user: response.user,
+                        user: response.team,
                     })
                 })
 

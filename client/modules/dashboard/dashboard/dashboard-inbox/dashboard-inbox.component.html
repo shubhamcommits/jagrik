@@ -149,6 +149,39 @@
     </div>
 
   </div>
+   <div class="col-md-4">
+     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+       <div class="card-body">
+         <div class="card-heading">
+           <h1 style="margin: 0px !important;">My Team Members</h1>
+           <span></span>
+         </div>
+         <table class="table">
+           <thead>
+             <tr>
+               <th></th>
+               <th>Name</th>
+               <th>Action</th>
+             </tr>
+           </thead>
+           <tbody>
+             <ng-container *ngFor="let item of class.members">
+                <tr *ngIf="item.role === 'student' && userData.email !== item.email">
+                  <td scope="row"><img style="max-width: 50px;max-height: 650px;"
+                      src="{{item.profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.profile_pic}}"
+                      />
+                  </td>
+                  <td>{{item.first_name + ' ' + item.last_name}}</td>
+                  <td><a>Detail</a></td>
+                </tr>
+             </ng-container>
+
+           </tbody>
+         </table>
+       </div>
+     </div>
+
+   </div>
 </div>
   <!-- <div class="col-md-12">
     <app-assign-random-task

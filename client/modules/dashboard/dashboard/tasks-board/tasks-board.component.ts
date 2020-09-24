@@ -68,9 +68,8 @@ export class TasksBoardComponent implements OnInit {
 
   getTeamTaskStatus() {
      return new Promise((resolve) => {
-       const userService = this.injector.get(UserService);
        this.teamService
-         .teamTaskStatus(this.userData.teams[0]._id)
+         .teamTaskStatus(this.userData.teams[0]._id, 'general')
          .then((res) => {
            if (res['response']['status'] === false) {
              this.showAssignTask = false;

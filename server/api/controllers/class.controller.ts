@@ -446,10 +446,11 @@ export class ClassController {
              let authorization = req.headers.authorization;
              // let authorization="abcd"
              let teamId: any = req.query.teamId;
+             let type: any = req.query.type;
 
              // Call the service function to get all the classes
              await classService
-               .getTeamMemberStatus(authorization, teamId)
+               .getTeamMemberStatus(authorization, teamId, type)
                .then((status) => {
                  return res.status(200).json({
                    message: 'Team Tasks have been fetched successfully!',

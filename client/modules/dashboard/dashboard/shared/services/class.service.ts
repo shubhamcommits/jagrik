@@ -96,11 +96,12 @@ export class ClassService {
    * This function is responsible for get team status of task
    * @param teamId
    */
-  getTeamTaskStatus(teamId: any) {
+  getTeamTaskStatus(teamId: any, type: any) {
     return this.httpClient
       .get(environment.baseApiUrl + '/classes/get-team-member-task-status', {
         params: {
           teamId: teamId,
+          type: type
         },
       })
       .toPromise();

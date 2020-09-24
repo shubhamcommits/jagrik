@@ -89,7 +89,8 @@ export class TeamService {
     teamId: string,
     teamPoints: any,
     comment: any,
-    bonus_points: any
+    bonus_points: any,
+    taskId: any
   ) {
     try {
       // verify token and decode user data
@@ -110,12 +111,13 @@ export class TeamService {
           let is_update: Boolean = false;
           team.tasks.forEach((element) => {
             let item = element;
-            if (element.is_active === 'active') {
+            if (element.is_active === 'active' && element.id == taskId) {
               is_update = true;
+              element.is_active = 'inactive';
+              element.comment = comment;
+              element.bonus_point = bonus_points;
             }
-            element.is_active = 'inactive';
-            element.comment = comment;
-            element.bonus_point = bonus_points;
+           
             teamTask.push(element);
           });
           if (is_update === true) {
@@ -144,7 +146,8 @@ export class TeamService {
     token: any,
     teamId: string,
     teamPoints: any,
-    comment: string
+    comment: string,
+    taskId: string
   ) {
     try {
       // verify token and decode user data
@@ -166,12 +169,13 @@ export class TeamService {
           team.tasks.forEach((element) => {
             let item = element;
 
-            if (element.is_active === 'active') {
+            if (element.is_active === 'active' && element.id === taskId) {
               is_update = true;
               item.status = 'rejected';
               item['reason'] = comment;
+              item.is_active = 'inactive';
             }
-            item.is_active = 'inactive';
+            
 
             teamTask.push(item);
           });
@@ -197,7 +201,7 @@ export class TeamService {
     }
   }
 
-  async teamTaskStatus(token: any, teamId: string) {
+  async teamTaskStatus(token: any, teamId: string, type: string) {
     try {
       // verify token and decode user data
       let userVerify: any = jwt.verify(
@@ -208,22 +212,29 @@ export class TeamService {
       // check all existing task status
       let team: any = await Team.findOne({ _id: teamId });
       let taskStatus = false;
-
+      let taskCount = 0
+      let cardId = ''
       team.tasks.forEach((element) => {
-        if (element.is_active && element.is_active === 'active') {
+      
+        if (element.is_active && element.is_active === 'active' && element.type === type) {
           taskStatus = true;
+          cardId = element._card
+        }
+        if (element.type === type) {
+          taskCount++
         }
       });
 
       if (taskStatus === false) {
         return {
           status: true,
-          week: team.tasks.length + 1,
+          week: taskCount + 1,
         };
       } else {
         return {
           status: false,
-          week: team.tasks.length,
+          cardId: cardId,
+          week: taskCount,
         };
       }
     } catch (err) {

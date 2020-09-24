@@ -54,11 +54,12 @@ export class TeamService {
    * This function is responsible for getting team task status
    * @param teamId
    */
-  teamTaskStatus(teamId) {
+  teamTaskStatus(teamId, type) {
     return this.httpClient
       .get(environment.baseApiUrl + '/teams/team-task-status', {
         params: {
           teamId: teamId,
+          type: type
         },
       })
       .toPromise();
@@ -102,13 +103,14 @@ export class TeamService {
    * This function is responsible for assign points
    * @object data
    */
-  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any) {
+  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any, taskId: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
         teamId: teamId,
         teamPoints: teamPoints,
         comment: comment,
         bonus_point: bonus_point,
+        taskId: taskId
       })
       .toPromise();
   }
@@ -117,12 +119,13 @@ export class TeamService {
    * This function is responsible for reject task
    * @object data
    */
-  rejectTask(teamId: any, teamPoints: any, comment: any) {
+  rejectTask(teamId: any, teamPoints: any, comment: any , taskId: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/reject-task', {
         teamId: teamId,
         teamPoints: teamPoints,
         comment: comment,
+        taskId: taskId
       })
       .toPromise();
   }
