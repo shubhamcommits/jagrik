@@ -91,6 +91,8 @@ import {
 import 'hammerjs';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
+
+import { TeamMemberDetailModalComponent } from './dashboard/dashboard-inbox/team-member-detail/team-member-detail.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -128,7 +130,8 @@ import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
     TaskRejectModalComponent,
     AddMeetingModalComponent,
     WildTaskComponent,
-    AddWildTaskComponent
+    AddWildTaskComponent,
+    TeamMemberDetailModalComponent,
   ],
   imports: [
     CommonModule,

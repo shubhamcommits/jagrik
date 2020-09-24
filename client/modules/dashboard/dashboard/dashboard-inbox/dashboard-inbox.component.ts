@@ -2,10 +2,12 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 import { ClassService } from '../shared/services/class.service';
 import { TeamService } from '../shared/services/team.service';
 import { ClassDetailsComponent } from '../dashboard-classes/class-details/class-details.component';
+import {TeamMemberDetailModalComponent} from '../dashboard-inbox/team-member-detail/team-member-detail.component'
 @Component({
   selector: 'app-dashboard-inbox',
   templateUrl: './dashboard-inbox.component.html',
@@ -27,7 +29,8 @@ export class DashboardInboxComponent implements OnInit {
     private storageService: StorageService,
     public dashboardHeaderComponent: DashboardHeaderComponent,
     public router: Router,
-    private _ActivatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private _ActivatedRoute: ActivatedRoute
   ) {}
 
   userData: any;
@@ -47,7 +50,13 @@ export class DashboardInboxComponent implements OnInit {
 
   class: any;
 
-  classDetails = new ClassDetailsComponent(this.injector, this._ActivatedRoute, this.router)
+  allTeamMember: any;
+
+  classDetails = new ClassDetailsComponent(
+    this.injector,
+    this._ActivatedRoute,
+    this.router
+  );
 
   async ngOnInit() {
     this.dashboardHeaderComponent.showSideMenu = false;
@@ -58,6 +67,8 @@ export class DashboardInboxComponent implements OnInit {
     }
 
     this.class = await this.classDetails.getClassDetails(this.classId);
+
+    this.getTeamMembers();
   }
 
   public ngOnDestroy() {
@@ -105,10 +116,8 @@ export class DashboardInboxComponent implements OnInit {
 
   closeClass() {
     return new Promise((resolve) => {
-
-
       // Fetch class details
-     this.classService
+      this.classService
         .closeClass(this.userData.classes[0])
         .then((res) => {
           this.getClassDetails(this.userData.classes[0]);
@@ -122,7 +131,7 @@ export class DashboardInboxComponent implements OnInit {
 
   getTeams() {
     this.teamService
-      .getTeamMembers(this.userData.teams[0])
+      .getTeams(this.userData.classes[0])
       .then((res) => {
         let data: any = res['teams'];
         if (data.length > 0) {
@@ -136,5 +145,25 @@ export class DashboardInboxComponent implements OnInit {
         }
       })
       .catch(() => {});
+  }
+
+  getTeamMembers() {
+    this.teamService
+      .getTeamMembers(this.userData.teams[0])
+      .then((res) => {
+        this.allTeamMember = res['teams'];
+      })
+      .catch(() => {});
+  }
+
+  teamMemberDetail(member: any) {
+    let dialogRef = this.dialog.open(TeamMemberDetailModalComponent, {
+      data: {
+        member: member,
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      maxWidth: '60vw',
+    });
   }
 }

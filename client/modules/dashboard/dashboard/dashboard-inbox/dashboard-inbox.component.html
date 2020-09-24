@@ -165,14 +165,14 @@
              </tr>
            </thead>
            <tbody>
-             <ng-container *ngFor="let item of class.teams">
+             <ng-container *ngFor="let item of allTeamMember">
                 <tr *ngIf="item.role === 'student' && userData.email !== item.email">
                   <td scope="row"><img style="max-width: 50px;max-height: 650px;"
                       src="{{item.profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.profile_pic}}"
                       />
                   </td>
                   <td>{{item.first_name + ' ' + item.last_name}}</td>
-                  <td><a>Detail</a></td>
+                  <td><button class="btn btn-primary btn-sm" (click)="teamMemberDetail(item)">Detail</button></td>
                 </tr>
              </ng-container>
 
