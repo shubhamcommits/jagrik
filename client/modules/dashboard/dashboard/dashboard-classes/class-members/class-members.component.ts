@@ -3,7 +3,7 @@ import { ClassDetailsComponent } from '../class-details/class-details.component'
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
-
+import { TeamService } from '../../shared/services/team.service';
 
 export interface PeriodicElement {
   name: string;
@@ -29,22 +29,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-class-members',
   templateUrl: './class-members.component.html',
-  styleUrls: ['./class-members.component.scss']
+  styleUrls: ['./class-members.component.scss'],
 })
 export class ClassMembersComponent implements OnInit {
-
   constructor(
     private _Injector: Injector,
     private _ActivatedRoute: ActivatedRoute,
     private storageService: StorageService,
-    private _Router: Router
-  ) { }
+    private _Router: Router,
+    private teamService: TeamService
+  ) {}
 
   // Class Details Object
-  classDetails = new ClassDetailsComponent(this._Injector, this._ActivatedRoute, this._Router)
+  classDetails = new ClassDetailsComponent(
+    this._Injector,
+    this._ActivatedRoute,
+    this._Router
+  );
 
   // Class Object
-  class: any
+  class: any;
 
   userData: any;
   // userTeam: any;
@@ -52,21 +56,30 @@ export class ClassMembersComponent implements OnInit {
   // Fetch class from the route
   classId = this.storageService.getLocalData('userData').classes[0];
   userTeam = this.storageService.getLocalData('userData').teams[0]._id;
+  allTeamMember:any = []
   displayedColumns: string[] = ['Name', 'Email', 'Role'];
   dataSource = ELEMENT_DATA;
-  
+
   async ngOnInit() {
     this.class = await this.classDetails.getClassDetails(this.classId);
     console.log(this.userTeam);
+    this.getTeamMembers()
   }
 
   isClassCreator() {
-
     // Utility Service Instance
-    let utilityService = this._Injector.get(UtilityService)
+    let utilityService = this._Injector.get(UtilityService);
 
     // Fire info toast
-    utilityService.fireToast('info', `This user is your class creator!`)
+    utilityService.fireToast('info', `This user is your class creator!`);
   }
 
+  getTeamMembers() {
+    this.teamService
+      .getTeamMembers(this.userData.teams[0])
+      .then((res) => {
+        this.allTeamMember = res['teams'];
+      })
+      .catch(() => {});
+  }
 }
