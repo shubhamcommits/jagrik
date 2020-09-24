@@ -1063,6 +1063,10 @@ export class ClassService {
                    } else {
                      is_any_self_task_complete = false;
                    }
+
+                   if (taskStatus === 'Waiting for approval' && is_any_self_task_complete === false) {
+                     taskStatus = 'Pending'
+                   }
                  }
                }
                teamMemberTaskStatus.push({
