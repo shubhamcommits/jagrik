@@ -27,7 +27,7 @@ export class CreateClassComponent implements OnInit {
     return this.utilityService.getSwalModal({
       title: title,
       input: 'text',
-      inputPlaceholder: 'Give your class a name',
+      inputPlaceholder: 'Give your Cohort a name',
       inputAttributes: {
         maxlength: 20,
         autocapitalize: 'off',
@@ -45,7 +45,7 @@ export class CreateClassComponent implements OnInit {
    * This function creates the new normal class
    */
   async openCreateClassModal() {
-    const { value: value } = await this.openModal('Create Class');
+    const { value: value } = await this.openModal('Create Your Cohort');
     if (value) {
       this.classService
         .createClass(value)
