@@ -86,7 +86,9 @@ export class TeamController {
                  });
                });
            } catch (err) {
-               
+               console.log('====================================');
+               console.log(err);
+               console.log('====================================');
              return res.status(500).json({
                message: 'Internal Server Error!',
                error: new Error(err || ' Internal Server Error'),

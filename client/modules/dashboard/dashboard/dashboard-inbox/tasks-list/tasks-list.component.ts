@@ -84,10 +84,11 @@ export class TasksListComponent implements OnInit {
     let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
         task,
+        week: this.taskList[this.taskList.length - 1]?.week,
       },
-        autoFocus: false,
-        maxHeight: '90vh',
-        maxWidth: '90vw',
+      autoFocus: false,
+      maxHeight: '90vh',
+      maxWidth: '90vw',
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       this.getUploadResponse($e)

@@ -31,7 +31,7 @@ export class TaskViewComponent implements OnInit {
 
     this.getTeamList()
 
-    // if (this.data.task.category === 'community') {
+    if (this.data.task.category === 'community') {
       this.inputForm = new FormGroup({
         removablefile: new FormControl(null, [
           Validators.required,
@@ -61,30 +61,31 @@ export class TaskViewComponent implements OnInit {
         ]),
         answer3text: new FormControl(''),
       });
-    // else {
-    //   this.inputForm = new FormGroup({
-    //     removablefile: new FormControl(null, [
-    //       FileValidator.maxContentSize(1048576),
-    //     ]),
-    //     removablefile1: new FormControl(null, [
-    //       FileValidator.maxContentSize(1048576),
-    //     ]),
-    //     removablefile2: new FormControl(null, [
-    //       FileValidator.maxContentSize(1048576),
-    //     ]),
-    //     removablefile3: new FormControl(null, [
-    //       FileValidator.maxContentSize(1048576),
-    //     ]),
-    //     description: new FormControl(null, [
-    //       Validators.required,
-    //       Validators.nullValidator,
-    //     ]),
-    //     answer2: new FormControl(null, [
-    //       Validators.required,
-    //       Validators.nullValidator,
-    //     ])
-    //   });
-    // }
+    }
+    else {
+      this.inputForm = new FormGroup({
+        removablefile: new FormControl(null, [
+          FileValidator.maxContentSize(1048576),
+        ]),
+        removablefile1: new FormControl(null, [
+          FileValidator.maxContentSize(1048576),
+        ]),
+        removablefile2: new FormControl(null, [
+          FileValidator.maxContentSize(1048576),
+        ]),
+        removablefile3: new FormControl(null, [
+          FileValidator.maxContentSize(1048576),
+        ]),
+        description: new FormControl(null, [
+          Validators.required,
+          Validators.nullValidator,
+        ]),
+        answer2: new FormControl(null, [
+          Validators.required,
+          Validators.nullValidator,
+        ])
+      });
+    }
 
 
   }
@@ -96,6 +97,9 @@ export class TaskViewComponent implements OnInit {
   submitFile() {
 
     if (this.inputForm.valid) {
+      console.log('====================================');
+      console.log(this.inputForm.value['answer3text']);
+      console.log('====================================');
 
       let image = []
       image.push(this.inputForm.value['removablefile']['files'][0]);
@@ -130,7 +134,7 @@ export class TaskViewComponent implements OnInit {
                 : 'No',
           },
        ]
-        help = [{ team_1: this.myTeamName, team_2: this.inputForm.value['answer3txt'], type: this.data.task.type , week: ''}]
+        help = [{ team_1: this.myTeamName, team_2: this.inputForm.value['answer3text'], type: this.data.task.type , week: this.data.week}]
       } else {
         qa = [
           {

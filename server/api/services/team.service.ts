@@ -1,4 +1,4 @@
-import { User, Card, Team } from "../models";
+import { User, Card, Team, Collaborate } from "../models";
 import { Readable } from 'stream'
 import jwt from "jsonwebtoken";
 
@@ -105,7 +105,8 @@ export class TeamService {
           _id: teamId,
           team_creator: user._id,
         });
-
+        let collabData = {}
+        let isCollbrate = false
         if (team) {
           let teamTask = [];
           let is_update: Boolean = false;
@@ -116,11 +117,42 @@ export class TeamService {
               element.is_active = 'inactive';
               element.comment = comment;
               element.bonus_point = bonus_points;
+
+              if (element.help_team.length > 0) {
+                isCollbrate = !isCollbrate;
+                collabData = {
+                  team_1: element.help_team[0]['team_1'],
+                  team_2: element.help_team[0]['team_2'],
+                  week: element.help_team[0]['week'],
+                  type: element.help_team[0]['type'],
+                  points:
+                    element.help_team[0]['type'] === 'gold'
+                      ? 5
+                      : element.help_team[0]['type'] === 'silver'
+                      ? 3
+                      : 1,
+                };
+                
+              }
             }
            
             teamTask.push(element);
           });
           if (is_update === true) {
+            if (isCollbrate) {
+              await Collaborate.create(collabData);
+              let team2: any = await Team.findOne({ team_name: collabData['team_2'] });
+              console.log('====================================');
+              console.log(team2);
+              console.log('====================================');
+              await Team.findOneAndUpdate(
+                { team_name: collabData['team_2'] },
+                {
+                  points:
+                    parseInt(team2.points) + parseInt(collabData['points'])
+                }
+              );
+            } 
             await Team.findOneAndUpdate(
               { _id: teamId },
               {
