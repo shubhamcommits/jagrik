@@ -906,8 +906,11 @@ export class ClassService {
                        team_task_description: TeamTask.description,
                        team_task_points: TeamTask.points,
                        team_task_type: TeamTask.type,
-                       team_task_supporting_doc: completedTeamTask.supporting_doc,
-                       team_task_supporting_docs: completedTeamTask.supporting_docs,
+                       help_team: completedTeamTask.help_team,
+                       team_task_supporting_doc:
+                         completedTeamTask.supporting_doc,
+                       team_task_supporting_docs:
+                         completedTeamTask.supporting_docs,
                        team_task_ques_review: completedTeamTask.ques_review,
                        team_task_explaination: completedTeamTask.description,
                        team_card_theme: CardDetail.theme,

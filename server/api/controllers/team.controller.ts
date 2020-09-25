@@ -69,6 +69,7 @@ export class TeamController {
              let teamPoints = req.body.teamPoints;
              let comment = req.body.comment;
              let bonus_point = req.body.bonus_point;
+             let isPoint = req.body.isPoint;
 
              // Call the service function to get all the classes
              await teamService
@@ -78,7 +79,8 @@ export class TeamController {
                  teamPoints,
                  comment,
                  bonus_point,
-                 taskId
+                 taskId,
+                 isPoint
                )
                .then(() => {
                  return res.status(200).json({
