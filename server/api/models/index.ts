@@ -6,38 +6,32 @@ import { Task } from './task.model'
 import { User } from './user.model'
 import {Announcement} from './announcement.model'
 import {BonusTask} from './bonus_task.model'
-import {Group} from './group.model'
+import { Group } from './group.model'
+import { Collaborate } from './collborate.model';
 
 /*  =====================
  *  -- EXPORTS MODELS --
  *  =====================
  * */
 export {
-
   // Auth Model
   Auth,
-
   // Card Model
   Card,
-
   // Class Model
   Class,
-
   // Team Model
   Team,
-
   // Task Model
   Task,
-
   // User Model
   User,
-
   // Announcement Model
   Announcement,
-
   // BonusTask Model
   BonusTask,
-
   // Group Model
-  Group
-}
+  Group,
+  // Collaborate Model
+  Collaborate,
+};
