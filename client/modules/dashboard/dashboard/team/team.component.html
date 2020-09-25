@@ -1,6 +1,6 @@
 <div class="row" *ngIf="isOpen">
   <div  class="col-md-12" style="max-height: 60vh;text-align: center;">
-    <h4>Please close your class then visit again !</h4>
+    <h4>Please freeze your cohort members, then visit again !</h4>
     <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
   </div>
 </div>
@@ -9,21 +9,32 @@
     <h4>No teams and team member found !</h4>
     <img style="margin-top:30px;max-height: 60vh;text-align: center;" src="assets/undraw_my_personal_files_8krs.svg">
   </div>
-  <!-- <div class="col-md-4">
-    <div class="row justify-content-center">
-      <div class="col-md-6" *ngFor="let item of newUser">
-        <div class="card text-center">
-            <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle">
-            <h3>{{item.name}}</h3>
-          <div class="card-body">
-           <button mat-raised-button color="primary"
-             (click)="assignTeam(item._id)">Assign</button>
-          </div>
+</div>
+<br><br>
+
+<ng-container *ngIf="!isOpen">
+<div class="row" *ngIf="userRole !== 'student'">
+  <div class="col-md-3">
+     <h2> Members Without a Team</h2>
+  </div>
+  <div class="col-md-9">
+    <h2 *ngIf="!teamArrayExist" style="text-align: center;">No teams currently!</h2>
+    <h2 *ngIf="teamArrayExist">Current Teams</h2>
+  </div>
+    <div class="col-md-3">
+      <div class="row justify-content-start r-panel" *ngFor="let item of newUser" style="    border: 1px solid #dedede;
+      padding: 5px;">
+        <div class="col-md-9" style="justify-content: center;">
+          <h3 style="line-height: 1; margin: 0px !important;">{{item.name}}</h3> 
+        </div>
+        <div class="col-md-3">
+          <button mat-raised-button color="primary" (click)="assignTeam(item._id)">Assign</button>
+        </div>
+           
         </div>
       </div>
-    </div>
-  </div> -->
-  <div class="col-md-12">
+
+  <div class="col-md-9">
     <div class="row justify-content-start">
       <div class="col-md-2" *ngFor="let item of teamArray | keyvalue">
         <div class="card card-team">
@@ -38,65 +49,7 @@
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+  </div>  
 </div>
-<br><br>
-<mat-accordion *ngIf="userRole !== 'student'  && newUser.length !== 0 && !isOpen">
-  <!-- *ngIf="userRole !== 'student'  && newUser.length !== 0" -->
-<mat-expansion-panel style="background-color: gainsboro;">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Un Assigned Members
-      </mat-panel-title>
-      <!-- <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-      </mat-panel-description> -->
-    </mat-expansion-panel-header>
-    <div class="row" style="padding-top: 30px;" *ngIf="userRole !== 'student'">
-      <div class="col-md-12">
-        <div class="row justify-content-start">
-          <div class="col-md-2" *ngFor="let item of newUser">
-            <div class="card text-center card-member ">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                 <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
-                 <h3>{{item.name}}</h3>
-              </div>
-            </div>
-              <div class="card-body">
-               <button mat-raised-button color="primary"
-                 (click)="assignTeam(item._id)">Assign</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-  </mat-expansion-panel>
-</mat-accordion>
-<!-- <div class="row" *ngIf="userRole !== 'student'">
-<div class="col-md-12">
-  <div class="row justify-content-start">
-    <div class="col-md-2" *ngFor="let item of newUser">
-      <div class="card text-center card-member ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-           <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
-           <h3>{{item.name}}</h3>
-        </div>
-      </div>
-        <div class="card-body">
-         <button mat-raised-button color="primary"
-           (click)="assignTeam(item._id)">Assign</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="row" *ngIf="userRole == 'student'">
-  <p class="pl-3">You have not access of this page!</p>
-</div>
--->
+</ng-container>

@@ -294,7 +294,7 @@ Waiting for Facilitator Approval
         </ng-container>
       </div>
   </div>
-  <div class="row" style="display: flex; justify-content: flex-end;">
+  <div class="row" style="display: flex; justify-content: flex-end;" *ngIf="!(!data?.card?.theme || (data?.card?.theme && data?.card?.theme === ''))">
   <button ngClass="{{data?.card?.theme === 'fundamental duties'  ? 'bg-yellow': 'bg-pink'}}" class="btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">View Task<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
    </div>
    <div class="row" *ngIf="!data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
