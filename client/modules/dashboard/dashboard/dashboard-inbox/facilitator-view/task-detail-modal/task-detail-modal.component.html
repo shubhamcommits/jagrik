@@ -253,6 +253,19 @@
                 <label for=""><b>Comments</b></label>
                 <textarea class="form-control" formControlName="comment" rows="3"></textarea>
               </div>
+               <div *ngIf="data?.team?.help_team.length>0" class="form-group">
+                <label for="bonus_point"><b>Are You want to award points to collaboration Team</b></label>
+                 <div class="form-check">
+                   <label class="form-check-label">
+                     <input type="radio" formControlName="isPoint" class="form-check-input" value="Yes">
+                     Yes
+                   </label>
+                   <label class="form-check-label" style="padding-left: 35px;">
+                     <input type="radio" formControlName="isPoint" class="form-check-input" value="No">
+                     No
+                   </label>
+                 </div>
+              </div>
               <!-- <div class="form-group">
                 <label for="bonus_point"><b>Bonus Point</b></label>
                 <input type="number" class="form-control" formControlName="bonus_point" placeholder="Bonus Point">
@@ -268,7 +281,7 @@
     width: 40px;">thumb_up_alt</mat-icon>
                       </div>
                       <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
-                       <h3>Great Job</h3> 
+                       <h3>Great Job</h3>
                       </div>
                       </div>
                     </div>
@@ -281,7 +294,7 @@
     width: 40px;">thumb_down_alt</mat-icon>
                         </div>
                         <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
-                         <h3>Can do Better!</h3> 
+                         <h3>Can do Better!</h3>
                         </div>
                         </div>
                       </div>

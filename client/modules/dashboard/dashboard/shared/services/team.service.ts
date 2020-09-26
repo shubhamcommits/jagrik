@@ -115,14 +115,15 @@ export class TeamService {
    * This function is responsible for assign points
    * @object data
    */
-  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any, taskId: any) {
+  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any, taskId: any,  isPoint: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
         teamId: teamId,
         teamPoints: teamPoints,
         comment: comment,
         bonus_point: bonus_point,
-        taskId: taskId
+        taskId: taskId,
+        isPoint: isPoint
       })
       .toPromise();
   }

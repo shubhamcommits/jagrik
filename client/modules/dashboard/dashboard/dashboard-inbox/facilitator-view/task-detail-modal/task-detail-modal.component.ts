@@ -42,17 +42,27 @@ export class TaskDetailModalComponent implements OnInit {
   public confetti: boolean= false;
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
-    console.log('====================================');
-    console.log(this.data.team );
-    console.log('====================================');
     this.userData = this.storageService.getLocalData('userData');
-    this.inputForm = this.formBuilder.group({
-      comment: new FormControl(null, [
-        Validators.required,
-        Validators.nullValidator,
-      ]),
-      bonus_point: new FormControl(0),
-    });
+    if (this.data.team.help_team.length > 0) {
+       this.inputForm = this.formBuilder.group({
+         comment: new FormControl(null, [
+           Validators.required,
+           Validators.nullValidator,
+         ]),
+         bonus_point: new FormControl(0),
+         isPoint: new FormControl('', [Validators.required]),
+       });
+    } else {
+       this.inputForm = this.formBuilder.group({
+         comment: new FormControl(null, [
+           Validators.required,
+           Validators.nullValidator,
+         ]),
+         bonus_point: new FormControl(0),
+         isPoint: new FormControl('No'),
+       });
+    }
+
     $(function(){
 
       $('#thumbnail li').click(function(){
@@ -75,29 +85,32 @@ export class TaskDetailModalComponent implements OnInit {
 
 
   verifyTask() {
-    return new Promise((resolve) => {
-      // Call the service function
-      this.teamService
-        .assignPoint(
-          this.data.team.team_id,
-          parseInt(this.data.team.team_task_points) +
-            parseInt(this.inputForm.value.bonus_point),
-          this.inputForm.value.comment,
-          this.inputForm.value.bonus_point,
-          this.data.team.task_id
-        )
-        .then((res) => {
-          this.router.navigate(['dashboard', 'inbox']);
-          this.utilityService.fireToast(
-            'success',
-            `Task Verified Successfully`
-          );
-        })
-        .catch(() => {
-          // Fire error toast
-          this.getResonseData.emit('error');
-        });
-    });
+    if(this.inputForm.valid){
+      return new Promise((resolve) => {
+        // Call the service function
+        this.teamService
+          .assignPoint(
+            this.data.team.team_id,
+            parseInt(this.data.team.team_task_points) +
+              parseInt(this.inputForm.value.bonus_point),
+            this.inputForm.value.comment,
+            this.inputForm.value.bonus_point,
+            this.data.team.task_id,
+            this.inputForm.value.isPoint
+          )
+          .then((res) => {
+            this.router.navigate(['dashboard', 'inbox']);
+            this.utilityService.fireToast(
+              'success',
+              `Task Verified Successfully`
+            );
+          })
+          .catch(() => {
+            // Fire error toast
+            this.getResonseData.emit('error');
+          });
+      });
+    }
   }
 
   rejectTask() {
