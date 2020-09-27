@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { TeamService } from '../../shared/services/team.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {TeamMemberDetailModalComponent} from '../../dashboard-inbox/team-member-detail/team-member-detail.component'
 
 export interface PeriodicElement {
   name: string;
@@ -37,7 +39,8 @@ export class ClassMembersComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private storageService: StorageService,
     private _Router: Router,
-    private teamService: TeamService
+    private teamService: TeamService,
+    public dialog: MatDialog,
   ) {}
 
   // Class Details Object
@@ -78,5 +81,15 @@ export class ClassMembersComponent implements OnInit {
         this.allTeamMember = res['teams'];
       })
       .catch(() => {});
+  }
+  teamMemberDetail(member: any) {
+    let dialogRef = this.dialog.open(TeamMemberDetailModalComponent, {
+      data: {
+        member: member,
+      },
+      autoFocus: false,
+      maxHeight: '90vh',
+      maxWidth: '60vw',
+    });
   }
 }

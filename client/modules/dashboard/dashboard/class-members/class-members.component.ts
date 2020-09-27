@@ -52,7 +52,6 @@ export class ClassMembersComponent implements OnInit {
     this.getClassDetails(
       this.storageService.getLocalData('userData').classes[0]
     );
-
   }
 
   // assignTeam(userId) {
@@ -146,5 +145,6 @@ export class ClassMembersComponent implements OnInit {
           );
         });
     });
+   
   }
 }

@@ -12,3 +12,16 @@
   display: flex;
   align-items: center;
 }
+::ng-deep{
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0px;
+}
+.mat-form-field-underline {
+  color: transparent;
+  height: 0px;
+  appearance: none;
+  width: 0%;
+  pointer-events: none;
+  transform: scale3d(1, 1.0001, 1);
+}
+}
