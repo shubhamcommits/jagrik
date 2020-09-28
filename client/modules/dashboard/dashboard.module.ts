@@ -93,6 +93,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { WildTaskComponent } from './dashboard/wiild-task/wild-task.component';
 
 import { TeamMemberDetailModalComponent } from './dashboard/dashboard-inbox/team-member-detail/team-member-detail.component';
+
+import { TeamProfileComponent } from './dashboard/team-profile/team-profile.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -132,6 +134,7 @@ import { TeamMemberDetailModalComponent } from './dashboard/dashboard-inbox/team
     WildTaskComponent,
     AddWildTaskComponent,
     TeamMemberDetailModalComponent,
+    TeamProfileComponent,
   ],
   imports: [
     CommonModule,
