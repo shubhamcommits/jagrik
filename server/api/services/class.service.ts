@@ -509,7 +509,7 @@ export class ClassService {
                          throw new Error('401 - Team not created');
                        }
                      } else {
-                       let team_name = 'Team' + get_all_teams.length + 1;
+                       let team_name = `Team${parseInt(get_all_teams.length) + 1}`;
                        let jagrik_class_team = await Team.create({
                          team_creator: user._id,
                          team_name: team_name,
