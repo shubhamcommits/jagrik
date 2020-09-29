@@ -17,7 +17,8 @@
 
       <div class="col-md-12">
         <div class="row justify-content-start">
-          <div class="col-md-2" *ngFor="let item of teamArray | keyvalue">
+          <div class="col-md-2" *ngFor="let item of teamArray | keyvalue"
+            [routerLink]="['/dashboard','team-profile', item.value[0].team_id]">
             <div class="card card-team">
               <div class="row">
                 <div class="col-md-6 text-center" *ngFor="let item1 of item.value">
