@@ -58,7 +58,7 @@ export class PendingTaskViewComponent implements OnInit {
     // });
 
     this.storageService.setLocalData('team_task_detail', JSON.stringify(task));
-    this.router.navigate(['dashboard/task-detail/' + this.storageService.getLocalData('userData').teams[0]._id]);
+    this.router.navigate(['dashboard/task-detail/' + this.teamId]);
   }
 
   getAllTask(teamId) {
