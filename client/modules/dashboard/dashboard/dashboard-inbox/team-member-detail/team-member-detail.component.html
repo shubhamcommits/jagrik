@@ -1,4 +1,4 @@
- <h2 class="heading text-uppercase" style="text-align: center;">Member Profile</h2>
+ <!-- <h2 class="heading text-uppercase" style="text-align: center;">Member Profile</h2>
  <mat-dialog-content class="mat-typography">
    <div class="row">
      <div class="col-md-12">
@@ -10,7 +10,45 @@
          <p>{{data?.member?.email}}</p>
      </div>
    </div>
- </mat-dialog-content>
- <mat-dialog-actions align="end">
-   <button mat-button mat-dialog-close>Cancel</button>
- </mat-dialog-actions>
+ </mat-dialog-content> -->
+ <!-- <mat-dialog-actions align="end">
+   <button mat-button mat-dialog-close>X</button>
+ </mat-dialog-actions> -->
+
+ <div class="row" style="height: 50vh;">
+    <div class="col-md-7" style="background-color: #cd4266;height: 100%;
+    display: flex;
+    justify-content: center;">
+        <div class="row"  style="padding: 60px;">
+              <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;padding: 0px 0px 10px;">
+                <img
+                src="{{'data:image/png;base64,'+ data?.member?.profile_pic}}" class="rounded-circle-big">
+              </div>
+              <div class="col-md-12" style="display: flex; justify-content:center ; align-items:flex-start ;">
+                <h1 style="color: white;">Name: {{data?.member?.first_name + ' ' + data?.member?.last_name}}</h1>
+              </div>
+              <div class="col-md-12" style="display: flex; justify-content:center ; align-items:flex-start ;">
+                <h1 style="color: white;">Email: {{data?.member?.email}}</h1>
+              </div>
+              <div class="col-md-12" style="display: flex; justify-content:center ; align-items:flex-start ;">
+                <h1 style="color: white;">Gender: {{data?.member?.gender}}</h1>
+              </div>
+        </div>
+      </div>
+      <div class="col-md-5" style="display: flex; justify-content: center; align-items: center;">
+        <h3> About: <br> {{data?.member?.bio}}</h3>
+      </div>
+    
+ </div>
+
+ <!-- <div class="row" style="background-color: #cd4266;">
+   <div class="col-md-12">
+     
+   </div>
+   <div class="col-md-6">
+    {{data?.member?.gender}}
+   </div>
+   <div class="col-md-6">
+    {{data?.member?.state}}
+   </div>
+ </div> -->

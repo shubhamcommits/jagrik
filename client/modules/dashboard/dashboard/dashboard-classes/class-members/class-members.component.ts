@@ -88,8 +88,10 @@ export class ClassMembersComponent implements OnInit {
         member: member,
       },
       autoFocus: false,
-      maxHeight: '90vh',
-      maxWidth: '60vw',
+      minHeight: '50vh',
+      maxHeight: '50vh',
+      minWidth: '50vw',
+      maxWidth: '50vw',
     });
   }
 }

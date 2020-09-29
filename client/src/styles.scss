@@ -137,3 +137,11 @@ align-items: flex-start;
   background-color: #f3b54e;
   border-color: #f3b54e;
 }
+.rounded-circle{
+  border-radius: 50% !important;
+}
+.rounded-circle-big{
+  border-radius: 50% !important;
+  height: 100px;
+  width: 100px;
+}

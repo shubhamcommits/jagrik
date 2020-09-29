@@ -3,7 +3,14 @@
   <button *ngIf="userData.role !== 'student'" type="button" class="btn btn-jagrik" (click)="addMeeting()"><mat-icon aria-hidden="false">add</mat-icon>Create New Meeting</button>
 </div>
 <ng-container *ngIf="sched.length == 0">
-  NO UPCOMING JAMGHATS FOUND
+  <div class="row">
+    <div class="col-md-12">
+      <img style="max-height: 40vh;max-width: 100%;" src="assets/undraw_calendar_dutt.svg">
+    </div>
+    <div class="col-md-12">
+      <span class="d-flex justify-content-center">No Upcoming Jamghats</span>
+    </div>
+  </div>
 </ng-container>
 <ng-container *ngIf="sched.length !== 0">
 <div class="d-flex justify-content-center" *ngFor="let item of sched">
