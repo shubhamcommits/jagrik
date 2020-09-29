@@ -20,18 +20,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TeamProfileComponent implements OnInit {
   constructor(
+    private activatedRoute: ActivatedRoute,
     private teamService?: TeamService,
     private utilityService?: UtilityService,
     private storageService?: StorageService,
-    private classService?: ClassService,
-    private activatedRoute: ActivatedRoute,
+    private classService?: ClassService
   ) {}
 
   teamData: any = [];
-  teamId = ''
+  teamId = '';
   ngOnInit(): void {
-    this.teamId = this.activatedRoute.snapshot.params['teamId']
-    this.getTeamProfile(this.activatedRoute.snapshot.params['teamId'])
+    this.teamId = this.activatedRoute.snapshot.params['teamId'];
+    this.getTeamProfile(this.activatedRoute.snapshot.params['teamId']);
   }
 
   getTeamProfile(teamId) {
@@ -41,7 +41,7 @@ export class TeamProfileComponent implements OnInit {
         .teamProfile(teamId)
         .then((res) => {
           // Fire error toast
-          this.teamData = res['response']
+          this.teamData = res['response'];
         })
         .catch(() => {
           // Fire error toast
