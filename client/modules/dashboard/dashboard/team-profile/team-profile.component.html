@@ -26,6 +26,7 @@
       <div class="card upper-card" style="width: 100%;">
         <div class="card-body text-center">
           <h1>Current Tasks</h1>
+          <div *ngIf="teamData.task_detail.theme">
           <hr>
           <h2 style="text-align: left;">Theme: {{teamData.task_detail.theme}}</h2>
           <h2 style="text-align: left;">Status: {{teamData.task_detail.status}}</h2>
@@ -38,6 +39,10 @@
           <span class="pattern float-right">
             <h4 style="margin-top: 10px;">Dice Number: {{teamData.task_detail.dice_number}}</h4>
           </span>
+          </div>
+          <div *ngIf="!teamData.task_detail.theme">
+            They Have not any active task
+          </div>
         </div>
       </div>
     </div>
