@@ -359,7 +359,7 @@ export class ClassService {
              // Fetch the class by id
              let jagrik_class = await Class.findById({ _id: classId }).populate(
                'members',
-               'first_name last_name role email profile_pic'
+               'first_name last_name role email profile_pic bio gender state profile_pic'
              );
 
              // Return class
@@ -677,7 +677,10 @@ export class ClassService {
                  last_name: member.last_name,
                  user_profile_pic: member.profile_pic,
                  email: member.email,
-                 role: member.role
+                 role: member.role,
+                 bio: member.bio,
+                 state: member.state,
+                 gender: member.gender
                };
                team_members.push(team_mate);
              }
