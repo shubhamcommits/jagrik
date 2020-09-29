@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TeamService } from '../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
@@ -26,6 +26,7 @@ export class PendingTaskViewComponent implements OnInit {
   taskData:any = []
   bonusTaskData: any = [];
   isUploaded: Boolean = false;
+  @Input() teamId: string;
 
   constructor(
     private teamService: TeamService,
@@ -37,9 +38,13 @@ export class PendingTaskViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.teamId);
     this.userRole = this.storageService.getLocalData('userData').role;
-    this.getAllTask(this.storageService.getLocalData('userData').teams[0]._id);
-    console.log(this.storageService.getLocalData('userData').teams[0]._id);
+    if (this.teamId === '') {
+      this.teamId = this.storageService.getLocalData('userData').teams[0]._id
+    }
+    this.getAllTask(this.teamId);
+
   }
 
   openResponseViewDialog(task: any) {

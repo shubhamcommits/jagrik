@@ -25,9 +25,7 @@ function devConfigInit() {
     "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";
 
   // Database Url String
-  process.env.dbURL =
-    process.env.dbURL ||
-    `mongodb+srv://Advitya_Jagrik:Advaysood10@cluster-jagrik.bk8kn.mongodb.net/Jagrik?retryWrites=true&w=majority`;
+  process.env.dbURL = process.env.dbURL || `mongodb://127.0.0.1:27017/jagrik`;
   
   // `mongodb://127.0.0.1:27017/jagrik`;
   // `mongodb+srv://Advitya_Jagrik:Advaysood10@cluster-jagrik.bk8kn.mongodb.net/Jagrik?retryWrites=true&w=majority`;

@@ -25,18 +25,19 @@
       <div class="row justify-content-start r-panel" *ngFor="let item of newUser" style="    border: 1px solid #dedede;
       padding: 5px;">
         <div class="col-md-9" style="justify-content: center;">
-          <h3 style="line-height: 1; margin: 0px !important;">{{item.name}}</h3> 
+          <h3 style="line-height: 1; margin: 0px !important;">{{item.name}}</h3>
         </div>
         <div class="col-md-3">
           <button mat-raised-button color="primary" (click)="assignTeam(item._id)">Assign</button>
         </div>
-           
+
         </div>
       </div>
 
   <div class="col-md-9">
     <div class="row justify-content-start">
-      <div class="col-md-2" *ngFor="let item of teamArray | keyvalue">
+      <div class="col-md-2" *ngFor="let item of teamArray | keyvalue"
+        [routerLink]="['/dashboard','team-profile', item.value[0].team_id]">
         <div class="card card-team">
           <div class="row">
             <div class="col-md-6 text-center" *ngFor="let item1 of item.value">
@@ -50,6 +51,6 @@
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
 </ng-container>

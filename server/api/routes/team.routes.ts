@@ -17,6 +17,8 @@ routes.get('/team-task-status', teamController.teamTaskStatus);
 
 routes.get('/team-dice-status', teamController.teamDiceStatus);
 
+routes.get('/team-profile', teamController.teamProfile);
+
 /*  ===================
  *  -- EXPORT ROUTES --
  *  ===================

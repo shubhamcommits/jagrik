@@ -3,7 +3,7 @@ import { TeamService } from '../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
 import { ClassService } from '../shared/services/class.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-profile',
@@ -23,8 +23,33 @@ export class TeamProfileComponent implements OnInit {
     private teamService?: TeamService,
     private utilityService?: UtilityService,
     private storageService?: StorageService,
-    private classService?: ClassService
+    private classService?: ClassService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
-  ngOnInit(): void {}
+  teamData: any = [];
+  teamId = ''
+  ngOnInit(): void {
+    this.teamId = this.activatedRoute.snapshot.params['teamId']
+    this.getTeamProfile(this.activatedRoute.snapshot.params['teamId'])
+  }
+
+  getTeamProfile(teamId) {
+    return new Promise((resolve) => {
+      // Fetch class details
+      this.teamService
+        .teamProfile(teamId)
+        .then((res) => {
+          // Fire error toast
+          this.teamData = res['response']
+        })
+        .catch(() => {
+          // Fire error toast
+          this.utilityService.fireToast(
+            'error',
+            `Some unexpected error occured, please try again!`
+          );
+        });
+    });
+  }
 }

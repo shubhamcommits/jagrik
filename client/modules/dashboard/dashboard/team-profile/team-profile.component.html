@@ -1,1 +1,54 @@
-<p>Team Profile</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card upper-card" style="width: 100%;">
+        <div class="card-body text-center">
+          <h1>Team Members</h1>
+           <div *ngFor="let item of teamData.team_member">
+              <hr>
+             <img _ngcontent-lue-c178 class="rounded-circle float-left"
+               src="{{item.user_profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.user_profile_pic}}">
+             <div class="col-md-12">
+               <h2>Name: {{item.first_name + ' ' + item.last_name}}</h2>
+             </div>
+             <div class="col-md-12">
+               <h2>Email: {{item.email}}</h2>
+             </div>
+
+           </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card upper-card" style="width: 100%;">
+        <div class="card-body text-center">
+          <h1>Current Tasks</h1>
+          <hr>
+          <h2 style="text-align: left;">Theme: {{teamData.task_detail.theme}}</h2>
+          <h2 style="text-align: left;">Status: {{teamData.task_detail.status}}</h2>
+
+          <hr>
+          <span class="pattern float-left">
+            <h4 style="margin-top: 25px;">Week: {{teamData.task_detail.week}}</h4>
+          </span>
+
+          <span class="pattern float-right">
+            <h4 style="margin-top: 10px;">Dice Number: {{teamData.task_detail.dice_number}}</h4>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card upper-card" style="width: 100%;">
+        <div class="card-body text-center">
+         <app-pending-task-view [teamId]="teamId"></app-pending-task-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

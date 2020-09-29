@@ -577,6 +577,7 @@ export class ClassService {
                    last_name: member.last_name,
                    user_profile_pic: member.profile_pic,
                    team_name: member_team.team_name,
+                   team_id: member_team.id,
                  };
                  result.push(member_class);
                } else {

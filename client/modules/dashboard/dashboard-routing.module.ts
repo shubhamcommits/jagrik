@@ -32,7 +32,7 @@ const routes: Routes = [
         children: [
           { path: 'inbox', component: DashboardInboxComponent },
           { path: 'task-detail/:taskId', component: TaskDetailModalComponent },
-          { path: 'team-profile', component: TeamProfileComponent },
+          { path: 'team-profile/:teamId', component: TeamProfileComponent },
           { path: 'tasks', component: TasksBoardComponent },
           { path: 'resource-list', component: ResourcePageComponent },
           { path: 'bouns-tasks', component: BonusTaskComponent },

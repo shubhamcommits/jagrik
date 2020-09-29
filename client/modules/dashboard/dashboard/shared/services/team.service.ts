@@ -21,9 +21,9 @@ export class TeamService {
   }
 
   /**
-  * Service function to get list of student with team
-  * @param teamId
-  */
+   * Service function to get list of student with team
+   * @param teamId
+   */
   getTeamMembers(teamId: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/classes/get-team-members', {
@@ -71,7 +71,7 @@ export class TeamService {
       .get(environment.baseApiUrl + '/teams/team-task-status', {
         params: {
           teamId: teamId,
-          type: type
+          type: type,
         },
       })
       .toPromise();
@@ -115,7 +115,14 @@ export class TeamService {
    * This function is responsible for assign points
    * @object data
    */
-  assignPoint(teamId: any, teamPoints: any, comment: any, bonus_point: any, taskId: any,  isPoint: any) {
+  assignPoint(
+    teamId: any,
+    teamPoints: any,
+    comment: any,
+    bonus_point: any,
+    taskId: any,
+    isPoint: any
+  ) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/submit-task-points', {
         teamId: teamId,
@@ -123,7 +130,7 @@ export class TeamService {
         comment: comment,
         bonus_point: bonus_point,
         taskId: taskId,
-        isPoint: isPoint
+        isPoint: isPoint,
       })
       .toPromise();
   }
@@ -132,13 +139,25 @@ export class TeamService {
    * This function is responsible for reject task
    * @object data
    */
-  rejectTask(teamId: any, teamPoints: any, comment: any , taskId: any) {
+  rejectTask(teamId: any, teamPoints: any, comment: any, taskId: any) {
     return this.httpClient
       .post(environment.baseApiUrl + '/teams/reject-task', {
         teamId: teamId,
         teamPoints: teamPoints,
         comment: comment,
-        taskId: taskId
+        taskId: taskId,
+      })
+      .toPromise();
+  }
+
+  /**
+   * This function is responsible for reject task
+   * @param teamId
+   */
+  teamProfile(teamId: any) {
+    return this.httpClient
+      .get(environment.baseApiUrl + '/teams/team-profile', {
+        params: { teamId: teamId },
       })
       .toPromise();
   }
@@ -149,13 +168,7 @@ export class TeamService {
    * @param taskId
    * @param teamId
    */
-  uploadTaskDocument(
-    image: any,
-    teamId: any,
-    taskId: any,
-    qa: any,
-    help: any
-  ) {
+  uploadTaskDocument(image: any, teamId: any, taskId: any, qa: any, help: any) {
     let formData: FormData = new FormData();
     image.forEach((element) => {
       formData.append('supporting_doc', element);

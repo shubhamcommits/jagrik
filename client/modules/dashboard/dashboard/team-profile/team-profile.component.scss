@@ -1,0 +1,55 @@
+.lower-card {
+
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+
+
+}
+
+img {
+  border-radius: 50%;
+}
+
+.upper-card {
+  overflow-y: scroll;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+  text-align: center;
+
+}
+
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+  box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.25), -2px -2px 5px 7px rgba(184, 181, 181, 0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 30px 15px rgba(95, 95, 95, 0.733),
+    -2px -5px 5px 10px rgba(0, 0, 0, 0.22);
+}
+
+.pattern {
+  height: 80px;
+  width: 80px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+}

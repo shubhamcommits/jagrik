@@ -101,6 +101,7 @@ export class TeamComponent implements OnInit {
                   position: i++,
                   className: this.className,
                   team: element['team_name'],
+                  team_id: element['team_id'],
                   user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://via.placeholder.com/60x60.png?text=Jagrik'
                 })
               }

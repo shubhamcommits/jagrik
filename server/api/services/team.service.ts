@@ -304,4 +304,80 @@ export class TeamService {
       throw new Error(err);
     }
   }
+
+  async teamProfile(token: any, teamId: string) {
+    try {
+      // verify token and decode user data
+      let userVerify: any = jwt.verify(
+        token.split(' ')[1],
+        process.env.JWT_KEY
+      );
+
+      // check all existing task status
+      let team: any = await Team.findOne({ _id: teamId });
+
+      let userIds = team.team_members;
+      // declare empty team_members array
+      let team_members = [];
+      // loop through userIds to find user details and then push into team_members array
+
+      for (let i in userIds) {
+        let member: any = await User.findById({ _id: userIds[i] });
+        let team_mate = {
+          first_name: member.first_name,
+          last_name: member.last_name,
+          user_profile_pic: member.profile_pic,
+          email: member.email,
+          role: member.role
+        };
+        team_members.push(team_mate);
+      }
+
+      let tasks = team.tasks;
+      let team_task:any = {};
+      for (let i in tasks) {
+
+        if (tasks[i].type === 'general' && tasks[i].is_active === 'active') {
+          let card: any = await Card.findById({ _id: tasks[i]._card })
+          let taskStatus = 'Pending'
+          if (
+            tasks[i].status === 'complete' &&
+            tasks[i].is_active === 'active'
+          ) {
+            taskStatus = 'Waiting for approval';
+          } else if (
+            tasks[i].status === 'complete' &&
+            tasks[i].is_active === 'inactive'
+          ) {
+            taskStatus = 'Completed';
+          } else if (tasks[i].status === 'to do') {
+            taskStatus = 'Pending';
+          } else if (tasks[i].status === 'rejected') {
+            taskStatus = 'Rejected';
+          }
+          team_task = {
+            week: tasks[i].week,
+            status: taskStatus,
+            theme: card.theme,
+            dice_number: card.dice_number
+          };
+        }
+
+      }
+
+
+
+      
+
+      return {
+        status: true,
+        team: team,
+        team_member: team_members,
+        task_detail: team_task
+      };
+    } catch (err) {
+      // Catch unexpected errors
+      throw new Error(err);
+    }
+  }
 }
