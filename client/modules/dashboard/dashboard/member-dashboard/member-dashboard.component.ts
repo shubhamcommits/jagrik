@@ -94,7 +94,7 @@ export class MemberDashboardComponent implements OnInit {
                   position: i++,
                   className: this.className,
                   team: element['team_name'],
-                  user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://via.placeholder.com/60x60.png?text=Jagrik'
+                  user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y'
                 })
               }
 

@@ -10,7 +10,9 @@
                   </div>
                 <div class="row">
                   <div class="col-md-12 text-center" style="align-items: center" >
-                    <img src="https://via.placeholder.com/100x100.png?text=Jagrik" class="rounded-circle img-member">
+                    <img
+                      src="{{item.profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.profile_pic}}"
+                      class="rounded-circle img-member">
                     <h3 >{{item.first_name}}&nbsp; {{item.last_name}}</h3>
                     <!-- {{item.bio}} -->
                     <!-- <h2>{{item.teams[0]._id}}</h2> -->
@@ -19,7 +21,7 @@
                 </div>
               </div>
             </div>
-          </ng-container> 
+          </ng-container>
         </ng-container>
       </div>
     </div>

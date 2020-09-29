@@ -43,7 +43,7 @@ export class TaskDetailModalComponent implements OnInit {
   ngOnInit(): void {
     this.data.team = this.storageService.getLocalData('team_task_detail');
     this.userData = this.storageService.getLocalData('userData');
-    if (this.data.team.help_team.length > 0) {
+    if (this.data.team.help_team && this.data.team.help_team.length > 0) {
        this.inputForm = this.formBuilder.group({
          comment: new FormControl(null, [
            Validators.required,
