@@ -10,7 +10,7 @@ h1{
     font-weight: 1200;
     font-size: 40px;
     font-family: 'Source Sans Pro', sans-serif;
-    color: #CE4166;
+    color: #ffffff;
 }
 .card-dashboard{
     min-height: 400px;
@@ -44,4 +44,12 @@ h1{
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+.card-heading, .card-heading h2 {
+    color: #CE4166;
+    margin-bottom: 20px;
+    background-color: #cd4266;
+    padding: 12px;
+    text-align: center;
+    margin: 0px;
 }

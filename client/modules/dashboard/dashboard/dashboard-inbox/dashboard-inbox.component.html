@@ -7,23 +7,23 @@
 <ng-container *ngIf="userData && userData.role === 'facilitator'">
 <div class="row">
   <div class="col-md-8" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;">
+    <div class="card card-dashboard" style="">
+      <div class="card-heading">
+        <h1 style="margin: 0px !important;">Tasks Pending for Verification</h1>
+       <!-- <span></span> -->
+      </div>
       <div class="card-body">
-        <div class="card-heading">
-          <h1 style="margin: 0px !important;">Tasks Pending for Verification</h1>
-          <span></span>
-        </div>
         <app-facilitator-view></app-facilitator-view>
       </div>
     </div>
   </div>
   <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+    <div class="card card-dashboard" style="height: 100%;">
+      <div class="card-heading">
+        <h1 style="margin: 0px !important;">Upcoming Jamghats</h1>
+       <!-- <span></span> -->
+      </div>
       <div class="card-body">
-        <div class="card-heading">
-          <h1 style="margin: 0px !important;">Upcoming Jamghats</h1>
-          <span></span>
-        </div>
         <app-class-agenda></app-class-agenda>
       </div>
     </div>
@@ -32,23 +32,23 @@
 
 <div class="row row-next">
   <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
-        <div class="card-heading">
+    <div class="card card-dashboard" style="height: 100%;">
+      <div class="card-heading">
           <h1 style="margin: 0px !important;">Leaderboard</h1>
-          <span></span>
+         <!-- <span></span> -->
         </div>
+      <div class="card-body">
         <app-leaderboard-view></app-leaderboard-view>
       </div>
     </div>
   </div>
   <div class="col-md-8" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
-        <div class="card-heading">
+    <div class="card card-dashboard" style="height: 100%;">
+      <div class="card-heading">
           <h1 style="margin: 0px !important;">Cohort Members</h1>
-          <span></span>
+         <!-- <span></span> -->
         </div>
+      <div class="card-body">
         <app-team-dashboard></app-team-dashboard>
       </div>
     </div>
@@ -61,15 +61,11 @@
   <!-- STAGE 1 -->
   <ng-container *ngIf="is_open">
       <div class="col-md-12" style="display: flex;flex-direction: column;" >
-        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-          <div class="card-body">
+        <div class="card card-dashboard" style="height: 100%;">
             <div class="card-heading">
               <h1 style="margin: 0px !important;">My Cohort</h1>
-              <!-- <h4 style="float: right;">Done adding members?</h4>
-              <br> -->
-              <!-- <button class="btn btn-jagrik btn-primary" style="float: right;"(click)="closeClass()">Freeze Class</button> -->
-              <span></span>
             </div>
+          <div class="card-body">
             <app-invite-students>
             </app-invite-students>
           </div>
@@ -77,12 +73,12 @@
 
       </div>
       <div class="col-md-12 row-next" style="display: flex;flex-direction: column;">
-        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-          <div class="card-body">
+        <div class="card card-dashboard" style="height: 100%;">
             <div class="card-heading">
               <h1 style="margin: 0px !important;">Current Cohort Members</h1>
-              <span></span>
+             <!-- <span></span> -->
             </div>
+          <div class="card-body">
             <app-class-members></app-class-members>
           </div>
         </div>
@@ -90,12 +86,12 @@
     </ng-container>
   <!-- STAGE 2 -->
       <div class="col-md-12" style="display: flex;flex-direction: column;" *ngIf="!is_open && showTeam">
-        <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-          <div class="card-body">
+        <div class="card card-dashboard" style="height: 100%;">
             <div class="card-heading">
               <h1 style="margin: 0px !important;"> Assign Teams</h1>
-              <span></span>
+             <!-- <span></span> -->
             </div>
+          <div class="card-body">
             <app-team>
             </app-team>
           </div>
@@ -107,34 +103,34 @@
 <!-- <app-tasks-board></app-tasks-board> -->
 <div class="row">
   <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
+    <div class="card card-dashboard" style="height: 100%;">
         <div class="card-heading">
           <h1 style="margin: 0px !important;">Leaderboard</h1>
-          <span></span>
+         <!-- <span></span> -->
         </div>
+      <div class="card-body">
         <app-leaderboard-view></app-leaderboard-view>
       </div>
     </div>
   </div>
   <div class="col-md-4" style="display: flex;flex-direction: column;" *ngIf="!is_open && !showTeam">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
+    <div class="card card-dashboard" style="height: 100%;">
         <div class="card-heading">
           <h1 style="margin: 0px !important;">Upcoming Jamghats</h1>
-          <span></span>
+         <!-- <span></span> -->
         </div>
+      <div class="card-body">
         <app-class-agenda></app-class-agenda>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="card card-dashboard" style="padding: 25px;height: 100%;">
-      <div class="card-body">
+    <div class="card card-dashboard" style="height: 100%;">
         <div class="card-heading">
           <h1 style="margin: 0px !important;">My Current Task</h1>
-          <span></span>
+         <!-- <span></span> -->
         </div>
+      <div class="card-body">
         <app-tasks-list></app-tasks-list>
         
       </div>
@@ -144,21 +140,12 @@
 </div>
 <div class="row row-next">
    <div class="col-md-4">
-     <div class="card card-dashboard" style="padding: 25px;height: 100%;">
+     <div class="card card-dashboard" style="height: 100%;">
        <div class="card-body">
          <div class="card-heading">
            <h1 style="margin: 0px !important;">My Team</h1>
-           <span></span>
+          <!-- <span></span> -->
          </div>
-        <!--   <table class="table">
-          <thead>
-             <tr>
-               <th></th>
-               <th>Name</th>
-               <th>Action</th>
-             </tr>
-           </thead> 
-           <tbody>-->
              <ng-container *ngFor="let item of allTeamMember">
               <div (click)="teamMemberDetail(item)" class="card md-9" style="max-width: 540px;" *ngIf="item.role === 'student' ">
                 <div class="row no-gutters">
@@ -183,25 +170,11 @@
                   <td><button class="btn btn-primary btn-sm" (click)="teamMemberDetail(item)">Detail</button></td>
                 </tr> -->
              </ng-container>
-
-           <!-- </tbody>
-         </table> -->
        </div>
      </div>
 
    </div>
 </div>
-  <!-- <div class="col-md-12">
-    <app-assign-random-task
-      *ngIf="userData && userData.role === 'student' && userData.teams.length > 0 && userData.tasks.length == 0"
-      (card)="getCard($event)">
-    </app-assign-random-task>
-
-    <app-tasks-list class="container" *ngIf="userData && userData.role === 'student' && userData.tasks.length > 0"
-      [cardId]="this.card._id">
-    </app-tasks-list>
-
-  </div>-->
 
 </div>
 

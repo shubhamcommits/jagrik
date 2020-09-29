@@ -228,7 +228,7 @@
                 <textarea class="form-control" formControlName="comment" rows="3"></textarea>
               </div>
                <div *ngIf="data?.team?.help_team?.length>0" class="form-group">
-                <label for="bonus_point"><b>Are You want to award points to collaboration Team</b></label>
+                <label for="bonus_point"><b>Do you want to award points to collaboration Team</b></label>
                  <div class="form-check">
                    <label class="form-check-label">
                      <input type="radio" formControlName="isPoint" class="form-check-input" value="Yes">
@@ -259,8 +259,7 @@
                       </div>
                       </div>
                     </div>
-                    <div class=" col-md-6" (click)="rejectTask()">
-                      <div class="col-md-6" (click)="verifyTask()" style="display: flex;align-items: flex-start;">
+                      <div class="col-md-6" (click)="rejectTask()" style="display: flex;align-items: flex-start;">
                         <div class="reject row">
                         <div class="col-md-12" style="justify-content: center; display: flex; text-align: center;width: 100%;align-items: center;">
                           <mat-icon aria-hidden="false" aria-label="Example home icon" style="    font-size: 40px;
@@ -272,10 +271,9 @@
                         </div>
                         </div>
                       </div>
-                    </div>
-                    <!-- <button class="btn-reject" style="margin-right: 5px;" mat-button
+                    <button class="btn-reject" style="margin-right: 5px;" mat-button
                       (click)="rejectTask()">Reject</button>
-                    <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button> -->
+                    <button class="btn-verify" mat-button (click)="verifyTask()">Verify</button>
                   </div>
                 </mat-dialog-actions>
               </div>
