@@ -26,7 +26,9 @@ export class PendingTaskViewComponent implements OnInit {
   taskData:any = []
   bonusTaskData: any = [];
   isUploaded: Boolean = false;
-  @Input() teamId: string;
+  @Input() teamId: string | undefined;
+
+  finalTeamId = ''
 
   constructor(
     private teamService: TeamService,
@@ -38,12 +40,14 @@ export class PendingTaskViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.teamId);
     this.userRole = this.storageService.getLocalData('userData').role;
-    if (this.teamId === '') {
-      this.teamId = this.storageService.getLocalData('userData').teams[0]._id
+    if (!this.teamId || typeof (this.teamId) === 'undefined' || typeof (this.teamId) === 'undefined') {
+      this.finalTeamId = this.storageService.getLocalData('userData').teams[0]
+    } else {
+      this.finalTeamId = this.teamId;
     }
-    this.getAllTask(this.teamId);
+
+    this.getAllTask(this.finalTeamId);
 
   }
 
@@ -58,7 +62,7 @@ export class PendingTaskViewComponent implements OnInit {
     // });
 
     this.storageService.setLocalData('team_task_detail', JSON.stringify(task));
-    this.router.navigate(['dashboard/task-detail/' + this.teamId]);
+    this.router.navigate(['dashboard/task-detail/' + this.finalTeamId]);
   }
 
   getAllTask(teamId) {
