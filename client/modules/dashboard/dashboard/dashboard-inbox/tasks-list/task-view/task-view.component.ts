@@ -5,7 +5,7 @@ import { UtilityService } from 'src/shared/services/utility-service/utility.serv
 import { FileValidator } from 'ngx-material-file-input';
 import { TeamService } from '../../../shared/services/team.service';
 import { ClassService } from '../../../shared/services/class.service';
- import { StorageService } from 'src/shared/services/storage-service/storage.service';
+import { StorageService } from 'src/shared/services/storage-service/storage.service';
 
 @Component({
   selector: 'app-task-view',

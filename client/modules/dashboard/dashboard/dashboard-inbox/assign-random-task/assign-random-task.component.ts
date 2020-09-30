@@ -21,6 +21,7 @@ export class AssignRandomTaskComponent implements OnInit {
 
   // Show assign card
   showAssignCard = true;
+  isCardAssigned = false;
 
   // Theme Variable
   theme = 'fundamental rights';
@@ -53,8 +54,12 @@ export class AssignRandomTaskComponent implements OnInit {
     }
 
     setTimeout(() => {
+      this.isCardAssigned = !this.isCardAssigned;
+    }, 4000);
+
+    setTimeout(() => {
       this.assignCard()
-    }, 3000);
+    }, 8000);
   }
 
 
@@ -69,9 +74,8 @@ export class AssignRandomTaskComponent implements OnInit {
         .assignCard(this.theme, this.week, this.getUserData().teams[0]._id, this.selectedDice)
         .then((res) => {
           console.log(res);
-          this.card.emit(res['card']);
+          this.card.emit(res['card'])
           this.showChooseTheme = !this.showChooseTheme;
-          this.showAssignCard = !this.showAssignCard;
 
           // Fire sucess toast
           utilityService.fireToast(
@@ -79,7 +83,6 @@ export class AssignRandomTaskComponent implements OnInit {
             `Great - you've assigned a new card to your team - your feed will update very soon!`,
             3000
           );
-
           resolve();
         })
         .catch(() => {
@@ -90,6 +93,7 @@ export class AssignRandomTaskComponent implements OnInit {
           );
           this.showChooseTheme = !this.showChooseTheme;
           this.showAssignCard = !this.showAssignCard;
+          this.isCardAssigned = !this.isCardAssigned;
           resolve();
         });
     });

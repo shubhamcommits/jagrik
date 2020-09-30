@@ -2,7 +2,6 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { TeamService } from '../shared/services/team.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
-
 @Component({
   selector: 'app-tasks-board',
   templateUrl: './tasks-board.component.html',
@@ -40,6 +39,8 @@ export class TasksBoardComponent implements OnInit {
       ]._card;
       this.getTeamTaskStatus();
     }
+
+
   }
 
   getCard(card: any) {

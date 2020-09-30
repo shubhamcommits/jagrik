@@ -8,7 +8,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskViewComponent } from './task-view/task-view.component';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { Router } from '@angular/router';
-
+import * as confetti from 'canvas-confetti';
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
@@ -38,14 +38,14 @@ export class TasksListComponent implements OnInit {
   };
 
   userData: any;
-  substring = "inbox";
+  substring = 'inbox';
   isdash: boolean = false;
   isdash1: boolean = true;
   taskStatus: any;
   individualTaskStatus: any;
-  displayedColumns: string[] = ['Description',];
+  displayedColumns: string[] = ['Description'];
   week: any;
-  taskList:any = []
+  taskList: any = [];
 
   @Input('cardId') cardId: any;
   cardIdx: any;
@@ -58,17 +58,16 @@ export class TasksListComponent implements OnInit {
     this.userData = this.getUserData();
     this.cardIdx = '';
     if (this.userData.tasks.length > 0) {
-      this.userData.tasks.forEach(element => {
-        if (element.type !== 'wild'){
-          this.taskList.push(element)
+      this.userData.tasks.forEach((element) => {
+        if (element.type !== 'wild') {
+          this.taskList.push(element);
         }
       });
       this.cardIdx = this.taskList[this.taskList.length - 1]._card;
     }
 
     this.data = await this.getTaskList(this.cardIdx);
-    console.log(this.cardIdx,'heilo', this.cardId);
-
+    console.log(this.cardIdx, 'heilo', this.cardId);
 
     if (
       this.userData['teams'][0]['tasks'][
@@ -78,6 +77,14 @@ export class TasksListComponent implements OnInit {
       console.log('check');
     }
     this.getTeamTaskStatus();
+  }
+
+  startConfe() {
+    confetti.create()({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
   }
 
   openDialog(task: any) {
@@ -91,12 +98,15 @@ export class TasksListComponent implements OnInit {
       maxWidth: '90vw',
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
-      this.getUploadResponse($e)
+      if ($e === 'success') {
+        this.startConfe()
+      }
+      this.getUploadResponse($e);
     });
   }
 
   getUploadResponse(value) {
-    this.getTeamTaskStatus()
+    this.getTeamTaskStatus();
   }
 
   selectSelfTask(taskId: any) {
@@ -162,8 +172,11 @@ export class TasksListComponent implements OnInit {
               if (element.user_email == this.userData.email) {
                 this.individualTaskStatus = element.user_individual_task_status;
               }
-              if (element.user_individual_task_status === false && this.isdash === true) {
-                this.isdash1 = !this.isdash1
+              if (
+                element.user_individual_task_status === false &&
+                this.isdash === true
+              ) {
+                this.isdash1 = !this.isdash1;
               }
             });
           }
