@@ -2,6 +2,7 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { ClassService } from '../../shared/services/class.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
+
 @Component({
   selector: 'app-class-details',
   templateUrl: './class-details.component.html',
@@ -15,11 +16,16 @@ export class ClassDetailsComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router
   ) {}
-
+  
+  substring = "inbox";
+  isdash: boolean = false;
   classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
   userRole: any = []
   isOpen:Boolean = false
   async ngOnInit() {
+    let currentUrl = this._Router.url;
+    console.log(currentUrl);
+    this.isdash = currentUrl.includes(this.substring);
     this.class = await this.getClassDetails(this.classId);
     const storageService = this._Injector.get(StorageService);
     if (storageService.existData('userData')) {

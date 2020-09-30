@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="isdash == false">
   <div class="example-button-row">
     <button mat-raised-button color="{{checkColor('Agenda')}}"
       [routerLink]="['/dashboard', 'classes', 'agenda']"
@@ -12,5 +12,9 @@
   (click)="closeClass()">Freeze Class</button>
   </div>
 
+</section>
+<section *ngIf="isdash == true">
+  <button *ngIf="userRole == 'facilitator'" mat-raised-button style="float: right; background-color: #cd4266; color: white;"
+  (click)="closeClass()">Freeze Class</button>
 </section>
 <router-outlet></router-outlet>
