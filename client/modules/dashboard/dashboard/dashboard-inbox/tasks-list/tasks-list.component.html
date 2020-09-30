@@ -1,3 +1,4 @@
+<canvas id="my-canvas"></canvas>
 <ng-container *ngIf="isdash == false && isdash1 == true">
 <div class="container">
   <div class="row">
@@ -274,7 +275,7 @@ Waiting for Facilitator Approval
         </div>
         <div class="row">
           <div class="col-md-6">
-            <h3>Community Task: </h3> 
+            <h3>Community Task: </h3>
           </div>
           <div class="col-md-6">
             <h3><i class="material-icons" ngClass="{{taskStatus?.teamTask == 'complete'  ? 'complete-check': 'pending-clock'}}">{{taskStatus?.teamTask == 'complete' ?'check_circle': 'watch_later' }}</i> <b>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</b> </h3>
@@ -287,8 +288,8 @@ Waiting for Facilitator Approval
               <h3 class="text-capitalize">{{item.user_name}}'s Task:</h3>
             </div>
             <div class="col-md-6">
-            <h3><i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3> 
-            </div>  
+            <h3><i class="material-icons" ngClass="{{item.user_individual_task_status === true  ? 'complete-check': 'pending-clock'}}">{{item.user_individual_task_status === true ?'check_circle': 'watch_later' }}</i> <b>{{item.user_individual_task_status === true ? 'Submitted' : 'Pending'}}</b></h3>
+            </div>
             <br>
           </div>
         </ng-container>

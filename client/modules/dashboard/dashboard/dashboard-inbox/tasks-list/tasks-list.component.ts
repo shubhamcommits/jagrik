@@ -80,14 +80,26 @@ export class TasksListComponent implements OnInit {
   }
 
   startConfe() {
-    confetti.create()({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
+    var myCanvas = document.getElementById('my-canvas');
+    myCanvas.classList.add('show-canvas')
+    var myConfetti = confetti.create(myCanvas, {
+      resize: true,
+      useWorker: true,
     });
+    myConfetti({
+      particleCount: 1200,
+      spread: 250,
+    });
+
+    setTimeout(() => {
+      myCanvas.classList.remove('show-canvas');
+      myConfetti.reset();
+    }, 5000);
+
   }
 
   openDialog(task: any) {
+
     let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
         task,
@@ -99,7 +111,7 @@ export class TasksListComponent implements OnInit {
     });
     dialogRef.componentInstance.getResonseData.subscribe(($e) => {
       if ($e === 'success') {
-        this.startConfe()
+        this.startConfe();
       }
       this.getUploadResponse($e);
     });
