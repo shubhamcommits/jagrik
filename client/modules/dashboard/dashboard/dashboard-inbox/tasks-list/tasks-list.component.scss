@@ -4087,3 +4087,13 @@ caption {
 .complete-check{
   color: #2dd0bf;
 }
+#my-canvas{
+  position: absolute;
+  width: 1280px;
+  height: 1200px;
+  display: none;
+}
+.show-canvas{
+  display: block !important;
+  z-index: 10000;
+}

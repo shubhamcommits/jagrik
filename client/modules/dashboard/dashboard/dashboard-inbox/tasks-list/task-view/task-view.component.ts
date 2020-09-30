@@ -97,9 +97,6 @@ export class TaskViewComponent implements OnInit {
   submitFile() {
 
     if (this.inputForm.valid) {
-      console.log('====================================');
-      console.log(this.inputForm.value['answer3text']);
-      console.log('====================================');
 
       let image = []
       image.push(this.inputForm.value['removablefile']['files'][0]);
