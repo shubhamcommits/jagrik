@@ -24,7 +24,7 @@ img {
   float: none;
   margin-bottom: 10px;
   width: inherit;
-  height: inherit;
+  height: auto;
   border-radius: 40px;
   object-fit: cover;
   text-align: center;
@@ -53,7 +53,7 @@ img {
   border-radius: 50%;
   display: inline-block;
 }
-.rounded-circle{
-  width: 80px;
-  height: 80px;
+
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1440px;
 }
