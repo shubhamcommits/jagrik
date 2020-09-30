@@ -122,9 +122,10 @@ h4{
   .nav-toolbar{
     background: #ff5f6d;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #ff5f6d, #ffc371);
+    // background: -webkit-linear-gradient(to left, #ff5f6d, #ffc371);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #fec370, #fd7e14, #cd4266);
+    // background: linear-gradient(to left, #fec370, #fd7e14, #cd4266);
+    background: #f3b44f;
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     height: 64px;
     display: flex;

@@ -66,7 +66,6 @@
               <h1 style="margin: 0px !important;">My Cohort</h1>
             </div>
           <div class="card-body">
-
             <app-class-details></app-class-details>
             <app-invite-students>
             </app-invite-students>
@@ -94,7 +93,8 @@
              <!-- <span></span> -->
             </div>
           <div class="card-body">
-            <app-team></app-team>
+            <app-team>
+            </app-team>
           </div>
         </div>
       </div>
@@ -133,6 +133,7 @@
         </div>
       <div class="card-body">
         <app-tasks-list></app-tasks-list>
+        
       </div>
     </div>
 
@@ -141,11 +142,11 @@
 <div class="row row-next">
    <div class="col-md-4">
      <div class="card card-dashboard" style="height: 100%;">
-       <div class="card-body">
          <div class="card-heading">
            <h1 style="margin: 0px !important;">My Team</h1>
           <!-- <span></span> -->
          </div>
+       <div class="card-body">
              <ng-container *ngFor="let item of allTeamMember">
               <div (click)="teamMemberDetail(item)" class="card md-9" style="max-width: 540px;" *ngIf="item.role === 'student' ">
                 <div class="row no-gutters">

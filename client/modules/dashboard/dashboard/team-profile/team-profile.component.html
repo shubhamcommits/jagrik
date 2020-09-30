@@ -1,30 +1,54 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <div class="card upper-card" style="width: 100%;">
+      <div class="card upper-card" style="width: 100%;padding: 40px 0px 40px 0px;"  ngClass="{{teamData.task_detail.theme === 'fundamental duties'  ? 'fd-yellow': 'fr-pink'}}">
         <div class="card-body text-center">
-          <h1>Team Members</h1>
-           <div *ngFor="let item of teamData.team_member">
-              <hr>
-             <img _ngcontent-lue-c178 class="rounded-circle float-left"
-               src="{{item.user_profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.user_profile_pic}}">
-             <div class="col-md-12">
-               <h2 style="text-align: left;">Name: {{item.first_name + ' ' + item.last_name}}</h2>
+             <div class="row" >
+               <div class="col-md-4"  *ngFor="let item of teamData.team_member">
+                 <div class="row" >
+                   <div class="col-md-4">
+                    <img _ngcontent-lue-c178 class="rounded-circle float-left"
+                    src="{{item.user_profile_pic === 'default_user.png' ? 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y' : 'data:image/png;base64,'+item.user_profile_pic}}">
+                   </div>
+                   <div class="col-md-8">
+                     <div class="row" style="display: flex;align-items: center;">
+                      <h3 style="text-align: left;margin: 0px;color: white;">{{item.first_name + ' ' + item.last_name}}</h3>
+                     </div>
+                     <div class="row" style="display: flex;align-items: center;">
+                      <h3 style="text-align: left;margin: 0px;color: white; ">{{item.email}}</h3>
+                     </div>
+                   </div>
+                 </div>
+               </div>
              </div>
-             <div class="col-md-12">
-               <h2 style="text-align: left;">Email: {{item.email}}</h2>
-             </div>
-
-
-           </div>
 
 
         </div>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="card upper-card" style="width: 100%;">
+    <div class="col-md-4" style="display: flex;justify-content: center;align-items: flex-end;">
+      <div class="clash-card barbarian" *ngIf="teamData.task_detail.theme">
+        <div class="clash-card__level "
+        ngClass="{{teamData.task_detail.theme === 'fundamental duties'  ? 'clash-card__level--barbarian': 'clash-card__level--barbarian-pink'}}" >Card {{data?.team?.team_card_dice_number}}</div>
+        <div class="clash-card__unit-name text-uppercase" style="line-height: 1;">{{teamData.task_detail.theme}}</div>
+        <div class="clash-card__unit-description">Status: {{teamData.task_detail.status}}</div>
+        <div class="clash-card__unit-stats clearfix"
+        ngClass="{{teamData.task_detail.theme === 'fundamental duties'  ? 'clash-card__unit-stats--barbarian': 'clash-card__unit-stats--barbarian-pink'}}">
+              <div class="one-third">
+                <div class="stat text-uppercase">{{teamData.task_detail.week}}</div>
+                <div class="stat-value">Week</div>
+              </div>
+              <div class="one-third">
+                <div class="stat">{{teamData.task_detail.dice_number}}</div>
+                <div class="stat-value">Card No.</div>
+              </div>
+        </div>
+      </div>
+      <div *ngIf="!teamData.task_detail.theme">
+        No Active Tasks
+      </div>
+      <!-- <div class="card upper-card" style="width: 100%;">
         <div class="card-body text-center">
           <h1>Current Tasks</h1>
           <div *ngIf="teamData.task_detail.theme">
@@ -45,7 +69,7 @@
             They Have not any active task
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="row">
