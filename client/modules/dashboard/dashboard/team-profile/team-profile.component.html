@@ -30,7 +30,8 @@
     <div class="col-md-4" style="display: flex;justify-content: center;align-items: flex-end;">
       <div class="clash-card barbarian" *ngIf="teamData.task_detail.theme">
         <div class="clash-card__level "
-        ngClass="{{teamData.task_detail.theme === 'fundamental duties'  ? 'clash-card__level--barbarian': 'clash-card__level--barbarian-pink'}}" >Card {{data?.team?.team_card_dice_number}}</div>
+        ngClass="{{teamData.task_detail.theme === 'fundamental duties'  ? 'clash-card__level--barbarian': 'clash-card__level--barbarian-pink'}}"
+        >Card {{teamData?.task_detail?.team_card_dice_number}}</div>
         <div class="clash-card__unit-name text-uppercase" style="line-height: 1;">{{teamData.task_detail.theme}}</div>
         <div class="clash-card__unit-description">Status: {{teamData.task_detail.status}}</div>
         <div class="clash-card__unit-stats clearfix"
