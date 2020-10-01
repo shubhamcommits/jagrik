@@ -42,7 +42,10 @@ export class PendingTaskViewComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.storageService.getLocalData('userData').role;
     if (!this.teamId || typeof (this.teamId) === 'undefined' || typeof (this.teamId) === 'undefined') {
-      this.finalTeamId = this.storageService.getLocalData('userData').teams[0]._id
+      this.finalTeamId = this.storageService.getLocalData('userData').teams[0]
+        ._id
+        ? this.storageService.getLocalData('userData').teams[0]._id
+        : this.storageService.getLocalData('userData').teams[0]
     } else {
       this.finalTeamId = this.teamId;
     }
