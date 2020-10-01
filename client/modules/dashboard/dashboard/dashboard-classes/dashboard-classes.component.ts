@@ -30,13 +30,11 @@ export class DashboardClassesComponent implements OnInit {
       this.userData = storageService.getLocalData('userData');
       this.classes = storageService.getLocalData('userData').classes;
       if (this.classes.length > 0) {
-
-        this.router.navigate([
-          '/dashboard', 'classes', 'agenda'],
-          { queryParams: { classId: this.classes[0] } },
-        );
-        window.location.href =
-          '#/dashboard/classes/agenda?classId=' + this.classes[0];
+        // this.router.navigate([
+        //   '/dashboard', 'classes', 'agenda'],
+        //   { queryParams: { classId: this.classes[0] } },
+        // );
+        window.location.href = '#/dashboard/classes/agenda?classId=' + this.classes[0];
       }
     }
     console.log(this.userData);
@@ -53,9 +51,7 @@ export class DashboardClassesComponent implements OnInit {
 
     storageService.setLocalData('userData', JSON.stringify(userData));
     storageService.setLocalData('new', JSON.stringify('yes'));
-    this.router.navigate(['/dashboard', 'classes', 'agenda'], {
-      queryParams: { classId: userData.classes[0] },
-    });
+    this.router.navigate(['/dashboard', 'inbox']);
 
     // window.location.href =
     //   '#/dashboard/classes/agenda?classId=' + userData.classes[0];
