@@ -307,8 +307,11 @@
    <div class="row" *ngIf="!data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
 
      <div class="col-md-12">
-        <p>No Pending Task</p>
+        <p>No Active Task</p>
      </div>
+     <div class="col-md-12" style="display: flex; justify-content: flex-end;">
+      <button class="bg-pink btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">Task Board<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
+   </div>
    </div>
    
   

@@ -9,12 +9,12 @@
       [routerLink]="['/dashboard', 'classes', 'invite']"
       [queryParams]="{ classId: classId }">Invite Users</button>
 <button *ngIf="userRole == 'facilitator'" mat-raised-button :color="{{checkColor('Invite')}}" style="float: right;"
-  (click)="closeClass()">Freeze Class</button>
+  (click)="openConfirmationModal()">Freeze Class</button>
   </div>
 
 </section>
 <section *ngIf="isdash == true">
   <button mat-raised-button style="float: right; background-color: #cd4266; color: white;"
-  (click)="closeClass()">Freeze Class</button>
+  (click)="openConfirmationModal()">Freeze Class</button>
 </section>
 <router-outlet></router-outlet>

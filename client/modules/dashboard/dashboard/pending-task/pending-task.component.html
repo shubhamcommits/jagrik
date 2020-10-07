@@ -6,8 +6,7 @@
   </div>
 </div>
 
-
-<div id="timeline">
+ <div id="timeline">
 
   <div *ngFor="let item of teamData; index as i; even as isEven; odd as isOdd">
 
@@ -19,7 +18,7 @@
       </div>
 
 
-      <div class="col-sm-6  timeline-item" >
+      <div class="col-sm-6 timeline-item" >
         <div class="row">
           <div class="col-sm-11 bounce-in-top">
             <div class="timeline-panel credits">
@@ -40,7 +39,6 @@
 
     </div>
 
-    <!--due -->
 
     <div class="row timeline-movement" *ngIf="isOdd">
 
@@ -71,5 +69,19 @@
     </div>
 
   </div>
-
-</div>
+</div> 
+  <!-- <div style="
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+">
+      <div>
+        <p *ngFor="let item of teamData; index as i; even as isEven; odd as isOdd" ngClass="{{isEven  ? 'child-even': 'child-odd'}}">
+          {{item.team_card_theme}}
+          {{item.description}}
+          {{item.status_text}}
+          {{item.team_card_dice_number}}
+        </p>
+      </div>
+  </div> -->

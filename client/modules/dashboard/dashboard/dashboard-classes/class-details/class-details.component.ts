@@ -2,6 +2,7 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { ClassService } from '../../shared/services/class.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
+import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 
 @Component({
   selector: 'app-class-details',
@@ -13,13 +14,17 @@ export class ClassDetailsComponent implements OnInit {
 
   constructor(
     private _Injector: Injector,
-    private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
+    private _ActivatedRouter: ActivatedRoute,
+    private _Router: Router,
+    public utilityService?: UtilityService,
   ) {}
   
   substring = "inbox";
   isdash: boolean = false;
-  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
+  // classId : any;
+  // classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
+  storageService = this._Injector.get(StorageService);
+  classId = this.storageService.getLocalData('userData').classes[0];
   userRole: any = []
   isOpen:Boolean = false
   async ngOnInit() {
@@ -27,12 +32,35 @@ export class ClassDetailsComponent implements OnInit {
     console.log(currentUrl);
     this.isdash = currentUrl.includes(this.substring);
     this.class = await this.getClassDetails(this.classId);
-    const storageService = this._Injector.get(StorageService);
-    if (storageService.existData('userData')) {
-      this.userRole = storageService.getLocalData('userData').role;
+    // const storageService = this._Injector.get(StorageService);
+    // this.classId = storageService.getLocalData('userData').classes[0];
+    console.log(this.classId)
+    if (this.storageService.existData('userData')) {
+      this.userRole = this.storageService.getLocalData('userData').role;
     }
   }
+  handlePopUp(title: string) {
+    // if press yes then call close Class()
+    // else close the popup
+    return this.utilityService.getSwalModal({
+      title: title,
+      imageAlt: title,
+      confirmButtonText: 'Freeze',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#d33',
+    });
+  }
 
+  async openConfirmationModal() {
+    const { value: value } = await this.handlePopUp('Confirm Class Freeze');
+    if (value) {
+      this.closeClass();
+    } else if (value == ''){
+      // close the modal
+    }
+  }
+  
   closeClass() {
     return new Promise((resolve) => {
       // Create class service instance
