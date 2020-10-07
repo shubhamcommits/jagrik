@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 declare var $: any;
 require('src/assets/jquery.sha1.js');
 import { AddMeetingModalComponent } from "./add-meeting-modal/add-meeting-modal.component";
+import { log } from 'console';
 @Component({
   selector: 'app-class-agenda',
   templateUrl: './class-agenda.component.html',
@@ -35,15 +36,18 @@ export class ClassAgendaComponent implements OnInit {
   sched: any = [];
 
   ngOnInit(): void {
-    
+
     this.classId = this.storageService.getLocalData('userData').classes[0];
     this.userData = this.storageService.getLocalData('userData');
-   
-    this.allMeetings.forEach(item => {
-      // if( this.datePipe.transform(item.schedules.date, 'dd/MM/yyyy') > this.datePipe.transform(this.myDate, 'dd/MM/yyyy') ){
-      //   this.upcoming = true;
-      // }
-    });
+    console.log(this.classId);
+
+    // this.allMeetings.forEach(item => {
+    //   // if( this.datePipe.transform(item.schedules.date, 'dd/MM/yyyy') > this.datePipe.transform(this.myDate, 'dd/MM/yyyy') ){
+    //   //   this.upcoming = true;
+    //   // }
+    // });
+    console.log('sadakjsd');
+    this.getClassDetails(this.classId);
     if (
       this.storageService.existData('new') &&
       this.storageService.getLocalData('new') == 'yes'
@@ -51,7 +55,8 @@ export class ClassAgendaComponent implements OnInit {
       this.storageService.setLocalData('new', 'no');
       window.location.reload();
     }
-    this.getClassDetails(this.classId);
+
+
 
     // this.sched.forEach(item => {
     //   if( this.datePipe.transform(item.date, 'dd/MM/yyyy') > this.datePipe.transform(this.myDate, 'dd/MM/yyyy') )
@@ -80,11 +85,17 @@ export class ClassAgendaComponent implements OnInit {
   }
 
   getClassDetails(classId: any) {
+    console.log('dsjd');
+
     return new Promise((resolve) => {
       // Fetch class details
       this.classService
         .getClassDetails(classId)
         .then((res) => {
+          console.log('------------');
+          console.log( res['class']['schedules']);
+          console.log('------------');
+
           this.sched= res['class']['schedules'];
           this.sched = this.helper(this.sched);
           this.allMeetings = res['class'];
@@ -99,8 +110,16 @@ export class ClassAgendaComponent implements OnInit {
   helper(sched: any){
     let newSched = [];
     sched.forEach(item => {
-      if(( (this.datePipe.transform(item.date, 'dd/MM/yyyy')) > this.datePipe.transform(this.myDate, 'dd/MM/yyyy')) ||( ( this.datePipe.transform(item.date, 'dd/MM/yyyy') == this.datePipe.transform(this.myDate, 'dd/MM/yyyy')) && (item.time > this.datePipe.transform(this.myDate, 'HH:mm') )) )
-      { 
+      console.log(item.date);
+      console.log(this.myDate);
+
+      console.log(this.datePipe.transform(item.date, 'dd/MM/yyyy'));
+      console.log(this.datePipe.transform(this.myDate, 'dd/MM/yyyy'));
+      console.log(item.time);
+      console.log( this.datePipe.transform(this.myDate, 'HH:mm'));
+
+      if(this.datePipe.transform(item.date, 'dd/MM/yyyy') >= this.datePipe.transform(this.myDate, 'dd/MM/yyyy') && item.time > this.datePipe.transform(this.myDate, 'HH:mm'))
+      {
         console.log(this.datePipe.transform(item.date, 'dd/MM/yyyy') + ' '+ item.time );
         console.log(this.datePipe.transform(this.myDate, ' HH:mm') );
         // console.log(this.datePipe.transform(item.schedules.date, 'dd/MM/yyyy'));
@@ -111,5 +130,5 @@ export class ClassAgendaComponent implements OnInit {
     return newSched;
   }
 
-  
+
 }

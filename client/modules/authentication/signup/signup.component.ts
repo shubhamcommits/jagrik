@@ -63,7 +63,6 @@ export class SignupComponent implements OnInit {
       this.signupForm.addControl(
         'mobile_number',
         new FormControl(null, [
-          Validators.required,
           Validators.nullValidator,
           Validators.pattern('^[0-9]{10}$'),
         ])

@@ -100,6 +100,8 @@ export class TasksListComponent implements OnInit {
 
   openDialog(task: any) {
 
+    // this.startConfe();
+
     let dialogRef = this.dialog.open(TaskViewComponent, {
       data: {
         task,

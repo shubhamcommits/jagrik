@@ -131,7 +131,10 @@ export class TaskViewComponent implements OnInit {
                 : 'No',
           },
        ]
+
+       if(this.inputForm.value['answer3'] === 'Yes'){
         help = [{ team_1: this.myTeamName, team_2: this.inputForm.value['answer3text'], type: this.data.task.type , week: this.data.week}]
+       }
       } else {
         qa = [
           {

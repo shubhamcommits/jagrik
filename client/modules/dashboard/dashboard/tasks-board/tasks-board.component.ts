@@ -48,6 +48,7 @@ export class TasksBoardComponent implements OnInit {
     this.card._id = card._id;
     this.showAssignTask = false;
     console.log(this.card);
+    window.location.reload()
     this.getUserData();
   }
 

@@ -53,9 +53,7 @@ export class DashboardClassesComponent implements OnInit {
 
     storageService.setLocalData('userData', JSON.stringify(userData));
     storageService.setLocalData('new', JSON.stringify('yes'));
-    this.router.navigate(['/dashboard', 'classes', 'agenda'], {
-      queryParams: { classId: userData.classes[0] },
-    });
+    this.router.navigate(['/dashboard', 'inbox']);
 
     // window.location.href =
     //   '#/dashboard/classes/agenda?classId=' + userData.classes[0];
