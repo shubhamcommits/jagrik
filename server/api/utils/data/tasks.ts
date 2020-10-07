@@ -486,21 +486,21 @@ export default [
     },
     {
         "title": "Gold-Com-3",
-        "description": "Curate a painting competition in your school or develop a skit/musical pertormance around how different genders experience right to equality and present it in your school assembly or in front of at\nleast 20 people on three difterent occasions in your community. Ensure the presence of your school principal/ward sarpanch/ Bal Panchayat/concerned duty bearer at one of the performances.",
+        "description": "Curate a painting competition in your school or develop a skit/musical pertormance around how different genders experience right to equality and present it in your school assembly or in front of at least 20 people on three difterent occasions in your community. Ensure the presence of your school principal/ward sarpanch/ Bal Panchayat/concerned duty bearer at one of the performances.",
         "type": "gold",
         "card": "fundamental rights 1",
         "points": "5"
     },
     {
         "title": "Silver-Com-1",
-        "description": "Spend few hours with the richest person in your community and a day with a disadvantaged\nperson from a nearby slum/ low income locality and share your experiences with your class.\nTogether inspire the rich person to make a donation to a development cause or to help the\ndisadvantaged person",
+        "description": "Spend few hours with the richest person in your community and a day with a disadvantaged person from a nearby slum/ low income locality and share your experiences with your class. Together inspire the rich person to make a donation to a development cause or to help the disadvantaged person",
         "type": "silver",
         "card": "fundamental rights 1",
         "points": "3"
     },
     {
         "title": "Silver-Com-2",
-        "description": "Identify women and men in your neighbourhood who were married at a young age. Understand\nand record their experiences in terms of how it impacted their health, access to education, their\nfinancial situation and employment opportunities. Present your learnings before the school\nassembly/ sarpanch/Bal Panchayat/concerned duty bearer.",
+        "description": "Identify women and men in your neighbourhood who were married at a young age. Understand and record their experiences in terms of how it impacted their health, access to education, their financial situation and employment opportunities. Present your learnings before the school assembly/ sarpanch/Bal Panchayat/concerned duty bearer.",
         "type": "silver",
         "card": "fundamental rights 1",
         "points": "3"
@@ -521,21 +521,21 @@ export default [
     },
     {
         "title": "Gold-Self-1",
-        "description": "Discover the dream/ need/ aspiration of a child from an economically weaker\nsection than yours. Raise funds from your family and friends to fulfil an immediate aspiration.",
+        "description": "Discover the dream/ need/ aspiration of a child from an economically weaker section than yours. Raise funds from your family and friends to fulfil an immediate aspiration.",
         "type": "gold",
         "card": "fundamental rights 1",
         "points": "5"
     },
     {
         "title": "Gold-Self-2",
-        "description": "Abstain from sugar/TV/favourite toy/phone/games or any other addiction Something you covet for a week, verified by three people parents/ Jagrik partner friends. Understand how the less privileged manage without these. Discuss your\nexperience with at least 5 peers.",
+        "description": "Abstain from sugar/TV/favourite toy/phone/games or any other addiction Something you covet for a week, verified by three people parents/ Jagrik partner friends. Understand how the less privileged manage without these. Discuss your experience with at least 5 peers.",
         "type": "gold",
         "card": "fundamental rights 1",
         "points": "5"
     },
     {
         "title": "Silver-Self-1",
-        "description": "ldentify your owm gender, class, religion and caste stereotypes (one of any 3), and\nanalyze how they cause or perpetuate inequality. Write in a blog or article or talk\nto 10 people about how stereotypes abound in us all and what you plan to do to:\nrid yourself of some of them",
+        "description": "ldentify your owm gender, class, religion and caste stereotypes (one of any 3), and analyze how they cause or perpetuate inequality. Write in a blog or article or talk to 10 people about how stereotypes abound in us all and what you plan to do to: rid yourself of some of them",
         "type": "silver",
         "card": "fundamental rights 1",
         "points": "3"
@@ -556,91 +556,91 @@ export default [
     },
     {
         "title": "Bronze-Self-2",
-        "description": "How are the household chores in your family divided on the basis of gender?\nIdentify and practice one role that you do not usually perform for 1 week",
+        "description": "How are the household chores in your family divided on the basis of gender? Identify and practice one role that you do not usually perform for 1 week",
         "type": "bronze",
         "card": "fundamental rights 1",
         "points": "1"
     },
     {
         "title": "Bronze-Self-3",
-        "description": "Interview your mother about how her experience had been during child birth,\nincluding what messages your mother and father had heard about having a\ndaughter. If you are a girl or have a sister, ask about how the extended family felt\nabout the birth of a girl versus a boy.",
+        "description": "Interview your mother about how her experience had been during child birth, including what messages your mother and father had heard about having a daughter. If you are a girl or have a sister, ask about how the extended family felt about the birth of a girl versus a boy.",
         "type": "bronze",
         "card": "fundamental rights 1",
         "points": "1"
     },
     {
         "title": "Gold-Com-1",
-        "description": "Along with a classmate, and with help from the school principle/schoo.\nmanagement Committeel Panchayat Samiti, Start and maintain a reguar newsletter\nor bulletin board for three months with articles from your peers on their experienc\nof child rights, their aspirations, suggestions, feelings, etc.",
+        "description": "Along with a classmate, and with help from the school principle/schoo. management Committeel Panchayat Samiti, Start and maintain a reguar newsletter or bulletin board for three months with articles from your peers on their experienc of child rights, their aspirations, suggestions, feelings, etc.",
         "type": "gold",
         "card": "fundamental rights 2",
         "points": "5"
     },
     {
         "title": "Gold-Com-2",
-        "description": "Along with 5 peers, conduct an accessibility audit in your school/community. Share\nyour findings and recommendations with the School Principal, School Managemen\nCommittee/Panchayat/Bal Panchayat/Residents Welfare Association (RWA on how\nto make the premises more accessible to people with physical disabilities and suggest\nrecommendations.",
+        "description": "Along with 5 peers, conduct an accessibility audit in your school/community. Share your findings and recommendations with the School Principal, School Managemen Committee/Panchayat/Bal Panchayat/Residents Welfare Association (RWA on how to make the premises more accessible to people with physical disabilities and suggest recommendations.",
         "type": "gold",
         "card": "fundamental rights 2",
         "points": "5"
     },
     {
         "title": "Gold-Com-3",
-        "description": "Do a small session or presentation on what Right to Freedom means for an adolescent\nand boys, and create a crowdsourced adolescent manifesto on h\nadolescents would like the School/RWA to facilitate their right to freedom and\nit to your School Principal, Panchayat/Ward representative/ RWA/Child\nProtection Committee.",
+        "description": "Do a small session or presentation on what Right to Freedom means for an adolescent and boys, and create a crowdsourced adolescent manifesto on h adolescents would like the School/RWA to facilitate their right to freedom and it to your School Principal, Panchayat/Ward representative/ RWA/Child Protection Committee.",
         "type": "gold",
         "card": "fundamental rights 2",
         "points": "5"
     },
     {
         "title": "Silver-Com-1",
-        "description": "Organize a group of 5 classmates/friends and identify 3 schools in your area where\nspace for recreational activities is limited/unavailable. Find ways to convince school\nauthorities to provide the same.",
+        "description": "Organize a group of 5 classmates/friends and identify 3 schools in your area where space for recreational activities is limited/unavailable. Find ways to convince school authorities to provide the same.",
         "type": "silver",
         "card": "fundamental rights 2",
         "points": "3"
     },
     {
         "title": "Silver-Com-2",
-        "description": "Talk to 2/3 people who have filed an RTI asking them about their experiences,\nincluding celebrations and challenges. Share these through an article/blog/session\nalong with the importance of the RTI Act with at least 30 peers.",
+        "description": "Talk to 2/3 people who have filed an RTI asking them about their experiences, including celebrations and challenges. Share these through an article/blog/session along with the importance of the RTI Act with at least 30 peers.",
         "type": "silver",
         "card": "fundamental rights 2",
         "points": "3"
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Organize a small baithak/discussion with your mother/grandmother/sister/cousin\nsister/aunts on the concept of women's freedom in your community.",
+        "description": "Organize a small baithak/discussion with your mother/grandmother/sister/cousin sister/aunts on the concept of women's freedom in your community.",
         "type": "bronze",
         "card": "fundamental rights 2",
         "points": "1"
     },
     {
         "title": "Bronze-Com-2",
-        "description": "Identify the concerns of accessibility and freedom of movement of a group of\nadolescent girls and come up with recommendations and identify ways in which you\ncan support each other in fully experiencing freedom.",
+        "description": "Identify the concerns of accessibility and freedom of movement of a group of adolescent girls and come up with recommendations and identify ways in which you can support each other in fully experiencing freedom.",
         "type": "bronze",
         "card": "fundamental rights 2",
         "points": "1"
     },
     {
         "title": "Gold-Self-1",
-        "description": "On 7 occasions at least, use your right to freedom of speech by stating an opinion\nopposing the dominant opinion of the group. Reflect on the impact and your\npatterns that come into play when you raise your voice",
+        "description": "On 7 occasions at least, use your right to freedom of speech by stating an opinion opposing the dominant opinion of the group. Reflect on the impact and your patterns that come into play when you raise your voice",
         "type": "gold",
         "card": "fundamental rights 2",
         "points": "5"
     },
     {
         "title": "Silver-Self-1",
-        "description": "Spend 6 hours blindfolded to experience how visually impaired persons or people\nwith disabilities manage their mobility. Make sure you are in a comparatively safe\nspace and seek adult support for this. Write about/talk to 20 people about how\nyou felt about your limited access and what visually impaired or otherwise\ndisabled people need in order to experience greater freedom of movement.",
+        "description": "Spend 6 hours blindfolded to experience how visually impaired persons or people with disabilities manage their mobility. Make sure you are in a comparatively safe space and seek adult support for this. Write about/talk to 20 people about how you felt about your limited access and what visually impaired or otherwise disabled people need in order to experience greater freedom of movement.",
         "type": "silver",
         "card": "fundamental rights 2",
         "points": "3"
     },
     {
         "title": "Silver-Self-2",
-        "description": "Be on a silence fast for one full day (24 hours), which means, no communication\n(verbal, written or social media) with anyone, nor can you write/read anything\nYou must continue your daily tasks/chores. Get 3 people to verify it Reflect and\nshare in writing or verbally to at least 20 people on what the right to express\nmeans to you and how you can help others also exercise it",
+        "description": "Be on a silence fast for one full day (24 hours), which means, no communication (verbal, written or social media) with anyone, nor can you write/read anything You must continue your daily tasks/chores. Get 3 people to verify it Reflect and share in writing or verbally to at least 20 people on what the right to express means to you and how you can help others also exercise it",
         "type": "silver",
         "card": "fundamental rights 2",
         "points": "3"
     },
     {
         "title": "Bronze-Self-1",
-        "description": "With the help of your parents, identify how much money is spent on you in 24\nhours for food, education, shelter, and any others How would your life change\nthat money was halved and how would your freedom be impacted Write a\nblog or essay or talk to 20 people about it.",
+        "description": "With the help of your parents, identify how much money is spent on you in 24 hours for food, education, shelter, and any others How would your life change that money was halved and how would your freedom be impacted Write a blog or essay or talk to 20 people about it.",
         "type": "bronze",
         "card": "fundamental rights 2",
         "points": "1"
@@ -661,21 +661,21 @@ export default [
     },
     {
         "title": "Gold-Com-2",
-        "description": "Conduct a survey in your school/community on the redressal mechanisms\navailable to adolescent girls when faced with harassment. Present your findings\nalong with ideas for appropriate redressal mechanisms and share in your school\nand wit your District/Block/Village Child Protection Officer.",
+        "description": "Conduct a survey in your school/community on the redressal mechanisms available to adolescent girls when faced with harassment. Present your findings along with ideas for appropriate redressal mechanisms and share in your school and wit your District/Block/Village Child Protection Officer.",
         "type": "gold",
         "card": "fundamental rights 3",
         "points": "5"
     },
     {
         "title": "Silver-Com-1",
-        "description": "Organize a visit to a government institution/NGO\nthat works with victims of child trafficking/child marriage. Document the change\nstories of at least 3 such victims and present it to your community/school.",
+        "description": "Organize a visit to a government institution/NGO that works with victims of child trafficking/child marriage. Document the change stories of at least 3 such victims and present it to your community/school.",
         "type": "silver",
         "card": "fundamental rights 3",
         "points": "3"
     },
     {
         "title": "Silver-Com-2",
-        "description": "Identify 4 child protection legislations in the country. Conduct a survey on how\nmany children in your school/community are aware of these legislations and the\ngovernment bodies that enforce these legislations. Place this on your notice board\nand conduct awareness sessions for peers on these legislations.",
+        "description": "Identify 4 child protection legislations in the country. Conduct a survey on how many children in your school/community are aware of these legislations and the government bodies that enforce these legislations. Place this on your notice board and conduct awareness sessions for peers on these legislations.",
         "type": "silver",
         "card": "fundamental rights 3",
         "points": "3"
@@ -689,21 +689,21 @@ export default [
     },
     {
         "title": "Bronze-Com-1",
-        "description": "Learn about the United Nations Convention of\nChild Rights. Identify the kinds of child rights violations that you observe around\nyou and share with fellow Jagriks/write an article.",
+        "description": "Learn about the United Nations Convention of Child Rights. Identify the kinds of child rights violations that you observe around you and share with fellow Jagriks/write an article.",
         "type": "bronze",
         "card": "fundamental rights 3",
         "points": "1"
     },
     {
         "title": "Bronze-Com-2",
-        "description": "Prepare 5 posters to understand various forms of child exploitation in India\nPresent it in your class and display the posters on your school notice board.",
+        "description": "Prepare 5 posters to understand various forms of child exploitation in India Present it in your class and display the posters on your school notice board.",
         "type": "bronze",
         "card": "fundamental rights 3",
         "points": "1"
     },
     {
         "title": "Gold-Self-1",
-        "description": "Refect on and identify three manifestations of violence against children in your\nschool/community and home. Initiate a discussion with your friends on their\nexperiences and what you can do as a group to address these cases.",
+        "description": "Refect on and identify three manifestations of violence against children in your school/community and home. Initiate a discussion with your friends on their experiences and what you can do as a group to address these cases.",
         "type": "gold",
         "card": "fundamental rights 3",
         "points": "5"
@@ -717,7 +717,7 @@ export default [
     },
     {
         "title": "Bronze-Self-1",
-        "description": "Keep a daily diary for at least a week of all the exploitation and discrimination that\nyou are a part of (as victim or perpetrator) or what you see around you. ",
+        "description": "Keep a daily diary for at least a week of all the exploitation and discrimination that you are a part of (as victim or perpetrator) or what you see around you. ",
         "type": "bronze",
         "card": "fundamental rights 3",
         "points": "1"
