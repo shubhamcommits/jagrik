@@ -1,6 +1,6 @@
 export default [
-    {
-        // Here goes the title
+   {
+         // Here goes the title
         "title": "Gold-Com-1",
 
         // Description is mentioned
@@ -66,7 +66,7 @@ export default [
     },
     {
         "title": "Bronze-Self-1",
-        "description": "Read an abridged version of the constitution and prepare 5 questions you want to ask your mentor/coordinator for clarifying your concepts.",
+        "description": "Read an abridged version of the constitution and prepare 5 questions for clarifying your concepts.",
         "type": "bronze",
         "card": "fundamental duties 1",
         "points": "2"
@@ -157,7 +157,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Adopt two culturally significant local sites/heritage monuments for a week aer discussions with local panchayat/ASI with the help of your mentor/facilitator. Carry out measures to revive & maintain the sites with the help of your friends, class or jagrik group. Share your experiences through a video, blog, article or talk about it with 20 people.",
+        "description": "Adopt two culturally signifcant local sites/heritage monuments for a week after discussions with local panchayat/ASI. Carry out measures to revive & maintain the sites with the help of your friends, class or jagrik group. Share your experiences through a video, blog, article or talk about it with 20 people.",
         "type": "gold",
         "card": "fundamental duties 3",
         "points": "10"
@@ -479,7 +479,7 @@ export default [
     },
     {
         "title": "Gold-Com-2",
-        "description": "Facilitate an equality audit (which includes safety) for girls in your school or in your community and present the findings in the school assembly or community Present specific recommendations to your School Management Committee/Panchayat/Bal panchayat/RWA, with the help of your mentor/class teacher.",
+        "description": "Facilitate an equality audit (which includes safety) for girls in your school or in your community and present the findings in the school assembly or community Present specific recommendations to your School Management Committee/Panchayat/Bal panchayat/RWA.",
         "type": "gold",
         "card": "fundamental rights 1",
         "points": "5"
@@ -647,7 +647,7 @@ export default [
     },
     {
         "title": "Bronze-Self-2",
-        "description": "Refect on how your freedom can come in conflict with someone else’s rights. For\nexample, your freedom to celebrate festivals vs. someone else’s right to live (like\nmy freedom to burst crackers vs someone else’s right to live in a pollution free\nenvironment). Write an essay/blog about your views on the same or talk to 20\npeople. Take help from your Jagrik mentor if needed",
+        "description": "Refect on how your freedom can come in conflict with someone else’s rights. For example, your freedom to celebrate festivals vs. someone else’s right to live (like my freedom to burst crackers vs someone else’s right to live in a pollution free environment). Write an essay/blog about your views on the same or talk to 20 people.",
         "type": "bronze",
         "card": "fundamental rights 2",
         "points": "1"
@@ -668,7 +668,7 @@ export default [
     },
     {
         "title": "Silver-Com-1",
-        "description": "With your Jagrik mentor's help, organize a visit to a government institution/NGO\nthat works with victims of child trafficking/child marriage. Document the change\nstories of at least 3 such victims and present it to your community/school.",
+        "description": "Organize a visit to a government institution/NGO\nthat works with victims of child trafficking/child marriage. Document the change\nstories of at least 3 such victims and present it to your community/school.",
         "type": "silver",
         "card": "fundamental rights 3",
         "points": "3"
@@ -689,7 +689,7 @@ export default [
     },
     {
         "title": "Bronze-Com-1",
-        "description": "With your Jagrik mentor's help, learn about the United Nations Convention of\nChild Rights. Identify the kinds of child rights violations that you observe around\nyou and share with fellow Jagriks/write an article.",
+        "description": "Learn about the United Nations Convention of\nChild Rights. Identify the kinds of child rights violations that you observe around\nyou and share with fellow Jagriks/write an article.",
         "type": "bronze",
         "card": "fundamental rights 3",
         "points": "1"
@@ -703,7 +703,7 @@ export default [
     },
     {
         "title": "Gold-Self-1",
-        "description": "Refect on and identify three manifestations of violence against children in your\nschool/community and home. Initiate a discussion with your friends on their\nexperiences and what you can do as a group to address these cases. Take help\nfrom your Jagrik mentors before initiating any action.",
+        "description": "Refect on and identify three manifestations of violence against children in your\nschool/community and home. Initiate a discussion with your friends on their\nexperiences and what you can do as a group to address these cases.",
         "type": "gold",
         "card": "fundamental rights 3",
         "points": "5"
@@ -738,7 +738,7 @@ export default [
     },
     {
         "title": "Silver-Com-1",
-        "description": "Organize a friendly sports match (cricket/football/kho-kho) in your school/community or a nukkad natak/street play or a cycle rally with diverse participation from all major religions. Have a discussion on the experience of uniting across religious identities afterwards (with your mentor’s help).",
+        "description": "Organize a friendly sports match (cricket/football/kho-kho) in your school/community or a nukkad natak/street play or a cycle rally with diverse participation from all major religions. Have a discussion on the experience of uniting across religious identities afterwards.",
         "type": "silver",
         "card": "fundamental rights 4",
         "points": "3"
@@ -787,14 +787,14 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "With help from your Jagrik mentor, identify 1 out of school child in your community and inspire their parents to admit him/her in a school under the Right To Education (RTE) Act act so that he/she gets free education",
+        "description": "Identify 1 out of school child in your community and inspire their parents to admit him/her in a school under the Right To Education (RTE) Act act so that he/she gets free education",
         "type": "gold",
         "card": "fundamental rights 5",
         "points": "5"
     },
     {
         "title": "Gold-Com-2",
-        "description": "With the help of your mentor, design and conduct a survey with 25 students in your school to identify three major changes that should be made to the education process in your school and present it to your school principal/ school management committee.",
+        "description": "Design and conduct a survey with 25 students in your school to identify three major changes that should be made to the education process in your school and present it to your school principal/ school management committee.",
         "type": "gold",
         "card": "fundamental rights 5",
         "points": "5"
@@ -808,7 +808,7 @@ export default [
     },
     {
         "title": "Silver-Com-2",
-        "description": "From the RTE Act and discussions with your mentor find out provisions that are not being applied in your school and send an application with your observations to the relevant person in the State/District Education Board",
+        "description": "From the RTE Act find out provisions that are not being applied in your school and send an application with your observations to the relevant person in the State/District Education Board",
         "type": "silver",
         "card": "fundamental rights 5",
         "points": "3"
@@ -906,7 +906,7 @@ export default [
     },
     {
         "title": "Gold-Com-1",
-        "description": "Identify three minor children who are working somewhere and being denied their Right to Education. With your Jagrik mentor’s help, talk to their employers and inspire them to let the adolescents access this right.",
+        "description": "Identify three minor children who are working somewhere and being denied their Right to Education. Talk to their employers and inspire them to let the adolescents access this right.",
         "type": "gold",
         "card": "child rights 1",
         "points": "20"
@@ -955,7 +955,7 @@ export default [
     },
     {
         "title": "Bronze-Com-2",
-        "description": "With the help of your mentor, analyze data on child trafficking in your state from the NCRB website. Write a blog/article on the same.",
+        "description": "Analyze data on child trafficking in your state from the NCRB website. Write a blog/article on the same.",
         "type": "bronze",
         "card": "child rights 1",
         "points": "4"
