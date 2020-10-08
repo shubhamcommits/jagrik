@@ -31,9 +31,11 @@
               "src/styles.scss",
               "node_modules/@progress/kendo-theme-bootstrap/dist/all.css"
             ],
-            "scripts": ["src/assets/jquery.sha1.js",
-                  "src/assets/slider.js",
-                  "node_modules/jquery/dist/jquery.min.js"]
+            "scripts": [
+              "src/assets/jquery.sha1.js",
+              "src/assets/slider.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -129,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "client"
+  "defaultProject": "client",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../shared/services/team.service';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
@@ -27,19 +29,32 @@ export class BonusTaskComponent implements OnInit {
   className = '';
   teamData: any = []
   bonusTaskData: any = []
+
   isUploaded: Boolean = false;
+  inputForm: FormGroup;
+  mainColor = '#0066ff'
   constructor(
     private teamService: TeamService,
     private utilityService: UtilityService,
     private storageService: StorageService,
     public dialog: MatDialog,
-    private bonusTaskService: BonusTaskService
+    private bonusTaskService: BonusTaskService,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.inputForm = this.formBuilder.group({
+      color: new FormControl(''),
+    });
     this.getBonusTaskList()
     this.userRole = this.storageService.getLocalData('userData').role;
     this.getTeams();
+  }
+
+  changeColor(event){
+    console.log(event.target.value);
+
+    this.mainColor = event.target.value
   }
 
   openDialog() {
