@@ -79,7 +79,7 @@
 <div class="form-group row">
   <div class="col-md-6">
     <mat-form-field>
-      <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">publish</mat-icon> -->
+      <mat-icon aria-hidden="false" *ngIf="removableInput.empty" aria-label="Example home icon">publish</mat-icon>
       <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Attach your supporting file 1*">
       </ngx-mat-file-input>
       <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
@@ -89,7 +89,7 @@
   </div>
   <div class="col-md-6">
     <mat-form-field >
-      <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">publish</mat-icon> -->
+      <mat-icon  *ngIf="removableInput1.empty"  aria-hidden="false" aria-label="Example home icon">publish</mat-icon>
       <ngx-mat-file-input #removableInput1 formControlName="removablefile1" placeholder="Attach your supporting file 2">
       </ngx-mat-file-input>
       <button mat-icon-button matSuffix *ngIf="!removableInput1.empty" (click)="removableInput1.clear($event)">
@@ -99,7 +99,7 @@
   </div>
   <div class="col-md-6">
     <mat-form-field>
-      <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">publish</mat-icon> -->
+      <mat-icon *ngIf="removableInput2.empty" aria-hidden="false" aria-label="Example home icon">publish</mat-icon>
       <ngx-mat-file-input #removableInput2 formControlName="removablefile2" placeholder="Attach your supporting file 3">
       </ngx-mat-file-input>
       <button mat-icon-button matSuffix *ngIf="!removableInput2.empty" (click)="removableInput2.clear($event)">
@@ -109,9 +109,15 @@
   </div>
   <div class="col-md-6">
     <mat-form-field>
-      <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">publish</mat-icon> -->
-      <ngx-mat-file-input #removableInput3 formControlName="removablefile3" placeholder="Attach your supporting file 4">
+      <div class="row">
+        <mat-icon aria-hidden="false" *ngIf="removableInput3.empty" aria-label="Example home icon">publish</mat-icon>
+      </div>
+      <div class="row">
+        <ngx-mat-file-input #removableInput3 formControlName="removablefile3" placeholder="Attach your supporting file 4">
       </ngx-mat-file-input>
+      </div>
+
+
       <button mat-icon-button matSuffix *ngIf="!removableInput3.empty" (click)="removableInput3.clear($event)">
         <mat-icon>clear</mat-icon>
       </button>

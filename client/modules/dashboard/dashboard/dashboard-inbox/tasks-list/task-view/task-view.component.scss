@@ -24,4 +24,24 @@
   pointer-events: none;
   transform: scale3d(1, 1.0001, 1);
 }
+.mat-form-field-underline{
+    width: 0% !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+   height: 1px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  border: 1px solid;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 8px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label{
+  padding-left: 30px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix{
+  padding: 0px;
+}
+.filename{
+  padding-left: 20px;
+}
 }
