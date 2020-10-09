@@ -30,7 +30,6 @@ export class AddWildTaskComponent implements OnInit {
     this.userData = this.storageService.getLocalData('userData');
 
     this.getTeamList()
-
     if (this.data.task.category === 'community') {
       this.inputForm = new FormGroup({
         removablefile: new FormControl(null, [
@@ -61,11 +60,10 @@ export class AddWildTaskComponent implements OnInit {
         ]),
         answer3text: new FormControl(''),
       });
-    } else {
+    }
+    else {
       this.inputForm = new FormGroup({
         removablefile: new FormControl(null, [
-          Validators.required,
-          Validators.nullValidator,
           FileValidator.maxContentSize(1048576),
         ]),
         removablefile1: new FormControl(null, [
@@ -87,6 +85,8 @@ export class AddWildTaskComponent implements OnInit {
         ])
       });
     }
+
+
   }
 
   get f() {
@@ -94,6 +94,11 @@ export class AddWildTaskComponent implements OnInit {
   }
 
   submitFile() {
+
+    console.log('====================================');
+    console.log(this.f);
+    console.log('====================================');
+
 
     if (this.inputForm.valid) {
 
@@ -130,7 +135,10 @@ export class AddWildTaskComponent implements OnInit {
                 : 'No',
           },
         ]
-        help = [{ team_1: this.myTeamName, team_2: this.inputForm.value['answer3text'], type: this.data.task.type, week: '' }]
+        if(this.inputForm.value['answer3'] === 'Yes'){
+          help = [{ team_1: this.myTeamName, team_2: this.inputForm.value['answer3text'], type: this.data.task.type, week: '' }]
+        }
+
       } else {
         qa = [
           {

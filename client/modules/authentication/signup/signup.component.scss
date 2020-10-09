@@ -1,8 +1,9 @@
 body{
   // background-image: linear-gradient(45deg, #fca312, #fc9712);
   background-color: white;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  // overflow-x: hidden;
+  // overflow-y: hidden;
+  height: auto;
 }
 .invalid-feedback{
   display: block;
