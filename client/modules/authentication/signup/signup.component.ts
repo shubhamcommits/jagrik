@@ -18,7 +18,6 @@ import { MustMatch } from '../../../src/shared/mustMatch.validator'
       display:inline-block;
        height:100%;
         width:100%;
-        background:#fca311;
     }
     `]
 })
