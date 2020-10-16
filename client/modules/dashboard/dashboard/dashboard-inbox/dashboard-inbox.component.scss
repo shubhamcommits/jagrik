@@ -48,8 +48,14 @@ h1{
 .card-heading, .card-heading h2 {
     color: #CE4166;
     margin-bottom: 20px;
-    background-color: #cd4266;
+    background-color: #0EB8C9;
     padding: 12px;
     text-align: center;
     margin: 0px;
+}
+.card-heading{
+border-radius: 20px 20px 0px 0px;
+}
+.card-dashboard{
+border-radius: 20px;
 }

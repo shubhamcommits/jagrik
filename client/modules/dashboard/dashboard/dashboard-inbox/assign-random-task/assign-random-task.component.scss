@@ -187,7 +187,7 @@ img{
     background-image: url('/assets/yellow_dice_6.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 218px 218px;
+    background-size: 100px 100px;
     width: 120px;
     height: 120px;
     background-color: #f3b54e;
@@ -211,11 +211,46 @@ img{
 
 .tracking-in-contract{animation:tracking-in-contract .8s cubic-bezier(.215,.61,.355,1.000) both}
 
-@keyframes tracking-in-contract{0%{letter-spacing:1em;opacity:0}40%{opacity:.6}100%{letter-spacing:normal;opacity:1}}
+@keyframes tracking-in-contract{
+    0%{letter-spacing:1em;opacity:0}
+    40%{opacity:.6}
+    100%{letter-spacing:normal;opacity:1}
+}
 
 
 .bounce-in-top{
   animation:bounce-in-top 1.1s 2s both
 }
 
-@keyframes bounce-in-top{0%{transform:translateY(-500px);animation-timing-function:ease-in;opacity:0}38%{transform:translateY(0);animation-timing-function:ease-out;opacity:1}55%{transform:translateY(-65px);animation-timing-function:ease-in}72%{transform:translateY(0);animation-timing-function:ease-out}81%{transform:translateY(-28px);animation-timing-function:ease-in}90%{transform:translateY(0);animation-timing-function:ease-out}95%{transform:translateY(-8px);animation-timing-function:ease-in}100%{transform:translateY(0);animation-timing-function:ease-out}}
+@keyframes bounce-in-top{
+    0%{transform:translateY(-500px);animation-timing-function:ease-in;opacity:0}
+    38%{transform:translateY(0);animation-timing-function:ease-out;opacity:1}
+    55%{transform:translateY(-65px);animation-timing-function:ease-in}
+    72%{transform:translateY(0);animation-timing-function:ease-out}
+    81%{transform:translateY(-28px);animation-timing-function:ease-in}
+    90%{transform:translateY(0);animation-timing-function:ease-out}
+    95%{transform:translateY(-8px);animation-timing-function:ease-in}
+    100%{transform:translateY(0);animation-timing-function:ease-out}
+}
+.slide-in-left{
+    animation:slide-in-left 1.3s 2s both
+  }
+  @keyframes slide-in-left{
+    0%{transform:translateX(-500px);animation-timing-function:ease-in;opacity:0}
+    100%{transform:translateX(0);animation-timing-function:ease-out}
+  }
+.slide-in-right{
+animation:slide-in-right 1.3s 2s both
+}
+@keyframes slide-in-right{
+0%{transform:translateX(500px);animation-timing-function:ease-in;opacity:0}
+100%{transform:translateX(0);animation-timing-function:ease-out}
+}
+.card-FD:hover{
+-webkit-transform: scale(1.04);
+box-shadow: 3px 5px 20px 8px #fcb040;
+}
+.card-FR:hover{
+-webkit-transform: scale(1.04);
+box-shadow: 3px 5px 20px 8px #cd4266;
+ }

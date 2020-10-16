@@ -5,7 +5,7 @@
       <div class="col-md-4 col-xl-3">
           <div class="card bg-c-blue order-card">
               <div class="card-block">
-                  <h3 class="m-b-20">Week</h3>
+                  <h3 class="m-b-20 card-value">Week</h3>
                   <h2 class="text-right">
                     <mat-icon class="icon-top">today</mat-icon><span>{{taskList[taskList.length-1]?.week}}</span>
                   </h2>
@@ -17,7 +17,7 @@
       <div class="col-md-4 col-xl-3">
           <div class="card bg-c-green order-card">
               <div class="card-block">
-                  <h3 class="m-b-20 text-capitalize">{{data?.card?.theme}}</h3>
+                  <h3 class="m-b-20 card-value text-capitalize">{{data?.card?.theme}}</h3>
                   <h2 class="text-right"><mat-icon class="icon-top">call_to_action</mat-icon><span>{{data?.card?.dice_number}}</span></h2>
                   <!-- <p class="m-b-0" class="text-capitalize">{{data?.card?.theme}}</p> -->
               </div>
@@ -27,7 +27,7 @@
       <div class="col-md-4 col-xl-3">
           <div class="card bg-c-yellow order-card">
               <div class="card-block">
-                  <h3 class="m-b-20">Team Task Status</h3>
+                  <h3 class="m-b-20 card-value">Team Task Status</h3>
                   <h2 class="text-right"><mat-icon class="icon-top">autorenew</mat-icon><span>{{taskStatus?.teamTask == 'complete' ? 'Submitted' : 'Pending'}}</span></h2>
                   <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
               </div>
@@ -37,7 +37,7 @@
       <div class="col-md-4 col-xl-3" >
           <div class="card bg-c-pink order-card" style="height: 100%;">
               <div class="card-block">
-                  <h3 class="m-b-20">User Task Status</h3>
+                  <h3 class="m-b-20 card-value">User Task Status</h3>
                   <!-- <h2 class="text-right"><mat-icon class="icon-top">User</mat-icon><span>486</span></h2>
                   <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
                   <div class="row" *ngFor="let item of taskStatus?.teamMembers">
@@ -305,12 +305,14 @@
   <button ngClass="{{data?.card?.theme === 'fundamental duties'  ? 'bg-yellow': 'bg-pink'}}" class="btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">View Task<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
    </div>
    <div class="row" *ngIf="!data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
-
+    <div class="col-md-12">
+      <img style="max-height: 40vh;max-width: 100%;" src="assets/undraw_No_data_re_kwbl.svg">
+    </div>
      <div class="col-md-12">
-        <p>No Active Task</p>
+      <span class="d-flex justify-content-center">No Active Tasks</span>
      </div>
      <div class="col-md-12" style="display: flex; justify-content: flex-end;">
-      <button class="bg-pink btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">Task Board<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
+      <button class="btn-jagrik btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">Task Board<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
    </div>
    </div>
    
