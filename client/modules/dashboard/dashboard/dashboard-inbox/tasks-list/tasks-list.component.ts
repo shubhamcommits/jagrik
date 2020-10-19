@@ -40,7 +40,7 @@ export class TasksListComponent implements OnInit {
   userData: any;
   substring = 'inbox';
   isdash: boolean = false;
-  isdash1: boolean = true;
+  isdash1: boolean = false;
   taskStatus: any;
   individualTaskStatus: any;
   displayedColumns: string[] = ['Description'];
