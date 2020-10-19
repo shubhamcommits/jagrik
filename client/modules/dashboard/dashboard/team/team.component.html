@@ -39,9 +39,9 @@
         [routerLink]="['/dashboard','team-profile', item.value[0].team_id]">
         <div class="card card-team">
           <div class="row">
-            <div class="col-md-6 text-center" *ngFor="let item1 of item.value">
+            <div class="col-md-6 text-center center-it" *ngFor="let item1 of item.value">
                <img src="{{item1.user_profile_pic}}" class="rounded-circle">
-               <h3>{{item1.name}}</h3>
+               <h5>{{item1.name}}</h5>
             </div>
           </div>
           <div class="card-body">
