@@ -303,20 +303,19 @@
   </div>
   <div class="row" style="display: flex; justify-content: flex-end;" *ngIf="!(!data?.card?.theme || (data?.card?.theme && data?.card?.theme === ''))">
   <button ngClass="{{data?.card?.theme === 'fundamental duties'  ? 'bg-yellow': 'bg-pink'}}" class="btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">View Task<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
-   </div>
-   <div class="row" *ngIf="!data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
-    <div class="col-md-12">
-      <img style="max-height: 40vh;max-width: 100%;" src="assets/undraw_No_data_re_kwbl.svg">
-    </div>
-     <div class="col-md-12">
-      <span class="d-flex justify-content-center">No Active Tasks</span>
-     </div>
-     <div class="col-md-12" style="display: flex; justify-content: flex-end;">
-      <button class="btn-jagrik btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">Task Board<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
-   </div>
-   </div>
-
-
-
-
+  </div>
 </ng-container>
+
+<ng-container *ngIf="isdash == true && !data?.card?.theme || (data?.card?.theme && data?.card?.theme === '')">
+<div class="row">
+  <div class="col-md-12">
+    <img style="max-height: 40vh;max-width: 100%;" src="assets/undraw_No_data_re_kwbl.svg">
+  </div>
+   <div class="col-md-12">
+    <span class="d-flex justify-content-center">No Active Tasks</span>
+   </div>
+   <div class="col-md-12" style="display: flex; justify-content: flex-end;">
+    <button class="btn-jagrik btn-default" [routerLink]="['/dashboard', 'tasks']" style="color: white;border: 0px;font-size: 19px;padding: 8px;">Task Board<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_right_alt</mat-icon></button>
+ </div>
+ </div>
+ </ng-container>

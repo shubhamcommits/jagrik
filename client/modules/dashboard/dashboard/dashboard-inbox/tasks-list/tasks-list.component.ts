@@ -183,15 +183,14 @@ export class TasksListComponent implements OnInit {
           this.taskStatus = res['teamStatus'];
           if (this.taskStatus.teamMembers.length > 0) {
             this.taskStatus.teamMembers.forEach((element) => {
-              if (element.user_email == this.userData.email) {
+              if (element.user_email == this.userData.email) 
+              {
                 this.individualTaskStatus = element.user_individual_task_status;
               }
-              if (
-                element.user_individual_task_status === false &&
-                this.isdash === true
-              ) {
+              if ( element.user_individual_task_status === false) 
+              {
                 this.isdash1 = !this.isdash1;
-              }
+              } 
             });
           }
         })
@@ -203,6 +202,7 @@ export class TasksListComponent implements OnInit {
           );
         });
     });
+    console.log('hello',this.isdash1)
   }
 
   getTaskList(cardIdx: any) {
