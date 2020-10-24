@@ -443,19 +443,19 @@ export class ClassService {
                let class_exist: any = await Class.findById({ _id: classId });
                
                if (class_exist) {
-                 let class_users_length = class_exist.members.length;
+                 let class_users_length = class_exist.members.length-1;
                  let get_all_teams: any = await Team.find({team_creator: user._id,});
  
                  if (get_all_teams.length == 0) {
-                   for (let i=0;i<class_users_length/2;i++) {
+                   for (let i=0;i<Math.floor(class_users_length/2);i++) {
                      await Team.create({team_creator: user._id,team_name: `Team${i + 1}`});
                    }
                  }
 
-                 for (let i=0;i<class_users_length/2;i++) {
+                 for (let i=0;i<Math.floor(class_users_length/2);i++) {
                    let team: any = await Team.findOne({team_name: `Team${i + 1}`});
                    let teamMembers = team.team_members;
-                   if(teamMembers.length<2){
+                   if(teamMembers.length<2 || (i==Math.floor(class_users_length/2)-1)){
                     console.log("#####################################");
                     console.log(team);
                     console.log("#####################################");
