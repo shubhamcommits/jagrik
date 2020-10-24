@@ -434,100 +434,42 @@ export class ClassService {
          async createTeam(token: any, classId: String, userId: String) {
            try {
              // verify token and decode user data
-             let userVerify: any = jwt.verify(
-               token.split(' ')[1],
-               process.env.JWT_KEY
-             );
+             let userVerify: any = jwt.verify(token.split(' ')[1],process.env.JWT_KEY);
              let user: any = await User.findById({ _id: userVerify._id });
+
              // check if the user has the correct permissions to create a team
              if (user.role === 'facilitator' || user.role === 'super-admin') {
                // check if class exists
                let class_exist: any = await Class.findById({ _id: classId });
-
+               
                if (class_exist) {
                  let class_users_length = class_exist.members.length;
-                 let get_all_teams: any = await Team.find({
-                   team_creator: user._id,
-                 });
-                 console.log('The team count is: ', get_all_teams.length);
+                 let get_all_teams: any = await Team.find({team_creator: user._id,});
+ 
                  if (get_all_teams.length == 0) {
-                   let team_name = 'Team1';
-                   let jagrik_class_team = await Team.create({
-                     team_creator: user._id,
-                     team_name: team_name,
-                     team_members: userId,
-                   });
-                   if (jagrik_class_team) {
-                     await User.findByIdAndUpdate(
-                       { _id: userId },
-                       { teams: jagrik_class_team._id },
-                       { new: true }
-                     );
-                   } else {
-                     throw new Error('401 - Team not created');
+                   for (let i=0;i<class_users_length/2;i++) {
+                     await Team.create({team_creator: user._id,team_name: `Team${i + 1}`});
                    }
-                 } else {
-                   if (2 * get_all_teams.length + 1 == class_users_length) {
-                     // add the user in last team created
-                     console.log(class_users_length);
-                     let jagrik_class_team = await Team.findByIdAndUpdate(
-                       { _id: get_all_teams[get_all_teams.length - 1]._id },
-                       { $addToSet: { team_members: userId } },
-                       { new: true }
-                     );
-                     if (jagrik_class_team) {
-                       await User.findByIdAndUpdate(
-                         { _id: userId },
-                         { teams: jagrik_class_team._id },
-                         { new: true }
-                       );
-                     } else {
-                       throw new Error('401 - Team not created');
-                     }
-                   } else {
-                     console.log(
-                       'The member count is: ',
-                       get_all_teams[get_all_teams.length - 1].team_members
-                         .length
-                     );
-                     if (
-                       get_all_teams[get_all_teams.length - 1].team_members
-                         .length != 2
-                     ) {
-                       let jagrik_class_team = await Team.findByIdAndUpdate(
-                         { _id: get_all_teams[get_all_teams.length - 1]._id },
-                         { $addToSet: { team_members: userId } },
-                         { new: true }
-                       );
-                       if (jagrik_class_team) {
-                         await User.findByIdAndUpdate(
-                           { _id: userId },
-                           { teams: jagrik_class_team._id },
-                           { new: true }
-                         );
-                       } else {
-                         throw new Error('401 - Team not created');
-                       }
-                     } else {
-                       let team_name = `Team${parseInt(get_all_teams.length) + 1}`;
-                       let jagrik_class_team = await Team.create({
-                         team_creator: user._id,
-                         team_name: team_name,
-                         team_members: userId,
-                       });
-                       if (jagrik_class_team) {
-                         await User.findByIdAndUpdate(
-                           { _id: userId },
-                           { teams: jagrik_class_team._id },
-                           { new: true }
-                         );
-                       } else {
-                         throw new Error('401 - Team not created');
-                       }
-                     }
-                   }
-                   // console.log("The last team is: ",get_all_teams[get_all_teams.length-1].team_members.length);
                  }
+
+                 for (let i=0;i<class_users_length/2;i++) {
+                   let team: any = await Team.findOne({team_name: `Team${i + 1}`});
+                   let teamMembers = team.team_members;
+                   if(teamMembers.length<2){
+                    console.log("#####################################");
+                    console.log(team);
+                    console.log("#####################################");
+                    teamMembers.push(userId);
+                    let jagrik_class_team = await Team.findByIdAndUpdate({_id: team._id},{team_members: teamMembers});
+                    if (jagrik_class_team) {
+                      await User.findByIdAndUpdate({ _id: userId },{ teams: jagrik_class_team._id },{ new: true });
+                    } else {
+                      throw new Error('401 - Team not created');
+                    }
+                    break;
+                   }
+                 }
+
                } else {
                  throw new Error('401 - Class Not Found');
                }
