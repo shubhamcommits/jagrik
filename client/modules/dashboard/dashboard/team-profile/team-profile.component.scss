@@ -90,7 +90,7 @@ body {
 .wrapper {
   padding-top: 40px;
   padding-bottom: 40px;
-  
+
   &:focus {
     outline: 0;
   }
@@ -154,7 +154,7 @@ body {
 
 .clash-card__unit-description {
   padding: 0px 10px;
-  margin-bottom: 10px;  
+  margin-bottom: 10px;
 }
 
 .clash-card__unit-stats--barbarian-pink{
@@ -166,7 +166,7 @@ background: #cd4266;
 }
 .clash-card__unit-stats--barbarian {
   background: #fcb040;
-  
+
   .one-
  {
      border-right: 1px solid #fcb040;
@@ -175,7 +175,7 @@ background: #cd4266;
 
 .clash-card__unit-stats--archer {
   background: $archer;
-  
+
   .one-third {
      border-right: 1px solid #D04976;
   }
@@ -183,7 +183,7 @@ background: #cd4266;
 
 .clash-card__unit-stats--giant {
   background: $giant;
-  
+
   .one-third {
      border-right: 1px solid darken($giant, 8%);
   }
@@ -191,7 +191,7 @@ background: #cd4266;
 
 .clash-card__unit-stats--goblin {
   background: $goblin;
-  
+
   .one-third {
      border-right: 1px solid darken($goblin, 6%);
   }
@@ -199,38 +199,38 @@ background: #cd4266;
 
 .clash-card__unit-stats--wizard {
   background: $wizard;
-  
+
   .one-third {
      border-right: 1px solid darken($wizard, 6%);
   }
 }
 
 .clash-card__unit-stats {
-  
+
   color: white;
   font-weight: 700;
   border-bottom-left-radius: $border-radius-size;
   border-bottom-right-radius: $border-radius-size;
-  
+
   .one-third {
     width: 50%;
     float: left;
     padding: 20px 15px;
   }
-  
+
   sup {
     position: absolute;
-    bottom: 4px; 
+    bottom: 4px;
     font-size: 45%;
     margin-left: 2px;
   }
-  
+
   .stat {
     position: relative;
     font-size: 24px;
     margin-bottom: 10px;
   }
-  
+
   .stat-value {
     text-transform: uppercase;
     font-weight: 400;
@@ -271,3 +271,6 @@ background: #cd4266;
 
 
 
+.backdrop{
+  height: 100vh !important;
+}

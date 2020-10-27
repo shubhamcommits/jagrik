@@ -28,6 +28,7 @@ export class TeamProfileComponent implements OnInit {
   ) {}
 
   teamData: any = [];
+  public loading:Boolean = true;
   teamId = '';
   ngOnInit(): void {
     this.teamId = this.activatedRoute.snapshot.params['teamId'];
@@ -40,6 +41,7 @@ export class TeamProfileComponent implements OnInit {
       this.teamService
         .teamProfile(teamId)
         .then((res) => {
+
           // Fire error toast
           this.teamData = res['response'];
         })

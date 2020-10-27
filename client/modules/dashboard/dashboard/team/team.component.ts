@@ -84,6 +84,7 @@ export class TeamComponent implements OnInit {
           var i = 1;
           this.dataSource = [];
           this.newUser = [];
+          this.teamArray = [];
           data.forEach((element) => {
             if (element['team_name'] !== 'No Team') {
               if (this.teamArray[element['team_name']] !== undefined) {
@@ -92,7 +93,7 @@ export class TeamComponent implements OnInit {
                   position: i++,
                   className: this.className,
                   team: element['team_name'],
-                  user_profile_pic: element['user_profile_pic']
+                   user_profile_pic: element['user_profile_pic'] !== '' && element['user_profile_pic'] !== 'default_user.png' ? 'data:image/png;base64,' + element['user_profile_pic'] : 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y'
                 })
               } else {
                 this.teamArray[element['team_name']] = []

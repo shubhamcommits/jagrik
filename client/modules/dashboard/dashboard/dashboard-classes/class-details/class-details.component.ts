@@ -18,7 +18,7 @@ export class ClassDetailsComponent implements OnInit {
     private _Router: Router,
     public utilityService?: UtilityService,
   ) {}
-  
+
   substring = "inbox";
   isdash: boolean = false;
   // classId : any;
@@ -60,7 +60,7 @@ export class ClassDetailsComponent implements OnInit {
       // close the modal
     }
   }
-  
+
   closeClass() {
     return new Promise((resolve) => {
       // Create class service instance
@@ -71,6 +71,7 @@ export class ClassDetailsComponent implements OnInit {
         .closeClass(this.classId)
         .then((res) => {
           this.getClassDetails(this.classId)
+          window.location.reload()
           resolve(res);
         })
         .catch(() => {

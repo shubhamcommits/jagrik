@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BonusTaskService } from '../shared/services/bonustask.service';
 import { PendingTaskViewModalComponent } from './pending-task-view-modal/pending-task-view-modal.component'
 import { Router } from '@angular/router';
+import { TeamProfileComponent } from '../team-profile/team-profile.component'
 @Component({
   selector: 'app-pending-task-view',
   templateUrl: './pending-task.component.html',
@@ -36,7 +37,8 @@ export class PendingTaskViewComponent implements OnInit {
     private storageService: StorageService,
     public dialog: MatDialog,
     private bonusTaskService: BonusTaskService,
-    private router: Router
+    private router: Router,
+    private teamProfileComponent: TeamProfileComponent
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +80,7 @@ export class PendingTaskViewComponent implements OnInit {
           this.teamData.push(data)
 
         }
+        this.teamProfileComponent.loading = false
         // this.taskData.forEach(element => {
         //   if (this.teamData[element['week']] !== undefined) {
         //     this.teamData[element['week']].push(element)
@@ -89,6 +92,7 @@ export class PendingTaskViewComponent implements OnInit {
       })
       .catch((error) => {
         // Fire error toast
+        this.teamProfileComponent.loading = false
         this.utilityService.fireToast(
           'error',
           `Some unexpected error occured, please try again!`
