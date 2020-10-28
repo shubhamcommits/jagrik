@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, Input, Inject } from '@angular/core';
+import { Component, OnInit, Injector, Input, ViewChild, Inject } from '@angular/core';
 import { TeamService } from '../../shared/services/team.service';
 import { ClassService } from '../../shared/services/class.service';
 import { StorageService } from 'src/shared/services/storage-service/storage.service';
@@ -9,6 +9,7 @@ import { TaskViewComponent } from './task-view/task-view.component';
 import { UtilityService } from 'src/shared/services/utility-service/utility.service';
 import { Router } from '@angular/router';
 import * as confetti from 'canvas-confetti';
+import {MatAccordion} from '@angular/material/expansion';
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
@@ -24,7 +25,7 @@ import * as confetti from 'canvas-confetti';
 export class TasksListComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
-
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   constructor(
     private injector: Injector,
     private router: Router,
@@ -39,6 +40,10 @@ export class TasksListComponent implements OnInit {
 
   userData: any;
   substring = 'inbox';
+  chosenLevel: boolean = false;
+  level = 'dummy';
+  chosenLevelself = false;
+  levelself = 'dummy';
   isdash: boolean = false;
   isdash1: boolean = false;
   taskStatus: any;
