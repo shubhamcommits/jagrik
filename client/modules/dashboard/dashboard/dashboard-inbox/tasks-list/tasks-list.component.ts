@@ -51,6 +51,8 @@ export class TasksListComponent implements OnInit {
   displayedColumns: string[] = ['Description'];
   week: any;
   taskList: any = [];
+  comData: any = [];
+  type= '';
 
   @Input('cardId') cardId: any;
   cardIdx: any;
@@ -82,6 +84,7 @@ export class TasksListComponent implements OnInit {
       console.log('check');
     }
     this.getTeamTaskStatus();
+    this.filterCommData(this.type);
   }
 
   startConfe() {
@@ -207,7 +210,15 @@ export class TasksListComponent implements OnInit {
           );
         });
     });
-    console.log('hello',this.isdash1)
+  }
+
+  filterCommData(type) {
+    this.comData = []
+    this.data.tasks.forEach(element => {
+      if (element.type === type && element.category === 'community') {
+        this.comData.push(element)
+      }
+    }); 
   }
 
   getTaskList(cardIdx: any) {
@@ -243,5 +254,8 @@ export class TasksListComponent implements OnInit {
           resolve({});
         });
     });
+  }
+  filterdata(){
+    
   }
 }

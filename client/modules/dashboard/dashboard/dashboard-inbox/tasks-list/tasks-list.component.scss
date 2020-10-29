@@ -6,7 +6,11 @@ caption {
     color: white;
     padding: 10px;
 }
-
+::ng-deep{
+  .mat-expansion-panel-body {
+    padding: 24px 16px !important;
+}
+}
 
 // Bootstrap Grid System
 /*!
@@ -4259,7 +4263,7 @@ a:last-child {
 
 
 .blog-card{
-  position: absolute;
+  // position: absolute;
   height: 370px;
   width: 95%;
   max-width: 850px;
@@ -4349,7 +4353,7 @@ a:last-child {
 }
 .content button{
   display: inline-flex;
-  padding: 15px 20px;
+  // padding: 15px 20px;
   border: none;
   font-size: 16px;
   text-transform: uppercase;
@@ -4370,6 +4374,12 @@ a:last-child {
   bottom: 25px;
   left: 65%;
   transform: translateX(-50%);
+  z-index: 12;
+}
+.arrows{
+  position: absolute;
+  top: 25px;
+  left: 105%;
   z-index: 12;
 }
 #imgTap:checked ~ .sliders{
@@ -4411,3 +4421,20 @@ input[type="checkbox"]{
   transform: scaleX(1);
   width: 100%;
 }
+
+.circle-level{
+  animation: spin 10s linear infinite;
+  /*Set our animation play state to paused initially */
+  animation-play-state: paused; 
+}
+
+.circle-level:hover {
+  /* Toggle our animation play state to running when we are hovering over our sticker */
+  animation-play-state: running;
+}
+
+
+@keyframes spin {
+  100% {transform: rotate(1turn); }
+}
+

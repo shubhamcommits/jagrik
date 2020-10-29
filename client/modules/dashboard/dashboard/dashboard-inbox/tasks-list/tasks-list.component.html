@@ -92,11 +92,11 @@
 
 <!-- New Theme -->
 <div class="container">
-<ng-container *ngIf="isdash == false && isdash1 == true && taskStatus?.taskStatus !== 'Waiting for approval'">
+<ng-container *ngIf="isdash == false && taskStatus?.taskStatus !== 'Waiting for approval'">
 
   <!-- Expansion Panel -->
   <mat-accordion class="example-headers-align" multi>
-    <mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header style="background-color: #3d87d4;">
         <mat-panel-title style="color: white;font-weight: bold;font-size: 24px;">
          Community Task
@@ -109,17 +109,17 @@
       </mat-expansion-panel-header>
       <ng-container *ngIf="!chosenLevel">
         <div class="row">
-          <div class="col-md-4 center-it" (click)="level = 'gold'" (click)="chosenLevel = true">
+          <div class="col-md-4 center-it" (click)="this.filterCommData('gold')" (click)="level = 'gold'" (click)="chosenLevel = true">
             <div class="circle-level gold-level">
                GOLD
             </div>
         </div>
-        <div class="col-md-4 center-it" (click)="level = 'silver'" (click)="chosenLevel = true">
+        <div class="col-md-4 center-it" (click)="this.filterCommData('silver')" (click)="level = 'silver'" (click)="chosenLevel = true">
           <div class="circle-level silver-level">
              SILVER
           </div>
         </div>
-        <div class="col-md-4 center-it" (click)="level = 'bronze'" (click)="chosenLevel = true">
+        <div class="col-md-4 center-it" (click)="this.filterCommData('bronze')" (click)="level = 'bronze'" (click)="chosenLevel = true">
           <div class="circle-level bronze-level">
              BRONZE
           </div>
@@ -129,7 +129,7 @@
   
       <ng-container *ngIf="chosenLevel">
         <ng-container *ngIf="this.level == 'gold'">
-          <div class="row">
+          <!-- <div class="row">
               <div class="col-md-4 center-it">
                 <div class="circle-level gold-level">
                   GOLD
@@ -153,10 +153,48 @@
                   </div>
                 </ng-container>
               </div>
-          </div>
+          </div> -->
+    <div class="blog-card">
+        <ng-container *ngFor="let task of this.comData; let i= index">
+            <ng-container *ngIf="i == 0" >
+            <input type="radio" name="select" id="tap-{{i+1}}" checked>
+            </ng-container>
+            <ng-container *ngIf="i != 0" >
+              <input type="radio" name="select" id="tap-{{i+1}}" >
+            </ng-container>
+        </ng-container>
+            <input type="checkbox" id="imgTap">
+            <div class="sliders" >
+                  <ng-container *ngFor="let task of this.comData; let y= index">
+                      <label for="tap-{{y+1}}" class="tap tap-{{y+1}}"></label>
+                  </ng-container>
+            </div>
+        <div class="inner-part " *ngFor="let task of this.comData; let z= index">
+              <span class="circle-level gold-level"> GOLD</span>
+              <div class="content content-{{z+1}}">
+                    <div class="row">
+                        <div class="col-12 text-capitalize heading">Description</div>
+                        <div class="col-11">
+                          <p>{{ task?.description }}</p>
+                        </div>
+                        <div class="col-md-1">
+                          <label for="tap-{{z+2}}" class="tap tap-{{z+2}}"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></label>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}
+                        </div>
+                        <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                            mat-raised-button class="task-btn"
+                            (click)="openDialog(task)">UPLOAD</button>
+                        </div>
+                    </div>
+              </div>
+        </div>
+    </div>
         </ng-container>
         <ng-container *ngIf="this.level == 'silver'">
-          <div class="row">
+          <!-- <div class="row">
               <div class="col-md-4 center-it">
                 <div class="circle-level silver-level">
                   SILVER
@@ -181,34 +219,83 @@
                   </div>
                 </ng-container>
               </div>
+          </div> -->
+          <div class="blog-card">
+            <ng-container *ngFor="let task of this.comData; let a= index">
+                <ng-container *ngIf="a == 0" >
+                <input type="radio" name="select" id="tap-{{a+1}}" checked>
+                </ng-container>
+                <ng-container *ngIf="a != 0" >
+                  <input type="radio" name="select" id="tap-{{a+1}}" >
+                </ng-container>
+            </ng-container>
+                <input type="checkbox" id="imgTap">
+                <div class="sliders" >
+                    <ng-container *ngFor="let task of this.comData; let b= index">
+                    <label for="tap-{{b+1}}" class="tap tap-{{b+1}}"></label>
+                  </ng-container>
+                </div>
+          <div class="inner-part " *ngFor="let task of this.comData; let z= index">
+                <span class="circle-level silver-level">
+                  SILVER
+                </span>
+                <div class="content content-{{z+1}}">
+                  <div class="row">
+                      <div class="col-12 text-capitalize heading">Description</div>
+                      <div class="col-12">
+                        <p>{{ task?.description }}</p>
+                      </div>
+                  </div><br>
+                  <div class="row">
+                      <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}
+                      </div>
+                      <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                          mat-raised-button class="task-btn"
+                          (click)="openDialog(task)">UPLOAD</button>
+                      </div>
+                  </div>
+                </div>
           </div>
+        </div>
         </ng-container>
         <ng-container *ngIf="this.level == 'bronze'">
-          <div class="row">
-              <div class="col-md-4 center-it">
-                <div class="circle-level bronze-level">
-                  BRONZE
-                </div>
-              </div>
-              <div class="col-md-8">
-                <ng-container *ngFor="let task of this.data.tasks" >
-              <div *ngIf="task.category == 'community' && task?.type== 'bronze'" class="task-list" >
-                <div class="row">
-                  <div class="col-12 text-capitalize heading">Description</div>
-                  <div class="col-12">
-                    <p>{{ task?.description }}</p>
-                  </div>
-    
-                </div><br>
-                <div class="row">
-                  <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}</div>
-                  <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button mat-raised-button
-                      class="task-btn" (click)="openDialog(task)">UPLOAD</button></div>
-                </div>
-              </div>
+          <div class="blog-card">
+            <ng-container *ngFor="let task of this.comData; let a= index">
+                <ng-container *ngIf="a == 0" >
+                <input type="radio" name="select" id="tap-{{a+1}}" checked>
+                </ng-container>
+                <ng-container *ngIf="a != 0" >
+                  <input type="radio" name="select" id="tap-{{a+1}}" >
+                </ng-container>
             </ng-container>
-              </div>
+                <input type="checkbox" id="imgTap">
+                <div class="sliders" >
+                    <ng-container *ngFor="let task of this.comData; let b= index">
+                    <label for="tap-{{b+1}}" class="tap tap-{{b+1}}"></label>
+                  </ng-container>
+                </div>
+          <div class="inner-part " *ngFor="let task of this.comData; let z= index">
+                <span class="circle-level bronze-level">
+                  BRONZE
+                </span>
+                <div class="content content-{{z+1}}">
+                  <div class="row">
+                      <div class="col-12 text-capitalize heading">Description</div>
+                      <div class="col-12">
+                        <p>{{ task?.description }}</p>
+                      </div>
+                  </div><br>
+                  <div class="row">
+                      <div class="col-6 text-capitalize new-label">Points: {{ task?.points }}
+                      </div>
+                      <div *ngIf="taskStatus?.teamTask  !== 'complete'" class="col-6 text-capitalize new-col"><button
+                          mat-raised-button class="task-btn"
+                          (click)="openDialog(task)">UPLOAD</button>
+                      </div>
+                  </div>
+                </div>
           </div>
+        </div>
         </ng-container>
         
       </ng-container> 
