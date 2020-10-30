@@ -53,6 +53,7 @@ export class TasksListComponent implements OnInit {
   taskList: any = [];
   comData: any = [];
   type= '';
+  typex = '';
 
   @Input('cardId') cardId: any;
   cardIdx: any;
@@ -84,7 +85,7 @@ export class TasksListComponent implements OnInit {
       console.log('check');
     }
     this.getTeamTaskStatus();
-    this.filterCommData(this.type);
+    this.filterCommData(this.type,this.typex);
   }
 
   startConfe() {
@@ -212,10 +213,10 @@ export class TasksListComponent implements OnInit {
     });
   }
 
-  filterCommData(type) {
+  filterCommData(type,typex) {
     this.comData = []
     this.data.tasks.forEach(element => {
-      if (element.type === type && element.category === 'community') {
+      if (element.type === type && element.category === typex) {
         this.comData.push(element)
       }
     }); 

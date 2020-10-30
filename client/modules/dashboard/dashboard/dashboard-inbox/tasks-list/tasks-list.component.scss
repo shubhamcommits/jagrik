@@ -3998,29 +3998,29 @@ caption {
 }
 
 .bg-c-blue {
-    background: linear-gradient(45deg, #cc4266, #fb7a9c);
+    background: #928DFF;
 }
 
 .bg-c-green {
-    background: linear-gradient(45deg, #ee2b47, #f3687c);
+    background: #4379FF;
 }
 
 .bg-c-yellow {
-    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    background: #17a2b8;
 }
 
 .bg-c-pink {
-    background: linear-gradient(45deg,#FF5370,#ff869a);
+    background: #00B89D;
 }
 
 
 .card {
-    border-radius: 5px;
+    border-radius: 35px;
     -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
     box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
     border: none;
     margin-bottom: 30px;
-    -webkit-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out; 
     transition: all 0.3s ease-in-out;
 }
 
@@ -4240,27 +4240,6 @@ input {
   color: red;
 }
 
-a { 
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    display: block;
-}
-
-a:first-child {
-    -webkit-clip-path: polygon(0 0, 0 100vh, 100% 100vh);
-    clip-path: polygon(0 0, 0 100vh, 100% 100vh);
-    background: #d6d6d6;
-}
-
-a:last-child {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100vh);
-    clip-path: polygon(0 0, 100% 0, 100% 100vh);
-    background: #0EB8C9;
-}
-
 
 .blog-card{
   // position: absolute;
@@ -4422,19 +4401,17 @@ input[type="checkbox"]{
   width: 100%;
 }
 
-.circle-level{
-  animation: spin 10s linear infinite;
-  /*Set our animation play state to paused initially */
-  animation-play-state: paused; 
-}
+// .circle-level{
+//   animation: spin 10s linear infinite;
+//   animation-play-state: paused; 
+// }
 
-.circle-level:hover {
-  /* Toggle our animation play state to running when we are hovering over our sticker */
-  animation-play-state: running;
-}
+// .circle-level:hover {
+//   animation-play-state: running;
+// }
 
 
-@keyframes spin {
-  100% {transform: rotate(1turn); }
-}
+// @keyframes spin {
+//   100% {transform: rotate(1turn); }
+// }
 

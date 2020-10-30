@@ -93,7 +93,26 @@
 <!-- New Theme -->
 <div class="container">
 <ng-container *ngIf="isdash == false && taskStatus?.taskStatus !== 'Waiting for approval'">
-
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card" style="width: 30rem;height: 15rem;">
+          <div class="card-body">
+            <h2 class="card-title" style="text-align: center;">COMMUNITY TASK</h2>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <img class="card-img-bottom" src="/assets/undraw_community_8nwl.svg" alt="Card image cap">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card" style="width: 30rem;height: 15rem;">
+          <div class="card-body">
+            <h2 class="card-title" style="text-align: center;">SELF TASK</h2>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <img class="card-img-bottom" src="..." alt="Card image cap">
+        </div>
+      </div>
+    </div>
   <!-- Expansion Panel -->
   <mat-accordion class="example-headers-align" multi>
     <mat-expansion-panel [expanded]="true">
@@ -109,17 +128,17 @@
       </mat-expansion-panel-header>
       <ng-container *ngIf="!chosenLevel">
         <div class="row">
-          <div class="col-md-4 center-it" (click)="this.filterCommData('gold')" (click)="level = 'gold'" (click)="chosenLevel = true">
+          <div class="col-md-4 center-it" (click)="this.filterCommData('gold','community')" (click)="level = 'gold'" (click)="chosenLevel = true">
             <div class="circle-level gold-level">
                GOLD
             </div>
         </div>
-        <div class="col-md-4 center-it" (click)="this.filterCommData('silver')" (click)="level = 'silver'" (click)="chosenLevel = true">
+        <div class="col-md-4 center-it" (click)="this.filterCommData('silver','community')" (click)="level = 'silver'" (click)="chosenLevel = true">
           <div class="circle-level silver-level">
              SILVER
           </div>
         </div>
-        <div class="col-md-4 center-it" (click)="this.filterCommData('bronze')" (click)="level = 'bronze'" (click)="chosenLevel = true">
+        <div class="col-md-4 center-it" (click)="this.filterCommData('bronze','community')" (click)="level = 'bronze'" (click)="chosenLevel = true">
           <div class="circle-level bronze-level">
              BRONZE
           </div>
