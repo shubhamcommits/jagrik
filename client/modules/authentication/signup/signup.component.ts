@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core'
 import { Location } from '@angular/common'
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthenticationService } from '../shared/services/authentication.service'
 import { StorageService } from 'src/shared/services/storage-service/storage.service'
 import { UtilityService } from 'src/shared/services/utility-service/utility.service'
@@ -35,9 +35,9 @@ export class SignupComponent implements OnInit {
   // Sign up form variable
   signupForm: FormGroup
 
-  role = this._ActivatedRoute.snapshot.queryParamMap.get('role');
-  email = this._ActivatedRoute.snapshot.queryParamMap.get('email');
-  classId = this._ActivatedRoute.snapshot.queryParamMap.get('classId');
+  role: any;
+  email: any;
+  classId: any;
 
   caste_category = 'general';
 
@@ -47,8 +47,12 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.role = this._ActivatedRoute.snapshot.queryParams['role']
+    this.email = this._ActivatedRoute.snapshot.queryParams['email']
+    this.classId = this._ActivatedRoute.snapshot.queryParams['classId']
+
     // Initialise the formgroup
-    this.signupForm =  this.formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       first_name: new FormControl('', [Validators.required, Validators.nullValidator]),
       last_name: new FormControl('', [Validators.required, Validators.nullValidator]),
       email: new FormControl(this.email || '', [Validators.email, Validators.required, Validators.nullValidator]),
@@ -75,7 +79,7 @@ export class SignupComponent implements OnInit {
         'emergency_contact_number',
         new FormControl(null, [
           Validators.required,
-          Validators.nullValidator,Validators.pattern('^[0-9]{10}$'),
+          Validators.nullValidator, Validators.pattern('^[0-9]{10}$'),
         ])
       );
 
@@ -159,8 +163,8 @@ export class SignupComponent implements OnInit {
   }
 
   prevStep() {
-     this.first_step = true;
-     this.next_step = false;
+    this.first_step = true;
+    this.next_step = false;
   }
 
   setNextStep() {

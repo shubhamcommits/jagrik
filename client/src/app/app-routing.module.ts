@@ -7,7 +7,7 @@ import { RoutingGuard } from 'src/shared/guards/routing-guard/routing.guard';
 const routes: Routes = [
 
   // Home Route
-  { path: '', redirectTo: '/authentication/home', pathMatch: 'full', canActivate:[RoutingGuard] },
+  { path: '', redirectTo: '/authentication/home', pathMatch: 'full'},
 
   // Authentication Routes
   {

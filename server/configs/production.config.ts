@@ -19,7 +19,7 @@ function prodConfigInit() {
   // Database Url String
   process.env.dbURL =
     process.env.dbURL ||
-    `mongodb+srv://jagrik:Jagrik%4001@jagrik-6jrkd.mongodb.net/jagrik?retryWrites=true&w=majority` ||
+    `mongodb+srv://shubham:UMCyayyo9KFWpSpj@jagrik.cfe3eob.mongodb.net/?retryWrites=true&w=majority` ||
     'mongodb://mongodb:27017/jagrik' ||
     'mongodb://127.0.0.1:27017/jagrik';
 

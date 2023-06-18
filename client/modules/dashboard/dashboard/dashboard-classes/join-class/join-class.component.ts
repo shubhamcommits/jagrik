@@ -60,7 +60,7 @@ export class JoinClassComponent implements OnInit {
           utilityService.fireToast('warning', `Class code is not valid!`)
 
           // Resolve the promise
-          resolve()
+          resolve(undefined)
         })
     })
   }

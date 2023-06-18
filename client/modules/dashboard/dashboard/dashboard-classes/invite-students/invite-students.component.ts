@@ -57,7 +57,7 @@ export class InviteStudentsComponent implements OnInit {
           console.log(res)
           utilityService.fireToast('success', `Invitation sent to ${this.inviteStudentsForm.value.email}`)
           this.inviteStudentsForm.reset()
-          resolve()
+          resolve(undefined)
         })
         .catch(() => {
           // Fire error toast

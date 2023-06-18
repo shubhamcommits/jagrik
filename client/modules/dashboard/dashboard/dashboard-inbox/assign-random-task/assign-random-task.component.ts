@@ -50,13 +50,13 @@ export class AssignRandomTaskComponent implements OnInit {
           // Fire sucess toast
           utilityService.fireToast('success', `Great - you've assigned a new card to your team - your feed will update very soon!`, 3000)
 
-          resolve()
+          resolve(undefined)
         })
         .catch(() => {
           utilityService.fireToast('info', `Seems like your other team partner has already assigned a card to your team, please check the dashboard in a while!`, 3000)
           this.showChooseTheme = !this.showChooseTheme
           this.showAssignCard = !this.showAssignCard
-          resolve()
+          resolve(undefined)
         })
     })
   }
